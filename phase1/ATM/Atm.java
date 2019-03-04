@@ -1,4 +1,18 @@
 package ATM;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
 
 public class Atm {
     UserManager userManager;
@@ -25,18 +39,19 @@ public class Atm {
         this.bankManager = bankManager;
     }
 
-    public String getStartingText(String username, String password){
-        String text;
+    public void printText(){
+
+        BufferedReader kbd = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Enter username: ");
+        String username = kbd.readLine();
+        System.out.println("Enter password: ");
+        String password = kbd.readLine();
         User user = userManager.getUser(username, password);
         if (user != null) {
             return user.getText();
-        } else{}
-
-    }
-
-    public String getText(String input){
-        if (input == "transfer"){}
-        else if (input == "deposit"){}
-        //etc.
+        } else{
+            System.out.println("No user found with these credentials.")
+            printText();
+        }
     }
 }

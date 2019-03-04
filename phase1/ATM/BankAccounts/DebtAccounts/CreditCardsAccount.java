@@ -1,4 +1,6 @@
-package ATM.BankAccounts.AssetAccounts;
+package ATM.BankAccounts.DebtAccounts;
+
+import ATM.BankAccounts.AssetAccounts.AssetAccount;
 
 public class CreditCardsAccount extends AssetAccount {
     public CreditCardsAccount (String password, ATM.Users.Client client) {

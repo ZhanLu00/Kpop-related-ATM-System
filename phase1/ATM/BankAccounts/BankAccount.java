@@ -1,16 +1,17 @@
 package ATM.BankAccounts;
 
 
+
 /**
  * An abstract BankAccount class.
  */
 public abstract class BankAccount {
 
-    private static int nextId = 0;
+    protected static int nextId = 0;
 
-    private int id;
-    private double balance = 0;
-    private ATM.Users.Client client;
+    protected int id;
+    protected double balance = 0;
+    protected ATM.Users.Client client;
 
 
 

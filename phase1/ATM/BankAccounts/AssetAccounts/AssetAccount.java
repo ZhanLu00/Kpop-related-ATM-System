@@ -1,15 +1,20 @@
 package ATM.BankAccounts.AssetAccounts;
-
 import ATM.BankAccounts.BankAccount;
 
+
+
+/**
+ * An abstract AssetAccount class.
+ */
 public abstract class AssetAccount extends BankAccount {
 
-    AssetAccount(String password, ATM.Users.Client client) {
-        super(password, client);
+    AssetAccount(ATM.Users.Client client) {
+        super(client);
     }
 
-    public void deposit(double amount) {
-        this.balance -= amount;
+    public boolean deposit(double amount) {
+        this.balance += amount;
+        return true;
     }
 
 }

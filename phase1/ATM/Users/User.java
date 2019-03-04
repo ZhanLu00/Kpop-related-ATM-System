@@ -31,6 +31,10 @@ public abstract class User {
         return this.password;
     }
 
+    public ArrayList getAccounts(){
+        return this.accountNumbers;
+    }
+
     /** setter **/
 
     public void setPassword(String pswd){
@@ -41,6 +45,8 @@ public abstract class User {
     public void addAccounts(String accountNumber){
         this.accountNumbers.add(accountNumber);
     }
+
+
 
     /** update account **/
 

@@ -17,9 +17,7 @@ public abstract class BankAccount {
         id++;
     }
 
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
 
     public double getBalance() {
         return balance;
@@ -54,5 +52,8 @@ public abstract class BankAccount {
         }
         return false;
     }
+
+    // TODO: payBill
+    // TODO: undo transaction
 
 }

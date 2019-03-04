@@ -3,7 +3,7 @@ package BankAccounts;
 public abstract class BankAccount {
     private static int id;
     private String password;
-    double balance;
+    protected double balance;
     //    private TimeManager dateCreated;
     private String transaction;
     private Users.Client client;
@@ -45,9 +45,7 @@ public abstract class BankAccount {
 
     public abstract boolean withdraw(double amount);
 
-    public void deposit(double amount) {
-        balance += amount;
-    }
+    public abstract void deposit(double amount);
 
     public boolean transfer(double amount, int targetAccount) {
         if (withdraw(amount)) {

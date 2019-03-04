@@ -2,8 +2,12 @@ package BankAccounts.DebtAccounts;
 
 import BankAccounts.BankAccount;
 
-public class DebtAccount extends  BankAccount {
-    protected DebtAccount(int id) {
-        super(id);
+public abstract class DebtAccount extends BankAccount {
+    DebtAccount(String password, Users.Client client) {
+        super(password, client);
+    }
+
+    public void deposit(double amount) {
+        this.balance += amount;
     }
 }

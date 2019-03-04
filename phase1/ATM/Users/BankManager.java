@@ -1,4 +1,4 @@
-package Users;
+package ATM.Users;
 
 public class BankManager extends User {
 

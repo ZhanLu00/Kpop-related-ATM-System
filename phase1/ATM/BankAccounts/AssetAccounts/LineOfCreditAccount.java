@@ -1,7 +1,7 @@
-package BankAccounts.AssetAccounts;
+package ATM.BankAccounts.AssetAccounts;
 
 public class LineOfCreditAccount extends AssetAccount {
-    public LineOfCreditAccount (String password, Users.Client client) {
+    public LineOfCreditAccount (String password, ATM.Users.Client client) {
         super(password, client);
     }
 

@@ -1,7 +1,7 @@
-package BankAccounts.DebtAccounts;
+package ATM.BankAccounts.DebtAccounts;
 
 public class ChequingAccount extends DebtAccount {
-    public ChequingAccount (String password, Users.Client client) {
+    public ChequingAccount (String password, ATM.Users.Client client) {
         super(password, client);
     }
 

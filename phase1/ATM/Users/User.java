@@ -1,6 +1,6 @@
-package Users;
+package ATM.Users;
 
-import BankAccounts.BankAccount;
+import ATM.BankAccounts.BankAccount;
 import java.io.*;
 import java.util.*;
 

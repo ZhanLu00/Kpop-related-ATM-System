@@ -11,28 +11,46 @@ public abstract class User {
      *  Store, getter, setter Accounts
      */
 
-    private static String username;
-    private String password;
-    private ArrayList<BankAccount> accounts;
+    public static String username;
+    public String password;
+    public ArrayList<String> accountNumbers;
 
-    public User(String username, String password) {
+    public User(String username, String password, ) {
         this.username = username;
         this.password = password;
-        this.accounts = new ArrayList<BankAccount>(1);
+        this.accountNumbers = new ArrayList<String>(1);
     }
 
     /** getters **/
 
-    abstract public String getUsername();
+    public String getUsername(){
+        return this.username;
+    }
 
-    abstract public String getPassword();
+    public String getPassword(){
+        return this.password;
+    }
+
+    public ArrayList getAccounts(){
+        return this.accountNumbers;
+    }
 
     /** setter **/
 
-    abstract public void setPassword();
+    public void setPassword(String pswd){
+        this.password = pswd;
+    }
 
-    abstract public void setAccounts();
+    // add account
+    public void addAccounts(String accountNumber){
+        this.accountNumbers.add(accountNumber);
+    }
 
+
+
+    /** update account **/
+
+    abstract public void updateAccount();
 
 
 }

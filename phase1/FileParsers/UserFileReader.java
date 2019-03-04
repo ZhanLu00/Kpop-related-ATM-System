@@ -1,8 +1,8 @@
 package FileParsers;
 
-import Users.BankManager;
-import Users.Client;
-import Users.User;
+import ATM.Users.BankManager;
+import ATM.Users.Client;
+import ATM.Users.User;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -30,13 +30,13 @@ public class UserFileReader {
         if (userType.equals("client")) {
             Client client = new Client(username,password);
             for (int i = 3; i < seperated.length; i++) {
-                client.addAccount(Integer.parseInt(seperated[i].replace(",","")));
+                client.addAccounts(Integer.parseInt(seperated[i].replace(",","")));
             }
         }
         else if (userType.equals("manager")) {
             BankManager bankManager = new BankManager(username,password);
             for (int i = 3; i < seperated.length; i++) {
-                bankManager.addAccount(Integer.parseInt(seperated[i].replace(",","")));
+                bankManager.addAccounts(Integer.parseInt(seperated[i].replace(",","")));
             }
         }
     }

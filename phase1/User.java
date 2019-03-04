@@ -1,32 +1,21 @@
 import BankAccounts.BankAccount;
 
-public abstract class User {
-    /** This is an user interface
-     * serve as abstract class purpose **/
+import java.lang.reflect.Array;
+
+public class User {
+
+    Store, getter login name, account created date
+    Store, getter, setter password
+    Store, getter, setter Accounts
+    Store transaction history
 
     public static String loginName;
-    public static String createDate;
+    public static String createdDate;
     public String password;
-    public BankAccount account;
-    public String history;
+    public BankAccount[] accounts;
+    public History[] transactionHis;
 
-    /** setters **/
-    void setInfo(String name, String date){
-    }
 
-    void setPassword(String password){this.password = password;}
 
-    /** getters **/
-    abstract String getName();
-
-    abstract String getDate();
-
-    abstract String getPassword();
-
-    abstract BankAccount getBankAccount();
-
-    abstract String getHistory();
-
-    
 
 }

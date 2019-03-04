@@ -1,13 +1,18 @@
 package ATM.BankAccounts.DebtAccounts;
-
 import ATM.BankAccounts.BankAccount;
 
+
+/**
+ * An abstract DebtAccount class.
+ */
 public abstract class DebtAccount extends BankAccount {
-    DebtAccount(String password, ATM.Users.Client client) {
-        super(password, client);
+
+    protected DebtAccount(ATM.Users.Client client) {
+        super(client);
     }
 
-    public void deposit(double amount) {
-        this.balance += amount;
+    public double getBalance() {
+        return -this.balance;
     }
+
 }

@@ -1,7 +1,6 @@
 package ATM.BankAccounts;
 
 
-
 /**
  * An abstract BankAccount class.
  */
@@ -14,7 +13,6 @@ public abstract class BankAccount {
     protected ATM.Users.Client client;
 
 
-
     public BankAccount(ATM.Users.Client client) {
 
         this.id = nextId;
@@ -25,18 +23,16 @@ public abstract class BankAccount {
     }
 
 
-
-    public double getBalance() {
-        return this.balance;
-    }
+    public abstract double getBalance();
 
     public ATM.Users.Client getClient() {
         return this.client;
     }
 
-
-
-    public abstract boolean deposit(double amount);
+    public boolean deposit(double amount) {
+        this.balance += amount;
+        return true;
+    }
 
     public abstract boolean withdraw(double amount);
 

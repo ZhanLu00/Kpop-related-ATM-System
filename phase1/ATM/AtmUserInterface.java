@@ -28,6 +28,9 @@ public class AtmUserInterface {
         System.out.println("Enter password: ");
         String password = kbd.readLine();
         System.out.println(atm.getStartingText(username, password));
+        String input = kbd.readLine();
+        atm.getText(input);
+
     }
 
 

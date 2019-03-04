@@ -27,10 +27,16 @@ public class Atm {
 
     public String getStartingText(String username, String password){
         String text;
-        User user = userManager.getAccount(username, password);
-        for (Integer i: accounts) {
-            BankAccount account = Arraylist AccountManager.getAccount(user.getAccounts());
-        }
-        return text;
+        User user = userManager.getUser(username, password);
+        if (user != null) {
+            return user.getText();
+        } else{}
+
+    }
+
+    public String getText(String input){
+        if (input == "transfer"){}
+        else if (input == "deposit"){}
+        //etc.
     }
 }

@@ -1,4 +1,6 @@
-import BankAccounts.BankAccount;
+package ATM;
+
+import ATM.BankAccounts.BankAccount;
 
 import java.util.ArrayList;
 

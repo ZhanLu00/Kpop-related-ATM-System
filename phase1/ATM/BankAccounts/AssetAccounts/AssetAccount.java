@@ -1,9 +1,9 @@
-package BankAccounts.AssetAccounts;
+package ATM.BankAccounts.AssetAccounts;
 
-import BankAccounts.BankAccount;
+import ATM.BankAccounts.BankAccount;
 
 public abstract class AssetAccount extends BankAccount {
-    AssetAccount(String password, Users.Client client) {
+    AssetAccount(String password, ATM.Users.Client client) {
         super(password, client);
     }
 

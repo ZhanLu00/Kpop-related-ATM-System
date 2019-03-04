@@ -1,7 +1,7 @@
-package BankAccounts.DebtAccounts;
+package ATM.BankAccounts.DebtAccounts;
 
 public class SavingsAccount extends DebtAccount {
-    public SavingsAccount(String password, Users.Client client) {
+    public SavingsAccount(String password, ATM.Users.Client client) {
         super(password, client);
     }
 
@@ -12,4 +12,6 @@ public class SavingsAccount extends DebtAccount {
         }
         return false;
     }
+
+    // TODO: increaseBalance()
 }

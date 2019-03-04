@@ -1,4 +1,4 @@
-package BankAccounts;
+package ATM.BankAccounts;
 
 public class History {
 }

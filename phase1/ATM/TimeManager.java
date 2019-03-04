@@ -1,3 +1,5 @@
+package ATM;
+
 public class TimeManager {
     private String month;
     private int year, day, monthIndex;

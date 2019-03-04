@@ -1,4 +1,7 @@
 package ATM.BankAccounts;
+import ATM.Transaction;
+import java.util.Date;
+
 
 
 /**
@@ -9,16 +12,21 @@ public abstract class BankAccount {
     protected static int nextId = 0;
 
     protected int id;
-    protected double balance = 0;
     protected ATM.Users.Client client;
+    protected final Date DATE_CREATED;
+
+    protected double balance = 0;
+    protected Transaction lastTransaction;
 
 
-    public BankAccount(ATM.Users.Client client) {
+
+    public BankAccount(ATM.Users.Client client, Date date) {
 
         this.id = nextId;
         nextId += 1;
 
         this.client = client;
+        this.DATE_CREATED = date;
 
     }
 
@@ -35,5 +43,9 @@ public abstract class BankAccount {
     }
 
     public abstract boolean withdraw(double amount);
+
+    public Transaction getLastTransaction() {
+        return this.lastTransaction;
+    }
 
 }

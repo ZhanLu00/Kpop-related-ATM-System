@@ -19,4 +19,8 @@ public class SavingsAccount extends AssetAccount {
         }
     }
 
+    public void collectInterest() {
+        this.balance *= 1.001;
+    }
+
 }

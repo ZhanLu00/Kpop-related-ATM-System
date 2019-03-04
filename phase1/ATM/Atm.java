@@ -4,9 +4,7 @@ public class Atm {
     UserManager userManager;
     BankManager bankManager;
     TimeManager timeManager;
-    ActionManager actionManager;
-    public Atm (UserManager userManager, BankManager bankManager, TimeManager timeManager
-    ActionManager actionManager){
+    public Atm (UserManager userManager, BankManager bankManager, TimeManager timeManager){
         this.userManager = userManager;
         this.bankManager = bankManager;
         this.timeManager = timeManager;
@@ -27,5 +25,12 @@ public class Atm {
         this.bankManager = bankManager;
     }
 
-
+    public String getStartingText(String username, String password){
+        String text;
+        User user = userManager.getAccount(username, password);
+        for (Integer i: accounts) {
+            BankAccount account = Arraylist AccountManager.getAccount(user.getAccounts());
+        }
+        return text;
+    }
 }

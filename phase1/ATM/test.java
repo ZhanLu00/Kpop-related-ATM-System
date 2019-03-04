@@ -1,4 +1,6 @@
-import FileParsers.UserFileParser;
+package ATM;
+
+import ATM.FileParsers.UserFileParser;
 
 import java.io.*;
 import java.nio.file.Path;

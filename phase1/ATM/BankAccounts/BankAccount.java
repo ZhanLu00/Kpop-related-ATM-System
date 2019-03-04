@@ -1,14 +1,18 @@
-package BankAccounts;
+package ATM.BankAccounts;
+
+import ATM.TimeManager;
 
 public abstract class BankAccount {
     private static int id;
+    private int userName;
     private String password;
     protected double balance;
-    //    private TimeManager dateCreated;
+    private TimeManager dateCreated;
     private String transaction;
-    private Users.Client client;
+    private ATM.Users.Client client;
 
-    protected BankAccount(String password, Users.Client client) {
+    protected BankAccount(String password, ATM.Users.Client client) {
+        this.userName = id;
         this.password = password;
         this.balance = 0;
         // TODO: how to keep track of the most recent transaction?
@@ -17,7 +21,7 @@ public abstract class BankAccount {
         id++;
     }
 
-    public int getId() { return id; }
+    public int getUserName() { return userName; }
 
     public double getBalance() {
         return balance;
@@ -27,11 +31,11 @@ public abstract class BankAccount {
         return transaction;
     }
 
-    public Users.Client getClient() {
+    public ATM.Users.Client getClient() {
         return client;
     }
 
-    // TODO: getDateCreated()
+    public TimeManager getDateCreated() { return dateCreated; }
 
     public boolean setPassword(String initialPassword, String newPassword) {
         if (this.password.equals(initialPassword)) {

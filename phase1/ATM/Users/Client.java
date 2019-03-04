@@ -1,4 +1,4 @@
-package Users;
+package ATM.Users;
 
 public class Client extends User {
 

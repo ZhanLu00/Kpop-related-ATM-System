@@ -4,13 +4,16 @@ import ATM.BankAccounts.BankAccount;
 
 import java.util.ArrayList;
 
+
 public class AccountManager {
-    public ArrayList<BankAccount> accounts;
+    private ArrayList<BankAccount> accounts;
 
     public AccountManager(){
-        this.accounts = new ArrayList<BankAccount>();
+        this.accounts = new ArrayList<>();
     }
 
-
+    public void addAccount(BankAccount account) {
+        accounts.add(account);
+    }
 
 }

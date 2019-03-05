@@ -38,7 +38,7 @@ public abstract class BankAccount {
 
     public boolean deposit(double amount) {
         this.balance += amount;
-        this.lastTransaction = new Transaction();
+        this.lastTransaction = new Transaction(amount, );
         return true;
     }
 

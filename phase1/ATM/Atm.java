@@ -1,4 +1,7 @@
 package ATM;
+import ATM.Users.BankManager;
+import ATM.Users.User;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,13 +19,11 @@ import java.io.ObjectInputStream;
 
 public class Atm {
     UserManager userManager;
-    BankManager bankManager;
     TimeManager timeManager;
-    public Atm (UserManager userManager, BankManager bankManager, TimeManager timeManager){
+
+    public Atm (UserManager userManager,TimeManager timeManager){
         this.userManager = userManager;
-        this.bankManager = bankManager;
         this.timeManager = timeManager;
-        this.actionManager = actionManager;
     }
     public User getUser(String username, String password){
         return userManager.getUser(username, password);
@@ -31,15 +32,7 @@ public class Atm {
         userManager.addUser(user);
     }
 
-    public BankManager getBankManager() {
-        return bankManager;
-    }
-
-    public void setBankManager(bankManager bankManager){
-        this.bankManager = bankManager;
-    }
-
-    public void printText(){
+    public void printText() throws IOException {
 
         BufferedReader kbd = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter username: ");
@@ -48,7 +41,7 @@ public class Atm {
         String password = kbd.readLine();
         User user = userManager.getUser(username, password);
         if (user != null) {
-            user.getText();
+//            user.getText();
         } else{
             System.out.println("Incorrect username or password.");
             printText();

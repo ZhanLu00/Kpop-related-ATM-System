@@ -1,18 +1,15 @@
 package ATM;
 
-public class AtmApplication {
-    UserManager userManager = new UserManager();
-    BankManager bankManager = new BankManager();
-    TimeManager timeManager = new TimeManager();
+import ATM.Users.BankManager;
 
-    Atm atm = new Atm(userManager, bankManager, timeManager);
+public class AtmApplication {
 
     public static void main(String[] args) {
-        atm.printText();
+//        UserManager userManager = new UserManager();
+////        TimeManager timeManager = new TimeManager();
+//        Atm atm = new Atm(userManager, timeManager);
+//        atm.printText();
 
     }
-
-
-
 
 }

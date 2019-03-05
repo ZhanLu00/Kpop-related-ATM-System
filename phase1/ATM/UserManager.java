@@ -1,5 +1,7 @@
 package ATM;
 
+import ATM.Users.User;
+
 import java.util.ArrayList;
 
 public class UserManager {

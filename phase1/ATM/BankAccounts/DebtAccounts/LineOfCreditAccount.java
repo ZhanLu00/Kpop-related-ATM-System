@@ -1,14 +1,16 @@
 package ATM.BankAccounts.DebtAccounts;
 import ATM.BankAccounts.AssetAccounts.AssetAccount;
 
+import java.util.Date;
+
 
 /**
  * A LineOfCreditAccount class.
  */
-public class LineOfCreditAccount extends AssetAccount {
+public class LineOfCreditAccount extends DebtAccount {
 
-    protected LineOfCreditAccount (ATM.Users.Client client) {
-        super(client);
+    public LineOfCreditAccount(ATM.Users.Client client, Date dateCreated) {
+        super(client,dateCreated);
     }
 
     public boolean withdraw(double amount) {

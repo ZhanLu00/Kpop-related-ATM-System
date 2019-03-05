@@ -6,8 +6,8 @@ public class TimeManager {
     private String month;
     private int year, day, monthIndex;
 
-    private String[] months = new String[] {"jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"};
-    private int[] daysInMonths = new int[] {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    private static final String[] months = new String[] {"jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"};
+    private static final int[] daysInMonths = new int[] {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     public TimeManager(int year, String month, int day, boolean goForwardOneDay) {
         this.year = year;
@@ -49,6 +49,23 @@ public class TimeManager {
             monthIndex += 1;
             month = months[monthIndex];
         }
+    }
+
+    public static Date dateFromString(String dateString){
+        String[] split = dateString.split(" ");
+        int year = Integer.parseInt(split[0]);
+        int day = Integer.parseInt(split[2]);
+        String month = split[1].replace(" ","");
+        int montHIndex = -1;
+
+        for (int i = 0; i < months.length; i++) {
+            if (month.equals(months[i])) {
+                montHIndex = i + 1;
+                break;
+            }
+        }
+
+        return new Date(year,montHIndex,day);
     }
 
     public Date getDate() {

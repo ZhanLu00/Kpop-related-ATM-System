@@ -38,7 +38,8 @@ public abstract class BankAccount {
 
     public boolean deposit(double amount) {
         this.balance += amount;
-        this.lastTransaction = new Transaction(amount, );
+        // TODO: 2019-03-05 Add transaction date
+        this.lastTransaction = new Transaction(amount, null);
         return true;
     }
 

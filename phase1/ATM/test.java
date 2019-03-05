@@ -1,14 +1,11 @@
 package ATM;
 
-import ATM.FileParsers.UserFileParser;
+import FileParsers.AccountFileReader;
 
-import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Scanner;
+import java.io.IOException;
 
 public class test {
     public static void main(String[] args) throws IOException {
-        UserFileParser userFileParser = new UserFileParser("phase1/BankUsers.txt");
+
     }
 }

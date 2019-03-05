@@ -1,6 +1,10 @@
 package FileParsers;
 
+import ATM.BankAccounts.AssetAccounts.ChequingAccount;
+import ATM.BankAccounts.AssetAccounts.SavingsAccount;
 import ATM.BankAccounts.BankAccount;
+import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
+import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
 import ATM.TimeManager;
 
 import java.io.BufferedReader;
@@ -28,8 +32,20 @@ public class AccountFileReader {
         String[] seperated = accountInfo.split(",");
         String type = seperated[0].replace(",","");
         int balence = Integer.parseInt(seperated[1].replace(",",""));
-        String[] dateString = seperated[2].replace(",","").split(" ");
+        Date date = TimeManager.dateFromString(seperated[2].replace(",",""));
 
+        if (type.equals("chequing")) {
+            accounts.add(new ChequingAccount(null,date));
+        }
+        else if (type.equals("savings")) {
+            accounts.add(new SavingsAccount(null,date));
+        }
+        else if (type.equals("creditcard")) {
+            accounts.add(new CreditCardsAccount(null, date));
+        }
+        else if (type.equals("lineofcredit")) {
+            accounts.add(new LineOfCreditAccount(null,date));
+        }
 
     }
 }

@@ -1,7 +1,7 @@
 package ATM.BankAccounts;
 import ATM.Transaction;
-import java.util.Date;
 
+import java.util.Date;
 
 
 /**
@@ -17,7 +17,6 @@ public abstract class BankAccount {
 
     protected double balance = 0;
     protected Transaction lastTransaction;
-
 
 
     public BankAccount(ATM.Users.Client client, Date date) {
@@ -39,6 +38,7 @@ public abstract class BankAccount {
 
     public boolean deposit(double amount) {
         this.balance += amount;
+        this.lastTransaction = new Transaction();
         return true;
     }
 

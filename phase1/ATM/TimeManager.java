@@ -1,5 +1,7 @@
 package ATM;
 
+import java.util.Date;
+
 public class TimeManager {
     private String month;
     private int year, day, monthIndex;
@@ -49,8 +51,8 @@ public class TimeManager {
         }
     }
 
-    public String getDate() {
-        return String.format("%d, %s, %d", year, month, day);
+    public Date getDate() {
+        return new Date(year,monthIndex+1,day);
     }
 
     public String getMonth() {

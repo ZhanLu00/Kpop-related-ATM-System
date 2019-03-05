@@ -50,7 +50,7 @@ public class Atm {
         if (user != null) {
             return user.getText();
         } else{
-            System.out.println("No user found with these credentials.")
+            System.out.println("Incorrect username or password.");
             printText();
         }
     }

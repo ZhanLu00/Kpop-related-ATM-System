@@ -13,12 +13,12 @@ public abstract class User {
 
     public static String username;
     public String password;
-    public Arss;
+    public ArrayList<String> accountNumbers;
 
-    public User(String username, String password) {
+    public User(String username, String password, ) {
         this.username = username;
         this.password = password;
-        this.accountNumbers = new ArrayList<Client>(1);
+        this.accountNumbers = new ArrayList<String>(1);
     }
 
     /** getters **/
@@ -42,7 +42,7 @@ public abstract class User {
     }
 
     // add account
-    public void addAccounts(int accountNumber){
+    public void addAccounts(String accountNumber){
         this.accountNumbers.add(accountNumber);
     }
 

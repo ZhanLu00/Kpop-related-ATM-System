@@ -4,7 +4,7 @@ package ATM.Users;
 public class Client extends User {
 
 
-    public Client(String username, String createdDate, String password) {
+    public Client(String username, String password) {
         super(username, password);
     }
 

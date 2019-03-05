@@ -1,61 +1,51 @@
 package ATM.BankAccounts;
+import ATM.Transaction;
+import java.util.Date;
 
-import ATM.TimeManager;
 
+
+/**
+ * An abstract BankAccount class.
+ */
 public abstract class BankAccount {
-    private static int id;
-    private String password;
-    protected double balance;
-    private TimeManager dateCreated;
-    private String transaction;
-    private ATM.Users.Client client;
 
-    protected BankAccount(String password, ATM.Users.Client client) {
-        this.password = password;
-        this.balance = 0;
-        // TODO: how to keep track of the most recent transaction?
-        this.transaction = ""; // the most recent transaction on this account
+    protected static int nextId = 0;
+
+    protected int id;
+    protected ATM.Users.Client client;
+    protected final Date DATE_CREATED;
+
+    protected double balance = 0;
+    protected Transaction lastTransaction;
+
+
+
+    public BankAccount(ATM.Users.Client client, Date date) {
+
+        this.id = nextId;
+        nextId += 1;
+
         this.client = client;
-        id++;
+        this.DATE_CREATED = date;
+
     }
 
-    public int getId() { return id; }
 
-    public double getBalance() {
-        return balance;
-    }
-
-    public String getTransaction() {
-        return transaction;
-    }
+    public abstract double getBalance();
 
     public ATM.Users.Client getClient() {
-        return client;
+        return this.client;
     }
 
-    // TODO: getDateCreated()
-
-    public boolean setPassword(String initialPassword, String newPassword) {
-        if (this.password.equals(initialPassword)) {
-            this.password = newPassword;
-            return true;
-        }
-        return false;
+    public boolean deposit(double amount) {
+        this.balance += amount;
+        return true;
     }
 
     public abstract boolean withdraw(double amount);
 
-    public abstract void deposit(double amount);
-
-    public boolean transfer(double amount, int targetAccount) {
-        if (withdraw(amount)) {
-            // TODO: search for target account in possibly a list that stores every account? and deposit
-            return true;
-        }
-        return false;
+    public Transaction getLastTransaction() {
+        return this.lastTransaction;
     }
-
-    // TODO: payBill
-    // TODO: undo transaction
 
 }

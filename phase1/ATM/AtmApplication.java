@@ -1,6 +1,6 @@
 package ATM;
 
-public class AtmUserInterface {
+public class AtmApplication {
     UserManager userManager = new UserManager();
     BankManager bankManager = new BankManager();
     TimeManager timeManager = new TimeManager();

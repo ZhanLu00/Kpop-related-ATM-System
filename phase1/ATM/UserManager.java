@@ -18,23 +18,10 @@ public class UserManager {
         users.remove(user);
     }
 
-    private boolean userExists(String username, String password){
-        for (User u : users){
-            if (u.getUsername().equals(username)){
-                if (u.getPassword().equals(password)){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
     public User getUser(String username, String password){
-        if (userExists(username, password)){
-            for (User u : users){
-                if (u.getUsername().equals(username)){
-                    return u;
-                }
+        for (User u : users){
+            if (u.getUsername().equals(username) && u.getPassword().equals(password)){
+                return u;
             }
         }
         return null;

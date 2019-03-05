@@ -7,7 +7,7 @@ public class UserManager {
     public ArrayList <User> users;
 
     public UserManager(){
-        this.users = new ArrayList<User>;
+        this.users = new ArrayList<User>();
     }
 
     public void addUser(User user){

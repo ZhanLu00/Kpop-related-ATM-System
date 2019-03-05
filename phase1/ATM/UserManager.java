@@ -18,7 +18,7 @@ public class UserManager {
         users.remove(user);
     }
 
-    public boolean userExists(String username, String password){
+    private boolean userExists(String username, String password){
         for (User u : users){
             if (u.getUsername().equals(username)){
                 if (u.getPassword().equals(password)){
@@ -27,6 +27,17 @@ public class UserManager {
             }
         }
         return false;
+    }
+
+    public User getUser(String username, String password){
+        if (userExists(username, password)){
+            for (User u : users){
+                if (u.getUsername().equals(username)){
+                    return u;
+                }
+            }
+        }
+        return null;
     }
 
 }

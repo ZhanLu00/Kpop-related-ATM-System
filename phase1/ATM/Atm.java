@@ -54,7 +54,7 @@ public class Atm {
     }
 
     public void save() {
-        this.getTimeManager().save();
-        this.getUserManager().save();
+//        this.getTimeManager().save();
+//        this.getUserManager().save();
     }
 }

@@ -22,7 +22,7 @@ public class Client extends User {
         for (int account:this.accountNumbers) {
             //balance.add({String(account), });
         }
-
+        return balance;
 
     }
 

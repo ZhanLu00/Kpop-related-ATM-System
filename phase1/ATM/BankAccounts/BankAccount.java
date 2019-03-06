@@ -78,6 +78,10 @@ public abstract class BankAccount {
         }
     }
 
+    public Date getDATE_CREATED() {
+        return DATE_CREATED;
+    }
+
     /**
      * Pays a bill by transferring money out to a non-user's account.
      */

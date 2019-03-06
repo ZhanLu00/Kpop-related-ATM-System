@@ -11,4 +11,8 @@ public class BankManager extends User {
     public void updateAccount() {
 
     }
+
+    public void handleCase(){
+        //
+    }
 }

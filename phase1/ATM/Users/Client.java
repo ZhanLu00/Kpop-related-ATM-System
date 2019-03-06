@@ -1,7 +1,8 @@
 package ATM.Users;
-
+import java.util.*;
 
 public class Client extends User {
+
 
 
     public Client(String username, String password) {
@@ -15,7 +16,16 @@ public class Client extends User {
     }
 
 
-    // setters
+    // check balance
+//    public ArrayList getBalance(){
+//
+//    }
+
+    // transfer money
+
+    // withdraw cash
+
+    // pay a bill
 
 
 }

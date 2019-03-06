@@ -49,4 +49,7 @@ public abstract class BankAccount {
         return this.lastTransaction;
     }
 
+    public Date getDATE_CREATED() {
+        return DATE_CREATED;
+    }
 }

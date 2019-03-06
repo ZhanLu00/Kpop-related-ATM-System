@@ -29,6 +29,7 @@ public abstract class BankAccount {
 
     }
 
+    /** Getters **/
 
     public abstract double getBalance();
 
@@ -36,6 +37,13 @@ public abstract class BankAccount {
         return this.client;
     }
 
+    public Transaction getLastTransaction() {
+        return this.lastTransaction;
+    }
+
+    /**
+     * Deposits the given amount into an account.
+     */
     public boolean deposit(double amount) {
         this.balance += amount;
         // TODO: 2019-03-05 Add transaction date
@@ -43,10 +51,9 @@ public abstract class BankAccount {
         return true;
     }
 
+    /**
+     * Withdraws the given amount out of an account.
+     */
     public abstract boolean withdraw(double amount);
-
-    public Transaction getLastTransaction() {
-        return this.lastTransaction;
-    }
 
 }

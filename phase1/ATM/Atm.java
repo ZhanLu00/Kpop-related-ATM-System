@@ -39,6 +39,19 @@ public class Atm {
         this.accountFileName = accountFileName;
         this.atmFileName = atmFileName;
     }
+
+    public String getUserFileName() {
+        return userFileName;
+    }
+
+    public String getAccountFileName() {
+        return accountFileName;
+    }
+
+    public String getAtmFileName() {
+        return atmFileName;
+    }
+
     public User getUser(String username, String password){
         return userManager.getUser(username, password);
     }

@@ -23,6 +23,7 @@ public class Client extends User {
             //balance.add({String(account), });
         }
 
+        return balance;
 
     }
 

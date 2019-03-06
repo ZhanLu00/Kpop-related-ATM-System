@@ -9,6 +9,7 @@ public class AtmApplication {
 ////        TimeManager timeManager = new TimeManager();
 //        Atm atm = new Atm(userManager, timeManager);
 //        atm.printText();
+//        atm.save();
 
     }
 

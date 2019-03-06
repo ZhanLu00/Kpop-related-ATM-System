@@ -28,8 +28,13 @@ public class Atm {
     public User getUser(String username, String password){
         return userManager.getUser(username, password);
     }
-    public void setUser(User user){
-        userManager.addUser(user);
+
+    public TimeManager getTimeManager(){
+        return this.timeManager;
+    }
+
+    public UserManager getUserManager() {
+        return userManager;
     }
 
     public void printText() throws IOException {
@@ -39,12 +44,17 @@ public class Atm {
         String username = kbd.readLine();
         System.out.println("Enter password: ");
         String password = kbd.readLine();
-        User user = userManager.getUser(username, password);
+        User user = getUser(username, password);
         if (user != null) {
-//            user.getText();
+//            user.printText(this);
         } else{
             System.out.println("Incorrect username or password.");
             printText();
         }
+    }
+
+    public void save() {
+        this.getTimeManager().save();
+        this.getUserManager().save();
     }
 }

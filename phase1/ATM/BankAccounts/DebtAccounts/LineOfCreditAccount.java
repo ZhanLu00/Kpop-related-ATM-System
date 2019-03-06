@@ -9,8 +9,8 @@ import java.util.Date;
  */
 public class LineOfCreditAccount extends DebtAccount {
 
-    public LineOfCreditAccount(ATM.Users.Client client, Date dateCreated) {
-        super(client,dateCreated);
+    public LineOfCreditAccount(ATM.Users.Client client, Date dateCreated, double balance) {
+        super(client,dateCreated, balance);
     }
 
     /**

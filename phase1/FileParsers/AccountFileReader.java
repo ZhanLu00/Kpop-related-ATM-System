@@ -15,9 +15,11 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class AccountFileReader {
-    public ArrayList<BankAccount> accounts;
+    private ArrayList<BankAccount> accounts;
 
     public AccountFileReader(String fileName) throws IOException {
+
+        accounts = new ArrayList<>();
 
         File file = new File(fileName);
         FileReader fr = new FileReader(file);
@@ -31,21 +33,25 @@ public class AccountFileReader {
     private void createAccount(String accountInfo) {
         String[] seperated = accountInfo.split(",");
         String type = seperated[0].replace(",","");
-        int balence = Integer.parseInt(seperated[1].replace(",",""));
+        double balence = Integer.parseInt(seperated[1].replace(",",""));
         Date date = TimeManager.dateFromString(seperated[2].replace(",",""));
 
         if (type.equals("chequing")) {
-            accounts.add(new ChequingAccount(null,date));
+            accounts.add(new ChequingAccount(null,date,balence));
         }
         else if (type.equals("savings")) {
-            accounts.add(new SavingsAccount(null,date));
+            accounts.add(new SavingsAccount(null,date,balence));
         }
         else if (type.equals("creditcard")) {
-            accounts.add(new CreditCardsAccount(null, date));
+            accounts.add(new CreditCardsAccount(null, date,balence));
         }
         else if (type.equals("lineofcredit")) {
-            accounts.add(new LineOfCreditAccount(null,date));
+            accounts.add(new LineOfCreditAccount(null,date,balence));
         }
 
+    }
+
+    public ArrayList<BankAccount> getAccounts() {
+        return accounts;
     }
 }

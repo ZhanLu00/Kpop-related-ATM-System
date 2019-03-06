@@ -3,51 +3,23 @@ package ATM;
 import java.util.Date;
 
 public class TimeManager {
-    private String month;
-    private int year, day, monthIndex;
+    private Date date;
 
     private static final String[] months = new String[] {"jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"};
-    private static final int[] daysInMonths = new int[] {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-    public TimeManager(int year, String month, int day, boolean goForwardOneDay) {
-        this.year = year;
-
-        monthIndex = -1;
-        for (int i = 0; i < months.length; i++) {
-            if (month.equals(months[i])) {
-                monthIndex = i;
-                break;
-            }
-        }
-
-        if (monthIndex == -1) {
-            throw new IllegalArgumentException(String.format("Invalid Date: %d %s %d",year,month,day));
-        }
-
-        if (day < 0 || day > daysInMonths[monthIndex]) {
-            throw new IllegalArgumentException(String.format("Invalid Date: %d %s %d",year,month,day));
-        }
+    public TimeManager(int year, int month, int date, boolean goForwardOneDay) {
+        this.date = new Date(year,month,date);
 
         if (goForwardOneDay) {
-            goForwardOneDay();
+            this.date.setDate(this.date.getDate()+1);
         }
-
     }
 
-    private void goForwardOneDay() {
-        if (month.equals("dec")) {
-            month = "jan";
-            year += 1;
-            day = 1;
-            monthIndex = 0;
-            return;
-        }
+    public TimeManager(Date date, boolean goForwardOneDay) {
+        this.date = date;
 
-        day += 1;
-        if (day > daysInMonths[monthIndex]) {
-            day = 1;
-            monthIndex += 1;
-            month = months[monthIndex];
+        if (goForwardOneDay) {
+            this.date.setDate(this.date.getDate()+1);
         }
     }
 
@@ -56,31 +28,30 @@ public class TimeManager {
         int year = Integer.parseInt(split[0]);
         int day = Integer.parseInt(split[2]);
         String month = split[1].replace(" ","");
-        int montHIndex = -1;
+        int monthIndex = -1;
 
         for (int i = 0; i < months.length; i++) {
             if (month.equals(months[i])) {
-                montHIndex = i + 1;
+                monthIndex = i;
                 break;
             }
         }
 
-        return new Date(year,montHIndex,day);
+        Date date = new Date(year,monthIndex,day);
+        return date;
     }
+
+    public static String dateToString(Date date) {
+        int year = date.getYear();
+        String month = months[date.getMonth()];
+        int day = date.getDate();
+
+        return String.format("%d %s %d", year, month, day);
+    }
+
 
     public Date getDate() {
-        return new Date(year,monthIndex+1,day);
+        return date;
     }
 
-    public String getMonth() {
-        return month;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public int getDay() {
-        return day;
-    }
 }

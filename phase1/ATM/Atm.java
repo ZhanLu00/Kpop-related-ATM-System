@@ -1,6 +1,7 @@
 package ATM;
 import ATM.Users.BankManager;
 import ATM.Users.User;
+import FileParsers.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -18,18 +19,36 @@ import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 
 public class Atm {
-    UserManager userManager;
-    TimeManager timeManager;
+    private UserManager userManager;
+    private TimeManager timeManager;
+    private AccountManager accountManager;
 
-    public Atm (UserManager userManager,TimeManager timeManager){
-        this.userManager = userManager;
-        this.timeManager = timeManager;
+    private String userFileName, accountFileName, atmFileName;
+
+    public Atm (String userFileName,  String accountFileName, String atmFileName) throws IOException {
+        UserFileReader userFileReader = new UserFileReader(userFileName);
+        AccountFileReader accountFileReader = new AccountFileReader(accountFileName);
+        AtmFileReader atmFileReader = new AtmFileReader(atmFileName);
+        atmFileReader.read();
+
+        this.userManager = new UserManager(userFileReader.getUsers());
+        this.accountManager = new AccountManager(accountFileReader.getAccounts());
+        this.timeManager = new TimeManager(atmFileReader.getDate(), true);
+
+        this.userFileName = userFileName;
+        this.accountFileName = accountFileName;
+        this.atmFileName = atmFileName;
     }
     public User getUser(String username, String password){
         return userManager.getUser(username, password);
     }
-    public void setUser(User user){
-        userManager.addUser(user);
+
+    public TimeManager getTimeManager(){
+        return this.timeManager;
+    }
+
+    public UserManager getUserManager() {
+        return userManager;
     }
 
     public void printText() throws IOException {
@@ -39,17 +58,22 @@ public class Atm {
         String username = kbd.readLine();
         System.out.println("Enter password: ");
         String password = kbd.readLine();
-        User user = userManager.getUser(username, password);
+        User user = getUser(username, password);
         if (user != null) {
-//            user.getText();
+//            user.printText(this);
         } else{
             System.out.println("Incorrect username or password.");
-            printText();
         }
+        printText();
     }
 
-    public void save() {
-        this.getTimeManager().save();
-        this.getUserManager().save();
+    public void save() throws IOException {
+        AccountFileWriter accountFileWriter = new AccountFileWriter(accountFileName,accountManager.getAccounts());
+        UserFileWriter userFileWriter = new UserFileWriter(userFileName, userManager.getUsers());
+        AtmFileWriter atmFileWriter = new AtmFileWriter(atmFileName, timeManager.getDate());
+
+        accountFileWriter.write();
+        userFileWriter.write();
+        atmFileWriter.write();
     }
 }

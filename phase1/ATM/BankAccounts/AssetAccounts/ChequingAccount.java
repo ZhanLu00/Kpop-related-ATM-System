@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class ChequingAccount extends AssetAccount {
 
-    public ChequingAccount(ATM.Users.Client client, Date date) { super(client, date); }
+    public ChequingAccount(ATM.Users.Client client, Date date, double balance) { super(client, date,balance); }
 
     /**
      * Withdraws the given amount out of an account.

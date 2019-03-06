@@ -31,7 +31,7 @@ public abstract class User {
         return this.password;
     }
 
-    public ArrayList getAccounts(){
+    public ArrayList<Integer> getAccounts(){
         return this.accountNumbers;
     }
 

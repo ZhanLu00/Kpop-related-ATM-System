@@ -1,1 +1,2 @@
-chequing,1000,2018 dec 31
+chequing,1000,2018 mar 18
+creditcard,523,2017 feb 15

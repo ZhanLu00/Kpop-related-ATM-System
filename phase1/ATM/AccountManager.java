@@ -9,10 +9,14 @@ import java.util.List;
  * An AccountManager class that stores all accounts.
  */
 public class AccountManager {
-    private List<BankAccount> accounts;
+    private ArrayList<BankAccount> accounts;
 
     public AccountManager() {
         this.accounts = new ArrayList<>();
+    }
+
+    public AccountManager(ArrayList<BankAccount> accounts) {
+        this.accounts = accounts;
     }
 
     /**
@@ -32,5 +36,26 @@ public class AccountManager {
         } else {
             return null;
         }
+    }
+
+    /**
+     * Transfers money between two accounts.
+     * Returns true if the transaction is successful, false otherwise.
+     */
+    public boolean transfer(double amount, int senderId, int receiverId) {
+        BankAccount sender = this.getAccount(senderId);
+        BankAccount receiver = this.getAccount(receiverId);
+        if(sender.withdraw(amount) && receiver.deposit(amount)) {
+            // TODO: 2019-03-05 add transaction date
+            Transaction transaction = new Transaction(amount, receiver, null);
+            sender.setLastTransaction(transaction);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public ArrayList<BankAccount> getAccounts() {
+        return accounts;
     }
 }

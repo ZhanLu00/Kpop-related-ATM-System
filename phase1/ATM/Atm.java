@@ -47,4 +47,9 @@ public class Atm {
             printText();
         }
     }
+
+    public void save() {
+        this.getTimeManager().save();
+        this.getUserManager().save();
+    }
 }

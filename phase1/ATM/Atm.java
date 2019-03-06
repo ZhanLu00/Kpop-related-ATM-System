@@ -49,8 +49,8 @@ public class Atm {
 //            user.printText(this);
         } else{
             System.out.println("Incorrect username or password.");
-            printText();
         }
+        printText();
     }
 
     public void save() {

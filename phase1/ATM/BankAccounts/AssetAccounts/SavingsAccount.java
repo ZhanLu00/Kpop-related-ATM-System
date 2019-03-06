@@ -26,6 +26,9 @@ public class SavingsAccount extends AssetAccount {
         }
     }
 
+    /**
+     * Increases a savings account balance by a factor of 0.1%
+     */
     public void collectInterest() {
         this.balance *= 1.001;
     }

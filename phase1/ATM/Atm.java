@@ -56,7 +56,6 @@ public class Atm {
     }
 
     public void save() {
-        //not done
 //        this.getTimeManager().save();
 //        this.getUserManager().save();
     }

@@ -1,6 +1,9 @@
 package ATM.BankAccounts;
 import ATM.Transaction;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Date;
 
 
@@ -41,13 +44,17 @@ public abstract class BankAccount {
         return this.lastTransaction;
     }
 
+    /** Setters **/
+
+    public void setLastTransaction(Transaction transaction) {
+        this.lastTransaction = transaction;
+    }
+
     /**
      * Deposits the given amount into an account.
      */
     public boolean deposit(double amount) {
         this.balance += amount;
-        // TODO: 2019-03-05 Add transaction date
-        this.lastTransaction = new Transaction(amount, null);
         return true;
     }
 
@@ -55,5 +62,38 @@ public abstract class BankAccount {
      * Withdraws the given amount out of an account.
      */
     public abstract boolean withdraw(double amount);
+
+    /**
+     * Undoes the most recent transaction on an account.
+     */
+    public boolean undoTransaction() {
+        double amount = this.lastTransaction.getAMOUNT();
+        BankAccount sender = this.lastTransaction.getReceiver();
+        // receiver = this
+        if(sender.withdraw(amount) && this.deposit(amount)) {
+            return true;
+            // TODO: what does this.lastTransaction become?
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Pays a bill by transferring money out to a non-user's account.
+     */
+    public boolean payBill(double amount, String receiver) {
+        if(this.withdraw(amount)) {
+            try {
+                String bill = amount + ", " + receiver;
+                BufferedWriter writer = new BufferedWriter(new FileWriter("outgoing.txt"));
+                writer.write(bill);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }

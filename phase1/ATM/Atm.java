@@ -1,6 +1,7 @@
 package ATM;
 import ATM.Users.BankManager;
 import ATM.Users.User;
+import FileParsers.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -18,14 +19,25 @@ import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 
 public class Atm {
-    UserManager userManager;
-    TimeManager timeManager;
+    private UserManager userManager;
+    private TimeManager timeManager;
+    private AccountManager accountManager;
 
-    public Atm (String userFileName, String timeFileName, String accountFileName){
+    private String userFileName, accountFileName, atmFileName;
+
+    public Atm (String userFileName,  String accountFileName, String atmFileName) throws IOException {
         UserFileReader userFileReader = new UserFileReader(userFileName);
         AccountFileReader accountFileReader = new AccountFileReader(accountFileName);
-        this.userManager = new userFile(userFileReader.getUsers());
-        //this.timeManager = timeManager;
+        AtmFileReader atmFileReader = new AtmFileReader(atmFileName);
+        atmFileReader.read();
+
+        this.userManager = new UserManager(userFileReader.getUsers());
+        this.accountManager = new AccountManager(accountFileReader.getAccounts());
+        this.timeManager = new TimeManager(atmFileReader.getDate(), true);
+
+        this.userFileName = userFileName;
+        this.accountFileName = accountFileName;
+        this.atmFileName = atmFileName;
     }
     public User getUser(String username, String password){
         return userManager.getUser(username, password);
@@ -55,8 +67,13 @@ public class Atm {
         printText();
     }
 
-    public void save() {
-//        this.getTimeManager().save();
-//        this.getUserManager().save();
+    public void save() throws IOException {
+        AccountFileWriter accountFileWriter = new AccountFileWriter(accountFileName,accountManager.getAccounts());
+        UserFileWriter userFileWriter = new UserFileWriter(userFileName, userManager.getUsers());
+        AtmFileWriter atmFileWriter = new AtmFileWriter(atmFileName, timeManager.getDate());
+
+        accountFileWriter.write();
+        userFileWriter.write();
+        atmFileWriter.write();
     }
 }

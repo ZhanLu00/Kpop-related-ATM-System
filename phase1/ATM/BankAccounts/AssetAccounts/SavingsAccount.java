@@ -8,8 +8,8 @@ import java.util.Date;
  */
 public class SavingsAccount extends AssetAccount {
 
-    public SavingsAccount(ATM.Users.Client client, Date date) {
-        super(client, date);
+    public SavingsAccount(ATM.Users.Client client, Date date, double balance) {
+        super(client, date, balance);
     }
 
     /**

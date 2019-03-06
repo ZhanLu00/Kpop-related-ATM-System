@@ -27,9 +27,9 @@ public class test {
 //        UserFileWriter fileWriter7 = new UserFileWriter("phase1/ATM/BankUsers1.txt",fileReader2.getUsers());
 //        fileWriter7.write();
 
-        AtmFileReader atmFileReader = new AtmFileReader("phase1/ATM/AtmInfo.txt");
-        atmFileReader.read();
-        AtmFileWriter atmFileWriter = new AtmFileWriter("phase1/ATM/info.txt",atmFileReader.getDate());
-        atmFileWriter.write();
+//        AtmFileReader atmFileReader = new AtmFileReader("phase1/ATM/AtmInfo.txt");
+//        atmFileReader.read();
+//        AtmFileWriter atmFileWriter = new AtmFileWriter("phase1/ATM/info.txt",atmFileReader.getDate());
+//        atmFileWriter.write();
     }
 }

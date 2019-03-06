@@ -22,13 +22,15 @@ public abstract class BankAccount {
     protected Transaction lastTransaction;
 
 
-    public BankAccount(ATM.Users.Client client, Date date) {
+    public BankAccount(ATM.Users.Client client, Date date, double balance) {
 
         this.id = nextId;
         nextId += 1;
 
         this.client = client;
         this.DATE_CREATED = date;
+
+        this.balance = balance;
 
     }
 

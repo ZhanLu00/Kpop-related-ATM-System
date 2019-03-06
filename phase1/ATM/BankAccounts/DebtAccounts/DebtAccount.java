@@ -9,8 +9,8 @@ import java.util.Date;
  */
 public abstract class DebtAccount extends BankAccount {
 
-    protected DebtAccount(ATM.Users.Client client, Date dateCreated ) {
-        super(client, dateCreated);
+    protected DebtAccount(ATM.Users.Client client, Date dateCreated, double balance) {
+        super(client, dateCreated, balance);
     }
 
     public double getBalance() {

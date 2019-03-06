@@ -12,6 +12,11 @@ public class UserManager {
         this.users = new ArrayList<User>();
     }
 
+    public UserManager(ArrayList<User> users){
+        this.users = users;
+    }
+
+
     public void addUser(User user){
         users.add(user);
     }
@@ -29,4 +34,7 @@ public class UserManager {
         return null;
     }
 
+    public ArrayList<User> getUsers() {
+        return users;
+    }
 }

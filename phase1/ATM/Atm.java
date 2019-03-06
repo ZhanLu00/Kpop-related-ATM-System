@@ -21,9 +21,11 @@ public class Atm {
     UserManager userManager;
     TimeManager timeManager;
 
-    public Atm (UserManager userManager,TimeManager timeManager){
-        this.userManager = userManager;
-        this.timeManager = timeManager;
+    public Atm (String userFileName, String timeFileName, String accountFileName){
+        UserFileReader userFileReader = new UserFileReader(userFileName);
+        AccountFileReader accountFileReader = new AccountFileReader(accountFileName);
+        this.userManager = new userFile(userFileReader.getUsers());
+        //this.timeManager = timeManager;
     }
     public User getUser(String username, String password){
         return userManager.getUser(username, password);
@@ -54,7 +56,8 @@ public class Atm {
     }
 
     public void save() {
-        this.getTimeManager().save();
-        this.getUserManager().save();
+        //not done
+//        this.getTimeManager().save();
+//        this.getUserManager().save();
     }
 }

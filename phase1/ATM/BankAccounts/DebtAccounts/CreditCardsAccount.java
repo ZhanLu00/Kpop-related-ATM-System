@@ -13,6 +13,10 @@ public class CreditCardsAccount extends DebtAccount {
         super(client,dateCreated);
     }
 
+    /**
+     * Withdraws the given amount out of an account.
+     * Since it is impossible to withdraw from a credit card account, the method always returns false.
+     */
     public boolean withdraw(double amount) {
         return false;
     }

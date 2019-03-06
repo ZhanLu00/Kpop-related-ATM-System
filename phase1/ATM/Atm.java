@@ -46,7 +46,7 @@ public class Atm {
         String password = kbd.readLine();
         User user = getUser(username, password);
         if (user != null) {
-//            user.getText(this);
+//            user.printText(this);
         } else{
             System.out.println("Incorrect username or password.");
             printText();

@@ -5,7 +5,7 @@ public class Client extends User {
 
 
 
-    public Client(String username, String password) {
+    public Client(int username, int password) {
         super(username, password);
     }
 
@@ -17,14 +17,14 @@ public class Client extends User {
 
 
     // get balance
-    public ArrayList getBalance(){
-        ArrayList<String[]> balance = new ArrayList<>(0);
-        for (int account:this.accountNumbers) {
-            //balance.add({String(account), });
-        }
-
-
-    }
+//    public ArrayList getBalance(){
+//        ArrayList<String[]> balance = new ArrayList<>(0);
+//        for (int account:this.accountNumbers) {
+//            //balance.add({String(account), });
+//        }
+//
+//
+//    }
 
     // transfer money
 

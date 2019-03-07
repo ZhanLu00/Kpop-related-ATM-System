@@ -53,4 +53,16 @@ public class UserManager {
     public ArrayList<User> getUsers() {
         return users;
     }
+
+    /**
+     * Returns a list of all the users login
+     */
+    public ArrayList<Integer> getUsersLogin(){
+        ArrayList<Integer> login = new ArrayList<Integer>(0);
+        for (User user : this.users){
+            login.add(user.getUsername());
+        }
+        return login;
+    }
+
 }

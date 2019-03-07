@@ -67,12 +67,16 @@ public abstract class BankAccount {
      * Undoes the most recent transaction on an account.
      */
     public boolean undoTransaction() {
-        double amount = this.lastTransaction.getAMOUNT();
-        BankAccount sender = this.lastTransaction.getReceiver();
-        // receiver = this
-        if(sender.withdraw(amount) && this.deposit(amount)) {
-            return true;
-            // TODO: what does this.lastTransaction become?
+        if (this.lastTransaction != null) {
+            double amount = this.lastTransaction.getAMOUNT();
+            BankAccount sender = this.lastTransaction.getReceiver();
+            // receiver = this
+            if(sender.withdraw(amount) && this.deposit(amount)) {
+                this.lastTransaction = null;
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }

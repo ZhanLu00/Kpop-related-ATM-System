@@ -11,7 +11,7 @@ public class UserFileReader {
     private ArrayList<User> users;
 
     public UserFileReader(String fileName) throws IOException {
-
+        users = new ArrayList<>();
         File file = new File(fileName);
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
@@ -32,12 +32,14 @@ public class UserFileReader {
             for (int i = 3; i < seperated.length; i++) {
                 client.addAccounts(Integer.parseInt(seperated[i].replace(",","")));
             }
+            users.add(client);
         }
         else if (userType.equals("manager")) {
             BankManager bankManager = new BankManager(username,password);
             for (int i = 3; i < seperated.length; i++) {
                 bankManager.addAccounts(Integer.parseInt(seperated[i].replace(",","")));
             }
+            users.add(bankManager);
         }
     }
 

@@ -9,10 +9,14 @@ import java.util.List;
  * An AccountManager class that stores all accounts.
  */
 public class AccountManager {
-    private List<BankAccount> accounts;
+    private ArrayList<BankAccount> accounts;
 
     public AccountManager() {
         this.accounts = new ArrayList<>();
+    }
+
+    public AccountManager(ArrayList<BankAccount> accounts) {
+        this.accounts = accounts;
     }
 
     /**
@@ -49,5 +53,9 @@ public class AccountManager {
         } else {
             return false;
         }
+    }
+
+    public ArrayList<BankAccount> getAccounts() {
+        return accounts;
     }
 }

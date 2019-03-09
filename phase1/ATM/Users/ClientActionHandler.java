@@ -5,7 +5,7 @@ import ATM.UserManager;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ActionHandler {
+public class ClientActionHandler {
     // this class will be handle actions from users
     // acting as an operation class here
     // two types of actions come from two types of user

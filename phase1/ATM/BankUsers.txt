@@ -1,1 +1,4 @@
-client,username,password,1,2,3
+manager,admin,admin,
+client,jeff,57011,2,3
+client,test1,39874,
+client,cooldude,50948,

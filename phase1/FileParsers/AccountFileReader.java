@@ -33,7 +33,7 @@ public class AccountFileReader {
     private void createAccount(String accountInfo) {
         String[] seperated = accountInfo.split(",");
         String type = seperated[0].replace(",","");
-        double balence = Integer.parseInt(seperated[1].replace(",",""));
+        double balence = Double.parseDouble(seperated[1].replace(",",""));
         Date date = TimeManager.dateFromString(seperated[2].replace(",",""));
 
         if (type.equals(BankAccount.CHEQUING)) {

@@ -35,8 +35,15 @@ public class UserFileWriter {
             for (Integer accountNum : user.getAccounts()) {
                 accounts.append(accountNum.toString()).append(",");
             }
-            String accountsString = accounts.toString().substring(0,accounts.length()-1);
-            fileOut.append(String.format("%s,%s,%s,%s",type,username,password,accountsString));
+
+            String accountsString;
+            if (accounts.length() == 0) {
+                accountsString = "";
+            }
+            else {
+                accountsString = accounts.toString().substring(0, accounts.length() - 1);
+            }
+            fileOut.append(String.format("%s,%s,%s,%s\n",type,username,password,accountsString));
         }
 
         writer.append(fileOut);

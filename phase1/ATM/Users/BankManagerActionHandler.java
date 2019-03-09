@@ -39,73 +39,12 @@ public class BankManagerActionHandler {
         this.atm = atm;
     }
 
-
-    private int getIntFromUser(String display) throws IOException {
-        System.out.print(display);
-        return Integer.parseInt(kbd.readLine());
-    }
-
-    private String getStringFromUser(String display) throws IOException {
-        System.out.println(display);
-        return kbd.readLine();
-    }
-
-    public void updateCommandLineInterface() throws IOException {
-
-        System.out.println("Please select an option:");
-        System.out.println("Type 1 to Create Client");
-        System.out.println("Type 2 to Restock Machine");
-        System.out.println("Type 3 to Undo Transaction");
-        System.out.println("Type 4 to view account creation requests");
-
-        int input = Integer.parseInt(kbd.readLine());
-
-        if (input == 1){
-            String username = getStringFromUser("Username for new client: ");
-            String[] userInfo = addClient(username);
-
-            System.out.println("New client created.");
-            System.out.println("Login: " + userInfo[0]);
-            System.out.println("Password: " + userInfo[1]);
-        }
-        else if (input == 2) {
-            int numFives = getIntFromUser("Number of fives: ");
-            int numTens = getIntFromUser("Number of tens: ");
-            int numTwenties = getIntFromUser("Number of twenties: ");
-            int numFifties = getIntFromUser("Number of fifties: ");
-
-            restockBills(numFives, numTens, numTwenties, numFifties);
-        }
-        else if (input == 3) {
-
-        }
-        else if (input == 4) {
-            int c = 0;
-            for (String[] accountRequest : atm.getAccountManager().getAccountRequests()) {
-                System.out.println(String.format("%d) Username: %s,  Account TypeL %s", c, accountRequest[0], accountRequest[1]));
-            }
-
-            int requestNum = getIntFromUser("which request do you want to fulfill (-1 for all): ");
-            Boolean result;
-            if (requestNum == -1) {
-                result = fulfillAllAccountRequests();
-            }
-            else {
-                result = fulfillAccountRequest(requestNum);
-            }
-            System.out.println( result ? ("Account(s) created") : "Invalid. Check request number / user existence");
-        }
-        else{
-            System.out.print("Invalid Input. ");
-        }
-    }
-
-    private boolean fulfillAccountRequest(int requestNum) {
+    public boolean fulfillAccountRequest(int requestNum) {
         if (requestNum >= atm.getAccountManager().getAccountRequests().size() || requestNum < 0) {
             return false;
         }
 
-        String[] request = atm.getAccountManager().getAccountRequests().get(requestNum);
+        String[] request = atm.getAccountManager().getAccountRequests().remove(requestNum);
         String username = request[0];
         String accountType = request[1];
 
@@ -124,7 +63,7 @@ public class BankManagerActionHandler {
         return false;
     }
 
-    private boolean fulfillAllAccountRequests() {
+    public boolean fulfillAllAccountRequests() {
         boolean allCompleted = true;
        while (atm.getAccountManager().getAccountRequests().size() > 0) {
            if (!fulfillAccountRequest(0)) {
@@ -134,7 +73,7 @@ public class BankManagerActionHandler {
        return allCompleted;
     }
 
-    private void restockBills(int numFives, int numTens, int numTwenties, int numFifties) {
+    public void restockBills(int numFives, int numTens, int numTwenties, int numFifties) {
         atm.getBillManager().deposit(numFives,numTens,numTwenties,numFifties);
     }
 
@@ -152,6 +91,105 @@ public class BankManagerActionHandler {
         return new String[] {username, randomPassword};
     }
 
+    public ArrayList<String> getAlerts() throws IOException {
+        return atm.readAlerts();
+    }
 
+    public void clearAccounts() throws IOException {
+        atm.clearAlerts();
+    }
+
+    private void setAtmDate(int day, int month, int year) {
+        atm.getTimeManager().getDate().setDate(day);
+        atm.getTimeManager().getDate().setMonth(month);
+        atm.getTimeManager().getDate().setYear(year);
+    }
+
+
+
+    private int getIntFromUser(String display) throws IOException {
+        System.out.print(display);
+        return Integer.parseInt(kbd.readLine());
+    }
+
+    private String getStringFromUser(String display) throws IOException {
+        System.out.print(display);
+        return kbd.readLine();
+    }
+
+    public void displayCommandLineInterface() throws IOException {
+        while (true) {
+            System.out.println("Please select an option:");
+            System.out.println("Type 1 to Create Client");
+            System.out.println("Type 2 to Restock Machine");
+            System.out.println("Type 3 to Undo Transaction");
+            System.out.println("Type 4 to view account creation requests");
+            System.out.println("Type 5 to set time");
+            System.out.println("Type 6 to show alerts");
+            System.out.println("Type 7 to clear alerts");
+            System.out.println("Type 8 to exit");
+
+            int input = Integer.parseInt(kbd.readLine());
+
+            if (input == 1) {
+                String username = getStringFromUser("Username for new client: ");
+                String[] userInfo = addClient(username);
+
+                System.out.println("New client created.");
+                System.out.println("Login: " + userInfo[0]);
+                System.out.println("Password: " + userInfo[1]);
+            } else if (input == 2) {
+                int numFives = getIntFromUser("Number of fives: ");
+                int numTens = getIntFromUser("Number of tens: ");
+                int numTwenties = getIntFromUser("Number of twenties: ");
+                int numFifties = getIntFromUser("Number of fifties: ");
+
+                restockBills(numFives, numTens, numTwenties, numFifties);
+            } else if (input == 3) {
+
+            } else if (input == 4) {
+                int c = 0;
+                for (String[] accountRequest : atm.getAccountManager().getAccountRequests()) {
+                    System.out.println(String.format("%d) Username: %s,  Account Type %s", c, accountRequest[0], accountRequest[1]));
+                    c += 1;
+                }
+
+                if (atm.getAccountManager().getAccountRequests().size() == 0) {
+                    System.out.println("No Requests");
+                }
+                else {
+                    int requestNum = getIntFromUser("which request do you want to fulfill (-1 for all): ");
+                    boolean result;
+                    if (requestNum == -1) {
+                        result = fulfillAllAccountRequests();
+                    } else {
+                        result = fulfillAccountRequest(requestNum);
+                    }
+                    System.out.println(result ? ("Account(s) created") : "Invalid. Check request number / user existence");
+                }
+            } else if (input == 5) {
+                int day = getIntFromUser("day: ");
+                int month = getIntFromUser("month(as number 0-11): ");
+                int year = getIntFromUser("year: ");
+
+                setAtmDate(day, month, year);
+            } else if (input == 6) {
+                System.out.println("ALERTS:");
+                for (String alert : getAlerts()) {
+                    System.out.println(alert);
+                }
+            } else if (input == 7) {
+                atm.clearAlerts();
+                System.out.println("Cleared Alerts");
+            } else if (input == 8) {
+                break;
+            }
+            else {
+                System.out.print("Invalid Input. ");
+            }
+            System.out.println();
+            System.out.println();
+        }
+    }
 
 }

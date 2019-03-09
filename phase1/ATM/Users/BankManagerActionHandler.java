@@ -1,4 +1,5 @@
 package ATM.Users;
+import ATM.Atm;
 import ATM.BillManager;
 import ATM.UserManager;
 
@@ -32,7 +33,7 @@ public class BankManagerActionHandler {
         int[] userInfo = new int[2];
 
         // get all login number
-        ArrayList<Integer> allUser = allUsers.getUsersLogin();
+        ArrayList<String> allUser = allUsers.getUsersLogin();
 
         // generate use info
         userInfo[0] = 99999999 - r.nextInt(89999999);

@@ -11,11 +11,11 @@ public abstract class User {
      *  Store, getter, setter Accounts
      */
 
-    public static int username;
-    public int password;
+    public String username;
+    public String password;
     public ArrayList<Integer> accountNumbers;
 
-    public User(int username, int password) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
         this.accountNumbers = new ArrayList<Integer>(1);
@@ -23,11 +23,11 @@ public abstract class User {
 
     /** getters **/
 
-    public int getUsername(){
+    public String getUsername(){
         return this.username;
     }
 
-    public int getPassword(){
+    public String getPassword(){
         return this.password;
     }
 
@@ -37,7 +37,7 @@ public abstract class User {
 
     /** setter **/
 
-    public void setPassword(int pswd){
+    public void setPassword(String pswd){
         this.password = pswd;
     }
 

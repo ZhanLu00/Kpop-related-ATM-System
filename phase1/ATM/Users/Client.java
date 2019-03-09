@@ -5,7 +5,7 @@ public class Client extends User {
 
 
 
-    public Client(int username, int password) {
+    public Client(String username, String password) {
         super(username, password);
     }
 

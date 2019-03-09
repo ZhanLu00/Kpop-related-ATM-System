@@ -22,6 +22,7 @@ public class Atm {
     private UserManager userManager;
     private TimeManager timeManager;
     private AccountManager accountManager;
+    private BillManager billManager;
 
     private String userFileName, accountFileName, atmFileName;
 
@@ -34,6 +35,7 @@ public class Atm {
         this.userManager = new UserManager(userFileReader.getUsers());
         this.accountManager = new AccountManager(accountFileReader.getAccounts());
         this.timeManager = new TimeManager(atmFileReader.getDate(), true);
+        this.billManager = new BillManager(atmFileReader.getFives(), atmFileReader.getTens(), atmFileReader.getTwenties(), atmFileReader.getFifties());
 
         this.userFileName = userFileName;
         this.accountFileName = accountFileName;
@@ -83,7 +85,7 @@ public class Atm {
     public void save() throws IOException {
         AccountFileWriter accountFileWriter = new AccountFileWriter(accountFileName,accountManager.getAccounts());
         UserFileWriter userFileWriter = new UserFileWriter(userFileName, userManager.getUsers());
-        AtmFileWriter atmFileWriter = new AtmFileWriter(atmFileName, timeManager.getDate());
+        AtmFileWriter atmFileWriter = new AtmFileWriter(atmFileName, timeManager.getDate(), billManager);
 
         accountFileWriter.write();
         userFileWriter.write();

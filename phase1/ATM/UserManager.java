@@ -40,6 +40,7 @@ public class UserManager {
      */
     public User getUser(String username, String password){
         for (User u : users){
+            u.getUsername();
             if (u.getUsername().equals(username) && u.getPassword().equals(password)){
                 return u;
             }
@@ -57,8 +58,8 @@ public class UserManager {
     /**
      * Returns a list of all the users login
      */
-    public ArrayList<Integer> getUsersLogin(){
-        ArrayList<Integer> login = new ArrayList<Integer>(0);
+    public ArrayList<String> getUsersLogin(){
+        ArrayList<String> login = new ArrayList<String>(0);
         for (User user : this.users){
             login.add(user.getUsername());
         }

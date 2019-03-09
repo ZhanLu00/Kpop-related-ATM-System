@@ -1,10 +1,15 @@
 package ATM;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class BillManager {
     private int fives;
     private int tens;
     private int twenties;
     private int fifties;
+    private String alertsFileName;
 
     public BillManager(){
         this.fives = 0;
@@ -13,14 +18,15 @@ public class BillManager {
         this.fifties = 0;
     }
 
-    public BillManager(int fives, int tens, int twenties, int fifties){
+    public BillManager(int fives, int tens, int twenties, int fifties, String alertsFileName){
         this.fives = fives;
         this.tens = tens;
         this.twenties = twenties;
         this.fifties = fifties;
+        this.alertsFileName = alertsFileName;
     }
 
-    public int withdraw(int amount) {
+    public int withdraw(int amount) throws IOException {
         if (amount < 0) {
             return 0;
         }
@@ -43,7 +49,32 @@ public class BillManager {
         amount -=  5 * fivesTaken;
         fives -= fivesTaken;
 
+        if (fifties < 20 || twenties < 20 || tens < 20 || fives < 20) {
+            writeAlerts();
+        }
+
         return initalAmount - amount;
+    }
+
+    private void writeAlerts() throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(alertsFileName));
+        if (fifties < 20) {
+            writer.write(String.format("Restock 50's.  %d remaining", fifties));
+        }
+
+        if (twenties < 20) {
+            writer.write(String.format("Restock 20's.  %d remaining", twenties));
+        }
+
+        if (tens < 20) {
+            writer.write(String.format("Restock 10's.  %d remaining", tens));
+        }
+
+        if (fives < 20) {
+            writer.write(String.format("Restock 5's.  %d remaining", fives));
+        }
+
+        writer.close();
     }
 
     public void deposit(int fives, int tens, int twenties, int fifties) {

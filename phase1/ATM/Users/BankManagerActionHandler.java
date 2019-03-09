@@ -3,6 +3,20 @@ import ATM.Atm;
 import ATM.BillManager;
 import ATM.UserManager;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -21,8 +35,24 @@ public class BankManagerActionHandler {
     }
 
     public void printText(Atm atm){
+        BufferedReader kbd = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Please select an option:");
-        System.out.println();
+        System.out.println("Type 1 to Create User");
+        System.out.println("Type 2 to Restock Machine");
+        System.out.println("Type 3 to Undo Transaction");
+        System.out.println("You have " + + " account creation requests. Type 4 to View" +
+                " Requests");
+        String input = kbd.readLine();
+        if (input == 1){
+            int[] userInfo = addUser(atm.getUserManager);
+            System.out.println("New user created.");
+            System.out.println("Login: " + userInfo[0]);
+            System.out.println("Password: " + userInfo[1]);
+        }
+        else{
+            System.out.print("Invalid Input. ");
+            printText(atm);
+        }
     }
 
     // for bank manager

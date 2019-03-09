@@ -13,10 +13,10 @@ public class BankManagerActionHandler {
     // bankManager
     // Client
 
-    private User user;
+    private BankManager bankManager;
 
-    public void ActionHandler(User user){
-        this.user = user;
+    public BankManagerActionHandler(BankManager bankManager){
+        this.bankManager = bankManager;
     }
 
 
@@ -50,13 +50,5 @@ public class BankManagerActionHandler {
         return cash;
     }
     // cancle transaction
-
-    // for user
-    // check balance
-    // check transaction history (of itself)
-    // withdraw
-    // transfer
-    // pay bills
-    // request creation of an account
 
 }

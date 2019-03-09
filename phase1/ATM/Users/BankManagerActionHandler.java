@@ -19,7 +19,10 @@ public class BankManagerActionHandler {
         this.bankManager = bankManager;
     }
 
-
+    public void printText(Atm atm){
+        System.out.println("Please select an option:");
+        System.out.println();
+    }
 
     // for bank manager
     // add account

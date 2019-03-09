@@ -19,6 +19,9 @@ public class ClientActionHandler {
         this.client = client;
     }
 
+    public void getText(Atm atm){
+
+    }
     // for user
     // check balance
     // check transaction history (of itself)

@@ -36,8 +36,6 @@ public class AtmApplication {
         }
 
         atm.save();
-
-
     }
 
     private static int getIntFromUser(String display) throws IOException {

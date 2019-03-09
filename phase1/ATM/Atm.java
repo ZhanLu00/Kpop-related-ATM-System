@@ -24,7 +24,7 @@ public class Atm {
         Date date = timeManager.getDate();
         this.userManager = new UserManager(userFileReader.getUsers(), date);
         this.accountManager = new AccountManager(accountFileReader.getAccounts(), date);
-        this.billManager = new BillManager(atmFileReader.getFives(), atmFileReader.getTens(), atmFileReader.getTwenties(), atmFileReader.getFifties());
+        this.billManager = new BillManager(atmFileReader.getFives(), atmFileReader.getTens(), atmFileReader.getTwenties(), atmFileReader.getFifties(),alertsFileName);
 
         for (String[] accountCreationRequest : atmFileReader.getAccountCreationRequests()) {
             accountManager.requestNewAccount(accountCreationRequest[0],accountCreationRequest[1]);

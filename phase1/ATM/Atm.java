@@ -1,22 +1,11 @@
 package ATM;
-import ATM.Users.BankManager;
 import ATM.Users.User;
 import FileParsers.*;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInput;
-import java.io.ObjectInputStream;
+import java.util.Date;
 
 public class Atm {
     private UserManager userManager;
@@ -32,9 +21,10 @@ public class Atm {
         AtmFileReader atmFileReader = new AtmFileReader(atmFileName);
         atmFileReader.read();
 
-        this.userManager = new UserManager(userFileReader.getUsers());
-        this.accountManager = new AccountManager(accountFileReader.getAccounts());
         this.timeManager = new TimeManager(atmFileReader.getDate(), true);
+        Date date = timeManager.getDate();
+        this.userManager = new UserManager(userFileReader.getUsers(), date);
+        this.accountManager = new AccountManager(accountFileReader.getAccounts(), date);
         this.billManager = new BillManager(atmFileReader.getFives(), atmFileReader.getTens(), atmFileReader.getTwenties(), atmFileReader.getFifties());
 
         this.userFileName = userFileName;
@@ -66,6 +56,14 @@ public class Atm {
         return userManager;
     }
 
+    public AccountManager getAccountManager() {
+        return accountManager;
+    }
+
+    public BillManager getBillManager() {
+        return billManager;
+    }
+
     public void printText() throws IOException {
 
         BufferedReader kbd = new BufferedReader(new InputStreamReader(System.in));
@@ -85,7 +83,7 @@ public class Atm {
     public void save() throws IOException {
         AccountFileWriter accountFileWriter = new AccountFileWriter(accountFileName,accountManager.getAccounts());
         UserFileWriter userFileWriter = new UserFileWriter(userFileName, userManager.getUsers());
-        AtmFileWriter atmFileWriter = new AtmFileWriter(atmFileName, timeManager.getDate(), billManager);
+        AtmFileWriter atmFileWriter = new AtmFileWriter(atmFileName, timeManager.getDate(), billManager, accountManager);
 
         accountFileWriter.write();
         userFileWriter.write();

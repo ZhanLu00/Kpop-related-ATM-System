@@ -12,22 +12,26 @@ import java.util.Date;
  */
 public abstract class BankAccount {
 
+    public static final String LINE_OF_CREDIT = "lineofcredit";
+    public static final String CREDIT_CARD = "creditcard";
+    public static final String SAVINGS = "savings";
+    public static final String CHEQUING ="chequing" ;
+
+
     protected static int nextId = 0;
 
     protected int id;
-    protected ATM.Users.Client client;
     protected final Date DATE_CREATED;
 
     protected double balance = 0;
     protected Transaction lastTransaction;
 
 
-    public BankAccount(ATM.Users.Client client, Date date, double balance) {
+    public BankAccount(Date date, double balance) {
 
         this.id = nextId;
         nextId += 1;
 
-        this.client = client;
         this.DATE_CREATED = date;
 
         this.balance = balance;
@@ -37,10 +41,6 @@ public abstract class BankAccount {
     /** Getters **/
 
     public abstract double getBalance();
-
-    public ATM.Users.Client getClient() {
-        return this.client;
-    }
 
     public Transaction getLastTransaction() {
         return this.lastTransaction;
@@ -96,7 +96,7 @@ public abstract class BankAccount {
             try {
                 String bill = amount + ", " + receiver;
                 BufferedWriter writer = new BufferedWriter(new FileWriter("outgoing.txt"));
-                writer.write(bill);
+                writer.append(bill);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -106,4 +106,7 @@ public abstract class BankAccount {
         }
     }
 
+    public int getId() {
+        return id;
+    }
 }

@@ -36,17 +36,17 @@ public class AccountFileReader {
         double balence = Integer.parseInt(seperated[1].replace(",",""));
         Date date = TimeManager.dateFromString(seperated[2].replace(",",""));
 
-        if (type.equals("chequing")) {
-            accounts.add(new ChequingAccount(null,date,balence));
+        if (type.equals(BankAccount.CHEQUING)) {
+            accounts.add(new ChequingAccount(date,balence));
         }
-        else if (type.equals("savings")) {
-            accounts.add(new SavingsAccount(null,date,balence));
+        else if (type.equals(BankAccount.SAVINGS)) {
+            accounts.add(new SavingsAccount(date,balence));
         }
-        else if (type.equals("creditcard")) {
-            accounts.add(new CreditCardsAccount(null, date,balence));
+        else if (type.equals(BankAccount.CREDIT_CARD)) {
+            accounts.add(new CreditCardsAccount(date,balence));
         }
-        else if (type.equals("lineofcredit")) {
-            accounts.add(new LineOfCreditAccount(null,date,balence));
+        else if (type.equals(BankAccount.LINE_OF_CREDIT)) {
+            accounts.add(new LineOfCreditAccount(date,balence));
         }
 
     }

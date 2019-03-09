@@ -39,16 +39,16 @@ public class AccountFileWriter {
 
     private String getAccountType(BankAccount account) {
         if (account instanceof ChequingAccount) {
-            return "chequing";
+            return BankAccount.CHEQUING;
         }
         else if (account instanceof SavingsAccount) {
-            return "savings";
+            return BankAccount.SAVINGS;
         }
         else if (account instanceof CreditCardsAccount) {
-            return "creditcard";
+            return BankAccount.CREDIT_CARD;
         }
         else if (account instanceof LineOfCreditAccount) {
-            return "lineofcredit";
+            return BankAccount.LINE_OF_CREDIT;
         }
         return "account";
     }

@@ -9,8 +9,8 @@ import java.util.Date;
  */
 public abstract class AssetAccount extends BankAccount {
 
-    protected AssetAccount(ATM.Users.Client client, Date date, double balance) {
-        super(client, date, balance);
+    protected AssetAccount(Date date, double balance) {
+        super( date, balance);
     }
 
     public double getBalance() {

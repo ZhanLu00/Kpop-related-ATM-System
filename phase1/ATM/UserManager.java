@@ -3,21 +3,23 @@ package ATM;
 import ATM.Users.User;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.function.Consumer;
 
 /**
  * A UserManager class that stores all the users.
  */
 
-public class UserManager {
+public class UserManager implements Iterable<User> {
 
-    public ArrayList <User> users;
+    private ArrayList <User> users;
+    private Date date;
 
-    public UserManager(){
-        this.users = new ArrayList<User>();
-    }
-
-    public UserManager(ArrayList<User> users){
+    public UserManager(ArrayList<User> users, Date date){
         this.users = users;
+        this.date = date;
     }
 
     /**
@@ -55,6 +57,26 @@ public class UserManager {
         return users;
     }
 
+    public boolean userExists(String username) {
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public User getUser(String username) {
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+
     /**
      * Returns a list of all the users login
      */
@@ -66,4 +88,38 @@ public class UserManager {
         return login;
     }
 
+    private class UserManagerIterator implements Iterator<User> {
+        private ArrayList<User> users;
+        int i;
+        public UserManagerIterator(ArrayList<User> users) {
+            this.users = users;
+            this.i = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return i < users.size();
+        }
+
+        @Override
+        public User next() {
+            i+=1;
+            return users.get(i);
+        }
+    }
+
+    @Override
+    public Iterator<User> iterator() {
+        return new UserManagerIterator(users);
+    }
+
+    @Override
+    public void forEach(Consumer<? super User> action) {
+
+    }
+
+    @Override
+    public Spliterator<User> spliterator() {
+        return null;
+    }
 }

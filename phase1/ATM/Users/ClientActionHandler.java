@@ -112,10 +112,7 @@ public class ClientActionHandler {
     Check if the username matches password
      */
     public Boolean loginCheck(String password){
-        if (client.getPassword().equals(password)){
-            return true;
-        }
-        return false;
+        return client.getPassword().equals(password);
     }
 
     /*

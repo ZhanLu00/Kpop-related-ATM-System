@@ -29,48 +29,59 @@ public class BillManager {
     /**
      * Withdraws the amount of money specified and decreases the number of bills as needed.
      * If the amount of denomination goes below 20, an alert is written.
-     * Returns the amount that was withdrawn.
      */
-    public int withdraw(int amount) throws IOException {
-
+    public void withdraw(int amount) throws IOException {
         if (amount < 0) {
-            return 0;
+
         }
 
-        int initialAmount = amount;
-
-        if (amount % 5 == 0){
-            if (amount >= 50 && fifties >= 1){
-                int take = Math.min(fifties, (int)(amount/50));
-                fifties -= take;
-                amount -= take * 50;
-            }
-            if (amount >= 20 && twenties >= 1){
-                int take = Math.min(twenties, (int)(amount/20));
-                twenties -= take;
-                amount -= take * 20;
-            }
-            if (amount >= 10 && tens >= 1){
-                int take = Math.min(tens, (int)(amount/10));
-                tens -= take;
-                amount -= take * 10;
-            }
-            if (amount >= 5 && fives >= 1){
-                int take = Math.min(fives, (int)(amount/5));
-                fives -= take;
-                amount -= take * 5;
-            }
-        }else{
-            System.out.println("Please choose an amount divisible by 5.");
+        if (amount >= 50 && fifties >= 1){
+            int take = Math.min(fifties, (int)(amount/50));
+            fifties -= take;
+            amount -= take * 50;
         }
-        if (amount != 0){
-            System.out.println("You're withdrawing too much money.");
+        if (amount >= 20 && twenties >= 1){
+            int take = Math.min(twenties, (int)(amount/20));
+            twenties -= take;
+            amount -= take * 20;
+        }
+        if (amount >= 10 && tens >= 1){
+            int take = Math.min(tens, (int)(amount/10));
+            tens -= take;
+            amount -= take * 10;
+        }
+        if (amount >= 5 && fives >= 1){
+            int take = Math.min(fives, (int)(amount/5));
+            fives -= take;
+            amount -= take * 5;
         }
         if (fifties < 20 || twenties < 20 || tens < 20 || fives < 20) {
             writeAlerts();
         }
+    }
 
-        return initialAmount - amount;
+    /**
+     * Returns whether or not there is enough money in the ATM for the amount the user requested to withdraw.
+     */
+    public boolean withdrawable(int amount){
+        if (amount % 5 == 0){
+            if (amount >= 50 && fifties >= 1){
+                amount -= Math.min(fifties, (int)(amount/50)) * 50;
+            }
+            if (amount >= 20 && twenties >= 1){
+                amount -= Math.min(twenties, (int)(amount/20)) * 20;
+            }
+            if (amount >= 10 && tens >= 1){
+                amount -= Math.min(tens, (int)(amount/10)) * 10;
+            }
+            if (amount >= 5 && fives >= 1){
+                amount -= Math.min(fives, (int)(amount/5)) * 5;
+            }
+            return amount == 0;
+        }else{
+            System.out.println("Please choose an amount divisible by 5.");
+            return false;
+        }
     }
 
     private void writeAlerts() throws IOException {

@@ -1,11 +1,8 @@
 package ATM.Users;
-import ATM.AccountManager;
-import ATM.Atm;
+import ATM.*;
 import ATM.BankAccounts.AssetAccounts.AssetAccount;
 import ATM.BankAccounts.BankAccount;
 import ATM.BankAccounts.DebtAccounts.DebtAccount;
-import ATM.BillManager;
-import ATM.UserManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -40,7 +37,7 @@ public class ClientActionHandler {
 
     // check balance
     public Map<Integer, Double> checkBalance(){
-        Map balance = new HashMap();
+        Map balance = new HashMap<Integer, Double>();
 
         // get account numbers first
         for (int accountNumber: this.client.accountNumbers){
@@ -53,7 +50,7 @@ public class ClientActionHandler {
     // check transaction history (of itself)
 
     // withdraw
-    public Boolean withdraw(BankAccount account, int amount){
+    public Boolean withdraw(BankAccount account, int amount) throws IOException {
         /*
         @ TODO add the function below in the user interface part
         the function only returns true or false
@@ -112,10 +109,7 @@ public class ClientActionHandler {
     Check if the username matches password
      */
     public Boolean loginCheck(String password){
-        if (client.getPassword().equals(password)){
-            return true;
-        }
-        return false;
+        return client.getPassword().equals(password);
     }
 
     /*
@@ -178,9 +172,13 @@ public class ClientActionHandler {
                 while (!accountNumbers.contains(accountNumber)){
                     accountNumber = Integer.parseInt(kbd.readLine());
                 }
-                /*
-                @ TODO get and display transaction
-                 */
+
+                BankAccount account = accountManager.getAccount(accountNumber);
+                Transaction transaction = account.getLastTransaction();
+
+                System.out.println(String.format("Sender: %d,  Receiver:  %d,  Amount: %f,  Date: %s", transaction.getSender(), transaction.getReceiver(), transaction.getAmount(),TimeManager.dateToString(transaction.getDate())));
+                
+
             }else if (input == 3){
                 // check the date of creation
                 System.out.println("Enter the account that you want to check");
@@ -205,7 +203,7 @@ public class ClientActionHandler {
 
                 if (accountManager.transfer(amount, transIn, transOut)){
                     System.out.println("Your new balance is : ");
-                    System.out.println(accountManager.getAccount(transIn).getBalance();
+                    System.out.println(accountManager.getAccount(transIn).getBalance());
                     if (input == 5){
                         System.out.println(accountManager.getAccount(transOut).getBalance());
                     }

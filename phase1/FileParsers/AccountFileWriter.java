@@ -4,8 +4,10 @@ import ATM.BankAccounts.AssetAccounts.ChequingAccount;
 import ATM.BankAccounts.AssetAccounts.SavingsAccount;
 import ATM.BankAccounts.BankAccount;
 import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
+import ATM.BankAccounts.DebtAccounts.DebtAccount;
 import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
 import ATM.TimeManager;
+import ATM.Transaction;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -28,10 +30,32 @@ public class AccountFileWriter {
         StringBuilder fileOut = new StringBuilder("");
         for (BankAccount account : accounts) {
             String type = getAccountType(account);
-            double balence = account.getBalance();
+
+            double balance;
+            if (account instanceof DebtAccount) {
+                balance = -account.getBalance();
+            }
+            else {
+                balance = account.getBalance();
+            }
+
             Date date = account.getDATE_CREATED();
             String dateString = TimeManager.dateToString(date);
-            fileOut.append(String.format("%s,%f,%s\n",type,balence,dateString));
+
+            Transaction lastTransaction = account.getLastTransaction();
+            if (lastTransaction == null) {
+
+                fileOut.append(String.format("%s,%f,%s\n",type,balance,dateString));
+            }
+            else {
+                String lastTransactionDate = TimeManager.dateToString(lastTransaction.getDate());
+                int sender = lastTransaction.getSender();
+                int reciever = lastTransaction.getReceiver();
+                double amount = lastTransaction.getAmount();
+
+                fileOut.append(String.format("%s,%f,%s,%s,%d,%d,%f\n",type,balance,dateString,lastTransactionDate,sender,reciever,amount));
+            }
+
         }
         writer.append(fileOut);
         writer.close();

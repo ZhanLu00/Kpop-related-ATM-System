@@ -1,5 +1,6 @@
 package ATM.BankAccounts.DebtAccounts;
 import ATM.BankAccounts.AssetAccounts.AssetAccount;
+import ATM.Transaction;
 
 import java.util.Date;
 
@@ -11,6 +12,10 @@ public class CreditCardsAccount extends DebtAccount {
 
     public CreditCardsAccount(Date dateCreated, double balance) {
         super(dateCreated, balance);
+    }
+
+    public CreditCardsAccount(Date dateCreated, double balance, Transaction lastTransaction) {
+        super(dateCreated, balance,lastTransaction);
     }
 
     /**

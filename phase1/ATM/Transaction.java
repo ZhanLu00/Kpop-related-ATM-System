@@ -8,11 +8,11 @@ import java.util.Date;
 public class Transaction {
 
     private final double AMOUNT;
-    private final BankAccount SENDER;
-    private final BankAccount RECEIVER;
+    private final int SENDER;
+    private final int RECEIVER;
     private final Date DATE;
 
-    public Transaction(double amount, BankAccount sender, BankAccount receiver, Date date) {
+    public Transaction(double amount, int sender, int receiver, Date date) {
         this.AMOUNT = amount;
         this.SENDER = sender;
         this.RECEIVER = receiver;
@@ -23,11 +23,11 @@ public class Transaction {
         return AMOUNT;
     }
 
-    public BankAccount getSender() {
+    public int getSender() {
         return SENDER;
     }
 
-    public BankAccount getReceiver() {
+    public int getReceiver() {
         return RECEIVER;
     }
 

@@ -6,7 +6,10 @@ import ATM.BankAccounts.BankAccount;
 import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
 import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.Spliterator;
 import java.util.function.Consumer;
 
 /**
@@ -51,8 +54,9 @@ public class AccountManager implements Iterable<BankAccount> {
         BankAccount receiver = this.getAccount(receiverId);
         if(sender.withdraw(amount) && receiver.deposit(amount)) {
             // TODO: 2019-03-05 add transaction date
-            Transaction transaction = new Transaction(amount, receiver, null);
+            Transaction transaction = new Transaction(amount, senderId, receiverId, date);
             sender.setLastTransaction(transaction);
+            receiver.setLastTransaction(transaction);
             return true;
         } else {
             return false;
@@ -71,22 +75,22 @@ public class AccountManager implements Iterable<BankAccount> {
         return accounts;
     }
 
+    public int getNumAccounts() {
+        return accounts.size();
+    }
+
     public BankAccount createAccount(String accountType) {
         if (accountType.equals(BankAccount.CHEQUING)) {
-            ChequingAccount chequingAccount = new ChequingAccount(date,0);
-            return chequingAccount;
+            return new ChequingAccount(date,0);
         }
         else if (accountType.equals(BankAccount.SAVINGS)) {
-            SavingsAccount savingsAccount = new SavingsAccount(date,0);
-            return savingsAccount;
+            return new SavingsAccount(date,0);
         }
         else if (accountType.equals(BankAccount.CREDIT_CARD)) {
-            CreditCardsAccount creditCardsAccount = new CreditCardsAccount(date,0);
-            return creditCardsAccount;
+            return new CreditCardsAccount(date,0);
         }
         else if (accountType.equals(BankAccount.LINE_OF_CREDIT)) {
-            LineOfCreditAccount lineOfCreditAccount = new LineOfCreditAccount(date,0);
-            return lineOfCreditAccount;
+            return new LineOfCreditAccount(date,0);
         }
         return null;
     }
@@ -108,13 +112,13 @@ public class AccountManager implements Iterable<BankAccount> {
         @Override
         public BankAccount next() {
             i+=1;
-            return bankAccounts.get(i);
+            return bankAccounts.get(i-1);
         }
     }
 
     @Override
     public Iterator<BankAccount> iterator() {
-        return null;
+        return new AccountManagerIterator(accounts);
     }
 
     @Override

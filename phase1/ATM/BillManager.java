@@ -26,14 +26,11 @@ public class BillManager {
         this.alertsFileName = alertsFileName;
     }
 
-    public int withdraw(int amount) throws IOException {
-
-        if (amount < 0) {
-            return 0;
-        }
-
-        int initalAmount = amount;
-
+    /**
+     * Withdraws the amount of money specified and decreases the number of bills as needed.
+     * If the amount of denomination goes below 20, an alert is written.
+     */
+    public void withdraw(int amount) throws IOException {
         int fiftiesTaken = Math.min(amount / 50, fifties);
         amount -= 50 * fiftiesTaken;
         fifties -= fiftiesTaken;
@@ -53,17 +50,31 @@ public class BillManager {
         if (fifties < 20 || twenties < 20 || tens < 20 || fives < 20) {
             writeAlerts();
         }
-
-        return initalAmount - amount;
     }
 
-    /*
-    @ TODO implement the following method
+    /**
+     * Returns whether or not there are the correct number of bills in the ATM
+     * for the amount the user requested to withdraw.
      */
-
-    public Boolean withdrawable(int amount){
-        // return true if there are enough money
-        // false otherwise
+    public boolean withdrawable(int amount){
+        if (amount % 5 == 0 && amount > 0){
+            if (amount >= 50 && fifties >= 1){
+                amount -= Math.min(fifties, (amount/50)) * 50;
+            }
+            if (amount >= 20 && twenties >= 1){
+                amount -= Math.min(twenties, (amount/20)) * 20;
+            }
+            if (amount >= 10 && tens >= 1){
+                amount -= Math.min(tens, (amount/10)) * 10;
+            }
+            if (amount >= 5 && fives >= 1){
+                amount -= Math.min(fives, (amount/5)) * 5;
+            }
+            return amount == 0;
+        }else{
+            System.out.println("Please choose a positive amount divisible by 5.");
+            return false;
+        }
     }
 
     private void writeAlerts() throws IOException {

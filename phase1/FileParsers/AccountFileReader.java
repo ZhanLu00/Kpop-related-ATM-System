@@ -6,6 +6,7 @@ import ATM.BankAccounts.BankAccount;
 import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
 import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
 import ATM.TimeManager;
+import ATM.Transaction;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -31,22 +32,35 @@ public class AccountFileReader {
     }
 
     private void createAccount(String accountInfo) {
-        String[] seperated = accountInfo.split(",");
-        String type = seperated[0].replace(",","");
-        double balence = Double.parseDouble(seperated[1].replace(",",""));
-        Date date = TimeManager.dateFromString(seperated[2].replace(",",""));
+        String[] separated = accountInfo.split(",");
+        String type = separated[0].replace(",","");
+        double balance = Double.parseDouble(separated[1].replace(",",""));
+        Date date = TimeManager.dateFromString(separated[2].replace(",",""));
+
+
+        Transaction transaction;
+        if (separated.length < 4) {
+            transaction = null;
+        }
+        else {
+            Date transactionDate = TimeManager.dateFromString(separated[3].replace(",",""));
+            int sender = Integer.parseInt(separated[4].replace(",",""));
+            int receiver = Integer.parseInt(separated[5].replace(",",""));
+            double amount = Double.parseDouble(separated[6].replace(",",""));
+            transaction = new Transaction(amount, sender, receiver, transactionDate);
+        }
 
         if (type.equals(BankAccount.CHEQUING)) {
-            accounts.add(new ChequingAccount(date,balence));
+            accounts.add(new ChequingAccount(date,balance,transaction));
         }
         else if (type.equals(BankAccount.SAVINGS)) {
-            accounts.add(new SavingsAccount(date,balence));
+            accounts.add(new SavingsAccount(date,balance,transaction));
         }
         else if (type.equals(BankAccount.CREDIT_CARD)) {
-            accounts.add(new CreditCardsAccount(date,balence));
+            accounts.add(new CreditCardsAccount(date,balance,transaction));
         }
         else if (type.equals(BankAccount.LINE_OF_CREDIT)) {
-            accounts.add(new LineOfCreditAccount(date,balence));
+            accounts.add(new LineOfCreditAccount(date,balance,transaction));
         }
 
     }

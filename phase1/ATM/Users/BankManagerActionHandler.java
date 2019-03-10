@@ -76,7 +76,7 @@ public class BankManagerActionHandler {
 
     public String[] addClient(String username){
         if (atm.getUserManager().userExists(username)) {
-            return new String[] {"USER NOT CREATED. USERNAME ALREADY EXISTS"};
+            return new String[] {"USER NOT CREATED. USERNAME ALREADY EXISTS",""};
         }
 
         Random r = new Random();

@@ -43,12 +43,19 @@ public class AccountFileWriter {
             String dateString = TimeManager.dateToString(date);
 
             Transaction lastTransaction = account.getLastTransaction();
-            String lastTransactionDate = TimeManager.dateToString(lastTransaction.getDate());
-            int sender = lastTransaction.getSender();
-            int reciever = lastTransaction.getReceiver();
-            double amount = lastTransaction.getAmount();
+            if (lastTransaction == null) {
 
-            fileOut.append(String.format("%s,%f,%s,%s,%d,%d,%f\n",type,balance,dateString,lastTransactionDate,sender,reciever,amount));
+                fileOut.append(String.format("%s,%f,%s\n",type,balance,dateString));
+            }
+            else {
+                String lastTransactionDate = TimeManager.dateToString(lastTransaction.getDate());
+                int sender = lastTransaction.getSender();
+                int reciever = lastTransaction.getReceiver();
+                double amount = lastTransaction.getAmount();
+
+                fileOut.append(String.format("%s,%f,%s,%s,%d,%d,%f\n",type,balance,dateString,lastTransactionDate,sender,reciever,amount));
+            }
+
         }
         writer.append(fileOut);
         writer.close();

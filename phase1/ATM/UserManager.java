@@ -104,7 +104,7 @@ public class UserManager implements Iterable<User> {
         @Override
         public User next() {
             i+=1;
-            return users.get(i);
+            return users.get(i-1);
         }
     }
 

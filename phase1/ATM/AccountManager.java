@@ -6,7 +6,10 @@ import ATM.BankAccounts.BankAccount;
 import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
 import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.Spliterator;
 import java.util.function.Consumer;
 
 /**
@@ -108,13 +111,13 @@ public class AccountManager implements Iterable<BankAccount> {
         @Override
         public BankAccount next() {
             i+=1;
-            return bankAccounts.get(i);
+            return bankAccounts.get(i-1);
         }
     }
 
     @Override
     public Iterator<BankAccount> iterator() {
-        return null;
+        return new AccountManagerIterator(accounts);
     }
 
     @Override

@@ -31,33 +31,30 @@ public class BillManager {
      * If the amount of denomination goes below 20, an alert is written.
      */
     public void withdraw(int amount) throws IOException {
-        if (amount >= 50 && fifties >= 1){
-            int take = Math.min(fifties, (int)(amount/50));
-            fifties -= take;
-            amount -= take * 50;
-        }
-        if (amount >= 20 && twenties >= 1){
-            int take = Math.min(twenties, (int)(amount/20));
-            twenties -= take;
-            amount -= take * 20;
-        }
-        if (amount >= 10 && tens >= 1){
-            int take = Math.min(tens, (int)(amount/10));
-            tens -= take;
-            amount -= take * 10;
-        }
-        if (amount >= 5 && fives >= 1){
-            int take = Math.min(fives, (int)(amount/5));
-            fives -= take;
-            amount -= take * 5;
-        }
+        int fiftiesTaken = Math.min(amount / 50, fifties);
+        amount -= 50 * fiftiesTaken;
+        fifties -= fiftiesTaken;
+
+        int twentiesTaken = Math.min(amount / 20, twenties);
+        amount -=  20 * twentiesTaken;
+        twenties -= twentiesTaken;
+
+        int tensTaken = Math.min(amount / 10, tens);
+        amount -=  10 * tensTaken;
+        tens -= tensTaken;
+
+        int fivesTaken = Math.min(amount / 5, fives);
+        amount -=  5 * fivesTaken;
+        fives -= fivesTaken;
+
         if (fifties < 20 || twenties < 20 || tens < 20 || fives < 20) {
             writeAlerts();
         }
     }
 
     /**
-     * Returns whether or not there is enough money in the ATM for the amount the user requested to withdraw.
+     * Returns whether or not there are the correct number of bills in the ATM
+     * for the amount the user requested to withdraw.
      */
     public boolean withdrawable(int amount){
         if (amount % 5 == 0 && amount > 0){

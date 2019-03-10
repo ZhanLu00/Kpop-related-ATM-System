@@ -31,10 +31,6 @@ public class BillManager {
      * If the amount of denomination goes below 20, an alert is written.
      */
     public void withdraw(int amount) throws IOException {
-        if (amount < 0) {
-
-        }
-
         if (amount >= 50 && fifties >= 1){
             int take = Math.min(fifties, (int)(amount/50));
             fifties -= take;
@@ -64,7 +60,7 @@ public class BillManager {
      * Returns whether or not there is enough money in the ATM for the amount the user requested to withdraw.
      */
     public boolean withdrawable(int amount){
-        if (amount % 5 == 0){
+        if (amount % 5 == 0 && amount > 0){
             if (amount >= 50 && fifties >= 1){
                 amount -= Math.min(fifties, (int)(amount/50)) * 50;
             }
@@ -79,7 +75,7 @@ public class BillManager {
             }
             return amount == 0;
         }else{
-            System.out.println("Please choose an amount divisible by 5.");
+            System.out.println("Please choose a positive amount divisible by 5.");
             return false;
         }
     }

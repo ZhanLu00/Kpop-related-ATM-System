@@ -31,22 +31,22 @@ public class AccountFileReader {
     }
 
     private void createAccount(String accountInfo) {
-        String[] seperated = accountInfo.split(",");
-        String type = seperated[0].replace(",","");
-        double balence = Double.parseDouble(seperated[1].replace(",",""));
-        Date date = TimeManager.dateFromString(seperated[2].replace(",",""));
+        String[] separated = accountInfo.split(",");
+        String type = separated[0].replace(",","");
+        double balance = Double.parseDouble(separated[1].replace(",",""));
+        Date date = TimeManager.dateFromString(separated[2].replace(",",""));
 
         if (type.equals(BankAccount.CHEQUING)) {
-            accounts.add(new ChequingAccount(date,balence));
+            accounts.add(new ChequingAccount(date,balance));
         }
         else if (type.equals(BankAccount.SAVINGS)) {
-            accounts.add(new SavingsAccount(date,balence));
+            accounts.add(new SavingsAccount(date,balance));
         }
         else if (type.equals(BankAccount.CREDIT_CARD)) {
-            accounts.add(new CreditCardsAccount(date,balence));
+            accounts.add(new CreditCardsAccount(date,balance));
         }
         else if (type.equals(BankAccount.LINE_OF_CREDIT)) {
-            accounts.add(new LineOfCreditAccount(date,balence));
+            accounts.add(new LineOfCreditAccount(date,balance));
         }
 
     }

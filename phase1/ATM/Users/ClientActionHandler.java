@@ -7,7 +7,9 @@ import ATM.BankAccounts.DebtAccounts.DebtAccount;
 import ATM.BillManager;
 import ATM.UserManager;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +25,7 @@ public class ClientActionHandler {
 
     private Client client;
     private AccountManager accountManager;
+    private BufferedReader kbd = new BufferedReader(new InputStreamReader(System.in));
 
     public ClientActionHandler(Client client, AccountManager manager){
         this.client = client;
@@ -107,22 +110,18 @@ public class ClientActionHandler {
         return total;
     }
 
+
+
     public void displayCommandLineInterface() throws IOException {
+        // basic info
+        String userName = client.getUsername();
+        ArrayList<Integer> accountNumbers = client.getAccounts();
+
         while (true){
             // show user name
-            System.out.println("User: "+client.getUsername());
-            // show user account's balance
-            System.out.println("Bank Accounts and Balance:");
+            System.out.println("User: "+userName);
             Map accountBalance = checkBalance();
-            for (Object accountNumber:accountBalance.keySet()){
-                System.out.println(accountNumber+": "+ accountBalance.get(accountNumber));
-            }
-            // show transaction history
-            System.out.println(accountManager);
-            // the date of creation of one of their accounts
-            System.out.println(accountManager.getAccount(client.accountNumbers.get(0)).getDATE_CREATED());
-            // their net total
-            System.out.println("Your net total is: "+ netTotal(accountBalance));
+
 
             // Display options
             System.out.println("Please select an option: ");
@@ -130,11 +129,89 @@ public class ClientActionHandler {
             System.out.println("Enter 2 to view the most recent transaction on a selected account");
             System.out.println("Enter 3 to check the date of creation of a selected account");
             System.out.println("Enter 4 to check your net total");
-            System.out.println("Enter 5 to Transfer Money");
-            System.out.println("Enter 6 to withdraw");
-            System.out.println("Enter 7 to pay a bill");
-            System.out.println("Enter 8 to make a deposit");
-            System.out.println("Enter 9 to request a creation of an account");
+            System.out.println("Enter 5 to Transfer Money (between own accounts)");
+            System.out.println("Enter 6 to Transfer Money (out to other user's)");
+            System.out.println("Enter 7 to withdraw");
+            System.out.println("Enter 8 to pay a bill");
+            System.out.println("Enter 9 to make a deposit");
+            System.out.println("Enter 10 to request a creation of an account");
+
+            int input = Integer.parseInt(kbd.readLine());
+
+            if (input == 1){
+                // show user account's balance
+                System.out.println("Bank Accounts and Balance:");
+                for (Object accountNumber:accountBalance.keySet()){
+                    System.out.println(accountNumber+": "+ accountBalance.get(accountNumber));
+                }
+            }else if (input == 2){
+                // view wth most recent transaction
+                System.out.println("Enter the account that you want to check");
+                int accountNumber = Integer.parseInt(kbd.readLine());
+                while (!accountNumbers.contains(accountNumber)){
+                    accountNumber = Integer.parseInt(kbd.readLine());
+                }
+                /*
+                @ TODO get and display transaction
+                 */
+            }else if (input == 3){
+                // check the date of creation
+                System.out.println("Enter the account that you want to check");
+                int accountNumber = Integer.parseInt(kbd.readLine());
+                while (!accountNumbers.contains(accountNumber)){
+                    accountNumber = Integer.parseInt(kbd.readLine());
+                }
+                // the date of creation of one of their accounts
+                System.out.println(accountManager.getAccount(accountNumber).getDATE_CREATED());
+
+            }else if (input ==4){
+                // check your net total
+                System.out.println("Your net total is: "+ netTotal(accountBalance));
+
+            } else if (input == 5 || input == 6) {
+                System.out.println("Enter the account that you want to transfer out");
+                int transOut = Integer.parseInt(kbd.readLine());
+                System.out.println("Enter the account that you want to transfer in");
+                int transIn = Integer.parseInt(kbd.readLine());
+                System.out.println("Enter the amount that you want to transfer in between");
+                double amount = Double.parseDouble(kbd.readLine());
+
+                if (accountManager.transfer(amount, transIn, transOut)){
+                    System.out.println("Your new balance is : ");
+                    System.out.println(accountManager.getAccount(transIn).getBalance();
+                    if (input == 5){
+                        System.out.println(accountManager.getAccount(transOut).getBalance());
+                    }
+                }else{
+                    System.out.println("Request Declined, there is an error in your transIn/Out/amount");
+                }
+            }else if (input == 7){
+                // withdraw
+                System.out.println("Enter the account that you want to withdraw from");
+                int accountNumber = Integer.parseInt(kbd.readLine());
+                while (accountNumbers.contains(accountNumber)){
+                    System.out.println("please enter a right account number");
+                    System.out.println(accountNumber);
+                }
+                // amount
+                int amount = Integer.parseInt(kbd.readLine());
+                while (amount < 0){
+                    System.out.println("please enter a positive number");
+                    amount = Integer.parseInt(kbd.readLine());
+                }
+                BankAccount account = accountManager.getAccount(accountNumber);
+                if (account instanceof DebtAccount){
+                    System.out.println("Debt Account does not support withdraw");
+                }else if (account.withdraw(amount)){
+                    System.out.println("Please enter a acceptable amount");
+                }
+            }else if (input == 8){
+                // pay a bill
+            }else if (input == 9){
+                // make a deposit
+            }else if (input == 10){
+                // request a creation of an account
+            }
 
 
 

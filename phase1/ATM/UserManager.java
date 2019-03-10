@@ -42,7 +42,6 @@ public class UserManager implements Iterable<User> {
      */
     public User getUser(String username, String password){
         for (User u : users){
-            u.getUsername();
             if (u.getUsername().equals(username) && u.getPassword().equals(password)){
                 return u;
             }

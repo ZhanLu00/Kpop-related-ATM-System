@@ -37,13 +37,18 @@ public class AccountFileReader {
         double balance = Double.parseDouble(separated[1].replace(",",""));
         Date date = TimeManager.dateFromString(separated[2].replace(",",""));
 
-        // date sender receiver amount
-        Date transactionDate = TimeManager.dateFromString(separated[3].replace(",",""));
-        int sender = Integer.parseInt(separated[4].replace(",",""));
-        int receiver = Integer.parseInt(separated[5].replace(",",""));
-        double amount = Double.parseDouble(separated[6].replace(",",""));
 
-        Transaction transaction = new Transaction(amount, sender, receiver, transactionDate);
+        Transaction transaction;
+        if (separated.length < 4) {
+            transaction = null;
+        }
+        else {
+            Date transactionDate = TimeManager.dateFromString(separated[3].replace(",",""));
+            int sender = Integer.parseInt(separated[4].replace(",",""));
+            int receiver = Integer.parseInt(separated[5].replace(",",""));
+            double amount = Double.parseDouble(separated[6].replace(",",""));
+            transaction = new Transaction(amount, sender, receiver, transactionDate);
+        }
 
         if (type.equals(BankAccount.CHEQUING)) {
             accounts.add(new ChequingAccount(date,balance,transaction));

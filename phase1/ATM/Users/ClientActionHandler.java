@@ -65,9 +65,24 @@ public class ClientActionHandler {
             System.out.println("DebtAccount does not support withdraw");
             return false;
         }else{
-            boolean withdrawable = billManager.withdraw(amount);
+
+            boolean withdrawable = billManager.withdrawable(amount);
             if (withdrawable){
+                // check if there are enough money in atm
+                // why is this not working?
                 billManager.withdraw(amount);
+                // check if there are enough money in their balance
+                if (account.withdraw(amount)){
+                    return true;
+                }else{
+                    System.out.println("Withdraw Declined, please check your balance");
+                    return false;
+                }
+
+            }else{
+                // print if there are not enough money in the atm
+                System.out.println("There are not enough money in this ATM, please try another one");
+                return false;
             }
         }
     }
@@ -212,12 +227,17 @@ public class ClientActionHandler {
                     amount = Integer.parseInt(kbd.readLine());
                 }
                 BankAccount account = accountManager.getAccount(accountNumber);
-                withdraw(account, amount);
+                if (withdraw(account, amount)){
+                    System.out.println("Withdraw Succeed");
+                }else{
+                    ;
+                }
 
             }else if (input == 8){
                 // pay a bill
             }else if (input == 9){
                 // make a deposit
+                
             }else if (input == 10){
                 // request a creation of an account
             }

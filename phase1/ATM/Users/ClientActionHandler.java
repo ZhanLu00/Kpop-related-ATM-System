@@ -40,7 +40,7 @@ public class ClientActionHandler {
 
     // check balance
     public Map<Integer, Double> checkBalance(){
-        Map balance = new HashMap();
+        Map balance = new HashMap<Integer, Double>();
 
         // get account numbers first
         for (int accountNumber: this.client.accountNumbers){

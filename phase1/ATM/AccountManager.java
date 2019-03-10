@@ -56,6 +56,7 @@ public class AccountManager implements Iterable<BankAccount> {
             // TODO: 2019-03-05 add transaction date
             Transaction transaction = new Transaction(amount, senderId, receiverId, date);
             sender.setLastTransaction(transaction);
+            receiver.setLastTransaction(transaction);
             return true;
         } else {
             return false;

@@ -59,16 +59,16 @@ public class BillManager {
     public boolean withdrawable(int amount){
         if (amount % 5 == 0 && amount > 0){
             if (amount >= 50 && fifties >= 1){
-                amount -= Math.min(fifties, (int)(amount/50)) * 50;
+                amount -= Math.min(fifties, (amount/50)) * 50;
             }
             if (amount >= 20 && twenties >= 1){
-                amount -= Math.min(twenties, (int)(amount/20)) * 20;
+                amount -= Math.min(twenties, (amount/20)) * 20;
             }
             if (amount >= 10 && tens >= 1){
-                amount -= Math.min(tens, (int)(amount/10)) * 10;
+                amount -= Math.min(tens, (amount/10)) * 10;
             }
             if (amount >= 5 && fives >= 1){
-                amount -= Math.min(fives, (int)(amount/5)) * 5;
+                amount -= Math.min(fives, (amount/5)) * 5;
             }
             return amount == 0;
         }else{

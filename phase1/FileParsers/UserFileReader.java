@@ -24,8 +24,8 @@ public class UserFileReader {
     private void createUser(String userInfo) {
         String[] separated = userInfo.split(",");
         String userType = separated[0].replace(",","");
-        String username = separated[1].replace(",","");;
-        String password = separated[2].replace(",","");;
+        String username = separated[1].replace(",","");
+        String password = separated[2].replace(",","");
 
         if (userType.equals("client")) {
             Client client = new Client(username,password);

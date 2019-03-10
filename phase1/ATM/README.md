@@ -9,7 +9,8 @@ Our motivation for the project was the 27% of our CSC207 mark.
 
 ## Running the program
 
-ATMApplication
+Open and run ATMApplication. The ATM will prompt the user to enter an username and a password (example of working usernames and 
+passwords can be found in BankUsers.txt). 
 
 ## Configuration
 

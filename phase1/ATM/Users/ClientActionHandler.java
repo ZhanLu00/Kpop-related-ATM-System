@@ -237,7 +237,7 @@ public class ClientActionHandler {
                 // pay a bill
             }else if (input == 9){
                 // make a deposit
-                
+
             }else if (input == 10){
                 // request a creation of an account
             }

@@ -120,6 +120,10 @@ public class ClientActionHandler {
                 /*
                 @ TODO please implement the function below
                  */
+                if (cashes.withdrawable){
+                    cashes.withdraw(amount);
+                    account.payBill(amount, transIn);
+                }
                 // save the transaction history
                 return true;
             }else{

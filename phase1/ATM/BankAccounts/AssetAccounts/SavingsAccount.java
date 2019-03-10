@@ -1,5 +1,7 @@
 package ATM.BankAccounts.AssetAccounts;
 
+import ATM.Transaction;
+
 import java.util.Date;
 
 
@@ -11,6 +13,11 @@ public class SavingsAccount extends AssetAccount {
     public SavingsAccount(Date date, double balance) {
         super(date, balance);
     }
+
+    public SavingsAccount(Date date, double balance, Transaction lastTransaction) {
+        super(date, balance,lastTransaction);
+    }
+
 
     /**
      * Withdraws the given amount out of an account.

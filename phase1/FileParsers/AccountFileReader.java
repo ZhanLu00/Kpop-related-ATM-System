@@ -6,6 +6,7 @@ import ATM.BankAccounts.BankAccount;
 import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
 import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
 import ATM.TimeManager;
+import ATM.Transaction;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -36,17 +37,25 @@ public class AccountFileReader {
         double balance = Double.parseDouble(separated[1].replace(",",""));
         Date date = TimeManager.dateFromString(separated[2].replace(",",""));
 
+        // date sender receiver amount
+        Date transactionDate = TimeManager.dateFromString(separated[3].replace(",",""));
+        int sender = Integer.parseInt(separated[4].replace(",",""));
+        int receiver = Integer.parseInt(separated[5].replace(",",""));
+        double amount = Double.parseDouble(separated[6].replace(",",""));
+
+        Transaction transaction = new Transaction(amount, sender, receiver, transactionDate);
+
         if (type.equals(BankAccount.CHEQUING)) {
-            accounts.add(new ChequingAccount(date,balance));
+            accounts.add(new ChequingAccount(date,balance,transaction));
         }
         else if (type.equals(BankAccount.SAVINGS)) {
-            accounts.add(new SavingsAccount(date,balance));
+            accounts.add(new SavingsAccount(date,balance,transaction));
         }
         else if (type.equals(BankAccount.CREDIT_CARD)) {
-            accounts.add(new CreditCardsAccount(date,balance));
+            accounts.add(new CreditCardsAccount(date,balance,transaction));
         }
         else if (type.equals(BankAccount.LINE_OF_CREDIT)) {
-            accounts.add(new LineOfCreditAccount(date,balance));
+            accounts.add(new LineOfCreditAccount(date,balance,transaction));
         }
 
     }

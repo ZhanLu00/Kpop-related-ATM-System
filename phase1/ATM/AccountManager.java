@@ -51,7 +51,7 @@ public class AccountManager implements Iterable<BankAccount> {
         BankAccount receiver = this.getAccount(receiverId);
         if(sender.withdraw(amount) && receiver.deposit(amount)) {
             // TODO: 2019-03-05 add transaction date
-            Transaction transaction = new Transaction(amount, receiver, null);
+            Transaction transaction = new Transaction(amount, sender, receiver, date);
             sender.setLastTransaction(transaction);
             return true;
         } else {
@@ -69,6 +69,10 @@ public class AccountManager implements Iterable<BankAccount> {
 
     public ArrayList<BankAccount> getAccounts() {
         return accounts;
+    }
+
+    public int getNumAccounts() {
+        return accounts.size();
     }
 
     public BankAccount createAccount(String accountType) {

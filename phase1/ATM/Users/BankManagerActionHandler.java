@@ -1,9 +1,6 @@
 package ATM.Users;
-import ATM.AccountManager;
-import ATM.Atm;
+import ATM.*;
 import ATM.BankAccounts.BankAccount;
-import ATM.BillManager;
-import ATM.UserManager;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -105,7 +102,13 @@ public class BankManagerActionHandler {
         atm.getTimeManager().getDate().setYear(year);
     }
 
+    private boolean undoTransaction(int transaction) {
+        if (transaction < 0 || transaction >= atm.getAccountManager().getNumAccounts()) {
+            return false;
+        }
 
+        return atm.getAccountManager().getAccount(transaction).undoTransaction(atm.getAccountManager());
+    }
 
     private int getIntFromUser(String display) throws IOException {
         System.out.print(display);
@@ -146,6 +149,20 @@ public class BankManagerActionHandler {
 
                 restockBills(numFives, numTens, numTwenties, numFifties);
             } else if (input == 3) {
+                int c = 0;
+                for (BankAccount bankAccount : atm.getAccountManager()) {
+                    Transaction transaction = bankAccount.getLastTransaction();
+                    if (transaction != null) {
+                        System.out.println(String.format("%d)  Sender: %d,  Receiver: %d, Amount %f", c, transaction.getSender(), transaction.getReceiver(), transaction.getAmount()));
+                    }
+                    else {
+                        System.out.println(String.format("%d) None",c));
+                    }
+                    c+=1;
+                }
+
+                int transaction = getIntFromUser("Which transaction would you like to undo: ");
+                System.out.println(undoTransaction(transaction) ? ("Transaction Undone") : ("Error undoing transaction"));
 
             } else if (input == 4) {
                 int c = 0;

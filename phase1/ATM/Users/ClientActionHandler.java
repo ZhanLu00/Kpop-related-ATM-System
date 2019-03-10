@@ -205,7 +205,7 @@ public class ClientActionHandler {
 
                 if (accountManager.transfer(amount, transIn, transOut)){
                     System.out.println("Your new balance is : ");
-                    System.out.println(accountManager.getAccount(transIn).getBalance();
+                    System.out.println(accountManager.getAccount(transIn).getBalance());
                     if (input == 5){
                         System.out.println(accountManager.getAccount(transOut).getBalance());
                     }

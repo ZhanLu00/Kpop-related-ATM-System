@@ -55,6 +55,14 @@ public class BillManager {
 
         return initalAmount - amount;
     }
+    /*
+    @ TODO implement the following method
+     */
+
+    public Boolean withdraw(int amount){
+        // return true if there are enough money
+        // false otherwise
+    }
 
     private void writeAlerts() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(alertsFileName));

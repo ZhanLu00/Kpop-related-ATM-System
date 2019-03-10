@@ -1,11 +1,8 @@
 package ATM.Users;
-import ATM.AccountManager;
-import ATM.Atm;
+import ATM.*;
 import ATM.BankAccounts.AssetAccounts.AssetAccount;
 import ATM.BankAccounts.BankAccount;
 import ATM.BankAccounts.DebtAccounts.DebtAccount;
-import ATM.BillManager;
-import ATM.UserManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -175,9 +172,13 @@ public class ClientActionHandler {
                 while (!accountNumbers.contains(accountNumber)){
                     accountNumber = Integer.parseInt(kbd.readLine());
                 }
-                /*
-                @ TODO get and display transaction
-                 */
+
+                BankAccount account = accountManager.getAccount(accountNumber);
+                Transaction transaction = account.getLastTransaction();
+
+                System.out.println(String.format("Sender: %d,  Receiver:  %d,  Amount: %f,  Date: %s", transaction.getSender(), transaction.getReceiver(), transaction.getAmount(),TimeManager.dateToString(transaction.getDate())));
+                
+
             }else if (input == 3){
                 // check the date of creation
                 System.out.println("Enter the account that you want to check");

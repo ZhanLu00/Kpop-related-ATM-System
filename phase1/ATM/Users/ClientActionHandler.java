@@ -92,13 +92,6 @@ public class ClientActionHandler {
         return this.accountManager.transfer(amount, senderId, receiverId);
     }
 
-    // pay bills
-    public Boolean payBills(){
-        /*
-
-         */
-        return true;
-    }
 
     // request creation of an account
     public void accountCreation(String type){
@@ -111,6 +104,31 @@ public class ClientActionHandler {
     public Boolean loginCheck(String password){
         return client.getPassword().equals(password);
     }
+
+    /*
+    Pay a bill
+     */
+    public Boolean payBill(int transOut, double amount, int transIn){
+        BankAccount account = accountManager.getAccount(transOut);
+        // check if there are enough balance
+        if (account.getBalance()<amount){
+            return false;
+        }else {
+            // withdraw money from transOut account
+            if (account.withdraw(amount)){
+
+                /*
+                @ TODO please implement the function below
+                 */
+                // save the transaction history
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+    }
+
 
     /*
     Calculate the net total of all accounts of an user
@@ -233,11 +251,41 @@ public class ClientActionHandler {
 
             }else if (input == 8){
                 // pay a bill
+                System.out.println("Enter the account number that you pay from");
+                int accountN = Integer.parseInt(kbd.readLine());
+                System.out.println("Enter the amount you pay");
+                double amount = Double.parseDouble(kbd.readLine());
+                System.out.println("Enter the payee account number");
+                int payee = Integer.parseInt(kbd.readLine());
+
+                if (payBill(accountN, amount, payee)){
+                    System.out.println("Request has been done");
+                }else{
+                    System.out.println("Request declined");
+                }
             }else if (input == 9){
                 // make a deposit
-                
+                System.out.println("Enter your account number, fives, tens, twenties and fifties that you are gonna deposit, press 'enter' in between each info");
+                int accountN = Integer.parseInt(kbd.readLine());
+                int fives = Integer.parseInt(kbd.readLine());
+                int tens = Integer.parseInt(kbd.readLine());
+                int twenties = Integer.parseInt(kbd.readLine());
+                int fifties = Integer.parseInt(kbd.readLine());
+
+                accountManager.getAccount(accountN).deposit(fives*5+tens*10+twenties*20+fifties*50);
+                billManager.deposit(fives, tens, twenties, fifties);
+                System.out.println("Deposite done, here is your new balance:" + accountManager.getAccount(accountN).getBalance());
             }else if (input == 10){
                 // request a creation of an account
+                System.out.println("account type that you want to create");
+                String type = kbd.readLine();
+                try {
+                    accountManager.requestNewAccount(client.getUsername(), type);
+                    System.out.println("request send");
+                }catch (Exception e){
+                    System.out.println("request declined");
+                }
+
             }
 
 

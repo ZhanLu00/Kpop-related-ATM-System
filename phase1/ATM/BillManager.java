@@ -26,6 +26,11 @@ public class BillManager {
         this.alertsFileName = alertsFileName;
     }
 
+    /**
+     * Withdraws the amount of money specified and decreases the number of bills as needed.
+     * If the amount of denomination goes below 20, an alert is written.
+     * Returns the amount that was withdrawn.
+     */
     public int withdraw(int amount) throws IOException {
 
         if (amount < 0) {
@@ -34,36 +39,38 @@ public class BillManager {
 
         int initialAmount = amount;
 
-        int fiftiesTaken = Math.min(amount / 50, fifties);
-        amount -= 50 * fiftiesTaken;
-        fifties -= fiftiesTaken;
-
-        int twentiesTaken = Math.min(amount / 20, twenties);
-        amount -=  20 * twentiesTaken;
-        twenties -= twentiesTaken;
-
-        int tensTaken = Math.min(amount / 10, tens);
-        amount -=  10 * tensTaken;
-        tens -= tensTaken;
-
-        int fivesTaken = Math.min(amount / 5, fives);
-        amount -=  5 * fivesTaken;
-        fives -= fivesTaken;
-
+        if (amount % 5 == 0){
+            if (amount >= 50 && fifties >= 1){
+                int take = Math.min(fifties, (int)(amount/50));
+                fifties -= take;
+                amount -= take * 50;
+            }
+            if (amount >= 20 && twenties >= 1){
+                int take = Math.min(twenties, (int)(amount/20));
+                twenties -= take;
+                amount -= take * 20;
+            }
+            if (amount >= 10 && tens >= 1){
+                int take = Math.min(tens, (int)(amount/10));
+                tens -= take;
+                amount -= take * 10;
+            }
+            if (amount >= 5 && fives >= 1){
+                int take = Math.min(fives, (int)(amount/5));
+                fives -= take;
+                amount -= take * 5;
+            }
+        }else{
+            System.out.println("Please choose an amount divisible by 5.");
+        }
+        if (amount != 0){
+            System.out.println("You're withdrawing too much money.");
+        }
         if (fifties < 20 || twenties < 20 || tens < 20 || fives < 20) {
             writeAlerts();
         }
 
         return initialAmount - amount;
-    }
-
-    /*
-    @ TODO implement the following method
-     */
-
-    public Boolean withdrawable(int amount){
-        // return true if there are enough money
-        // false otherwise
     }
 
     private void writeAlerts() throws IOException {

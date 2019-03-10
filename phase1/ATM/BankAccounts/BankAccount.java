@@ -70,13 +70,7 @@ public abstract class BankAccount {
      * Deposits the given amount into an account.
      */
     public boolean deposit(double amount) {
-
-        if (this instanceof AssetAccount) {
-            this.balance += amount;
-        } else {
-            this.balance += -amount;
-        }
-
+        this.balance += amount;
         return true;
     }
 

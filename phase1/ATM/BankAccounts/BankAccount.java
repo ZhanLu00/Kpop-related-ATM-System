@@ -1,5 +1,6 @@
 package ATM.BankAccounts;
 import ATM.AccountManager;
+import ATM.BankAccounts.AssetAccounts.AssetAccount;
 import ATM.Transaction;
 
 import java.io.BufferedWriter;
@@ -69,7 +70,13 @@ public abstract class BankAccount {
      * Deposits the given amount into an account.
      */
     public boolean deposit(double amount) {
-        this.balance += amount;
+
+        if (this instanceof AssetAccount) {
+            this.balance += amount;
+        } else {
+            this.balance += -amount;
+        }
+
         return true;
     }
 

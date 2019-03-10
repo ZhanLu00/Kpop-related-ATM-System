@@ -32,7 +32,7 @@ public class BillManager {
             return 0;
         }
 
-        int initalAmount = amount;
+        int initialAmount = amount;
 
         int fiftiesTaken = Math.min(amount / 50, fifties);
         amount -= 50 * fiftiesTaken;
@@ -54,7 +54,7 @@ public class BillManager {
             writeAlerts();
         }
 
-        return initalAmount - amount;
+        return initialAmount - amount;
     }
 
     /*

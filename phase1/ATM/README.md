@@ -28,7 +28,7 @@ The first line will be the date the ATM was initialized written in the following
 Each variable is separated by spaces. Months must be written in the following format:
 
 ```
-"jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec
+"jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"
 ```
 
 Years and dates are initialized with no leading zeros.

@@ -6,8 +6,7 @@ public class BankManager extends User {
         super(username, password);
     }
 
-    // TODO: 2019-03-05 implement interface
-    @Override
+
     public void updateAccount() {
 
     }

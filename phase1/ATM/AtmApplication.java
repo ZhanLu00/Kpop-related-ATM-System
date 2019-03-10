@@ -1,8 +1,6 @@
 package ATM;
 
-import ATM.Users.BankManager;
-import ATM.Users.BankManagerActionHandler;
-import ATM.Users.User;
+import ATM.Users.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,6 +29,9 @@ public class AtmApplication {
 
             if (user instanceof BankManager) {
                 BankManagerActionHandler actionHandler = new BankManagerActionHandler((BankManager) user, atm);
+                actionHandler.displayCommandLineInterface();
+            } else if (user instanceof  Client) {
+                ClientActionHandler actionHandler = new ClientActionHandler((Client)user, atm.getAccountManager(), atm.getBillManager());
                 actionHandler.displayCommandLineInterface();
             }
         }

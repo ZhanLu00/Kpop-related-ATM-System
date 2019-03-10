@@ -12,6 +12,17 @@ Our motivation for the project was the 27% of our CSC207 mark.
 Open and run ATMApplication. The ATM will prompt the user to enter an username and a password (example of working usernames and 
 passwords can be found in BankUsers.txt). 
 
+Bank manager is able to create an client, restock the atm machine, undo transaction, view account creation requests, 
+set time, and show and clear alerts.
+
+Clients are able to view a summary of all account balances and their net total. They can also view the most recent 
+transaction and the date of creation of any account they own. A client is able to transfer money between their accounts 
+or out to other user's, withdraw or deposit money with the ATM machine, pay a bill, and request a creation of an account 
+from the bank manager.
+
+Both bank manager and clients are able to access the features above by entering the number corresponding to the actions
+and following the prompt.
+
 ## Configuration
 
 There are several configuration files for this program called "AtmInfo.txt", "BankAccounts.txt" and "BankUsers.txt". They should be present in the same directory as the folder ATM.

@@ -1,5 +1,6 @@
 package ATM.BankAccounts;
 import ATM.AccountManager;
+import ATM.BankAccounts.AssetAccounts.AssetAccount;
 import ATM.Transaction;
 
 import java.io.BufferedWriter;
@@ -83,15 +84,19 @@ public abstract class BankAccount {
      */
     public boolean undoTransaction(AccountManager accountManager) {
         if (this.lastTransaction != null) {
+
             double amount = this.lastTransaction.getAmount();
+
             BankAccount sender = accountManager.getAccount(this.lastTransaction.getReceiver());
             // receiver = this
             if(sender.withdraw(amount) && this.deposit(amount)) {
                 this.lastTransaction = null;
+                sender.lastTransaction = null;
                 return true;
             } else {
                 return false;
             }
+
         } else {
             return false;
         }

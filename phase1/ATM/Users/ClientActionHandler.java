@@ -25,11 +25,13 @@ public class ClientActionHandler {
 
     private Client client;
     private AccountManager accountManager;
+    private BillManager billManager;
     private BufferedReader kbd = new BufferedReader(new InputStreamReader(System.in));
 
-    public ClientActionHandler(Client client, AccountManager manager){
+    public ClientActionHandler(Client client, AccountManager manager, BillManager cashes){
         this.client = client;
         this.accountManager = manager;
+        this.billManager = cashes;
     }
 
     public void getText(Atm atm){
@@ -51,13 +53,18 @@ public class ClientActionHandler {
     // check transaction history (of itself)
 
     // withdraw
-    public Boolean withdraw(BankAccount account, Double amount){
+    public Boolean withdraw(BankAccount account, int amount){
         /*
         @ TODO add the function below in the user interface part
         the function only returns true or false
          */
         // will return a new balance if request complete, return false if declined
-        return account.withdraw(amount);
+
+        // if
+        if (account instanceof DebtAccount){
+            System.out.println("DebtAccount does not support withdraw");
+            return false;
+        }else if (billManager.withdraw(amount))
     }
 
     // transfer
@@ -200,11 +207,8 @@ public class ClientActionHandler {
                     amount = Integer.parseInt(kbd.readLine());
                 }
                 BankAccount account = accountManager.getAccount(accountNumber);
-                if (account instanceof DebtAccount){
-                    System.out.println("Debt Account does not support withdraw");
-                }else if (account.withdraw(amount)){
-                    System.out.println("Please enter a acceptable amount");
-                }
+                withdraw(account, amount);
+
             }else if (input == 8){
                 // pay a bill
             }else if (input == 9){

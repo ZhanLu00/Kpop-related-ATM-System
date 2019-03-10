@@ -10,7 +10,6 @@ public abstract class User {
      *  Store, getter, setter password
      *  Store, getter, setter Accounts
      */
-
     public String username;
     public String password;
     public ArrayList<Integer> accountNumbers;

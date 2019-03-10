@@ -22,22 +22,22 @@ public class UserFileReader {
     }
 
     private void createUser(String userInfo) {
-        String[] seperated = userInfo.split(",");
-        String userType = seperated[0].replace(",","");
-        String username = seperated[1].replace(",","");;
-        String password = seperated[2].replace(",","");;
+        String[] separated = userInfo.split(",");
+        String userType = separated[0].replace(",","");
+        String username = separated[1].replace(",","");;
+        String password = separated[2].replace(",","");;
 
         if (userType.equals("client")) {
             Client client = new Client(username,password);
-            for (int i = 3; i < seperated.length; i++) {
-                client.addAccounts(Integer.parseInt(seperated[i].replace(",","")));
+            for (int i = 3; i < separated.length; i++) {
+                client.addAccounts(Integer.parseInt(separated[i].replace(",","")));
             }
             users.add(client);
         }
         else if (userType.equals("manager")) {
             BankManager bankManager = new BankManager(username,password);
-            for (int i = 3; i < seperated.length; i++) {
-                bankManager.addAccounts(Integer.parseInt(seperated[i].replace(",","")));
+            for (int i = 3; i < separated.length; i++) {
+                bankManager.addAccounts(Integer.parseInt(separated[i].replace(",","")));
             }
             users.add(bankManager);
         }

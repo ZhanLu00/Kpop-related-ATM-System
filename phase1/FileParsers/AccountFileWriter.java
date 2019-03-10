@@ -28,7 +28,7 @@ public class AccountFileWriter {
         StringBuilder fileOut = new StringBuilder("");
         for (BankAccount account : accounts) {
             String type = getAccountType(account);
-            double balence = account.getBalance();
+            double balance = account.getBalance();
             Date date = account.getDATE_CREATED();
             String dateString = TimeManager.dateToString(date);
             fileOut.append(String.format("%s,%f,%s\n",type,balence,dateString));

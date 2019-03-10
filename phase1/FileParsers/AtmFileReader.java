@@ -29,16 +29,16 @@ public class AtmFileReader {
                 this.date = TimeManager.dateFromString(line);
             }
             else if (lineNum == 1) {
-                String[] seperated = line.split(",");
-                this.fives = Integer.parseInt(seperated[0]);
-                this.tens = Integer.parseInt(seperated[1]);
-                this.twenties = Integer.parseInt(seperated[2]);
-                this.fifties = Integer.parseInt(seperated[3]);
+                String[] separated = line.split(",");
+                this.fives = Integer.parseInt(separated[0]);
+                this.tens = Integer.parseInt(separated[1]);
+                this.twenties = Integer.parseInt(separated[2]);
+                this.fifties = Integer.parseInt(separated[3]);
             }
             else {
-                String[] seperated = line.split(",");
-                String clientName = seperated[0].replace(",","");
-                String accountType = seperated[1].replace(",","");
+                String[] separated = line.split(",");
+                String clientName = separated[0].replace(",","");
+                String accountType = separated[1].replace(",","");
                 accountCreationRequests.add(new String[] {clientName,accountType});
             }
             lineNum += 1;

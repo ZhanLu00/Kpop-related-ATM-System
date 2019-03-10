@@ -1,5 +1,6 @@
 package ATM.BankAccounts.AssetAccounts;
 import ATM.BankAccounts.BankAccount;
+import ATM.Transaction;
 
 import java.util.Date;
 
@@ -8,6 +9,10 @@ import java.util.Date;
  * An abstract AssetAccount class.
  */
 public abstract class AssetAccount extends BankAccount {
+
+    protected AssetAccount(Date date, double balance, Transaction lastTransaction) {
+        super( date, balance,lastTransaction);
+    }
 
     protected AssetAccount(Date date, double balance) {
         super( date, balance);

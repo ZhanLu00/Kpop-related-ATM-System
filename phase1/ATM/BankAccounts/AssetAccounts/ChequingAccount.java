@@ -1,5 +1,7 @@
 package ATM.BankAccounts.AssetAccounts;
 
+import ATM.Transaction;
+
 import java.util.Date;
 
 
@@ -8,8 +10,8 @@ import java.util.Date;
  */
 public class ChequingAccount extends AssetAccount {
 
+    public ChequingAccount(Date date, double balance, Transaction lastTransaction) { super(date,balance,lastTransaction); }
     public ChequingAccount(Date date, double balance) { super(date,balance); }
-
     /**
      * Withdraws the given amount out of an account.
      * Withdrawal is successful if balance after withdrawal >= -100.

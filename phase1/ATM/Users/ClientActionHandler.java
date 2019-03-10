@@ -53,7 +53,7 @@ public class ClientActionHandler {
     // check transaction history (of itself)
 
     // withdraw
-    public Boolean withdraw(BankAccount account, int amount){
+    public Boolean withdraw(BankAccount account, int amount) throws IOException {
         /*
         @ TODO add the function below in the user interface part
         the function only returns true or false

@@ -27,6 +27,7 @@ public class BillManager {
     }
 
     public int withdraw(int amount) throws IOException {
+
         if (amount < 0) {
             return 0;
         }
@@ -55,11 +56,12 @@ public class BillManager {
 
         return initalAmount - amount;
     }
+
     /*
     @ TODO implement the following method
      */
 
-    public Boolean withdraw(int amount){
+    public Boolean withdrawable(int amount){
         // return true if there are enough money
         // false otherwise
     }

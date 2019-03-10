@@ -64,7 +64,12 @@ public class ClientActionHandler {
         if (account instanceof DebtAccount){
             System.out.println("DebtAccount does not support withdraw");
             return false;
-        }else if (billManager.withdraw(amount))
+        }else{
+            boolean withdrawable = billManager.withdraw(amount);
+            if (withdrawable){
+                billManager.withdraw(amount);
+            }
+        }
     }
 
     // transfer

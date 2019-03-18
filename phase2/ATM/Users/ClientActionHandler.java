@@ -3,6 +3,7 @@ import ATM.*;
 import ATM.BankAccounts.AssetAccounts.AssetAccount;
 import ATM.BankAccounts.BankAccount;
 import ATM.BankAccounts.DebtAccounts.DebtAccount;
+import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -51,34 +52,29 @@ public class ClientActionHandler {
 
     // withdraw
     public Boolean withdraw(BankAccount account, int amount) throws IOException {
-        /*
-        @ TODO add the function below in the user interface part
-        the function only returns true or false
-         */
+    /*
+    @ TODO add the function below in the user interface part
+    the function only returns true or false
+     */
         // will return a new balance if request complete, return false if declined
 
         // if
-        if (account instanceof DebtAccount){
-            System.out.println("DebtAccount does not support withdraw");
+        if (account instanceof CreditCardsAccount){
+            System.out.println("Credit card account does not support withdraw");
             return false;
-        }else{
+        }else {
 
-            boolean withdrawable = billManager.withdrawable(amount);
-            if (withdrawable){
-                // check if there are enough money in atm
-                // why is this not working?
-                billManager.withdraw(amount);
-                // check if there are enough money in their balance
-                if (account.withdraw(amount)){
+            if (account.withdraw(amount)) {
+                boolean withdrawable = billManager.withdrawable(amount);
+                if (withdrawable) {
                     return true;
-                }else{
-                    System.out.println("Withdraw Declined, please check your balance");
+                } else {
+                    System.out.println("There are not enough money in this ATM, please try another one");
+                    account.deposit(amount);
                     return false;
                 }
-
-            }else{
-                // print if there are not enough money in the atm
-                System.out.println("There are not enough money in this ATM, please try another one");
+            } else {
+                System.out.println("Withdraw Declined, please check your balance");
                 return false;
             }
         }

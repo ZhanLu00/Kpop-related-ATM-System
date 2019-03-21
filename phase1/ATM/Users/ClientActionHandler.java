@@ -110,7 +110,7 @@ public class ClientActionHandler {
     /*
     Pay a bill
      */
-    public Boolean payBill(int transOut, double amount, int transIn){
+    public Boolean payBill(int transOut, int amount, int transIn){
         BankAccount account = accountManager.getAccount(transOut);
         // check if there are enough balance
         if (account.getBalance()<amount){
@@ -122,8 +122,8 @@ public class ClientActionHandler {
                 /*
                 @ TODO please implement the function below
                  */
-                if (cashes.withdrawable){
-                    cashes.withdraw(amount);
+                if (billManager.withdrawable(amount)){
+                    billManager.withdraw(amount);
                     account.payBill(amount, transIn);
                 }
                 // save the transaction history
@@ -155,17 +155,37 @@ public class ClientActionHandler {
         return total;
     }
 
+    /*
+    Sign in verification
+     */
+    public boolean signIn(int id, String pswd){
+        if (accountManager.getAccount(id) == null){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    /*
+    Change password
+     */
+    public void changePassword(String pswd){
+        this.client.setPassword(pswd);
+    }
 
 
     public void displayCommandLineInterface() throws IOException {
         // basic info
         String userName = client.getUsername();
         ArrayList<Integer> accountNumbers = client.getAccounts();
+        Boolean running = false;
 
-        while (true){
+
+        while (running){
             // show user name
             System.out.println("User: "+userName);
             Map accountBalance = checkBalance();
+
 
 
             // Display options
@@ -180,6 +200,8 @@ public class ClientActionHandler {
             System.out.println("Enter 8 to pay a bill");
             System.out.println("Enter 9 to make a deposit");
             System.out.println("Enter 10 to request a creation of an account");
+            System.out.println("Enter 11 to change your password");
+            System.out.println("Enter 12 to log out");
 
             int input = Integer.parseInt(kbd.readLine());
 
@@ -292,6 +314,16 @@ public class ClientActionHandler {
                     System.out.println("request declined");
                 }
 
+            }else if (input == 11){
+                System.out.println("new password");
+                String password = kbd.readLine();
+                changePassword(password);
+
+            }else if (input == 12){
+                System.out.println("You will be sign out in 3 seconds");
+                // how to sign out
+                // okay i think i know how to do this
+                running = false;
             }
 
 

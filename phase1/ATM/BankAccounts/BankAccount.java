@@ -17,7 +17,7 @@ public abstract class BankAccount {
     public static final String LINE_OF_CREDIT = "lineofcredit";
     public static final String CREDIT_CARD = "creditcard";
     public static final String SAVINGS = "savings";
-    public static final String CHEQUING ="chequing" ;
+    public static final String CHEQUING ="chequing";
 
 
     protected static int nextId = 0;

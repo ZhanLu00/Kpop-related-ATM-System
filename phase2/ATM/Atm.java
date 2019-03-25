@@ -30,6 +30,10 @@ public class Atm {
             accountManager.requestNewAccount(accountCreationRequest[0],accountCreationRequest[1]);
         }
 
+        if (date.getDate() == 1) {
+            accountManager.updateSavingsAccounts();
+        }
+
         this.userFileName = userFileName;
         this.accountFileName = accountFileName;
         this.atmFileName = atmFileName;

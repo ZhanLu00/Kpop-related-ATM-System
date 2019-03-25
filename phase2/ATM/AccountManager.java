@@ -26,6 +26,14 @@ public class AccountManager implements Iterable<BankAccount> {
         this.date = date;
     }
 
+    public void updateSavingsAccounts() {
+        for (BankAccount account : accounts) {
+            if (account instanceof SavingsAccount) {
+                ((SavingsAccount) account).collectInterest();
+            }
+        }
+    }
+
     /**
      * Adds an account to the list of accounts.
      */

@@ -87,7 +87,7 @@ public abstract class BankAccount {
      * Undoes the most recent transaction on an account.
      */
     public boolean undoTransaction(AccountManager accountManager) {
-        if (this.lastTransaction.getType().equals("transfer")) {
+        if (this.lastTransaction != null && this.lastTransaction.getType().equals("transfer")) {
 
             double amount = this.lastTransaction.getAmount();
 

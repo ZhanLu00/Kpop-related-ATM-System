@@ -22,12 +22,12 @@ Part 1: fix problems from phase 1
     Roger & Karen - DONE: this class is temporary deleted
     + History: (in BankAccount) is empty
 
-    Roger & Karen
+    Roger & Karen - DONE
     + BankAccount:
-        - .undoTransaction, if the last transaction was payBill or null, the method simply returns false.
-        - chequingAccount: there is suppose to have primary withdraw account and non-primary withdraw account
+        - .undoTransaction, if the last transaction was payBill or null: THE METHOD RETURNS FALSE
+        - chequingAccount: there is suppose to have primary withdraw account and non-primary withdraw account - ADDED PRIMARY ATTRIBUTE IN THE CLASS
 
-    Roger & Karen
+    Roger & Karen - this should be user/client's job?
     + AccountManager:
         - makesure it withdraw from primary withdraw account for chequingAccount
 

@@ -38,29 +38,17 @@ public class AccountFileReader {
         Date date = TimeManager.dateFromString(separated[2].replace(",",""));
 
 
-        Transaction transaction;
-        if (separated.length < 4) {
-            transaction = null;
-        }
-        else {
-            Date transactionDate = TimeManager.dateFromString(separated[3].replace(",",""));
-            int sender = Integer.parseInt(separated[4].replace(",",""));
-            int receiver = Integer.parseInt(separated[5].replace(",",""));
-            double amount = Double.parseDouble(separated[6].replace(",",""));
-            transaction = new Transaction(amount, sender, receiver, Transaction)
-        }
-
         if (type.equals(BankAccount.CHEQUING)) {
             accounts.add(new ChequingAccount(date,balance,false));
         }
         else if (type.equals(BankAccount.SAVINGS)) {
-            accounts.add(new SavingsAccount(date,balance,transaction));
+            accounts.add(new SavingsAccount(date,balance));
         }
         else if (type.equals(BankAccount.CREDIT_CARD)) {
-            accounts.add(new CreditCardsAccount(date,balance,transaction));
+            accounts.add(new CreditCardsAccount(date,balance));
         }
         else if (type.equals(BankAccount.LINE_OF_CREDIT)) {
-            accounts.add(new LineOfCreditAccount(date,balance,transaction));
+            accounts.add(new LineOfCreditAccount(date,balance));
         }
 
     }

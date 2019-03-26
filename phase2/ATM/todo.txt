@@ -25,7 +25,7 @@ Part 1: fix problems from phase 1
     Roger & Karen
     + BankAccount:
         - .undoTransaction, if the last transaction was payBill, an error will occur
-        - chequingAccount: there is suppose to have primary deposit account and non-primary deposit accounts
+        - chequingAccount: there is suppose to have primary withdraw account and non-primary withdraw account
 
     Roger & Karen
     + AccountManager:

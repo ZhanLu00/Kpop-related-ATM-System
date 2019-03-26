@@ -1,7 +1,7 @@
 package ATM.BankAccounts;
 import ATM.AccountManager;
-import ATM.BankAccounts.AssetAccounts.AssetAccount;
 import ATM.Transaction;
+import ATM.TimeManager;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -60,6 +60,10 @@ public abstract class BankAccount {
         return this.lastTransaction;
     }
 
+    public int getId() {
+        return id;
+    }
+
     /** Setters **/
 
     public void setLastTransaction(Transaction transaction) {
@@ -83,7 +87,7 @@ public abstract class BankAccount {
      * Undoes the most recent transaction on an account.
      */
     public boolean undoTransaction(AccountManager accountManager) {
-        if (this.lastTransaction != null) {
+        if (this.lastTransaction != null && this.lastTransaction.getType().equals("transfer")) {
 
             double amount = this.lastTransaction.getAmount();
 
@@ -108,8 +112,11 @@ public abstract class BankAccount {
 
     /**
      * Pays a bill by transferring money out to a non-user's account.
+     * Writes the transaction in outgoing.txt.
+     * Updates this.lastTransaction.
+     * Returns True if paying is successful, false otherwise.
      */
-    public boolean payBill(double amount, String receiver) {
+    public boolean payBill(double amount, int receiver) {
         if(this.withdraw(amount)) {
             try {
                 String bill = amount + ", " + receiver;
@@ -118,13 +125,10 @@ public abstract class BankAccount {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            this.lastTransaction = new Transaction(amount, this.id, receiver, "bill");
             return true;
         } else {
             return false;
         }
-    }
-
-    public int getId() {
-        return id;
     }
 }

@@ -118,7 +118,7 @@ public class ClientActionHandler {
                 /*
                 @ TODO please implement the function below
                  */
-                account.payBill(amount, Integer.toString(transIn));
+                account.payBill(amount, transIn);
                 // save the transaction history
                 return true;
             }else{

@@ -16,15 +16,15 @@ Part 1: fix problems from phase 1
     Seel
     + AtmApplication: refactor needed, add viewers
 
-    Roger & Karen
+    Roger & Karen - DONE
     + Transactions: add attribute: "type" (further discussion needed)
 
-    Roger & Karen
+    Roger & Karen - DONE: this class is temporary deleted
     + History: (in BankAccount) is empty
 
     Roger & Karen
     + BankAccount:
-        - .undoTransaction, if the last transaction was payBill, an error will occur
+        - .undoTransaction, if the last transaction was payBill or null, the method simply returns false.
         - chequingAccount: there is suppose to have primary withdraw account and non-primary withdraw account
 
     Roger & Karen

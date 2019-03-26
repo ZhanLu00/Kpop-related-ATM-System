@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ATM.ATMGUI">
-  <grid id="27dc6" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="welcomePage" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="500" height="400"/>
@@ -10,19 +10,42 @@
     </properties>
     <border type="none"/>
     <children>
-      <component id="4e339" class="javax.swing.JTextField" binding="welcomeText">
+      <component id="6835f" class="javax.swing.JButton" binding="returningUserButton" default-binding="true">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="200" height="-1"/>
-            <maximum-size width="100" height="100"/>
-          </grid>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <background color="-6898203"/>
-          <font name="Ayuthaya" size="24" style="1"/>
+          <text value="Returning User"/>
+        </properties>
+      </component>
+      <component id="5d6d3" class="javax.swing.JButton" binding="newUserButton" default-binding="true">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="New User"/>
+        </properties>
+      </component>
+      <component id="c3cc3" class="javax.swing.JLabel" binding="welcomeText">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Comic Sans MS" size="36"/>
           <foreground color="-16777216"/>
           <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
           <text value="Welcome to --Bank Name--"/>
+        </properties>
+      </component>
+      <component id="8b1b3" class="javax.swing.JLabel" binding="newOrReturningUser">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Comic Sans MS" size="26"/>
+          <foreground color="-16777216"/>
+          <text value="Are you a new or returning user?"/>
         </properties>
       </component>
     </children>

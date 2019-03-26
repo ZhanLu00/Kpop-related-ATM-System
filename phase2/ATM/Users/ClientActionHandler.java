@@ -281,6 +281,9 @@ public class ClientActionHandler {
             System.out.println("Request declined");
         }
     }
+
+    // TODO: I've added a primary chequing account option. Maybe this can iterate over the list of account the user has
+    // TODO: and deposit the money into the primary account? Check the ChequingAccount class for the new attribute! Thanks! - Karen
     public void inputNine() throws IOException {
         // make a deposit
         System.out.println("Enter your account number, fives, tens, twenties and fifties that you are gonna deposit, press 'enter' in between each info");

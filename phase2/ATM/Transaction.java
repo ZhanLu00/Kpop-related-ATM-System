@@ -15,7 +15,7 @@ public class Transaction {
     // TYPE is one of "transfer" and "bill"
     private final String TYPE;
 
-    public Transaction(double amount, int sender, int receiver, Date date, String type) {
+    public Transaction(double amount, int sender, int receiver, String type) {
         this.AMOUNT = amount;
         this.SENDER = sender;
         this.RECEIVER = receiver;

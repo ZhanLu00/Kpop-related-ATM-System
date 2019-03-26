@@ -12,12 +12,10 @@ public abstract class User {
      */
     public String username;
     public String password;
-    public ArrayList<Integer> accountNumbers;
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.accountNumbers = new ArrayList<Integer>(1);
     }
 
     /** getters **/
@@ -30,9 +28,6 @@ public abstract class User {
         return this.password;
     }
 
-    public ArrayList<Integer> getAccounts(){
-        return this.accountNumbers;
-    }
 
     /** setter **/
 
@@ -40,16 +35,8 @@ public abstract class User {
         this.password = pswd;
     }
 
-    // add account
-    public void addAccounts(int accountNumber){
-        this.accountNumbers.add(accountNumber);
-    }
 
 
-
-    /** update account **/
-
-    abstract public void updateAccount();
 
 
 }

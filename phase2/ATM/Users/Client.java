@@ -4,17 +4,22 @@ import java.util.*;
 public class Client extends User {
 
 
+    public ArrayList<Integer> accountNumbers;
 
     public Client(String username, String password) {
         super(username, password);
+        this.accountNumbers = new ArrayList<Integer>(1);
     }
 
-    // TODO: 2019-03-05 implement interface
-    @Override
-    public void updateAccount() {
 
+    // add account
+    public void addAccounts(int accountNumber){
+        this.accountNumbers.add(accountNumber);
     }
 
+    public ArrayList<Integer> getAccounts(){
+        return this.accountNumbers;
+    }
 
 
 }

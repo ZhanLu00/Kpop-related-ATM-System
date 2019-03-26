@@ -46,7 +46,7 @@ public class BankManagerActionHandler {
         String username = request[0];
         String accountType = request[1];
 
-        User accountuser = atm.getUserManager().getUser(username);
+        Client accountuser = ((Client) atm.getUserManager().getUser(username));
 
         if (accountuser == null) {
             return false;

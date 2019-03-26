@@ -88,7 +88,7 @@ public class AccountManager implements Iterable<BankAccount> {
 
     public BankAccount createAccount(String accountType) {
         if (accountType.equals(BankAccount.CHEQUING)) {
-            return new ChequingAccount(date,0);
+            return new ChequingAccount(date,0,false);
         }
         else if (accountType.equals(BankAccount.SAVINGS)) {
             return new SavingsAccount(date,0);

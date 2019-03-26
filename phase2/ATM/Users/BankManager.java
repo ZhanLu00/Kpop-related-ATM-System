@@ -7,8 +7,4 @@ public class BankManager extends User {
     }
 
 
-    public void updateAccount() {
-
-    }
-
 }

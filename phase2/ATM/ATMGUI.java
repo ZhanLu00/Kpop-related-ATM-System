@@ -2,6 +2,7 @@ package ATM;
 
 import ATM.Users.BankManager;
 import ATM.Users.Client;
+import ATM.Users.ClientActionHandler;
 import ATM.Users.User;
 
 import javax.swing.*;
@@ -11,6 +12,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.util.Map;
 
 public class ATMGUI {
 
@@ -69,6 +71,9 @@ public class ATMGUI {
     private JSpinner numFifty;
     private JFormattedTextField depositAccNum;
     private JButton depositButton;
+    private JPanel summaryOfAccounts;
+    private JLabel summaryText;
+    private JTextArea accountSummaries;
     private JTextField depositAccount;
 
 
@@ -175,7 +180,7 @@ public class ATMGUI {
 
     public static void main(String[] args) throws IOException {
         final ATMGUI atm = new ATMGUI();
-        JFrame frame = new JFrame("ATM of your dreams");
+        JFrame frame = new JFrame("ATM");
         frame.setResizable(false);
         frame.setLocation(500,300);
         frame.setSize(600, 500);
@@ -191,5 +196,12 @@ public class ATMGUI {
         numTens = new JSpinner(new SpinnerNumberModel(0, 0, 100, 1));
         numTwenty = new JSpinner(new SpinnerNumberModel(0, 0, 100, 1));
         numFifty = new JSpinner(new SpinnerNumberModel(0, 0, 100, 1));
+
+        StringBuilder accountSummaries = new StringBuilder();
+        Map accountBalance = ClientActionHandler.checkBalance();
+        for (Object accountNumber:accountBalance.keySet()){
+            accountSummaries.append(accountNumber+": "+ accountBalance.get(accountNumber) + "\n");
+        }
+        summaryText.setText(String.valueOf(accountSummaries));
     }
 }

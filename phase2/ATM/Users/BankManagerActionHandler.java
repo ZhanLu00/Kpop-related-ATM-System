@@ -1,4 +1,5 @@
 package ATM.Users;
+
 import ATM.*;
 import ATM.BankAccounts.BankAccount;
 
@@ -31,7 +32,7 @@ public class BankManagerActionHandler {
     private Atm atm;
     private BufferedReader kbd = new BufferedReader(new InputStreamReader(System.in));
 
-    public BankManagerActionHandler(BankManager bankManager, Atm atm){
+    public BankManagerActionHandler(BankManager bankManager, Atm atm) {
         this.bankManager = bankManager;
         this.atm = atm;
     }
@@ -62,21 +63,21 @@ public class BankManagerActionHandler {
 
     public boolean fulfillAllAccountRequests() {
         boolean allCompleted = true;
-       while (atm.getAccountManager().getAccountRequests().size() > 0) {
-           if (!fulfillAccountRequest(0)) {
-               allCompleted = false;
-           }
-       }
-       return allCompleted;
+        while (atm.getAccountManager().getAccountRequests().size() > 0) {
+            if (!fulfillAccountRequest(0)) {
+                allCompleted = false;
+            }
+        }
+        return allCompleted;
     }
 
     public void restockBills(int numFives, int numTens, int numTwenties, int numFifties) {
-        atm.getBillManager().deposit(numFives,numTens,numTwenties,numFifties);
+        atm.getBillManager().deposit(numFives, numTens, numTwenties, numFifties);
     }
 
-    public String[] addClient(String username){
+    public String[] addClient(String username) {
         if (atm.getUserManager().userExists(username)) {
-            return new String[] {"USER NOT CREATED. USERNAME ALREADY EXISTS",""};
+            return new String[]{"USER NOT CREATED. USERNAME ALREADY EXISTS", ""};
         }
 
         Random r = new Random();
@@ -85,7 +86,7 @@ public class BankManagerActionHandler {
         Client client = new Client(username, randomPassword);
         atm.getUserManager().addUser(client);
 
-        return new String[] {username, randomPassword};
+        return new String[]{username, randomPassword};
     }
 
     public ArrayList<String> getAlerts() throws IOException {
@@ -151,8 +152,7 @@ public class BankManagerActionHandler {
                 System.out.println("Cleared Alerts");
             } else if (input == 8) {
                 break;
-            }
-            else {
+            } else {
                 System.out.print("Invalid Input. ");
             }
             System.out.println();
@@ -185,11 +185,10 @@ public class BankManagerActionHandler {
             if (transaction != null) {
                 System.out.println(String.format("%d)  Sender: %d,  Receiver: %d, Amount %f", c,
                         transaction.getSender(), transaction.getReceiver(), transaction.getAmount()));
+            } else {
+                System.out.println(String.format("%d) None", c));
             }
-            else {
-                System.out.println(String.format("%d) None",c));
-            }
-            c+=1;
+            c += 1;
         }
 
         int transaction = getIntFromUser("Which transaction would you like to undo: ");
@@ -205,8 +204,7 @@ public class BankManagerActionHandler {
 
         if (atm.getAccountManager().getAccountRequests().size() == 0) {
             System.out.println("No Requests");
-        }
-        else {
+        } else {
             int requestNum = getIntFromUser("which request do you want to fulfill (-1 for all): ");
             boolean result;
             if (requestNum == -1) {

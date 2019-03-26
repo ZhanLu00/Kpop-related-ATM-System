@@ -9,7 +9,8 @@ Part 1: fix problems from phase 1
     + BankMnager/Client ActionHandler:
         - refactor so that it works as operators
         - split the method .displaycommendline() into classes below
-        - Modify deposit method so it deposits the money into primary account.
+        - Modify deposit method in Client ActionHandler so it deposits the money into primary account.
+        - Add a setPrimary feature in Client ActionHandler
 
     Zhan
     + Viewer: BankManagerViewer, ClientActionViewer
@@ -40,7 +41,7 @@ https://q.utoronto.ca/courses/68685/pages/project-phase-1-specification-for-the-
 
 Part 2: add the following feature
 
-    Roger & Karen
+    Roger & Karen - DONE
     + All Debt accounts should have a maximum amount of debt you can incur. - DONE
         - add max_debt in debt attribute
         - add method in account manager to change the max_debt

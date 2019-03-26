@@ -9,7 +9,6 @@ Part 1: fix problems from phase 1
     + BankMnager/Client ActionHandler:
         - refactor so that it works as operators
         - split the method .displaycommendline() into classes below
-        - Modify deposit method so it deposits the money into primary account.
 
     Zhan
     + Viewer: BankManagerViewer, ClientActionViewer
@@ -17,18 +16,22 @@ Part 1: fix problems from phase 1
     Seel
     + AtmApplication: refactor needed, add viewers
 
-    Roger & Karen - DONE
+    Roger & Karen
     + Transactions: add attribute: "type" (further discussion needed)
 
-    Roger & Karen - DONE: this class is temporary deleted
+    Roger & Karen
     + History: (in BankAccount) is empty
 
-    Roger & Karen - DONE
+    Roger & Karen
     + BankAccount:
-        - .undoTransaction, if the last transaction was payBill or null: THE METHOD RETURNS FALSE
-        - chequingAccount: there is suppose to have primary withdraw account and non-primary withdraw account - ADDED PRIMARY ATTRIBUTE IN THE CLASS
+        - .undoTransaction, if the last transaction was payBill, an error will occur
+        - chequingAccount: there is suppose to have primary withdraw account and non-primary withdraw account
 
-    Joyce
+    Roger & Karen
+    + AccountManager:
+        - makesure it withdraw from primary withdraw account for chequingAccount
+
+    Yuhan
     + Testing:
         - need test cases to test our application, this is very important
         - need sample input files for testing
@@ -41,7 +44,7 @@ https://q.utoronto.ca/courses/68685/pages/project-phase-1-specification-for-the-
 Part 2: add the following feature
 
     Roger & Karen
-    + All Debt accounts should have a maximum amount of debt you can incur. - DONE
+    + All Debt accounts should have a maximum amount of debt you can incur.
         - add max_debt in debt attribute
         - add method in account manager to change the max_debt
 
@@ -86,7 +89,7 @@ https://q.utoronto.ca/courses/68685/pages/phase-2?module_item_id=615276
 Part 3: be creative and add more features to our app!
 (Personalize your program. Add any features you want so that your finished program is twice as complex (or more) than your Phase 1 submission.)
 
-    Yuhan & Zhan
+    Joyer & Zhan
     + UI:
         -Jframe
 

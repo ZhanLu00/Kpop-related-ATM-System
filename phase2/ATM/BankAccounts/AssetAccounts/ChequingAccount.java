@@ -21,6 +21,10 @@ public class ChequingAccount extends AssetAccount {
         super(date,balance);
         this.primary = primary;
     }
+
+    public boolean getPrimary() { return primary; }
+
+    public void setPrimary(boolean primary) { this.primary = primary; }
     /**
      * Withdraws the given amount out of an account.
      * Withdrawal is successful if balance after withdrawal >= -100.

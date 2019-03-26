@@ -5,6 +5,7 @@ import ATM.BankAccounts.AssetAccounts.SavingsAccount;
 import ATM.BankAccounts.BankAccount;
 import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
 import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
+import ATM.BankAccounts.DebtAccounts.DebtAccount;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,6 +33,10 @@ public class AccountManager implements Iterable<BankAccount> {
                 ((SavingsAccount) account).collectInterest();
             }
         }
+    }
+
+    public static void setMaxDebt(int newDebt) {
+        DebtAccount.MAX_DEBT = newDebt;
     }
 
     /**
@@ -88,7 +93,8 @@ public class AccountManager implements Iterable<BankAccount> {
 
     public BankAccount createAccount(String accountType) {
         if (accountType.equals(BankAccount.CHEQUING)) {
-            return new ChequingAccount(date,0,false);
+            // All new ChequingAccount has its primary attribute set to false.
+            return new ChequingAccount(date,0, false);
         }
         else if (accountType.equals(BankAccount.SAVINGS)) {
             return new SavingsAccount(date,0);

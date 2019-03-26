@@ -215,7 +215,7 @@ public class ClientActionHandler {
         BankAccount account = accountManager.getAccount(accountNumber);
         Transaction transaction = account.getLastTransaction();
 
-        System.out.println(String.format("Sender: %d,  Receiver:  %d,  Amount: %f,  Date: %s", transaction.getSender(), transaction.getReceiver(), transaction.getAmount(),TimeManager.dateToString(transaction.getDate())));
+        System.out.println(String.format("Sender: %d,  Receiver:  %d,  Amount: %f", transaction.getSender(), transaction.getReceiver(), transaction.getAmount()));
     }
     public void inputThree(ArrayList<Integer> accountNumbers) throws IOException {
         // check the date of creation

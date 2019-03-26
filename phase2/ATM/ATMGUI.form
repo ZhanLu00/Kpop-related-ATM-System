@@ -1,69 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ATM.ATMGUI">
-  <grid id="27dc6" binding="welcomePage" layout-manager="GridLayoutManager" row-count="6" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-    <margin top="0" left="0" bottom="0" right="0"/>
+  <grid id="27dc6" binding="root" layout-manager="CardLayout" hgap="0" vgap="0">
     <constraints>
       <xy x="22" y="-21" width="501" height="503"/>
     </constraints>
     <properties>
       <background color="-6898203"/>
+      <opaque value="true"/>
+      <visible value="true"/>
     </properties>
     <border type="none"/>
     <children>
-      <component id="6835f" class="javax.swing.JButton" binding="returningUserButton" default-binding="true">
-        <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Returning User"/>
-        </properties>
-      </component>
-      <component id="5d6d3" class="javax.swing.JButton" binding="newUserButton" default-binding="true">
-        <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="New User"/>
-        </properties>
-      </component>
-      <component id="c3cc3" class="javax.swing.JLabel" binding="welcomeText">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <font name="Comic Sans MS" size="36"/>
-          <foreground color="-16777216"/>
-          <horizontalAlignment value="0"/>
-          <horizontalTextPosition value="0"/>
-          <text value="Welcome to --Bank Name--"/>
-        </properties>
-      </component>
-      <component id="8b1b3" class="javax.swing.JLabel" binding="newOrReturningUser">
-        <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <font name="Comic Sans MS" size="26"/>
-          <foreground color="-16777216"/>
-          <text value="Are you a new or returning user?"/>
-        </properties>
-      </component>
-      <grid id="2d881" binding="panel1" layout-manager="CardLayout" hgap="0" vgap="0">
-        <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties/>
-        <border type="none"/>
-        <children/>
-      </grid>
-      <grid id="a9666" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="ade67" binding="welcomePage" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <card name="Card1"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-1661602"/>
+        </properties>
         <border type="none"/>
-        <children/>
+        <children>
+          <component id="a19a0" class="javax.swing.JButton" binding="newUser">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="New User"/>
+            </properties>
+          </component>
+          <component id="edd14" class="javax.swing.JButton" binding="returningUser">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Returning User"/>
+            </properties>
+          </component>
+          <component id="f49d3" class="javax.swing.JLabel" binding="welcomeText">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font size="36"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <iconTextGap value="5"/>
+              <opaque value="false"/>
+              <text value="Welcome to --Bank Name--"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="d3ebe" binding="newUserPage" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <card name="Card2"/>
+        </constraints>
+        <properties>
+          <verifyInputWhenFocusTarget value="true"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="2d02a" class="javax.swing.JButton" binding="createUser">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Create Account"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="97696" binding="returningUserPage" layout-manager="GridLayoutManager" row-count="4" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <card name="Card3"/>
+        </constraints>
+        <properties>
+          <autoscrolls value="false"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="4933f" class="javax.swing.JLabel" binding="enterUsername">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Enter your username:"/>
+            </properties>
+          </component>
+          <component id="1fa28" class="javax.swing.JPasswordField" binding="passwordText">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="3ae20" class="javax.swing.JButton" binding="returnToTheMainButton" default-binding="true">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <borderPainted value="true"/>
+              <horizontalTextPosition value="0"/>
+              <text value="Return to the main page"/>
+            </properties>
+          </component>
+          <component id="99d3b" class="javax.swing.JLabel" binding="enterPassword">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Enter your password:"/>
+            </properties>
+          </component>
+          <component id="72c86" class="javax.swing.JTextField" binding="usernameText">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+          <hspacer id="510a7">
+            <constraints>
+              <grid row="2" column="2" row-span="2" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <component id="2b" class="javax.swing.JButton" binding="loginButton">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Login"/>
+            </properties>
+          </component>
+        </children>
       </grid>
     </children>
   </grid>

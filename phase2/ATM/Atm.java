@@ -11,13 +11,17 @@ public class Atm {
     private TimeManager timeManager;
     private AccountManager accountManager;
     private BillManager billManager;
+    private TransactionManager transactionManager;
 
-    private String userFileName, accountFileName, atmFileName, alertsFileName;
+    private String userFileName, accountFileName, atmFileName, alertsFileName, transactionsFileName;
 
-    public Atm (String userFileName,  String accountFileName, String atmFileName, String alertsFileName) throws IOException {
+    public Atm (String userFileName,  String accountFileName, String atmFileName, String alertsFileName, String transactionsFileName) throws IOException {
         UserFileReader userFileReader = new UserFileReader(userFileName);
         AccountFileReader accountFileReader = new AccountFileReader(accountFileName);
         AtmFileReader atmFileReader = new AtmFileReader(atmFileName);
+        TransactionFileReader transactionFileReader = new TransactionFileReader(transactionsFileName);
+
+        transactionFileReader.read();
         atmFileReader.read();
 
         this.timeManager = new TimeManager(atmFileReader.getDate(), true);
@@ -34,10 +38,13 @@ public class Atm {
             accountManager.updateSavingsAccounts();
         }
 
+        this.transactionManager = new TransactionManager(transactionFileReader.getTransactions());
+
         this.userFileName = userFileName;
         this.accountFileName = accountFileName;
         this.atmFileName = atmFileName;
         this.alertsFileName = alertsFileName;
+        this.transactionsFileName = transactionsFileName;
     }
 
     public String getUserFileName() {
@@ -99,9 +106,11 @@ public class Atm {
         AccountFileWriter accountFileWriter = new AccountFileWriter(accountFileName,accountManager.getAccounts());
         UserFileWriter userFileWriter = new UserFileWriter(userFileName, userManager.getUsers());
         AtmFileWriter atmFileWriter = new AtmFileWriter(atmFileName, timeManager.getDate(), billManager, accountManager);
+        TransactionFileWriter transactionFileWriter = new TransactionFileWriter(transactionManager.getTransactions(), transactionsFileName);
 
         accountFileWriter.write();
         userFileWriter.write();
         atmFileWriter.write();
+        transactionFileWriter.write();
     }
 }

@@ -29,6 +29,8 @@ public class TransactionFileReader {
 
             transactions.add(new Transaction(amount,sender,receiver,type));
         }
+
+        br.close();
     }
 
     public ArrayList<Transaction> getTransactions() {

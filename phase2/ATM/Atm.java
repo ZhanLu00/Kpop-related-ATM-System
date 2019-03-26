@@ -13,9 +13,9 @@ public class Atm {
     private BillManager billManager;
     private TransactionManager transactionManager;
 
-    private String userFileName, accountFileName, atmFileName, alertsFileName, transactionsFileName;
+    private String userFileName, accountFileName, atmFileName, alertsFileName, transactionsFileName, messagesFileName;
 
-    public Atm (String userFileName,  String accountFileName, String atmFileName, String alertsFileName, String transactionsFileName) throws IOException {
+    public Atm (String userFileName,  String accountFileName, String atmFileName, String alertsFileName, String transactionsFileName, String messagesFileName) throws IOException {
         UserFileReader userFileReader = new UserFileReader(userFileName);
         AccountFileReader accountFileReader = new AccountFileReader(accountFileName);
         AtmFileReader atmFileReader = new AtmFileReader(atmFileName);
@@ -45,6 +45,7 @@ public class Atm {
         this.atmFileName = atmFileName;
         this.alertsFileName = alertsFileName;
         this.transactionsFileName = transactionsFileName;
+        this.messagesFileName = messagesFileName;
     }
 
     public String getUserFileName() {
@@ -81,6 +82,10 @@ public class Atm {
 
     public BillManager getBillManager() {
         return billManager;
+    }
+
+    public TransactionManager getTransactionManager() {
+        return transactionManager;
     }
 
     public ArrayList<String> readAlerts() throws IOException {

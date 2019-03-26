@@ -1,5 +1,9 @@
 package ATM.BankAccounts;
 import ATM.AccountManager;
+import ATM.BankAccounts.AssetAccounts.ChequingAccount;
+import ATM.BankAccounts.AssetAccounts.SavingsAccount;
+import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
+import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
 import ATM.Transaction;
 import ATM.TimeManager;
 
@@ -86,5 +90,21 @@ public abstract class BankAccount {
         } else {
             return false;
         }
+    }
+
+    public static String getAccountType(BankAccount account) {
+        if (account instanceof ChequingAccount) {
+            return BankAccount.CHEQUING;
+        }
+        else if (account instanceof SavingsAccount) {
+            return BankAccount.SAVINGS;
+        }
+        else if (account instanceof CreditCardsAccount) {
+            return BankAccount.CREDIT_CARD;
+        }
+        else if (account instanceof LineOfCreditAccount) {
+            return BankAccount.LINE_OF_CREDIT;
+        }
+        return "account";
     }
 }

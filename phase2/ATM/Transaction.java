@@ -37,7 +37,7 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return String.format("[%s] %s -> %s ($%s)", SENDER, RECEIVER, AMOUNT);
+        return String.format("[%s] %s -> %s ($%s)", TYPE, SENDER, RECEIVER, AMOUNT);
     }
 
 }

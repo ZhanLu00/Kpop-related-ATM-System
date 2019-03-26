@@ -29,7 +29,7 @@ public class AccountFileWriter {
         writer.write("");
         StringBuilder fileOut = new StringBuilder("");
         for (BankAccount account : accounts) {
-            String type = getAccountType(account);
+            String type = BankAccount.getAccountType(account);
 
             double balance;
             if (account instanceof DebtAccount) {
@@ -49,21 +49,6 @@ public class AccountFileWriter {
         writer.close();
     }
 
-    private String getAccountType(BankAccount account) {
-        if (account instanceof ChequingAccount) {
-            return BankAccount.CHEQUING;
-        }
-        else if (account instanceof SavingsAccount) {
-            return BankAccount.SAVINGS;
-        }
-        else if (account instanceof CreditCardsAccount) {
-            return BankAccount.CREDIT_CARD;
-        }
-        else if (account instanceof LineOfCreditAccount) {
-            return BankAccount.LINE_OF_CREDIT;
-        }
-        return "account";
-    }
 
     public void setFileName(String fileName) {
         this.fileName = fileName;

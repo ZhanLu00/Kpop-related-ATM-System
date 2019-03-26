@@ -14,9 +14,6 @@ public class CreditCardsAccount extends DebtAccount {
         super(dateCreated, balance);
     }
 
-    public CreditCardsAccount(Date dateCreated, double balance, Transaction lastTransaction) {
-        super(dateCreated, balance,lastTransaction);
-    }
 
     /**
      * Withdraws the given amount out of an account.

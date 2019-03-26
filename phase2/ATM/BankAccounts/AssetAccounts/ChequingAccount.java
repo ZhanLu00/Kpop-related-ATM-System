@@ -12,11 +12,6 @@ public class ChequingAccount extends AssetAccount {
 
     private boolean primary;
 
-    public ChequingAccount(Date date, double balance, Transaction lastTransaction, boolean primary) {
-        super(date,balance,lastTransaction);
-        this.primary = primary;
-    }
-
     public ChequingAccount(Date date, double balance, boolean primary) {
         super(date,balance);
         this.primary = primary;

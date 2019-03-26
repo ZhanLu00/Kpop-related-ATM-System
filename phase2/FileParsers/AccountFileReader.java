@@ -47,11 +47,11 @@ public class AccountFileReader {
             int sender = Integer.parseInt(separated[4].replace(",",""));
             int receiver = Integer.parseInt(separated[5].replace(",",""));
             double amount = Double.parseDouble(separated[6].replace(",",""));
-            transaction = new Transaction(amount, sender, receiver, transactionDate);
+            transaction = new Transaction(amount, sender, receiver, Transaction)
         }
 
         if (type.equals(BankAccount.CHEQUING)) {
-            accounts.add(new ChequingAccount(date,balance,transaction));
+            accounts.add(new ChequingAccount(date,balance,false));
         }
         else if (type.equals(BankAccount.SAVINGS)) {
             accounts.add(new SavingsAccount(date,balance,transaction));

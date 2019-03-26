@@ -14,9 +14,6 @@ public class LineOfCreditAccount extends DebtAccount {
         super(dateCreated, balance);
     }
 
-    public LineOfCreditAccount(Date dateCreated, double balance, Transaction lastTransaction) {
-        super(dateCreated, balance,lastTransaction);
-    }
 
     /**
      * Withdraws the given amount out of an account.

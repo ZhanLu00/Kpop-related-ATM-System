@@ -26,7 +26,6 @@ public abstract class BankAccount {
     protected final Date DATE_CREATED;
 
     protected double balance = 0;
-    protected Transaction lastTransaction;
 
 
     public BankAccount(Date date, double balance) {
@@ -40,34 +39,14 @@ public abstract class BankAccount {
 
     }
 
-    public BankAccount(Date date, double balance, Transaction lastTransaction) {
-
-        this.id = nextId;
-        nextId += 1;
-
-        this.DATE_CREATED = date;
-
-        this.balance = balance;
-
-        this.lastTransaction = lastTransaction;
-    }
 
     /** Getters **/
 
     public abstract double getBalance();
 
-    public Transaction getLastTransaction() {
-        return this.lastTransaction;
-    }
 
     public int getId() {
         return id;
-    }
-
-    /** Setters **/
-
-    public void setLastTransaction(Transaction transaction) {
-        this.lastTransaction = transaction;
     }
 
     /**
@@ -83,28 +62,6 @@ public abstract class BankAccount {
      */
     public abstract boolean withdraw(double amount);
 
-    /**
-     * Undoes the most recent transaction on an account.
-     */
-    public boolean undoTransaction(AccountManager accountManager) {
-        if (this.lastTransaction != null && this.lastTransaction.getType().equals("transfer")) {
-
-            double amount = this.lastTransaction.getAmount();
-
-            BankAccount sender = accountManager.getAccount(this.lastTransaction.getReceiver());
-            // receiver = this
-            if(sender.withdraw(amount) && this.deposit(amount)) {
-                this.lastTransaction = null;
-                sender.lastTransaction = null;
-                return true;
-            } else {
-                return false;
-            }
-
-        } else {
-            return false;
-        }
-    }
 
     public Date getDATE_CREATED() {
         return DATE_CREATED;
@@ -125,7 +82,6 @@ public abstract class BankAccount {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            this.lastTransaction = new Transaction(amount, this.id, receiver, "bill");
             return true;
         } else {
             return false;

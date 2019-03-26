@@ -16,10 +16,6 @@ public abstract class DebtAccount extends BankAccount {
 
     public static int MAX_DEBT = 420;
 
-    protected DebtAccount(Date dateCreated, double balance, Transaction lastTransaction) {
-        super(dateCreated, balance,lastTransaction);
-    }
-
     public double getBalance() {
         return -this.balance;
     }

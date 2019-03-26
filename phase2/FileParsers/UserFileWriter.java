@@ -32,8 +32,10 @@ public class UserFileWriter {
             String username = user.getUsername();
             String password = user.getPassword();
             StringBuilder accounts = new StringBuilder();
-            for (Integer accountNum : user.getAccounts()) {
-                accounts.append(accountNum.toString()).append(",");
+            if (user instanceof Client) {
+                for (Integer accountNum : ((Client) user).getAccounts()) {
+                    accounts.append(accountNum.toString()).append(",");
+                }
             }
 
             String accountsString;

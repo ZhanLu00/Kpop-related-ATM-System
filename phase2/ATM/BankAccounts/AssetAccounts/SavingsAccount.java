@@ -14,10 +14,6 @@ public class SavingsAccount extends AssetAccount {
         super(date, balance);
     }
 
-    public SavingsAccount(Date date, double balance, Transaction lastTransaction) {
-        super(date, balance,lastTransaction);
-    }
-
 
     /**
      * Withdraws the given amount out of an account.

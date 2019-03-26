@@ -36,9 +36,6 @@ public class UserFileReader {
         }
         else if (userType.equals("manager")) {
             BankManager bankManager = new BankManager(username,password);
-            for (int i = 3; i < separated.length; i++) {
-                bankManager.addAccounts(Integer.parseInt(separated[i].replace(",","")));
-            }
             users.add(bankManager);
         }
     }

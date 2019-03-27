@@ -19,15 +19,15 @@ Part 1: fix problems from phase 1
     Roger & Karen
     + Transactions: add attribute: "type" (further discussion needed)
 
-    Roger & Karen
+    Roger & Karen - DONE
     + History: (in BankAccount) is empty
 
-    Roger & Karen
+    Roger & Karen - DONE
     + BankAccount:
         - .undoTransaction, if the last transaction was payBill, an error will occur
         - chequingAccount: there is suppose to have primary withdraw account and non-primary withdraw account
 
-    Roger & Karen
+    Roger & Karen - DONE
     + AccountManager:
         - makesure it withdraw from primary withdraw account for chequingAccount
 
@@ -43,7 +43,7 @@ https://q.utoronto.ca/courses/68685/pages/project-phase-1-specification-for-the-
 
 Part 2: add the following feature
 
-    Roger & Karen
+    Roger & Karen - DONE
     + All Debt accounts should have a maximum amount of debt you can incur.
         - add max_debt in debt attribute
         - add method in account manager to change the max_debt

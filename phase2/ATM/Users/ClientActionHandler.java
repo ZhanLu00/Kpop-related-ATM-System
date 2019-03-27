@@ -25,14 +25,17 @@ public class ClientActionHandler {
     private AccountManager accountManager;
     private BillManager billManager;
     private BufferedReader kbd = new BufferedReader(new InputStreamReader(System.in));
+    private Atm atm;
 
-    public ClientActionHandler(Client client, AccountManager manager, BillManager cashes){
+
+    public ClientActionHandler(Client client, Atm atm) {
+        this.atm = atm;
         this.client = client;
-        this.accountManager = manager;
-        this.billManager = cashes;
+        this.accountManager = atm.getAccountManager();
+        this.billManager = atm.getBillManager();
     }
 
-    public void getText(Atm atm){
+    public void getText(){
 
     }
 
@@ -41,7 +44,7 @@ public class ClientActionHandler {
         Map balance = new HashMap<Integer, Double>();
 
         // get account numbers first
-        for (int accountNumber: this.client.accountNumbers){
+        for (int accountNumber: this.client.getAccounts()){
             // get balance from each of the bank number
             balance.put(accountNumber, this.accountManager.getAccount(accountNumber).getBalance());
         }

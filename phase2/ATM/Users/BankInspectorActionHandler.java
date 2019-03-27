@@ -8,7 +8,7 @@ import ATM.Transaction;
 import java.io.*;
 import java.util.ArrayList;
 
-public class BankInspectorActionHandler {
+public class BankInspectorActionHandler extends ClientActionHandler{
     private BankInspector bankInspector;
     private Atm atm;
     private BufferedReader kbd = new BufferedReader(new InputStreamReader(System.in));
@@ -18,6 +18,7 @@ public class BankInspectorActionHandler {
     private String messageFile;
 
     public BankInspectorActionHandler(BankInspector bankInspector, Atm atm, String messageFile) {
+        super(bankInspector,atm);
         this.bankInspector = bankInspector;
         this.atm = atm;
         this.messageFile = messageFile;
@@ -102,7 +103,7 @@ public class BankInspectorActionHandler {
         fileOut.append(alert).append("\n");
         BufferedWriter writer = new BufferedWriter(new FileWriter(messageFile));
         writer.write(fileOut.toString());
-        
+
         writer.close();
     }
 

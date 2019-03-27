@@ -31,7 +31,7 @@ Part 1: fix problems from phase 1
     + AccountManager:
         - makesure it withdraw from primary withdraw account for chequingAccount
 
-    Yuhan
+    Joyce
     + Testing:
         - need test cases to test our application, this is very important
         - need sample input files for testing
@@ -89,7 +89,7 @@ https://q.utoronto.ca/courses/68685/pages/phase-2?module_item_id=615276
 Part 3: be creative and add more features to our app!
 (Personalize your program. Add any features you want so that your finished program is twice as complex (or more) than your Phase 1 submission.)
 
-    Joyer & Zhan
+    Yuhan & Zhan
     + UI:
         -Jframe
 
@@ -98,8 +98,8 @@ Part 3: be creative and add more features to our app!
         - attribute: currency
         - bill manager: coverting currency
 
-
-    + communisium:
+    Joyce
+    + communism:
 
 
 

@@ -31,13 +31,27 @@ public class ATMGUI {
     /**
      * initialize the form (do not modify this code)
      */
+    //panels
     private JPanel root;
-    private JButton newUser;
     private JPanel welcomePage;
     private JPanel newUserPage;
+    private JPanel returningUserPage;
+    private JPanel clientOptions;
+    private JPanel managerOptions;
+    private JPanel depositOption;
+    private JPanel summaryOfAccounts;
+    private JPanel accCreation;
+    private JPanel transferOption;
+    private JPanel payBill;
+    private JPanel recentTransaction;
+    private JPanel netTotal;
+    private JPanel withdrawOption;
+
+    private JButton newUser;
+
     private JButton returningUser;
     private JLabel welcomeText;
-    private JPanel returningUserPage;
+
     private JTextField usernameText;
     private JPasswordField passwordText;
     private JButton loginButton;
@@ -45,7 +59,6 @@ public class ATMGUI {
     private JButton returnToTheMainButton;
     private JLabel enterPassword;
     private JButton createUser;
-    private JPanel clientOptions;
     private JButton viewSummaryOfAllButton;
     private JButton viewAccountCreationDateButton;
     private JButton withdrawMoneyButton;
@@ -55,7 +68,6 @@ public class ATMGUI {
     private JButton viewMostRecentTransactionButton;
     private JButton checkNetTotalButton;
     private JButton returnToTheMainButton1;
-    private JPanel managerOptions;
     private JButton createNewClientButton;
     private JButton undoTransactionButton;
     private JButton setTimeButton;
@@ -64,17 +76,31 @@ public class ATMGUI {
     private JButton viewAccountCreationRequestsButton;
     private JButton showAlertsButton;
     private JButton returnToTheMainButton2;
-    private JPanel depositOptions;
     private JSpinner numFives;
     private JSpinner numTens;
     private JSpinner numTwenty;
     private JSpinner numFifty;
     private JFormattedTextField depositAccNum;
     private JButton depositButton;
-    private JPanel summaryOfAccounts;
     private JLabel summaryText;
     private JTextArea accountSummaries;
+
+    private JFormattedTextField accNum;
+    private JButton checkAccountCreationDateButton;
+    private JButton goBackButton;
+    private JFormattedTextField accCreationDate;
+    private JLabel enterAccNumDate;
+    private JButton goBackButton1;
+    private JFormattedTextField formattedTextField1;
+    private JFormattedTextField formattedTextField2;
+    private JFormattedTextField formattedTextField3;
+    private JButton transferButton;
     private JTextField depositAccount;
+
+    public void changePage(JPanel currentPage, JPanel newPage){
+        currentPage.setVisible(false);
+        newPage.setVisible(true);
+    }
 
 
     public ATMGUI() throws IOException {
@@ -84,22 +110,19 @@ public class ATMGUI {
         newUser.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                welcomePage.setVisible(false);
-                newUserPage.setVisible(true);
+                changePage(welcomePage, newUserPage);
             }
         });
         returningUser.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                welcomePage.setVisible(false);
-                returningUserPage.setVisible(true);
+                changePage(welcomePage, returningUserPage);
             }
         });
         returnToTheMainButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                returningUserPage.setVisible(false);
-                welcomePage.setVisible(true);
+                changePage(returningUserPage, welcomePage);
             }
         });
         loginButton.addActionListener(new ActionListener() {
@@ -107,11 +130,9 @@ public class ATMGUI {
             public void actionPerformed(ActionEvent e) {
                 User user = atm.getUser(usernameText.getText(), passwordText.getText());
                 if (user instanceof BankManager){
-                    returningUserPage.setVisible(false);
-                    managerOptions.setVisible(true);
+                    changePage(returningUserPage, managerOptions);
                 }else if (user instanceof Client){
-                    returningUserPage.setVisible(false);
-                    clientOptions.setVisible(true);
+                    changePage(returningUserPage, clientOptions);
                     client = new Client(usernameText.getText(), passwordText.getText());
                 }else{
                     usernameText.setText("");
@@ -124,25 +145,22 @@ public class ATMGUI {
         returnToTheMainButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clientOptions.setVisible(false);
-                welcomePage.setVisible(true);
+                changePage(clientOptions, welcomePage);
             }
         });
         returnToTheMainButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                managerOptions.setVisible(false);
-                welcomePage.setVisible(true);
+                changePage(managerOptions, welcomePage);
             }
         });
         depositMoneyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clientOptions.setVisible(false);
-                depositOptions.setVisible(true);
+                changePage(clientOptions, depositOption);
             }
         });
-        // only allow number input
+        // only allows number input
         // TODO prevent pasted text from allowing text?
         depositAccNum.addKeyListener(new KeyAdapter() {
             @Override
@@ -175,6 +193,20 @@ public class ATMGUI {
                 }
 
             }
+        });
+        goBackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changePage(accCreation, clientOptions);
+            }
+        });
+        goBackButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changePage(transferOption, clientOptions);
+            }
+        });
+        returningUser.addActionListener(new ActionListener() {
         });
     }
 

@@ -23,9 +23,9 @@ public class ATMGUI {
     private BillManager billManager;
     private Client client;
 
-
-    Atm atm = new Atm("phase1/ATM/BankUsers.txt","phase1/ATM/BankAccounts.txt",
-            "phase1/ATM/AtmInfo.txt", "phase1/ATM/alerts.txt");
+    // FIXME what's messages file?
+    Atm atm = new Atm("phase2/ATM/BankUsers.txt","phase2/ATM/BankAccounts.txt",
+            "phase2/ATM/AtmInfo.txt", "phase2/ATM/alerts.txt", "phase2/", "");
 
 
     /**
@@ -91,10 +91,15 @@ public class ATMGUI {
     private JFormattedTextField accCreationDate;
     private JLabel enterAccNumDate;
     private JButton goBackButton1;
-    private JFormattedTextField formattedTextField1;
-    private JFormattedTextField formattedTextField2;
-    private JFormattedTextField formattedTextField3;
+    private JFormattedTextField transOutAccNum;
+    private JFormattedTextField transInAccNum;
+    private JFormattedTextField transAmt;
     private JButton transferButton;
+    private JFormattedTextField billAccNum;
+    private JFormattedTextField billAmt;
+    private JFormattedTextField billPayee;
+    private JButton goBackButton2;
+    private JButton payBillButton;
     private JTextField depositAccount;
 
     public void changePage(JPanel currentPage, JPanel newPage){
@@ -206,7 +211,11 @@ public class ATMGUI {
                 changePage(transferOption, clientOptions);
             }
         });
-        returningUser.addActionListener(new ActionListener() {
+        goBackButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changePage(payBill, clientOptions);
+            }
         });
     }
 

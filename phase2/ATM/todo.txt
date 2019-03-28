@@ -6,7 +6,7 @@ Phase 2:
 Part 1: fix problems from phase 1
 
     Zhan
-    + BankMnager/Client ActionHandler:
+    + BankManager/Client ActionHandler:
         - refactor so that it works as operators
         - split the method .displaycommendline() into classes below
 
@@ -49,11 +49,9 @@ Part 2: add the following feature
         - add method in account manager to change the max_debt
 
 
+    Joyce
     + Add one more type of account (of your choice) that has at least one property that is different from existing accounts. Feel free to look at bank websites for ideas.
         - lottery account
-        - donation account
-        - company account
-            - new users: hr, employee types
 
     Seel
     + Add one more type of employee of the bank who has less access than the manager, but can also be a user with their own accounts.
@@ -68,8 +66,8 @@ Part 2: add the following feature
     + Improve the manager "undo" functionality. There is more than one way to interpret this statement. For example, you could have unlimited undo capability for the manager, or the ability to specify a number n so that the system undoes n transactions on an account, or you could have undo functionality for a user's previous n transactions (as opposed to an account's previous transactions). You can interpret this statement in any reasonable way that is as complex as the above suggestions.
         - update the transaction history thingy
 
-    Yuhan
-    + Refactor so that you can have join accounts where two distinct users can both withdraw, deposit, and check the balance on the same account.
+    Joyce
+    + Refactor so that you can have joint user accounts where two distinct users can both withdraw, deposit, and check the balance on the same account.
         -  this is easy to do
 
     Seel

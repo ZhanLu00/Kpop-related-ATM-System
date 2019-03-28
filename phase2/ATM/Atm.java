@@ -35,7 +35,7 @@ public class Atm {
         }
 
         if (date.getDate() == 1) {
-            accountManager.updateSavingsAccounts();
+            accountManager.updateInterestAccounts();
         }
 
         this.transactionManager = new TransactionManager(transactionFileReader.getTransactions());

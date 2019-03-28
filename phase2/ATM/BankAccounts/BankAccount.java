@@ -22,6 +22,7 @@ public abstract class BankAccount {
     public static final String CREDIT_CARD = "creditcard";
     public static final String SAVINGS = "savings";
     public static final String CHEQUING ="chequing" ;
+    public static final String LOTTERY ="lottery";
 
 
     protected static int nextId = 0;
@@ -98,6 +99,9 @@ public abstract class BankAccount {
         }
         else if (account instanceof SavingsAccount) {
             return BankAccount.SAVINGS;
+        }
+        else if (account instanceof LotteryAccount) {
+            return BankAccount.LOTTERY;
         }
         else if (account instanceof CreditCardsAccount) {
             return BankAccount.CREDIT_CARD;

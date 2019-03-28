@@ -1,6 +1,7 @@
 package ATM;
 
 import ATM.BankAccounts.AssetAccounts.ChequingAccount;
+import ATM.BankAccounts.AssetAccounts.LotteryAccount;
 import ATM.BankAccounts.AssetAccounts.SavingsAccount;
 import ATM.BankAccounts.BankAccount;
 import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
@@ -27,10 +28,13 @@ public class AccountManager implements Iterable<BankAccount> {
         this.date = date;
     }
 
-    public void updateSavingsAccounts() {
+    public void updateInterestAccounts() {
         for (BankAccount account : accounts) {
             if (account instanceof SavingsAccount) {
                 ((SavingsAccount) account).collectInterest();
+            }
+            else if (account instanceof LotteryAccount) {
+                ((LotteryAccount) account).collectInterest();
             }
         }
     }
@@ -98,6 +102,9 @@ public class AccountManager implements Iterable<BankAccount> {
         }
         else if (accountType.equals(BankAccount.SAVINGS)) {
             return new SavingsAccount(date,0);
+        }
+        else if (accountType.equals(BankAccount.LOTTERY)) {
+            return new LotteryAccount(date,0);
         }
         else if (accountType.equals(BankAccount.CREDIT_CARD)) {
             return new CreditCardsAccount(date,0);

@@ -2,7 +2,7 @@ package ATM;
 
 import ATM.Users.BankManager;
 import ATM.Users.Client;
-import ATM.Users.ClientActionHandler;
+import ATM.ActionHandler.ClientActionHandler;
 import ATM.Users.User;
 
 import javax.swing.*;

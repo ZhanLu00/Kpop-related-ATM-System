@@ -1,9 +1,10 @@
-package ATM.Users;
+package ATM.ActionHandler;
 import ATM.*;
 import ATM.BankAccounts.AssetAccounts.AssetAccount;
 import ATM.BankAccounts.BankAccount;
 import ATM.BankAccounts.DebtAccounts.DebtAccount;
 import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
+import ATM.Users.Client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -97,13 +98,6 @@ public class ClientActionHandler {
     // request creation of an account
     public void accountCreation(String type){
         this.accountManager.requestNewAccount(this.client.getUsername(), type);
-    }
-
-    /*
-    Check if the username matches password
-     */
-    public Boolean loginCheck(String password){
-        return client.getPassword().equals(password);
     }
 
     /*
@@ -216,9 +210,9 @@ public class ClientActionHandler {
         }
 
         BankAccount account = accountManager.getAccount(accountNumber);
-        Transaction transaction = account.getLastTransaction();
+        // Transaction transaction = account.getLastTransaction();
 
-        System.out.println(String.format("Sender: %d,  Receiver:  %d,  Amount: %f", transaction.getSender(), transaction.getReceiver(), transaction.getAmount()));
+        //System.out.println(String.format("Sender: %d,  Receiver:  %d,  Amount: %f", transaction.getSender(), transaction.getReceiver(), transaction.getAmount()));
     }
     public void inputThree(ArrayList<Integer> accountNumbers) throws IOException {
         // check the date of creation

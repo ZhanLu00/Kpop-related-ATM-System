@@ -12,7 +12,7 @@ public class Transaction {
     private final double AMOUNT;
     private final int SENDER;
     private final int RECEIVER;
-    // TYPE is one of "transfer" and "bill"
+    // TYPE is one of "transfer", "bill", "withdraw", "deposit"
     private final String TYPE;
 
     public Transaction(double amount, int sender, int receiver, String type) {

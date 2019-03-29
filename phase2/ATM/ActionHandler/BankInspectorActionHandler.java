@@ -1,14 +1,17 @@
-package ATM.Users;
+package ATM.ActionHandler;
 
+import ATM.ActionHandler.ClientActionHandler;
 import ATM.Atm;
 import ATM.BankAccounts.BankAccount;
 import ATM.TimeManager;
 import ATM.Transaction;
+import ATM.Users.BankInspector;
+import ATM.Users.Client;
 
 import java.io.*;
 import java.util.ArrayList;
 
-public class BankInspectorActionHandler extends ClientActionHandler{
+public class BankInspectorActionHandler extends ClientActionHandler {
     private BankInspector bankInspector;
     private Atm atm;
     private BufferedReader kbd = new BufferedReader(new InputStreamReader(System.in));

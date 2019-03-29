@@ -33,32 +33,30 @@ public class ATMGUI {
      */
     //panels
     public JPanel root;
+
+    // WELCOME PAGE
     public JPanel welcomePage;
-    public JPanel newUserPage;
-    public JPanel returningUserPage;
-    public JPanel clientOptions;
-    public JPanel managerOptions;
-    public JPanel depositOption;
-    public JPanel summaryOfAccounts;
-    public JPanel accCreation;
-    public JPanel transferOption;
-    public JPanel payBill;
-    public JPanel recentTransaction;
-    public JPanel netTotal;
-    public JPanel withdrawOption;
-
     public JButton newUser;
-
     public JButton returningUser;
     public JLabel welcomeText;
 
+
+    // TODO FINISH NEW USER PAGE
+    public JPanel newUserPage;
+    public JButton createUser;
+
+    // RETURNING USER PAGE
+    public JPanel returningUserPage;
+    public JLabel enterUsername;
+    public JLabel enterPassword;
     public JTextField usernameText;
     public JPasswordField passwordText;
     public JButton loginButton;
-    public JLabel enterUsername;
     public JButton returnToTheMainButton;
-    public JLabel enterPassword;
-    public JButton createUser;
+
+    // CLIENT OPTIONS
+    public JPanel clientOptions;
+    public JLabel clientAsk;
     public JButton viewSummaryOfAllButton;
     public JButton viewAccountCreationDateButton;
     public JButton withdrawMoneyButton;
@@ -68,6 +66,10 @@ public class ATMGUI {
     public JButton viewMostRecentTransactionButton;
     public JButton checkNetTotalButton;
     public JButton returnToTheMainButton1;
+
+    // MANAGER OPTIONS
+    public JPanel managerOptions;
+    public JLabel managerAsk;
     public JButton createNewClientButton;
     public JButton undoTransactionButton;
     public JButton setTimeButton;
@@ -76,31 +78,49 @@ public class ATMGUI {
     public JButton viewAccountCreationRequestsButton;
     public JButton showAlertsButton;
     public JButton returnToTheMainButton2;
+
+    // DEPOSIT OPTION
+    public JPanel depositOption;
+    public JLabel numFiveLabel;
+    public JLabel numTenLabel;
+    public JLabel numTwentyLabel;
+    public JLabel depositAmtLabel;
+    public JLabel numFiftyLabel;
+    public JLabel depositInAccLabel;
     public JSpinner numFives;
     public JSpinner numTens;
     public JSpinner numTwenty;
     public JSpinner numFifty;
     public JFormattedTextField depositAccNum;
     public JButton depositButton;
+
+    // TODO FINISH SUMMARY OF ACCOUNTS OPTION
+    public JPanel summaryOfAccounts;
     public JLabel summaryText;
     public JTextArea accountSummaries;
 
-    public JFormattedTextField accNum;
-    public JButton checkAccountCreationDateButton;
-    public JButton goBackButton;
-    public JFormattedTextField accCreationDate;
-    public JLabel enterAccNumDate;
+    // TRANSFER OPTION
+    public JPanel transferOption;
     public JButton goBackButton1;
     public JFormattedTextField transOutAccNum;
     public JFormattedTextField transInAccNum;
     public JFormattedTextField transAmt;
     public JButton transferButton;
+    public JLabel transOutLabel;
+    public JLabel transInLabel;
+    public JLabel transAmtLabel;
+
+    // PAY BILL OPTION
+    public JPanel payBill;
     public JFormattedTextField billAccNum;
     public JFormattedTextField billAmt;
     public JFormattedTextField billPayee;
     public JButton goBackButton2;
     public JButton payBillButton;
-    public JTextField depositAccount;
+
+    // TODO WITHDRAW OPTION
+    public JPanel withdrawOption;
+
 
     public void changePage(JPanel currentPage, JPanel newPage){
         currentPage.setVisible(false);
@@ -228,7 +248,7 @@ public class ATMGUI {
         frame.setContentPane(atm.root);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-//        atm.welcomePage.setVisible(true);
+        atm.welcomePage.setVisible(true);
     }
 
     public static void main(String[] args) throws IOException {

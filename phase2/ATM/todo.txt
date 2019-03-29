@@ -53,7 +53,7 @@ Part 2: add the following feature
     + Add one more type of account (of your choice) that has at least one property that is different from existing accounts. Feel free to look at bank websites for ideas.
         - lottery account
 
-    Seel
+    Seel- DONE
     + Add one more type of employee of the bank who has less access than the manager, but can also be a user with their own accounts.
         - cra: can view everything, and send alert to bank manager (no access to cash
         - supervisor(theif): cash access
@@ -62,15 +62,15 @@ Part 2: add the following feature
     + Make sure you can demo time-sensitive features, like adding interest to savings accounts each month.
         - out a file that contains update info of inetest
 
-    Seel
+    Seel - DONE
     + Improve the manager "undo" functionality. There is more than one way to interpret this statement. For example, you could have unlimited undo capability for the manager, or the ability to specify a number n so that the system undoes n transactions on an account, or you could have undo functionality for a user's previous n transactions (as opposed to an account's previous transactions). You can interpret this statement in any reasonable way that is as complex as the above suggestions.
         - update the transaction history thingy
 
-    Joyce
+    Joyce - DONE by seel accidentally sorry
     + Refactor so that you can have joint user accounts where two distinct users can both withdraw, deposit, and check the balance on the same account.
         -  this is easy to do
 
-    Seel
+    Seel - DONE
     + transaction Manager:
         - show all the history
         - give id, pull all the history

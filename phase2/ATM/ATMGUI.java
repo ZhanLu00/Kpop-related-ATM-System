@@ -19,9 +19,9 @@ public class ATMGUI {
     NumberFormat df = NumberFormat.getCurrencyInstance(); //currency format
 
     // FIXME ahhhh
-    private AccountManager accountManager;
-    private BillManager billManager;
-    private Client client;
+    public AccountManager accountManager;
+    public BillManager billManager;
+    public Client client;
 
     // FIXME what's messages file?
     Atm atm = new Atm("phase2/ATM/BankUsers.txt","phase2/ATM/BankAccounts.txt",
@@ -32,75 +32,75 @@ public class ATMGUI {
      * initialize the form (do not modify this code)
      */
     //panels
-    private JPanel root;
-    private JPanel welcomePage;
-    private JPanel newUserPage;
-    private JPanel returningUserPage;
-    private JPanel clientOptions;
-    private JPanel managerOptions;
-    private JPanel depositOption;
-    private JPanel summaryOfAccounts;
-    private JPanel accCreation;
-    private JPanel transferOption;
-    private JPanel payBill;
-    private JPanel recentTransaction;
-    private JPanel netTotal;
-    private JPanel withdrawOption;
+    public JPanel root;
+    public JPanel welcomePage;
+    public JPanel newUserPage;
+    public JPanel returningUserPage;
+    public JPanel clientOptions;
+    public JPanel managerOptions;
+    public JPanel depositOption;
+    public JPanel summaryOfAccounts;
+    public JPanel accCreation;
+    public JPanel transferOption;
+    public JPanel payBill;
+    public JPanel recentTransaction;
+    public JPanel netTotal;
+    public JPanel withdrawOption;
 
-    private JButton newUser;
+    public JButton newUser;
 
-    private JButton returningUser;
-    private JLabel welcomeText;
+    public JButton returningUser;
+    public JLabel welcomeText;
 
-    private JTextField usernameText;
-    private JPasswordField passwordText;
-    private JButton loginButton;
-    private JLabel enterUsername;
-    private JButton returnToTheMainButton;
-    private JLabel enterPassword;
-    private JButton createUser;
-    private JButton viewSummaryOfAllButton;
-    private JButton viewAccountCreationDateButton;
-    private JButton withdrawMoneyButton;
-    private JButton transferMoneyButton;
-    private JButton payABillButton;
-    private JButton depositMoneyButton;
-    private JButton viewMostRecentTransactionButton;
-    private JButton checkNetTotalButton;
-    private JButton returnToTheMainButton1;
-    private JButton createNewClientButton;
-    private JButton undoTransactionButton;
-    private JButton setTimeButton;
-    private JButton clearAlertsButton;
-    private JButton restockMachineButton;
-    private JButton viewAccountCreationRequestsButton;
-    private JButton showAlertsButton;
-    private JButton returnToTheMainButton2;
-    private JSpinner numFives;
-    private JSpinner numTens;
-    private JSpinner numTwenty;
-    private JSpinner numFifty;
-    private JFormattedTextField depositAccNum;
-    private JButton depositButton;
-    private JLabel summaryText;
-    private JTextArea accountSummaries;
+    public JTextField usernameText;
+    public JPasswordField passwordText;
+    public JButton loginButton;
+    public JLabel enterUsername;
+    public JButton returnToTheMainButton;
+    public JLabel enterPassword;
+    public JButton createUser;
+    public JButton viewSummaryOfAllButton;
+    public JButton viewAccountCreationDateButton;
+    public JButton withdrawMoneyButton;
+    public JButton transferMoneyButton;
+    public JButton payABillButton;
+    public JButton depositMoneyButton;
+    public JButton viewMostRecentTransactionButton;
+    public JButton checkNetTotalButton;
+    public JButton returnToTheMainButton1;
+    public JButton createNewClientButton;
+    public JButton undoTransactionButton;
+    public JButton setTimeButton;
+    public JButton clearAlertsButton;
+    public JButton restockMachineButton;
+    public JButton viewAccountCreationRequestsButton;
+    public JButton showAlertsButton;
+    public JButton returnToTheMainButton2;
+    public JSpinner numFives;
+    public JSpinner numTens;
+    public JSpinner numTwenty;
+    public JSpinner numFifty;
+    public JFormattedTextField depositAccNum;
+    public JButton depositButton;
+    public JLabel summaryText;
+    public JTextArea accountSummaries;
 
-    private JFormattedTextField accNum;
-    private JButton checkAccountCreationDateButton;
-    private JButton goBackButton;
-    private JFormattedTextField accCreationDate;
-    private JLabel enterAccNumDate;
-    private JButton goBackButton1;
-    private JFormattedTextField transOutAccNum;
-    private JFormattedTextField transInAccNum;
-    private JFormattedTextField transAmt;
-    private JButton transferButton;
-    private JFormattedTextField billAccNum;
-    private JFormattedTextField billAmt;
-    private JFormattedTextField billPayee;
-    private JButton goBackButton2;
-    private JButton payBillButton;
-    private JTextField depositAccount;
+    public JFormattedTextField accNum;
+    public JButton checkAccountCreationDateButton;
+    public JButton goBackButton;
+    public JFormattedTextField accCreationDate;
+    public JLabel enterAccNumDate;
+    public JButton goBackButton1;
+    public JFormattedTextField transOutAccNum;
+    public JFormattedTextField transInAccNum;
+    public JFormattedTextField transAmt;
+    public JButton transferButton;
+    public JFormattedTextField billAccNum;
+    public JFormattedTextField billAmt;
+    public JFormattedTextField billPayee;
+    public JButton goBackButton2;
+    public JButton payBillButton;
+    public JTextField depositAccount;
 
     public void changePage(JPanel currentPage, JPanel newPage){
         currentPage.setVisible(false);
@@ -219,6 +219,18 @@ public class ATMGUI {
         });
     }
 
+    public void init()throws IOException{
+        final ATMGUI atm = new ATMGUI();
+        JFrame frame = new JFrame("ATM");
+        frame.setResizable(false);
+        frame.setLocation(500,300);
+        frame.setSize(600, 500);
+        frame.setContentPane(atm.root);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+//        atm.welcomePage.setVisible(true);
+    }
+
     public static void main(String[] args) throws IOException {
         final ATMGUI atm = new ATMGUI();
         JFrame frame = new JFrame("ATM");
@@ -229,7 +241,7 @@ public class ATMGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // frame.pack();
         frame.setVisible(true);
-        atm.welcomePage.setVisible(true);
+//        atm.welcomePage.setVisible(true);
     }
 
     private void createUIComponents() {

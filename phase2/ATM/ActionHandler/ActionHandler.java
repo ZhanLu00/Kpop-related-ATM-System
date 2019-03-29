@@ -5,13 +5,15 @@ import ATM.Users.BankManager;
 import ATM.Users.Client;
 import ATM.Users.User;
 
+import java.io.IOException;
+
 public class ActionHandler {
 
     /**
      * Private attributes
      */
 
-    // data
+    // data/model
     private BankManager bankManager;
 
     private AccountManager accountManager;
@@ -23,10 +25,19 @@ public class ActionHandler {
     // viwer/display
     private ATMGUI viewer;
 
+    // sub-action handler
+    private BankInspectorActionHandler bankInspectorActionHandler;
+
+    private BankManagerActionHandler bankManagerActionHandler;
+
+    private ClientActionHandler clientActionHandler;
+
+
     // attributes for execution
     private String userType;
 
     private User currentUser;
+
 
 
     /**
@@ -38,13 +49,15 @@ public class ActionHandler {
         this.bankManager = bankManager;
         this.userManager = userManager;
         this.viewer = atmgui;
+        this.bankInspectorActionHandler = new BankInspectorActionHandler(bank)
     }
 
     /**
      * Initialize viewer
      */
-    public void initViewer(){
+    public void initViewer() throws IOException {
         // this will be the title page
+        viewer.init();
     }
 
     /**
@@ -60,7 +73,7 @@ public class ActionHandler {
         // log in page
         // add listener to buttons and input field
 
-        // based on
+        // based on the user type, call different method for windows
 
 
 

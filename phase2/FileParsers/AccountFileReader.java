@@ -5,6 +5,7 @@ import ATM.BankAccounts.AssetAccounts.SavingsAccount;
 import ATM.BankAccounts.BankAccount;
 import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
 import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
+import ATM.BankAccounts.ExtraAccounts.LotteryAccount;
 import ATM.TimeManager;
 import ATM.Transaction;
 
@@ -49,6 +50,9 @@ public class AccountFileReader {
         }
         else if (type.equals(BankAccount.LINE_OF_CREDIT)) {
             accounts.add(new LineOfCreditAccount(date,balance));
+        }
+        else if (type.equals(BankAccount.LOTTERY)) {
+            accounts.add(new LotteryAccount(date,balance));
         }
 
     }

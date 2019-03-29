@@ -1,9 +1,7 @@
 package ATM;
 
-import ATM.Users.BankManager;
 import ATM.Users.Client;
 import ATM.ActionHandler.ClientActionHandler;
-import ATM.Users.User;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -43,7 +41,10 @@ public class ATMGUI {
 
     // TODO NEW USER PAGE
     public JPanel newUserPage;
-    public JButton createUser;
+    public JComboBox accTypes;
+    public JButton goBackNew;
+    public JFormattedTextField userPhone;
+    public JButton accRequestButton;
 
     // RETURNING USER PAGE
     public JPanel returningUserPage;
@@ -52,7 +53,7 @@ public class ATMGUI {
     public JTextField usernameText;
     public JPasswordField passwordText;
     public JButton loginButton;
-    public JButton returnToTheMainButton;
+    public JButton goBackReturn;
 
     // CLIENT OPTIONS
     public JPanel clientOptions;
@@ -62,19 +63,17 @@ public class ATMGUI {
     public JButton transferMoneyButton;
     public JButton payABillButton;
     public JButton depositMoneyButton;
-    public JButton goBackClient;
+    public JButton logOutClient;
 
     // MANAGER OPTIONS
     public JPanel managerOptions;
     public JLabel managerAsk;
     public JButton createNewClientButton;
     public JButton undoTransactionButton;
-    public JButton setTimeButton;
-    public JButton clearAlertsButton;
     public JButton restockMachineButton;
     public JButton viewAccountCreationRequestsButton;
     public JButton showAlertsButton;
-    public JButton returnToTheMainButton2;
+    public JButton logOutManager;
 
     // DEPOSIT OPTION
     public JPanel depositOption;
@@ -98,6 +97,7 @@ public class ATMGUI {
     public JTextArea accountSummaries;
     public JButton goBackSummary;
     public JButton makeANewAccountButton;
+    public JTextArea mostRecentTransaction;
 
     // TRANSFER OPTION
     public JPanel transferOption;
@@ -118,20 +118,25 @@ public class ATMGUI {
     public JButton goBackButton2;
     public JButton payBillButton;
 
-    // TODO WITHDRAW OPTION
+    // WITHDRAW OPTION
     public JPanel withdrawOption;
-    public JButton changePasswordButton;
-
-    // TODO CHANGE PASS OPTION
-    public JPanel changePassword;
-    public JPanel inspectorOptions;
     public JFormattedTextField accNumWithdraw;
     public JFormattedTextField withdrawAmt;
     public JButton goBackWithdraw;
     public JButton withdrawButton;
+
+
+    public JButton changePasswordButton;
+
+    // TODO CHANGE PASS OPTION
+    public JPanel changePassword;
     public JPasswordField newPassword;
     public JButton goBackPassword;
     public JButton changePswd;
+
+    // INSPECTOR OPTIONS
+    public JPanel inspectorOptions;
+
 
 
     public void changePage(JPanel currentPage, JPanel newPage){
@@ -144,13 +149,13 @@ public class ATMGUI {
 
         // TODO separate methods into helper methods to avoid long method code smell?
 
-        goBackClient.addActionListener(new ActionListener() {
+        logOutClient.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 changePage(clientOptions, welcomePage);
             }
         });
-        returnToTheMainButton2.addActionListener(new ActionListener() {
+        logOutManager.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 changePage(managerOptions, welcomePage);

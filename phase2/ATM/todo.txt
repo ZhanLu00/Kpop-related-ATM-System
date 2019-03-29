@@ -100,4 +100,10 @@ Part 3: be creative and add more features to our app!
     + communism:
 
 
+Office Hour:
+    - welcome page: request for creation of new user
+    - user page: request for creation of bank account
+    - bankManager will need to deal with requests of creations accounts (could either accept or decline)
+    - GUI: move the main method from ATMGUI to a new class where it run the viewer
+    - GUI: split the class into smaller classes, eg. create classes for buttons and different component
 

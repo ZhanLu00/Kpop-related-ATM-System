@@ -53,6 +53,28 @@ public abstract class BankAccount {
     }
 
     /**
+     * Returns the type of an account in a String format.
+     */
+    public static String getAccountType(BankAccount account) {
+        if (account instanceof ChequingAccount) {
+            return BankAccount.CHEQUING;
+        }
+        else if (account instanceof SavingsAccount) {
+            return BankAccount.SAVINGS;
+        }
+        else if (account instanceof LotteryAccount) {
+            return BankAccount.LOTTERY;
+        }
+        else if (account instanceof CreditCardsAccount) {
+            return BankAccount.CREDIT_CARD;
+        }
+        else if (account instanceof LineOfCreditAccount) {
+            return BankAccount.LINE_OF_CREDIT;
+        }
+        return "account";
+    }
+
+    /**
      * Deposits the given amount into an account.
      */
     public boolean deposit(double amount) {
@@ -89,24 +111,5 @@ public abstract class BankAccount {
         } else {
             return false;
         }
-    }
-
-    public static String getAccountType(BankAccount account) {
-        if (account instanceof ChequingAccount) {
-            return BankAccount.CHEQUING;
-        }
-        else if (account instanceof SavingsAccount) {
-            return BankAccount.SAVINGS;
-        }
-        else if (account instanceof LotteryAccount) {
-            return BankAccount.LOTTERY;
-        }
-        else if (account instanceof CreditCardsAccount) {
-            return BankAccount.CREDIT_CARD;
-        }
-        else if (account instanceof LineOfCreditAccount) {
-            return BankAccount.LINE_OF_CREDIT;
-        }
-        return "account";
     }
 }

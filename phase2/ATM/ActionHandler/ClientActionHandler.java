@@ -283,7 +283,7 @@ public class ClientActionHandler {
         }
     }
     // TODO: I've added a primary chequing account option. Maybe this can iterate over the list of account the user has
-    // TODO: finish this 
+    // TODO: finish this
     public boolean deposit(int fives, int tens, int twenties, int fifties){
         accountManager.getAccount(accountN).deposit(fives*5+tens*10+twenties*20+fifties*50);
         billManager.deposit(fives, tens, twenties, fifties);

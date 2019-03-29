@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Atm {
+    /**
+     * atm class that stores all the date
+     */
     private UserManager userManager;
     private TimeManager timeManager;
     private AccountManager accountManager;

@@ -49,11 +49,9 @@ Part 2: add the following feature
         - add method in account manager to change the max_debt
 
 
-    Joyce
+    Joyce - DONE
     + Add one more type of account (of your choice) that has at least one property that is different from existing accounts. Feel free to look at bank websites for ideas.
         - lottery account
-
-    !!!!!! move lottery out side of the folder, its a new type account
 
     Seel- DONE
     + Add one more type of employee of the bank who has less access than the manager, but can also be a user with their own accounts.
@@ -114,8 +112,9 @@ Part 3: be creative and add more features to our app!
         - attribute: currency
         - bill manager: coverting currency
 
-    Joyce
-    + communism:
+    Joyce - DONE (in bankManagerActionHandler)
+    + communism: transfers money to new client
+    + username is "communist leader " + name
 
 
 Office Hour:

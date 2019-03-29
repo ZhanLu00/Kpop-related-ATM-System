@@ -160,7 +160,7 @@ public class BankManagerActionHandler {
     }
 
     /**
-     * Creates new "communist leader" client and chequing account.
+     * Creates new client and chequing account (username has prefix "communist leader").
      * Transfers all existing non-debt account balances to the new account.
      * Returns username and password for new client.
      */

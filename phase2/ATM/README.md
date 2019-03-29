@@ -1,7 +1,7 @@
 # ATM
 
-This program allows users can create to create or access their bank accounts(debt or asset).
-From there, users are able to view their account balance(s), transfer money between their accounts, transfer money to another user's account, withdraw money, pay bills, deposit money by entering a cheque or cash into the machine.
+This program allows users can create to create or access their bank accountRequests(debt or asset).
+From there, users are able to view their account balance(s), transfer money between their accountRequests, transfer money to another user's account, withdraw money, pay bills, deposit money by entering a cheque or cash into the machine.
 
 ## Motivation
 
@@ -16,7 +16,7 @@ Bank manager is able to create an client, restock the atm machine, undo transact
 set time, and show and clear alerts.
 
 Clients are able to view a summary of all account balances and their net total. They can also view the most recent 
-transaction and the date of creation of any account they own. A client is able to transfer money between their accounts 
+transaction and the date of creation of any account they own. A client is able to transfer money between their accountRequests
 or out to other user's, withdraw or deposit money with the ATM machine, pay a bill, and request a creation of an account 
 from the bank manager.
 
@@ -57,9 +57,9 @@ Any lines after this will be account creation requests, written in the same form
 
 #### Configuring BankAccounts.txt
 
-This file contains information of all the bank accounts.
+This file contains information of all the bank accountRequests.
 
-Each line is a new bank account. All accounts are initialized in the following format:
+Each line is a new bank account. All accountRequests are initialized in the following format:
 
 ```
 <account type>, <balance>, <date of creation>

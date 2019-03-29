@@ -44,22 +44,22 @@ https://q.utoronto.ca/courses/68685/pages/project-phase-1-specification-for-the-
 Part 2: add the following feature
 
     Roger & Karen - DONE
-    + All Debt accounts should have a maximum amount of debt you can incur.
+    + All Debt accountRequests should have a maximum amount of debt you can incur.
         - add max_debt in debt attribute
         - add method in account manager to change the max_debt
 
 
     Joyce - DONE
-    + Add one more type of account (of your choice) that has at least one property that is different from existing accounts. Feel free to look at bank websites for ideas.
+    + Add one more type of account (of your choice) that has at least one property that is different from existing accountRequests. Feel free to look at bank websites for ideas.
         - lottery account
 
     Seel- DONE
-    + Add one more type of employee of the bank who has less access than the manager, but can also be a user with their own accounts.
+    + Add one more type of employee of the bank who has less access than the manager, but can also be a user with their own accountRequests.
         - cra: can view everything, and send alert to bank manager (no access to cash
         - supervisor(theif): cash access
 
     Killed
-    + Make sure you can demo time-sensitive features, like adding interest to savings accounts each month.
+    + Make sure you can demo time-sensitive features, like adding interest to savings accountRequests each month.
         - out a file that contains update info of inetest
 
     Seel - DONE
@@ -67,7 +67,7 @@ Part 2: add the following feature
         - update the transaction history thingy
 
     Joyce - DONE by seel accidentally sorry
-    + Refactor so that you can have joint user accounts where two distinct users can both withdraw, deposit, and check the balance on the same account.
+    + Refactor so that you can have joint user accountRequests where two distinct users can both withdraw, deposit, and check the balance on the same account.
         -  this is easy to do
 
     Seel - DONE
@@ -120,7 +120,7 @@ Part 3: be creative and add more features to our app!
 Office Hour:
     - welcome page: request for creation of new user
     - user page: request for creation of bank account
-    - bankManager will need to deal with requests of creations accounts (could either accept or decline)
+    - bankManager will need to deal with requests of creations accountRequests (could either accept or decline)
     - GUI: move the main method from ATMGUI to a new class where it run the viewer
     - GUI: split the class into smaller classes, eg. create classes for buttons and different component
 

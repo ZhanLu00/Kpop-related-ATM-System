@@ -111,7 +111,7 @@ public class Atm {
     }
 
     public void save() throws IOException {
-        AccountFileWriter accountFileWriter = new AccountFileWriter(accountFileName,accountManager.getAccounts());
+        AccountRequestFileWriter accountFileWriter = new AccountRequestFileWriter(accountFileName,accountManager.getAccounts());
         UserFileWriter userFileWriter = new UserFileWriter(userFileName, userManager.getUsers());
         AtmFileWriter atmFileWriter = new AtmFileWriter(atmFileName, timeManager.getDate(), billManager, accountManager);
         TransactionFileWriter transactionFileWriter = new TransactionFileWriter(transactionManager.getTransactions(), transactionsFileName);

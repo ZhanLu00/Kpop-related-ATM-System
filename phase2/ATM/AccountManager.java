@@ -23,9 +23,9 @@ public class AccountManager implements Iterable<BankAccount> {
     private ArrayList<String[]> accountRequests;
     private Date date;
 
-    public AccountManager(ArrayList<BankAccount> accounts, Date date) {
+    public AccountManager(ArrayList<BankAccount> accounts, ArrayList<String[]> accountRequests, Date date) {
         this.accounts = accounts;
-        this.accountRequests = new ArrayList<>();
+        this.accountRequests = accountRequests;
         this.date = date;
     }
 

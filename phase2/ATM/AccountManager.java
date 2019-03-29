@@ -1,7 +1,7 @@
 package ATM;
 
 import ATM.BankAccounts.AssetAccounts.ChequingAccount;
-import ATM.BankAccounts.AssetAccounts.LotteryAccount;
+import ATM.BankAccounts.ExtraAccounts.LotteryAccount;
 import ATM.BankAccounts.AssetAccounts.SavingsAccount;
 import ATM.BankAccounts.BankAccount;
 import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;

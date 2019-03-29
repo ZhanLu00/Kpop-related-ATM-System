@@ -1,12 +1,16 @@
-package ATM.BankAccounts.AssetAccounts;
+package ATM.BankAccounts.ExtraAccounts;
 
 import ATM.BankAccounts.BankAccount;
 
 import java.util.Date;
 
-public class LotteryAccount extends AssetAccount {
+public class LotteryAccount extends BankAccount {
     public LotteryAccount(Date date, double balance) {
         super(date, balance);
+    }
+
+    public double getBalance() {
+        return this.balance;
     }
 
     /**
@@ -32,7 +36,7 @@ public class LotteryAccount extends AssetAccount {
     }
 
     /**
-     * Increases a savings account balance by a factor of 0.1%
+     * Multiplies balance by some factor between 0.501 and 1.5
      */
     public void collectInterest() {
         this.balance *= 0.501 + new java.util.Random().nextDouble();

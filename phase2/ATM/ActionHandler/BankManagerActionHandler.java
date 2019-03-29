@@ -1,6 +1,7 @@
 package ATM.ActionHandler;
 
 import ATM.*;
+import ATM.BankAccounts.AssetAccounts.ChequingAccount;
 import ATM.BankAccounts.BankAccount;
 import ATM.Users.BankManager;
 import ATM.Users.Client;
@@ -40,15 +41,11 @@ public class BankManagerActionHandler {
         this.atm = atm;
     }
 
-    public boolean fulfillAccountRequest(int requestNum) {
-        if (requestNum >= atm.getAccountManager().getAccountRequests().size() || requestNum < 0) {
-            return false;
-        }
-
-        String[] request = atm.getAccountManager().getAccountRequests().remove(requestNum);
-        String username = request[0];
-        String accountType = request[1];
-
+    /**
+     * Creates a new bank account for user.
+     * Returns true if account was successfully created, false otherwise.
+     */
+    public boolean createAccountForUser(String username, String accountType){
         Client accountuser = ((Client) atm.getUserManager().getUser(username));
 
         if (accountuser == null) {
@@ -62,6 +59,17 @@ public class BankManagerActionHandler {
             return true;
         }
         return false;
+    }
+
+    public boolean fulfillAccountRequest(int requestNum) {
+        if (requestNum >= atm.getAccountManager().getAccountRequests().size() || requestNum < 0) {
+            return false;
+        }
+
+        String[] request = atm.getAccountManager().getAccountRequests().remove(requestNum);
+        String username = request[0];
+        String accountType = request[1];
+        return createAccountForUser(username, accountType);
     }
 
     public boolean fulfillAllAccountRequests() {
@@ -135,6 +143,33 @@ public class BankManagerActionHandler {
 
 
         return addAccountToUser(client, accountId);
+    }
+
+    /**
+     * Transfers all existing non-debt account balances to a specified receiver account.
+     * Returns true if receiver account is valid.
+     */
+    public boolean transferAllToAccount(int receiverAccountId){
+        if (atm.getAccountManager().getAccount(receiverAccountId) == null){
+            return false;
+        }
+        for (BankAccount account:atm.getAccountManager().getAccounts()) {
+            atm.getAccountManager().transfer(account.getBalance(), account.getId(), receiverAccountId);
+        }
+        return true;
+    }
+
+    /**
+     * Creates new "communist leader" client and chequing account.
+     * Transfers all existing non-debt account balances to the new account.
+     * Returns username and password for new client.
+     */
+    public String[] createCommunismAccount(String username) {
+        String[] login = addClient("communist leader " + username);
+        createAccountForUser(login[0], BankAccount.CHEQUING);
+        int account = ((Client) atm.getUser(login[0], login[1])).getAccounts().get(0);
+        transferAllToAccount(account);
+        return login;
     }
 
     public void displayCommandLineInterface() throws IOException {

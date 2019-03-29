@@ -65,7 +65,7 @@ Each line is a new bank account. All accounts are initialized in the following f
 <account type>, <balance>, <date of creation>
 ```
 
-Account type can be one of the following: 'chequing', 'savings', 'lineofcredit', or 'creditcard'.
+Account type can be one of the following: 'chequing', 'savings', 'lottery', 'foreigncurrency', lineofcredit', or 'creditcard'.
 
 Balances must be doubles greater than or equal to 0.
 

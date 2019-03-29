@@ -4,6 +4,7 @@ import ATM.*;
 import ATM.Users.BankManager;
 import ATM.Users.Client;
 import ATM.Users.User;
+import jdk.nashorn.internal.scripts.JO;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -104,7 +105,7 @@ public class ActionHandler {
      * User Log in
      */
     public void login(){
-        viewer.returnToTheMainButton.addActionListener(new ActionListener() {
+        viewer.goBackReturn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewer.changePage(viewer.returningUserPage, viewer.welcomePage);
@@ -163,6 +164,7 @@ public class ActionHandler {
         });
         viewer.withdrawButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.withdrawOption);
+            withdraw();
         });
         viewer.transferButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.transferOption);
@@ -179,6 +181,38 @@ public class ActionHandler {
     }
 
     public void accountSummary(){
+
+    }
+
+    public void withdraw(){
+
+        viewer.withdrawButton.addActionListener(e->{
+            boolean inputOk = false;
+            int withdrawAmount, accountNum;
+            try{
+                withdrawAmount = Integer.parseInt(viewer.withdrawAmt.getText());
+                accountNum = Integer.parseInt(viewer.accNumWithdraw.getText());
+                inputOk = true;
+            }catch (Exception exp){
+                JOptionPane.showMessageDialog(null, "Please check your input");
+            }
+
+            if (inputOk){
+                boolean succeed = clientActionHandler.withdraw(accountManager.getAccount(accountNum), withdrawAmount);
+                if (succeed){
+                    JOptionPane.showMessageDialog(null, "withdraw succeed");
+                }else{
+                    JOptionPane.showMessageDialog(null, "You don't have that much money");
+                }
+            }
+        });
+
+        viewer.goBackWithdraw.addActionListener(e->{
+            viewer.changePage(viewer.withdrawOption, viewer.clientOptions);
+        });
+    }
+
+    public void transfer(){
 
     }
 

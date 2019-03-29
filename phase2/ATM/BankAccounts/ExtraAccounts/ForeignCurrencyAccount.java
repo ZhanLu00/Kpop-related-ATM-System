@@ -24,7 +24,7 @@ public class ForeignCurrencyAccount extends BankAccount {
 
     /**
      * Withdraws the given amount out of an account.
-     * Withdrawal is successful if balance >= amount after converted to CAD.
+     * Withdrawal is successful if balance >= amount after converted to foreign currency value.
      * Returns true if withdrawal is successful, false otherwise.
      */
     public boolean withdraw(double amount) {

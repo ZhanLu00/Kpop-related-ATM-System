@@ -30,12 +30,13 @@ public class BankManagerActionHandler {
     // bankManager
     // Client
 
-    private BankManager bankManager;
+    // Bank manager's info is nessesary or not?
+//    private BankManager bankManager;
     private Atm atm;
     private BufferedReader kbd = new BufferedReader(new InputStreamReader(System.in));
 
-    public BankManagerActionHandler(BankManager bankManager, Atm atm) {
-        this.bankManager = bankManager;
+    public BankManagerActionHandler(Atm atm) {
+//        this.bankManager = bankManager;
         this.atm = atm;
     }
 

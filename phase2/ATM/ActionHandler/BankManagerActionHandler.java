@@ -120,6 +120,23 @@ public class BankManagerActionHandler {
         return kbd.readLine();
     }
 
+    public boolean addAccountToUser(Client client, int accountId) {
+        if (client == null || (accountId < 0 || accountId >= atm.getAccountManager().getAccounts().size())) {
+            return false;
+        }
+
+        client.addAccounts(accountId);
+
+        return true;
+    }
+
+    public boolean addAccountToUser(String username, int accountId) {
+        Client client = ((Client) atm.getUserManager().getUser(username));
+
+
+        return addAccountToUser(client, accountId);
+    }
+
     public void displayCommandLineInterface() throws IOException {
         while (true) {
             System.out.println("Please select an option:");

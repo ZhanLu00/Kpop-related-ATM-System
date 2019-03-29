@@ -41,7 +41,7 @@ public class ATMGUI {
     public JLabel welcomeText;
 
 
-    // TODO FINISH NEW USER PAGE
+    // TODO NEW USER PAGE
     public JPanel newUserPage;
     public JButton createUser;
 
@@ -57,15 +57,12 @@ public class ATMGUI {
     // CLIENT OPTIONS
     public JPanel clientOptions;
     public JLabel clientAsk;
-    public JButton viewSummaryOfAllButton;
-    public JButton viewAccountCreationDateButton;
+    public JButton viewAccountSummaryButton;
     public JButton withdrawMoneyButton;
     public JButton transferMoneyButton;
     public JButton payABillButton;
     public JButton depositMoneyButton;
-    public JButton viewMostRecentTransactionButton;
-    public JButton checkNetTotalButton;
-    public JButton returnToTheMainButton1;
+    public JButton goBackClient;
 
     // MANAGER OPTIONS
     public JPanel managerOptions;
@@ -93,11 +90,14 @@ public class ATMGUI {
     public JSpinner numFifty;
     public JFormattedTextField depositAccNum;
     public JButton depositButton;
+    public JButton goBackDeposit;
 
-    // TODO FINISH SUMMARY OF ACCOUNTS OPTION
+    // TODO SUMMARY OF ACCOUNTS OPTION
     public JPanel summaryOfAccounts;
     public JLabel summaryText;
     public JTextArea accountSummaries;
+    public JButton goBackSummary;
+    public JButton makeANewAccountButton;
 
     // TRANSFER OPTION
     public JPanel transferOption;
@@ -120,6 +120,18 @@ public class ATMGUI {
 
     // TODO WITHDRAW OPTION
     public JPanel withdrawOption;
+    public JButton changePasswordButton;
+
+    // TODO CHANGE PASS OPTION
+    public JPanel changePassword;
+    public JPanel inspectorOptions;
+    public JFormattedTextField accNumWithdraw;
+    public JFormattedTextField withdrawAmt;
+    public JButton goBackWithdraw;
+    public JButton withdrawButton;
+    public JPasswordField newPassword;
+    public JButton goBackPassword;
+    public JButton changePswd;
 
 
     public void changePage(JPanel currentPage, JPanel newPage){
@@ -132,42 +144,7 @@ public class ATMGUI {
 
         // TODO separate methods into helper methods to avoid long method code smell?
 
-        newUser.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                changePage(welcomePage, newUserPage);
-            }
-        });
-        returningUser.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                changePage(welcomePage, returningUserPage);
-            }
-        });
-        returnToTheMainButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                changePage(returningUserPage, welcomePage);
-            }
-        });
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                User user = atm.getUser(usernameText.getText(), passwordText.getText());
-                if (user instanceof BankManager){
-                    changePage(returningUserPage, managerOptions);
-                }else if (user instanceof Client){
-                    changePage(returningUserPage, clientOptions);
-                    client = new Client(usernameText.getText(), passwordText.getText());
-                }else{
-                    usernameText.setText("");
-                    passwordText.setText("");
-                    JOptionPane.showMessageDialog(null, "Incorrect username/password. " +
-                            "Please try again.");
-                }
-            }
-        });
-        returnToTheMainButton1.addActionListener(new ActionListener() {
+        goBackClient.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 changePage(clientOptions, welcomePage);
@@ -219,7 +196,7 @@ public class ATMGUI {
 
             }
         });
-        goBackButton.addActionListener(new ActionListener() {
+        goBackDeposit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 changePage(accCreation, clientOptions);
@@ -270,6 +247,8 @@ public class ATMGUI {
         numTwenty = new JSpinner(new SpinnerNumberModel(0, 0, 100, 1));
         numFifty = new JSpinner(new SpinnerNumberModel(0, 0, 100, 1));
 
+
+        // TODO put this stuff in the button action for "view acc summary"
         StringBuilder accountSummaries = new StringBuilder();
         Map accountBalance = ClientActionHandler.checkBalance();
         for (Object accountNumber:accountBalance.keySet()){

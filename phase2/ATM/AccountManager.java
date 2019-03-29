@@ -66,16 +66,14 @@ public class AccountManager implements Iterable<BankAccount> {
      * Transfers money between two accounts.
      * Returns true if the transaction is successful, false otherwise.
      */
-    public boolean transfer(double amount, int senderId, int receiverId) {
+    public Transaction transfer(double amount, int senderId, int receiverId) {
         BankAccount sender = this.getAccount(senderId);
         BankAccount receiver = this.getAccount(receiverId);
         if(sender.withdraw(amount) && receiver.deposit(amount)) {
             Transaction transaction = new Transaction(amount, senderId, receiverId, "transfer");
-            sender.setLastTransaction(transaction);
-            receiver.setLastTransaction(transaction);
-            return true;
+            return transaction;
         } else {
-            return false;
+            return null;
         }
     }
 

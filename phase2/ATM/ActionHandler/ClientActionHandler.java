@@ -86,12 +86,15 @@ public class ClientActionHandler {
 
     // transfer
     public Boolean transfer(double amount, int senderId, int receiverId ){
-        /*
-        this method might be useless
-        @ TODO
-         */
 
-        return this.accountManager.transfer(amount, senderId, receiverId);
+        Transaction transaction = this.accountManager.transfer(amount, senderId, receiverId);
+
+        if (transaction != null) {
+            atm.getTransactionManager().addTransaction(transaction);
+            return true;
+        }
+
+        return false;
     }
 
 
@@ -232,7 +235,8 @@ public class ClientActionHandler {
         System.out.println("Enter the amount that you want to transfer in between");
         double amount = Double.parseDouble(kbd.readLine());
 
-        if (accountManager.transfer(amount, transIn, transOut)){
+
+        if (transfer(amount,transIn,transOut)){
             System.out.println("Your new balance is : ");
             System.out.println(accountManager.getAccount(transIn).getBalance());
             if (input == 5){

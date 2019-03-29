@@ -108,7 +108,7 @@ public class AccountManager implements Iterable<BankAccount> {
             return new LotteryAccount(date,0);
         }
         else if (accountType.equals(BankAccount.FOREIGN_CURRENCY)){
-            return new ForeignCurrencyAccount(date, 0, 1.34);
+            return new ForeignCurrencyAccount(date, 0, 0.74);
         }
         else if (accountType.equals(BankAccount.CREDIT_CARD)) {
             return new CreditCardsAccount(date,0);

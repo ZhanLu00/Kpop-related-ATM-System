@@ -36,7 +36,7 @@ public class LotteryAccount extends BankAccount {
     }
 
     /**
-     * Multiplies balance by some factor between 0.501 and 1.5
+     * Multiplies balance by a random factor >= 0.501 and < 1.5
      */
     public void collectInterest() {
         this.balance *= 0.501 + new java.util.Random().nextDouble();

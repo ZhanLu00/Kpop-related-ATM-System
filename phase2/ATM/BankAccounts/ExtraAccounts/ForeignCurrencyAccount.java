@@ -15,7 +15,7 @@ public class ForeignCurrencyAccount extends BankAccount {
         return this.balance;
     }
     /**
-     * Deposits the given amount into an account.
+     * Deposits the given amount into an account, storing in its foreign currency value.
      */
     public boolean deposit(double amount) {
         this.balance += amount*exchangeRate;
@@ -24,7 +24,7 @@ public class ForeignCurrencyAccount extends BankAccount {
 
     /**
      * Withdraws the given amount out of an account.
-     * Withdrawal is successful if balance >= amount.
+     * Withdrawal is successful if balance >= amount after converted to CAD.
      * Returns true if withdrawal is successful, false otherwise.
      */
     public boolean withdraw(double amount) {

@@ -4,6 +4,7 @@ import ATM.*;
 import ATM.Users.BankManager;
 import ATM.Users.Client;
 import ATM.Users.User;
+import jdk.nashorn.internal.scripts.JO;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -104,7 +105,7 @@ public class ActionHandler {
      * User Log in
      */
     public void login(){
-        viewer.returnToTheMainButton.addActionListener(new ActionListener() {
+        viewer.goBackReturn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewer.changePage(viewer.returningUserPage, viewer.welcomePage);
@@ -163,12 +164,15 @@ public class ActionHandler {
         });
         viewer.withdrawButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.withdrawOption);
+            withdraw();
         });
         viewer.transferButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.transferOption);
+            transfer();
         });
         viewer.payABillButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.payBill);
+            payBill();
         });
         viewer.depositMoneyButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.depositOption);
@@ -180,6 +184,116 @@ public class ActionHandler {
 
     public void accountSummary(){
 
+    }
+
+    public void withdraw(){
+
+        viewer.withdrawButton.addActionListener(e->{
+            boolean inputOk = false;
+            int withdrawAmount, accountNum;
+            try{
+                withdrawAmount = Integer.parseInt(viewer.withdrawAmt.getText());
+                accountNum = Integer.parseInt(viewer.accNumWithdraw.getText());
+                boolean succeed = clientActionHandler.withdraw(accountManager.getAccount(accountNum), withdrawAmount);
+                if (succeed){
+                    JOptionPane.showMessageDialog(null, "withdraw succeed");
+                }else{
+                    JOptionPane.showMessageDialog(null, "You don't have that much money");
+                }
+            }catch (Exception exp){
+                JOptionPane.showMessageDialog(null, "Please check your input");
+            }
+        });
+
+        viewer.goBackWithdraw.addActionListener(e->{
+            viewer.changePage(viewer.withdrawOption, viewer.clientOptions);
+        });
+    }
+
+    public void transfer(){
+
+        viewer.transferButton.addActionListener(e->{
+            boolean inputOk = false;
+            int outAccNum, inAccNum;
+            double transAmt;
+            try{
+                outAccNum = Integer.parseInt(viewer.transOutAccNum.getText());
+                inAccNum = Integer.parseInt(viewer.transInAccNum.getText());
+                transAmt = Double.parseDouble(viewer.transInAccNum.getText());
+                boolean succeed = clientActionHandler.transfer(transAmt, outAccNum, inAccNum);
+                if (succeed){
+                    JOptionPane.showMessageDialog(null, "transfer succeed");
+                }else{
+                    JOptionPane.showMessageDialog(null, "Error: check your input and your balance");
+                }
+            }catch (Exception exp){
+                JOptionPane.showMessageDialog(null, "Please check your input");
+            }
+
+
+        });
+
+        viewer.goBackTransfer.addActionListener(e->{
+            viewer.changePage(viewer.transferOption, viewer.clientOptions);
+        });
+    }
+
+    public void payBill(){
+        viewer.payBillButton.addActionListener(e->{
+            boolean inputOk = false;
+            int billAccNum, billPayee;
+            double billAmt;
+            try{
+                billAccNum = Integer.parseInt(viewer.billAccNum.getText());
+                billPayee = Integer.parseInt(viewer.billPayee.getText());
+                billAmt = Double.parseDouble(viewer.billAmt.getText());
+                boolean succeed = clientActionHandler.transfer(billAmt, billAccNum, billPayee);
+                if (succeed){
+                    JOptionPane.showMessageDialog(null, "Pay bill succeed");
+                }else{
+                    JOptionPane.showMessageDialog(null, "You don't have that much money");
+                }
+            }catch (Exception exp){
+                JOptionPane.showMessageDialog(null, "Please check your input");
+            }
+        });
+
+        viewer.goBackWithdraw.addActionListener(e->{
+            viewer.changePage(viewer.payBill, viewer.clientOptions);
+        });
+
+    }
+
+    public void deposit(){
+        public JSpinner numFives;
+        public JSpinner numTens;
+        public JSpinner numTwenty;
+        public JSpinner numFifty;
+        public JFormattedTextField depositAccNum;
+        public JButton depositButton;
+        public JButton goBackDeposit;
+
+        viewer.depositButton.addActionListener(e->{
+            int numFives, numTens, numTwenty, numFifty;
+            try{
+                numFives = Integer.parseInt(viewer.numFives.getToolTipText());
+                numTens = Integer.parseInt(viewer.numTens.getToolTipText());
+                numTwenty = Integer.parseInt(viewer.numTwenty.getToolTipText());
+                numFifty = Integer.parseInt(viewer.numFifty.getToolTipText());
+                boolean succeed = clientActionHandler.deposit(numFives, numTens, numTwenty, numFifty);
+                if (succeed){
+                    JOptionPane.showMessageDialog(null, "deposit succeed");
+                }else{
+                    JOptionPane.showMessageDialog(null, "something is wrong");
+                }
+            }catch (Exception exp){
+                JOptionPane.showMessageDialog(null, "Please check your input");
+            }
+        });
+
+        viewer.goBackDeposit.addActionListener(e->{
+            viewer.changePage(viewer.depositOption, viewer.clientOptions);
+        });
     }
 
     public void bankManagerOption(){

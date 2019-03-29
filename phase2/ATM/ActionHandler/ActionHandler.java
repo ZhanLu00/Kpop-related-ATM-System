@@ -54,10 +54,6 @@ public class ActionHandler {
         this.billManager = atm.getBillManager();
         this.transactionManager = atm.getTransactionManager();
         this.viewer = atmgui;
-        // those will be initialized when log in happens
-//        this.bankInspectorActionHandler = new BankInspectorActionHandler(bank)
-//        this.bankManagerActionHandler = new BankManagerActionHandler(atm);
-//        this.clientActionHandler = new ClientActionHandler()
     }
 
     /**
@@ -121,6 +117,8 @@ public class ActionHandler {
                 if (loginSuccess){
                     if (userType == "client"){
                         viewer.changePage(viewer.returningUserPage, viewer.clientOptions);
+                        currentUser = userManager.getUser(viewer.usernameText.getText());
+                        clientOption();
                     }else if(userType.equals("bankManager")){
                         viewer.changePage(viewer.returningUserPage, viewer.managerOptions);
                     }else{
@@ -153,11 +151,35 @@ public class ActionHandler {
         return false;
     }
 
-    /**
+
+    /******************************************
      * client action handler
      */
     public void clientOption(){
         // add listener
+        viewer.viewAccountSummaryButton.addActionListener(e->{
+            viewer.changePage(viewer.clientOptions, viewer.summaryOfAccounts);
+            accountSummary();
+        });
+        viewer.withdrawButton.addActionListener(e->{
+            viewer.changePage(viewer.clientOptions, viewer.withdrawOption);
+        });
+        viewer.transferButton.addActionListener(e->{
+            viewer.changePage(viewer.clientOptions, viewer.transferOption);
+        });
+        viewer.payABillButton.addActionListener(e->{
+            viewer.changePage(viewer.clientOptions, viewer.payBill);
+        });
+        viewer.depositMoneyButton.addActionListener(e->{
+            viewer.changePage(viewer.clientOptions, viewer.depositOption);
+        });
+        viewer.goBackClient.addActionListener(e->{
+            viewer.changePage(viewer.clientOptions, viewer.welcomePage);
+        });
+    }
+
+    public void accountSummary(){
+
     }
 
     public void bankManagerOption(){

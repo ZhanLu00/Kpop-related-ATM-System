@@ -63,7 +63,7 @@ public class ATMGUI {
     public JButton transferMoneyButton;
     public JButton payABillButton;
     public JButton depositMoneyButton;
-    public JButton logOutClient;
+    public JButton goBackClient;
 
     // MANAGER OPTIONS
     public JPanel managerOptions;

@@ -21,6 +21,7 @@ public abstract class BankAccount {
     public static final String SAVINGS = "savings";
     public static final String CHEQUING ="chequing" ;
     public static final String LOTTERY ="lottery";
+    public static final String FOREIGN_CURRENCY = "foreigncurrency";
 
 
     protected static int nextId = 0;

@@ -1,6 +1,7 @@
 package ATM;
 
 import ATM.BankAccounts.AssetAccounts.ChequingAccount;
+import ATM.BankAccounts.ExtraAccounts.ForeignCurrencyAccount;
 import ATM.BankAccounts.ExtraAccounts.LotteryAccount;
 import ATM.BankAccounts.AssetAccounts.SavingsAccount;
 import ATM.BankAccounts.BankAccount;
@@ -105,6 +106,9 @@ public class AccountManager implements Iterable<BankAccount> {
         }
         else if (accountType.equals(BankAccount.LOTTERY)) {
             return new LotteryAccount(date,0);
+        }
+        else if (accountType.equals(BankAccount.FOREIGN_CURRENCY)){
+            return new ForeignCurrencyAccount(date, 0, 1.34);
         }
         else if (accountType.equals(BankAccount.CREDIT_CARD)) {
             return new CreditCardsAccount(date,0);

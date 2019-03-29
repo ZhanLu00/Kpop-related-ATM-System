@@ -6,6 +6,8 @@ import ATM.BankAccounts.BankAccount;
 import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
 import ATM.BankAccounts.DebtAccounts.DebtAccount;
 import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
+import ATM.BankAccounts.ExtraAccounts.ForeignCurrencyAccount;
+import ATM.BankAccounts.ExtraAccounts.LotteryAccount;
 import ATM.TimeManager;
 import ATM.Transaction;
 
@@ -42,7 +44,12 @@ public class AccountFileWriter {
             Date date = account.getDATE_CREATED();
             String dateString = TimeManager.dateToString(date);
 
-            fileOut.append(String.format("%s,%f,%s\n",type,balance,dateString));
+            if (account instanceof ForeignCurrencyAccount) {
+                fileOut.append(String.format("%s,%f,%s,%f\n", type, balance, dateString, ((ForeignCurrencyAccount) account).getExchangeRate()));
+            }
+            else {
+                fileOut.append(String.format("%s,%f,%s\n", type, balance, dateString));
+            }
 
         }
         writer.append(fileOut);

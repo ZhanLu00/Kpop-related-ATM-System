@@ -1,5 +1,6 @@
 package ATM.BankAccounts;
 import ATM.BankAccounts.AssetAccounts.ChequingAccount;
+import ATM.BankAccounts.ExtraAccounts.ForeignCurrencyAccount;
 import ATM.BankAccounts.ExtraAccounts.LotteryAccount;
 import ATM.BankAccounts.AssetAccounts.SavingsAccount;
 import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
@@ -71,6 +72,9 @@ public abstract class BankAccount {
         }
         else if (account instanceof LineOfCreditAccount) {
             return BankAccount.LINE_OF_CREDIT;
+        }
+        else if (account instanceof ForeignCurrencyAccount) {
+            return BankAccount.FOREIGN_CURRENCY;
         }
         return "account";
     }

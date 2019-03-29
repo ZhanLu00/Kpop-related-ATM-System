@@ -25,6 +25,14 @@ public class ForeignCurrencyAccount extends BankAccount {
         return true;
     }
 
+    public double getForeignCurrencyBalance() {
+        return foreignCurrencyBalance;
+    }
+
+    public double getExchangeRate() {
+        return exchangeRate;
+    }
+
     /**
      * Withdraws the given amount out of an account.
      * Withdrawal is successful if balance >= amount.

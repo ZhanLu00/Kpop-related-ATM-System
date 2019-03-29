@@ -24,9 +24,7 @@ public class Transaction {
         this.TYPE = type;
     }
 
-    /**
-     * Getters
-     **/
+    /** Getters **/
     public double getAmount() {
         return AMOUNT;
     }

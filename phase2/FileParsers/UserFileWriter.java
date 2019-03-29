@@ -2,6 +2,7 @@ package FileParsers;
 
 import ATM.BankAccounts.BankAccount;
 import ATM.TimeManager;
+import ATM.Users.BankInspector;
 import ATM.Users.BankManager;
 import ATM.Users.Client;
 import ATM.Users.User;
@@ -53,12 +54,16 @@ public class UserFileWriter {
     }
 
     private String getType(User user) {
-        if (user instanceof Client) {
+        if (user instanceof BankInspector) {
+            return "inspector";
+        }
+        else if (user instanceof Client) {
             return "client";
         }
         else if (user instanceof BankManager) {
             return "manager";
         }
+
 
         return "user";
     }

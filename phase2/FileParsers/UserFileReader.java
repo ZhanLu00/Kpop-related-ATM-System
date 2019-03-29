@@ -1,5 +1,6 @@
 package FileParsers;
 
+import ATM.Users.BankInspector;
 import ATM.Users.BankManager;
 import ATM.Users.Client;
 import ATM.Users.User;
@@ -37,6 +38,13 @@ public class UserFileReader {
         else if (userType.equals("manager")) {
             BankManager bankManager = new BankManager(username,password);
             users.add(bankManager);
+        }
+        else if (userType.equals("inspector")) {
+            BankInspector bankInspector = new BankInspector(username,password);
+            for (int i = 3; i < separated.length; i++) {
+                bankInspector.addAccounts(Integer.parseInt(separated[i].replace(",","")));
+            }
+            users.add(bankInspector);
         }
     }
 

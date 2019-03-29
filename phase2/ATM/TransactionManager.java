@@ -1,5 +1,6 @@
 package ATM;
 
+import ATM.BankAccounts.BankAccount;
 import ATM.Transaction;
 
 import java.util.ArrayList;
@@ -41,6 +42,27 @@ public class TransactionManager {
         }
         return result;
     }
+
+    public boolean undoTransaction(int id, AccountManager accountManager) {
+        if (id < 0 || id >= transactions.size()) {
+            return false;
+        }
+
+        Transaction transaction = transactions.get(id);
+
+        double amount = transaction.getAmount();
+
+        BankAccount sender = accountManager.getAccount(transaction.getSender());
+        BankAccount receiver = accountManager.getAccount(transaction.getReceiver());
+
+
+        if (receiver.withdraw(amount) && sender.deposit(amount)) {
+            transactions.remove(id);
+            return true;
+        }
+        return false;
+    }
+
 
     public ArrayList<Transaction> getTransactions() {
         return transactions;

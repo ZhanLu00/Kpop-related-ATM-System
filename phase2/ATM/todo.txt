@@ -53,6 +53,8 @@ Part 2: add the following feature
     + Add one more type of account (of your choice) that has at least one property that is different from existing accounts. Feel free to look at bank websites for ideas.
         - lottery account
 
+    !!!!!! move lottery out side of the folder, its a new type account
+
     Seel- DONE
     + Add one more type of employee of the bank who has less access than the manager, but can also be a user with their own accounts.
         - cra: can view everything, and send alert to bank manager (no access to cash
@@ -89,7 +91,23 @@ Part 3: be creative and add more features to our app!
 
     Yuhan & Zhan
     + UI:
-        -Jframe
+        - design pages( a lot of them)
+            - welcome page
+            - log in page
+            - new user request page
+            - client page
+            - bank manager page
+            - bank inspector page
+
+        - implement components
+            - buttons
+            - textfield
+            - pop ups
+            - labels
+        - stay alive
+
+    Zhan
+    + implement MVC
 
 
     + currency: food, time (easyish)

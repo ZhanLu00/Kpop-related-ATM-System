@@ -157,6 +157,10 @@ public class ActionHandler {
      * client action handler
      */
     public void clientOption(){
+        // add listener
+    }
+
+    public void bankManagerOption(){
 
     }
 

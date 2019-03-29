@@ -64,6 +64,7 @@ public class ATMGUI {
     public JButton payABillButton;
     public JButton depositMoneyButton;
     public JButton goBackClient;
+    public JButton changePasswordButton;
 
     // MANAGER OPTIONS
     public JPanel managerOptions;
@@ -101,7 +102,7 @@ public class ATMGUI {
 
     // TRANSFER OPTION
     public JPanel transferOption;
-    public JButton goBackButton1;
+    public JButton goBackTransfer;
     public JFormattedTextField transOutAccNum;
     public JFormattedTextField transInAccNum;
     public JFormattedTextField transAmt;
@@ -115,7 +116,7 @@ public class ATMGUI {
     public JFormattedTextField billAccNum;
     public JFormattedTextField billAmt;
     public JFormattedTextField billPayee;
-    public JButton goBackButton2;
+    public JButton goBackBill;
     public JButton payBillButton;
 
     // WITHDRAW OPTION
@@ -126,8 +127,6 @@ public class ATMGUI {
     public JButton withdrawButton;
 
 
-    public JButton changePasswordButton;
-
     // TODO CHANGE PASS OPTION
     public JPanel changePassword;
     public JPasswordField newPassword;
@@ -136,7 +135,27 @@ public class ATMGUI {
 
     // INSPECTOR OPTIONS
     public JPanel inspectorOptions;
+    public JLabel inspectorAsk;
+    public JButton sendMessageToManagerButton;
+    public JButton seeAllTransactionsButton;
+    public JButton checkClientSAccountButton;
+    public JButton logOutInspector;
 
+    // SEND MANAGER MESSAGE OPTION
+    public JPanel sendManagerMsg;
+    public JButton goBackMsg;
+    public JButton sendMessageButton;
+    public JTextArea inspectorMsg;
+
+    // INSPECTOR CLIENT SUMMARY
+    public JPanel clientSummary;
+    public JPanel allTransactions;
+    public JFormattedTextField clientUsername;
+    public JButton seeClientAccountSummaryButton;
+    public JButton seeClientIncomingTransactionsButton;
+    public JButton seeClientOutgoingTransactionsButton;
+    public JTextArea clientSummaryOrTransaction;
+    public JButton goBackClientSummary;
 
 
     public void changePage(JPanel currentPage, JPanel newPage){
@@ -149,7 +168,7 @@ public class ATMGUI {
 
         // TODO separate methods into helper methods to avoid long method code smell?
 
-        logOutClient.addActionListener(new ActionListener() {
+        goBackClient.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 changePage(clientOptions, welcomePage);
@@ -207,13 +226,13 @@ public class ATMGUI {
                 changePage(accCreation, clientOptions);
             }
         });
-        goBackButton1.addActionListener(new ActionListener() {
+        goBackTransfer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 changePage(transferOption, clientOptions);
             }
         });
-        goBackButton2.addActionListener(new ActionListener() {
+        goBackBill.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 changePage(payBill, clientOptions);

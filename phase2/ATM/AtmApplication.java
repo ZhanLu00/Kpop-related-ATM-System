@@ -20,7 +20,7 @@ public class AtmApplication {
 //        atm.printText();
 //        atm.save();
 
-        Atm atm = new Atm("phase1/ATM/BankUsers.txt","phase1/ATM/BankAccounts.txt","phase1/ATM/AtmInfo.txt", "phase1/ATM/alerts.txt");
+        Atm atm = new Atm("phase1/ATM/BankUsers.txt","phase1/ATM/BankAccounts.txt","phase1/ATM/AtmInfo.txt", "phase1/ATM/alerts.txt", "","");
 
         while(true) {
             String username = getStringFromUser("Username (-1 to exit): ");
@@ -34,10 +34,10 @@ public class AtmApplication {
             User user = atm.getUser(username, password);
 
             if (user instanceof BankManager) {
-                BankManagerActionHandler actionHandler = new BankManagerActionHandler((BankManager) user, atm);
+                BankManagerActionHandler actionHandler = new BankManagerActionHandler(atm);
                 actionHandler.displayCommandLineInterface();
             } else if (user instanceof  Client) {
-                ClientActionHandler actionHandler = new ClientActionHandler((Client)user, atm.getAccountManager(), atm.getBillManager());
+                ClientActionHandler actionHandler = new ClientActionHandler((Client)user, atm);
                 actionHandler.displayCommandLineInterface();
             }
         }

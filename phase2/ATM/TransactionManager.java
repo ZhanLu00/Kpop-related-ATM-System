@@ -21,6 +21,10 @@ public class TransactionManager {
         transactions.add(new Transaction(amount, sender, receiver, type));
     }
 
+    public void addTransaction(Transaction transaction) {
+        transactions.add(transaction);
+    }
+
     public ArrayList<Transaction> getTransactionsBySender(int sender) {
         ArrayList<Transaction> result = new ArrayList<>();
 

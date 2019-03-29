@@ -105,12 +105,8 @@ public class BankManagerActionHandler {
         atm.getTimeManager().getDate().setYear(year);
     }
 
-    private boolean undoTransaction(int transaction) {
-        if (transaction < 0 || transaction >= atm.getAccountManager().getNumAccounts()) {
-            return false;
-        }
-
-        return atm.getAccountManager().getAccount(transaction).undoTransaction(atm.getAccountManager());
+    private boolean undoTransaction(int id) {
+        return atm.getTransactionManager().undoTransaction(id, atm.getAccountManager());
     }
 
     private int getIntFromUser(String display) throws IOException {
@@ -182,17 +178,12 @@ public class BankManagerActionHandler {
 
     public void inputThree() throws IOException {
         int c = 0;
-        for (BankAccount bankAccount : atm.getAccountManager()) {
-            Transaction transaction = bankAccount.getLastTransaction();
-            if (transaction != null) {
-                System.out.println(String.format("%d)  Sender: %d,  Receiver: %d, Amount %f", c,
-                        transaction.getSender(), transaction.getReceiver(), transaction.getAmount()));
-            } else {
-                System.out.println(String.format("%d) None", c));
-            }
-            c += 1;
-        }
 
+        for (Transaction transaction : atm.getTransactionManager().getTransactions()) {
+            System.out.println(String.format("%d)  Sender: %d,  Receiver: %d, Amount %f", c,
+                    transaction.getSender(), transaction.getReceiver(), transaction.getAmount()));
+            c+=1;
+        }
         int transaction = getIntFromUser("Which transaction would you like to undo: ");
         System.out.println(undoTransaction(transaction) ? ("Transaction Undone") : ("Error undoing transaction"));
     }

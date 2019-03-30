@@ -98,7 +98,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="4933f" class="javax.swing.JLabel" binding="enterUsername">
+          <component id="4933f" class="javax.swing.JLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -114,7 +114,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="99d3b" class="javax.swing.JLabel" binding="enterPassword">
+          <component id="99d3b" class="javax.swing.JLabel">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -160,7 +160,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="c6e5d" class="javax.swing.JLabel" binding="clientAsk">
+          <component id="c6e5d" class="javax.swing.JLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -238,7 +238,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="cafcc" class="javax.swing.JLabel" binding="managerAsk">
+          <component id="cafcc" class="javax.swing.JLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -308,7 +308,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="4b296" class="javax.swing.JLabel" binding="numFiveLabel">
+          <component id="4b296" class="javax.swing.JLabel">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -316,7 +316,7 @@
               <text value="Number of $5 bills"/>
             </properties>
           </component>
-          <component id="3d98d" class="javax.swing.JLabel" binding="numTenLabel">
+          <component id="3d98d" class="javax.swing.JLabel">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -324,7 +324,7 @@
               <text value="Number of $10 bills"/>
             </properties>
           </component>
-          <component id="9b5af" class="javax.swing.JLabel" binding="numTwentyLabel">
+          <component id="9b5af" class="javax.swing.JLabel">
             <constraints>
               <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -332,7 +332,7 @@
               <text value="Number of $20 bills"/>
             </properties>
           </component>
-          <component id="ace6f" class="javax.swing.JLabel" binding="depositAmtLabel">
+          <component id="ace6f" class="javax.swing.JLabel">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -352,7 +352,7 @@
               <editor value=""/>
             </properties>
           </component>
-          <component id="eb57c" class="javax.swing.JLabel" binding="numFiftyLabel">
+          <component id="eb57c" class="javax.swing.JLabel">
             <constraints>
               <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -378,7 +378,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="c60d" class="javax.swing.JLabel" binding="depositInAccLabel">
+          <component id="c60d" class="javax.swing.JLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -423,7 +423,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="28120" class="javax.swing.JLabel" binding="summaryText">
+          <component id="28120" class="javax.swing.JLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -481,7 +481,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="aa48a" class="javax.swing.JLabel" binding="transOutLabel">
+          <component id="aa48a" class="javax.swing.JLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -489,7 +489,7 @@
               <text value="Enter the account number of the account you're transferring money out of:"/>
             </properties>
           </component>
-          <component id="17f5c" class="javax.swing.JLabel" binding="transInLabel">
+          <component id="17f5c" class="javax.swing.JLabel">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -497,7 +497,7 @@
               <text value="Enter the account number of the account you're transferring money into:"/>
             </properties>
           </component>
-          <component id="43c11" class="javax.swing.JLabel" binding="transAmtLabel">
+          <component id="43c11" class="javax.swing.JLabel">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -739,7 +739,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="ea12e" class="javax.swing.JLabel" binding="inspectorAsk">
+          <component id="ea12e" class="javax.swing.JLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>

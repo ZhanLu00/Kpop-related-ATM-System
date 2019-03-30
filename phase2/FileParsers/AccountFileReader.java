@@ -7,8 +7,7 @@ import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
 import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
 import ATM.BankAccounts.ExtraAccounts.ForeignCurrencyAccount;
 import ATM.BankAccounts.ExtraAccounts.LotteryAccount;
-import ATM.TimeManager;
-import ATM.Transaction;
+import ATM.Managers.TimeManager;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -1,14 +1,12 @@
 package FileParsers;
 
-import ATM.AccountManager;
-import ATM.BankAccounts.BankAccount;
-import ATM.BillManager;
-import ATM.TimeManager;
+import ATM.Managers.AccountManager;
+import ATM.Managers.BillManager;
+import ATM.Managers.TimeManager;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Time;
 import java.util.Date;
 
 public class AtmFileWriter {

@@ -1,10 +1,13 @@
 package ATM.ActionHandler;
 
 import ATM.*;
+import ATM.Managers.AccountManager;
+import ATM.Managers.BillManager;
+import ATM.Managers.TransactionManager;
+import ATM.Managers.UserManager;
 import ATM.Users.BankManager;
 import ATM.Users.Client;
 import ATM.Users.User;
-import jdk.nashorn.internal.scripts.JO;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -319,7 +322,7 @@ public class ActionHandler {
         });
     }
 
-    
+
     /**
      * bank manager action handler
      */
@@ -327,6 +330,7 @@ public class ActionHandler {
     public void bankManagerOption(){
         viewer.createNewClientButton.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.thepage);
+            createNewClient();
         });
         viewer.undoTransactionButton.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.thepage);
@@ -344,5 +348,15 @@ public class ActionHandler {
             viewer.changePage(viewer.managerOptions, viewer.welcomePage);
         });
     }
+
+    public void createNewClient(){
+        viewer.button1.addActionListener(e->{
+
+
+        });
+
+    }
+
+
 
 }

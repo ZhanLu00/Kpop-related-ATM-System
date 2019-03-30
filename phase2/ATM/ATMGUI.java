@@ -1,5 +1,7 @@
 package ATM;
 
+import ATM.Managers.AccountManager;
+import ATM.Managers.BillManager;
 import ATM.Users.Client;
 import ATM.ActionHandler.ClientActionHandler;
 
@@ -250,19 +252,6 @@ public class ATMGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         atm.welcomePage.setVisible(true);
-    }
-
-    public static void main(String[] args) throws IOException {
-        final ATMGUI atm = new ATMGUI();
-        JFrame frame = new JFrame("ATM");
-        frame.setResizable(false);
-        frame.setLocation(500,300);
-        frame.setSize(600, 500);
-        frame.setContentPane(atm.root);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // frame.pack();
-        frame.setVisible(true);
-//        atm.welcomePage.setVisible(true);
     }
 
     private void createUIComponents() {

@@ -1,4 +1,4 @@
-package ATM;
+package ATM.Managers;
 
 import ATM.BankAccounts.AssetAccounts.ChequingAccount;
 import ATM.BankAccounts.ExtraAccounts.ForeignCurrencyAccount;
@@ -8,6 +8,7 @@ import ATM.BankAccounts.BankAccount;
 import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
 import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
 import ATM.BankAccounts.DebtAccounts.DebtAccount;
+import ATM.Transaction;
 
 import java.util.ArrayList;
 import java.util.Date;

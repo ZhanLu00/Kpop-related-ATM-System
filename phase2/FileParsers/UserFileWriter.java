@@ -1,7 +1,5 @@
 package FileParsers;
 
-import ATM.BankAccounts.BankAccount;
-import ATM.TimeManager;
 import ATM.Users.BankInspector;
 import ATM.Users.BankManager;
 import ATM.Users.Client;
@@ -11,7 +9,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class UserFileWriter {
 

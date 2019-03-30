@@ -1,6 +1,7 @@
-package ATM;
+package ATM.Managers;
 
 import ATM.BankAccounts.BankAccount;
+import ATM.Managers.AccountManager;
 import ATM.Transaction;
 
 import java.util.ArrayList;

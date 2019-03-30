@@ -5,6 +5,8 @@ import ATM.BankAccounts.AssetAccounts.ChequingAccount;
 import ATM.BankAccounts.BankAccount;
 import ATM.BankAccounts.DebtAccounts.DebtAccount;
 import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
+import ATM.Managers.AccountManager;
+import ATM.Managers.BillManager;
 import ATM.Users.Client;
 
 import java.io.BufferedReader;
@@ -13,7 +15,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 public class ClientActionHandler {
     // this class will be handle actions from users

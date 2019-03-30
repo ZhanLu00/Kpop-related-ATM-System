@@ -19,20 +19,6 @@ Part 1: fix problems from phase 1
     Roger & Karen
     + Transactions: add attribute: "type" (further discussion needed)
 
-    Roger & Karen - DONE
-    + History: (in BankAccount) is empty
-
-    Roger & Karen - DONE
-    + BankAccount:
-        - .undoTransaction, if the last transaction was payBill, an error will occur
-        - chequingAccount: there is suppose to have primary withdraw account and non-primary withdraw account
-    Zhan
-    + implemented deposit from primary withdraw account
-
-    Roger & Karen - DONE
-    + AccountManager:
-        - makesure it withdraw from primary withdraw account for chequingAccount
-
     Joyce
     + Testing:
         - need test cases to test our application, this is very important
@@ -44,33 +30,18 @@ https://q.utoronto.ca/courses/68685/pages/project-phase-1-specification-for-the-
 
 
 Part 2: add the following feature
-
-    Roger & Karen - DONE
-    + All Debt accountRequests should have a maximum amount of debt you can incur.
-        - add max_debt in debt attribute
-        - add method in account manager to change the max_debt
-
-
-    Joyce - DONE
-    + Add one more type of account (of your choice) that has at least one property that is different from existing accountRequests. Feel free to look at bank websites for ideas.
-        - lottery account
-
-    Seel- DONE
-    + Add one more type of employee of the bank who has less access than the manager, but can also be a user with their own accountRequests.
-        - cra: can view everything, and send alert to bank manager (no access to cash
-        - supervisor(theif): cash access
-
-    Killed
+    Killed-invoked
     + Make sure you can demo time-sensitive features, like adding interest to savings accountRequests each month.
         - out a file that contains update info of inetest
 
-    Seel - DONE
+    Seel - TODO
     + Improve the manager "undo" functionality. There is more than one way to interpret this statement. For example, you could have unlimited undo capability for the manager, or the ability to specify a number n so that the system undoes n transactions on an account, or you could have undo functionality for a user's previous n transactions (as opposed to an account's previous transactions). You can interpret this statement in any reasonable way that is as complex as the above suggestions.
-        - update the transaction history thingy
+        - undo: improve functionality by add "batch undo"
+            - given a transaction
 
-    Joyce - DONE by seel accidentally sorry
+    Joyce - TODO
     + Refactor so that you can have joint user accountRequests where two distinct users can both withdraw, deposit, and check the balance on the same account.
-        -  this is easy to do
+        -  plz implement into action handler
 
     Seel - DONE
     + transaction Manager:
@@ -78,6 +49,8 @@ Part 2: add the following feature
         - give id, pull all the history
         - undo transactions
         - undo a random transaction
+        todo
+        - plz implement them
 
 
 For detailed informatin, phase 2 specification could be found below:
@@ -119,10 +92,19 @@ Part 3: be creative and add more features to our app!
     + username is "communist leader " + name
 
 
+Additional Todo:
+    Karan & Roger:
+    add profile name (attribute) in user
+    update design uml
+
+
 Office Hour:
     - welcome page: request for creation of new user
     - user page: request for creation of bank account
     - bankManager will need to deal with requests of creations accountRequests (could either accept or decline)
     - GUI: move the main method from ATMGUI to a new class where it run the viewer
     - GUI: split the class into smaller classes, eg. create classes for buttons and different component
+
+
+
 

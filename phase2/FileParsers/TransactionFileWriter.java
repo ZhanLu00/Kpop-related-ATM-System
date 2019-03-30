@@ -1,6 +1,5 @@
 package FileParsers;
 
-import ATM.TimeManager;
 import ATM.Transaction;
 
 import java.io.BufferedWriter;

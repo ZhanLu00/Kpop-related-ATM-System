@@ -52,18 +52,18 @@ public class ActionHandler {
     /**
      * Initialize attributes
      */
-    public ActionHandler(Atm atm,  ATMGUI atmgui){
-        this.accountManager = atm.getAccountManager();
-        this.userManager = atm.getUserManager();
-        this.billManager = atm.getBillManager();
-        this.transactionManager = atm.getTransactionManager();
+    public ActionHandler(ATMGUI atmgui){
+//        this.accountManager = atm.getAccountManager();
+//        this.userManager = atm.getUserManager();
+//        this.billManager = atm.getBillManager();
+//        this.transactionManager = atm.getTransactionManager();
         this.viewer = atmgui;
     }
 
     /**
      * Initialize viewer
      */
-    public void initViewer() throws IOException {
+    public void initViewer(){
         // this will be the title page
         viewer.init();
     }
@@ -328,32 +328,32 @@ public class ActionHandler {
      */
 
     public void bankManagerOption(){
-        viewer.createNewClientButton.addActionListener(e->{
-            viewer.changePage(viewer.managerOptions, viewer.thepage);
-            createNewClient();
-        });
-        viewer.undoTransactionButton.addActionListener(e->{
-            viewer.changePage(viewer.managerOptions, viewer.thepage);
-        });
-        viewer.restockMachineButton.addActionListener(e->{
-            viewer.changePage(viewer.managerOptions, viewer.thepage);
-        });
-        viewer.viewAccountCreationRequestsButton.addActionListener(e->{
-            viewer.changePage(viewer.managerOptions, viewer.thepage);
-        });
-        viewer.showAlertsButton.addActionListener(e->{
-            viewer.changePage(viewer.managerOptions, viewer.thepage);
-        });
-        viewer.logOutManager.addActionListener(e->{
-            viewer.changePage(viewer.managerOptions, viewer.welcomePage);
-        });
+//        viewer.createNewClientButton.addActionListener(e->{
+//            viewer.changePage(viewer.managerOptions, viewer.thepage);
+//            createNewClient();
+//        });
+//        viewer.undoTransactionButton.addActionListener(e->{
+//            viewer.changePage(viewer.managerOptions, viewer.thepage);
+//        });
+//        viewer.restockMachineButton.addActionListener(e->{
+//            viewer.changePage(viewer.managerOptions, viewer.thepage);
+//        });
+//        viewer.viewAccountCreationRequestsButton.addActionListener(e->{
+//            viewer.changePage(viewer.managerOptions, viewer.thepage);
+//        });
+//        viewer.showAlertsButton.addActionListener(e->{
+//            viewer.changePage(viewer.managerOptions, viewer.thepage);
+//        });
+//        viewer.logOutManager.addActionListener(e->{
+//            viewer.changePage(viewer.managerOptions, viewer.welcomePage);
+//        });
     }
 
     public void createNewClient(){
-        viewer.button1.addActionListener(e->{
-
-
-        });
+//        viewer.button1.addActionListener(e->{
+//
+//
+//        });
 
     }
 

@@ -141,6 +141,7 @@ public class ATMGUI {
     public JButton seeAllTransactionsButton;
     public JButton checkClientSAccountButton;
     public JButton logOutInspector;
+    public JButton moreOptionsButton; // TODO THIS BUTTON GOES TO CLIENT OPTIONS PAGE SINCE INSPECTOR CAN DO EVERYTHING CLIENTS CAN DO
 
     // SEND MANAGER MESSAGE OPTION
     public JPanel sendManagerMsg;

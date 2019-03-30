@@ -46,16 +46,29 @@ public class BankManagerActionHandler {
      * Returns true if account was successfully created, false otherwise.
      */
     public boolean createAccountForUser(String username, String accountType){
-        Client accountuser = ((Client) atm.getUserManager().getUser(username));
+        Client accountUser = ((Client) atm.getUserManager().getUser(username));
 
-        if (accountuser == null) {
+        if (accountUser == null) {
             return false;
         }
 
         BankAccount newAccount = atm.getAccountManager().createAccount(accountType);
 
         if (newAccount != null) {
-            accountuser.addAccounts(newAccount.getId());
+            // This loops through list of account the client owns if the account created is a chequing account.
+            // If this is the first chequing Account the client owns, primary will be set to true.
+            if (newAccount instanceof ChequingAccount) {
+                boolean primary = false;
+                for (int id : accountUser.getAccounts()) {
+                    BankAccount account = atm.getAccountManager().getAccount(id);
+                    if(account instanceof ChequingAccount && ((ChequingAccount) account).getPrimary()) {
+                        primary = true;
+                    }
+                }
+                ((ChequingAccount) newAccount).setPrimary(!primary);
+            }
+
+            accountUser.addAccounts(newAccount.getId());
             return true;
         }
         return false;

@@ -189,6 +189,13 @@ public class ActionHandler {
     }
 
     public void accountSummary(){
+        // a field for accounts sum
+        // include creation date
+
+
+        // net total
+
+        // a field for transaction history
 
     }
 
@@ -295,8 +302,8 @@ public class ActionHandler {
     public void changePswd(){
         viewer.changePswd.addActionListener(e->{
             // todo why this returns String
-            Object pswd = viewer.newPassword.getPassword();
-            if (pswd instanceof String) {
+            char[] pswd = viewer.newPassword.getPassword();
+            if (pswd.length == 0) {
                 boolean succeed = clientActionHandler.changepswd(pswd);
                 if (succeed) {
                     JOptionPane.showMessageDialog(null, "password changed, please remember it!");

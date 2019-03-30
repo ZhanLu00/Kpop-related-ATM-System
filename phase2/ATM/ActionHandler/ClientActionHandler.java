@@ -150,6 +150,31 @@ public class ClientActionHandler {
     }
 
 
+    public boolean deposit(int fives, int tens, int twenties, int fifties){
+        ArrayList<Integer> accounts = client.getAccounts();
+        for (int accountN:accounts){
+            BankAccount account = accountManager.getAccount(accountN);
+            if (account instanceof ChequingAccount){
+                if (((ChequingAccount) account).getPrimary()){
+                    account.deposit(fives*5+tens*10+twenties*20+fifties*50);
+                    billManager.deposit(fives, tens, twenties, fifties);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean changepswd(char[] pswd){
+        if (pswd.length <= 6 || pswd.length >= 15){
+            return false;
+        }else {
+            this.client.setPassword(pswd.toString());
+            return true;
+        }
+    }
+
+
 
     public void displayCommandLineInterface() throws IOException {
         // basic info
@@ -286,14 +311,6 @@ public class ClientActionHandler {
             System.out.println("Request declined");
         }
     }
-    // TODO: I've added a primary chequing account option. Maybe this can iterate over the list of account the user has
-    // TODO: finish this
-    public boolean deposit(int fives, int tens, int twenties, int fifties){
-        accountManager.getAccount(accountN).deposit(fives*5+tens*10+twenties*20+fifties*50);
-        billManager.deposit(fives, tens, twenties, fifties);
-        return true;
-    }
-
     public void inputTen() throws IOException {
         // request a creation of an account
         System.out.println("Account type that you want to create");

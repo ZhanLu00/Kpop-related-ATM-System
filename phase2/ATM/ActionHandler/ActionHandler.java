@@ -176,9 +176,15 @@ public class ActionHandler {
         });
         viewer.depositMoneyButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.depositOption);
+            deposit();
+        });
+        viewer.changePasswordButton.addActionListener(e->{
+            viewer.changePage(viewer.clientOptions, viewer.changePassword);
+            changePswd();
         });
         viewer.goBackClient.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.welcomePage);
+            currentUser = null;
         });
     }
 
@@ -265,29 +271,19 @@ public class ActionHandler {
     }
 
     public void deposit(){
-        public JSpinner numFives;
-        public JSpinner numTens;
-        public JSpinner numTwenty;
-        public JSpinner numFifty;
-        public JFormattedTextField depositAccNum;
-        public JButton depositButton;
-        public JButton goBackDeposit;
 
         viewer.depositButton.addActionListener(e->{
             int numFives, numTens, numTwenty, numFifty;
-            try{
-                numFives = Integer.parseInt(viewer.numFives.getToolTipText());
-                numTens = Integer.parseInt(viewer.numTens.getToolTipText());
-                numTwenty = Integer.parseInt(viewer.numTwenty.getToolTipText());
-                numFifty = Integer.parseInt(viewer.numFifty.getToolTipText());
-                boolean succeed = clientActionHandler.deposit(numFives, numTens, numTwenty, numFifty);
-                if (succeed){
-                    JOptionPane.showMessageDialog(null, "deposit succeed");
-                }else{
-                    JOptionPane.showMessageDialog(null, "something is wrong");
-                }
-            }catch (Exception exp){
-                JOptionPane.showMessageDialog(null, "Please check your input");
+
+            numFives = Integer.parseInt(viewer.numFives.getToolTipText());
+            numTens = Integer.parseInt(viewer.numTens.getToolTipText());
+            numTwenty = Integer.parseInt(viewer.numTwenty.getToolTipText());
+            numFifty = Integer.parseInt(viewer.numFifty.getToolTipText());
+            boolean succeed = clientActionHandler.deposit(numFives, numTens, numTwenty, numFifty);
+            if (succeed){
+                JOptionPane.showMessageDialog(null, "deposit succeed");
+            }else{
+                JOptionPane.showMessageDialog(null, "something is wrong");
             }
         });
 
@@ -295,6 +291,27 @@ public class ActionHandler {
             viewer.changePage(viewer.depositOption, viewer.clientOptions);
         });
     }
+
+    public void changePswd(){
+        viewer.changePswd.addActionListener(e->{
+            // todo why this returns String
+            Object pswd = viewer.newPassword.getPassword();
+            if (pswd instanceof String) {
+                boolean succeed = clientActionHandler.changepswd(pswd);
+                if (succeed) {
+                    JOptionPane.showMessageDialog(null, "password changed, please remember it!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "please enter a password in between 6 to 15 character");
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Please check your input");
+            }
+        });
+        viewer.goBackPassword.addActionListener(e->{
+            viewer.changePage(viewer.changePassword, viewer.clientOptions);
+        });
+    }
+
 
     public void bankManagerOption(){
 

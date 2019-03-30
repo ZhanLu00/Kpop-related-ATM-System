@@ -37,7 +37,7 @@ Part 2: add the following feature
     Seel - TODO
     + Improve the manager "undo" functionality. There is more than one way to interpret this statement. For example, you could have unlimited undo capability for the manager, or the ability to specify a number n so that the system undoes n transactions on an account, or you could have undo functionality for a user's previous n transactions (as opposed to an account's previous transactions). You can interpret this statement in any reasonable way that is as complex as the above suggestions.
         - undo: improve functionality by add "batch undo"
-            - given a transaction
+            - given a transactiona
 
     Joyce - TODO
     + Refactor so that you can have joint user accountRequests where two distinct users can both withdraw, deposit, and check the balance on the same account.
@@ -96,6 +96,12 @@ Additional Todo:
     Karan & Roger:
     add profile name (attribute) in user
     update design uml
+
+    Seel- todo
+    make sure to change file path to phase 2
+
+    Joyce - todo
+    make a data base
 
 
 Office Hour:

@@ -32,7 +32,7 @@ public class BankManagerActionHandler {
     // Client
 
     // Bank manager's info is nessesary or not?
-//    private BankManager bankManager;
+    // private BankManager bankManager;
     private Atm atm;
     private BufferedReader kbd = new BufferedReader(new InputStreamReader(System.in));
 
@@ -48,10 +48,12 @@ public class BankManagerActionHandler {
     public boolean createAccountForUser(String username, String accountType){
         Client accountUser = ((Client) atm.getUserManager().getUser(username));
 
+        // the false condition:
         if (accountUser == null) {
             return false;
         }
 
+        // create a new account that is processed by the account manager
         BankAccount newAccount = atm.getAccountManager().createAccount(accountType);
 
         if (newAccount != null) {
@@ -59,15 +61,19 @@ public class BankManagerActionHandler {
             // If this is the first chequing Account the client owns, primary will be set to true.
             if (newAccount instanceof ChequingAccount) {
                 boolean primary = false;
+                // loop through all ids of a given user
                 for (int id : accountUser.getAccounts()) {
+                    // get the account instance of the given id
                     BankAccount account = atm.getAccountManager().getAccount(id);
+                    // the account is a chequing account and it is a primary account
                     if(account instanceof ChequingAccount && ((ChequingAccount) account).getPrimary()) {
                         primary = true;
                     }
                 }
+                // change the status of a given account to the opposite.
                 ((ChequingAccount) newAccount).setPrimary(!primary);
             }
-
+            // add an account to the accountUser
             accountUser.addAccounts(newAccount.getId());
             return true;
         }
@@ -75,16 +81,19 @@ public class BankManagerActionHandler {
     }
 
     public boolean fulfillAccountRequest(int requestNum) {
+        // test for invalid request number
         if (requestNum >= atm.getAccountManager().getAccountRequests().size() || requestNum < 0) {
             return false;
         }
-
+        // get the request object and remove it from the request list
         String[] request = atm.getAccountManager().getAccountRequests().remove(requestNum);
         String username = request[0];
         String accountType = request[1];
+        // do some basic setups and create account
         return createAccountForUser(username, accountType);
     }
 
+    // repeatedly call on the previous method
     public boolean fulfillAllAccountRequests() {
         boolean allCompleted = true;
         while (atm.getAccountManager().getAccountRequests().size() > 0) {
@@ -92,13 +101,17 @@ public class BankManagerActionHandler {
                 allCompleted = false;
             }
         }
+        // if all changes are done, return Tre otherwise False
         return allCompleted;
     }
 
+    // increase the amount of each cash by tge given number
     public void restockBills(int numFives, int numTens, int numTwenties, int numFifties) {
         atm.getBillManager().deposit(numFives, numTens, numTwenties, numFifties);
     }
 
+    // add new client if it is not under the current manager's management
+    // assign a random password to the new client and return its username and password
     public String[] addClient(String username) {
         if (atm.getUserManager().userExists(username)) {
             return new String[]{"USER NOT CREATED. USERNAME ALREADY EXISTS", ""};
@@ -113,14 +126,17 @@ public class BankManagerActionHandler {
         return new String[]{username, randomPassword};
     }
 
+    // return an alert from atm alert array list
     public ArrayList<String> getAlerts() throws IOException {
         return atm.readAlerts();
     }
 
+    // clear all alerts
     public void clearAccounts() throws IOException {
         atm.clearAlerts();
     }
 
+    //
     private void setAtmDate(int day, int month, int year) {
         atm.getTimeManager().getDate().setDate(day);
         atm.getTimeManager().getDate().setMonth(month);

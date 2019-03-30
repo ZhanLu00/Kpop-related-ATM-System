@@ -23,9 +23,9 @@ public class ATMGUI {
     public BillManager billManager;
     public Client client;
 
-    // FIXME what's messages file?
-    Atm atm = new Atm("phase2/ATM/BankUsers.txt","phase2/ATM/BankAccounts.txt",
-            "phase2/ATM/AtmInfo.txt", "phase2/ATM/alerts.txt", "phase2/", "");
+//    // FIXME what's messages file?
+//    Atm atm = new Atm("phase2/ATM/BankUsers.txt","phase2/ATM/BankAccounts.txt",
+//            "phase2/ATM/AtmInfo.txt", "phase2/ATM/alerts.txt", "phase2/", "");
 
 
     /**
@@ -166,83 +166,12 @@ public class ATMGUI {
     }
 
 
-    public ATMGUI() throws IOException {
+    public void ATMGUI(){
 
-        // TODO separate methods into helper methods to avoid long method code smell?
 
-        goBackClient.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                changePage(clientOptions, welcomePage);
-            }
-        });
-        logOutManager.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                changePage(managerOptions, welcomePage);
-            }
-        });
-        depositMoneyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                changePage(clientOptions, depositOption);
-            }
-        });
-        // only allows number input
-        // TODO prevent pasted text from allowing text?
-        depositAccNum.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                super.keyTyped(e);
-                char c = e.getKeyChar();
-                if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))){
-                    e.consume();
-                }
-            }
-        });
-        // TODO -- does this work if acc num is correct
-        depositButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Object accountNum = depositAccNum.getValue();
-                if (client.accountNumbers.contains(accountNum)){
-                    int fives = (int) numFives.getValue();
-                    int tens = (int) numTens.getValue();
-                    int twenties = (int) numTwenty.getValue();
-                    int fifties = (int) numFifty.getValue();
-                    accountManager.getAccount((int)accountNum).deposit(fives*5+tens*10+twenties*20+fifties*50);
-                    billManager.deposit(fives, tens, twenties, fifties);
-                    JOptionPane.showMessageDialog(null, "Deposit complete, here is your new " +
-                            "balance: " + accountManager.getAccount((int)accountNum).getBalance());
-                }else{
-                    JOptionPane.showMessageDialog(null, "Account number does not exist. " +
-                            "Please try again.");
-                    depositAccNum.setText("");
-                }
-
-            }
-        });
-        goBackDeposit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                changePage(accCreation, clientOptions);
-            }
-        });
-        goBackTransfer.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                changePage(transferOption, clientOptions);
-            }
-        });
-        goBackBill.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                changePage(payBill, clientOptions);
-            }
-        });
     }
 
-    public void init()throws IOException{
+    public void init(){
         final ATMGUI atm = new ATMGUI();
         JFrame frame = new JFrame("ATM");
         frame.setResizable(false);

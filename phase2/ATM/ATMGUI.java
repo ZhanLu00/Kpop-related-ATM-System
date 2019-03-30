@@ -50,8 +50,6 @@ public class ATMGUI {
 
     // RETURNING USER PAGE
     public JPanel returningUserPage;
-    public JLabel enterUsername;
-    public JLabel enterPassword;
     public JTextField usernameText;
     public JPasswordField passwordText;
     public JButton loginButton;
@@ -59,7 +57,6 @@ public class ATMGUI {
 
     // CLIENT OPTIONS
     public JPanel clientOptions;
-    public JLabel clientAsk;
     public JButton viewAccountSummaryButton;
     public JButton withdrawMoneyButton;
     public JButton transferMoneyButton;
@@ -70,7 +67,6 @@ public class ATMGUI {
 
     // MANAGER OPTIONS
     public JPanel managerOptions;
-    public JLabel managerAsk;
     public JButton createNewClientButton;
     public JButton undoTransactionButton;
     public JButton restockMachineButton;
@@ -80,12 +76,6 @@ public class ATMGUI {
 
     // DEPOSIT OPTION
     public JPanel depositOption;
-    public JLabel numFiveLabel;
-    public JLabel numTenLabel;
-    public JLabel numTwentyLabel;
-    public JLabel depositAmtLabel;
-    public JLabel numFiftyLabel;
-    public JLabel depositInAccLabel;
     public JSpinner numFives;
     public JSpinner numTens;
     public JSpinner numTwenty;
@@ -96,7 +86,6 @@ public class ATMGUI {
 
     // SUMMARY OF ACCOUNTS OPTION
     public JPanel summaryOfAccounts;
-    public JLabel summaryText;
     public JTextArea accountSummaries;
     public JButton goBackSummary;
     public JButton makeANewAccountButton;
@@ -109,9 +98,6 @@ public class ATMGUI {
     public JFormattedTextField transInAccNum;
     public JFormattedTextField transAmt;
     public JButton transferButton;
-    public JLabel transOutLabel;
-    public JLabel transInLabel;
-    public JLabel transAmtLabel;
 
     // PAY BILL OPTION
     public JPanel payBill;
@@ -137,7 +123,6 @@ public class ATMGUI {
 
     // INSPECTOR OPTIONS
     public JPanel inspectorOptions;
-    public JLabel inspectorAsk;
     public JButton sendMessageToManagerButton;
     public JButton seeAllTransactionsButton;
     public JButton checkClientSAccountButton;

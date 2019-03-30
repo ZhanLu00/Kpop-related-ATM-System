@@ -16,6 +16,7 @@ public class AtmApplication {
     private static BufferedReader kbd = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args) throws IOException {
+        // todo add data base reader
 //        Atm atm = new Atm("BankUsers.txt", "BankAccounts.txt", "AtmInfo.txt");
 //        atm.printText();
 //        atm.save();

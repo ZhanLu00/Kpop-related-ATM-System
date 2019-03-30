@@ -97,6 +97,12 @@ Additional Todo:
     add profile name (attribute) in user
     update design uml
 
+    Seel- todo
+    make sure to change file path to phase 2
+
+    Joyce - todo
+    make a data base
+
 
 Office Hour:
     - welcome page: request for creation of new user

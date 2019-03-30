@@ -24,7 +24,7 @@ public abstract class BankAccount {
     public static final String LOTTERY ="lottery";
     public static final String FOREIGN_CURRENCY = "foreigncurrency";
 
-
+    // this is the id of next one
     protected static int nextId = 0;
 
     protected int id;
@@ -107,7 +107,7 @@ public abstract class BankAccount {
         if(this.withdraw(amount)) {
             try {
                 String bill = amount + ", " + receiver;
-                BufferedWriter writer = new BufferedWriter(new FileWriter("outgoing.txt"));
+                BufferedWriter writer = new BufferedWriter(new FileWriter("/outgoing.txt"));
                 writer.append(bill);
             } catch (IOException e) {
                 e.printStackTrace();

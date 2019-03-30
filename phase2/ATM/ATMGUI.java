@@ -24,8 +24,8 @@ public class ATMGUI {
     public Client client;
 
     // FIXME what's messages file?
-    Atm atm = new Atm("phase2/ATM/BankUsers.txt","phase2/ATM/BankAccounts.txt",
-            "phase2/ATM/AtmInfo.txt", "phase2/ATM/alerts.txt", "phase2/", "");
+    Atm atm = new Atm("phase2/ATM/testfiles/BankUsers.txt","phase2/ATM/testfiles/BankAccounts.txt",
+            "phase2/ATM/testfiles/AtmInfo.txt", "phase2/ATM/testfiles/alerts.txt", "phase2/ATM/testfiles", "");
 
 
     /**

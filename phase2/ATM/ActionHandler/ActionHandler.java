@@ -114,7 +114,7 @@ public class ActionHandler {
         viewer.loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean loginSuccess = login(viewer.usernameText.getText(), viewer.passwordText.getText());
+                boolean loginSuccess = login(viewer.usernameText.getText(), viewer.passwordText.getPassword().toString());
                 if (loginSuccess){
                     if (userType == "client"){
                         viewer.changePage(viewer.returningUserPage, viewer.clientOptions);
@@ -319,9 +319,30 @@ public class ActionHandler {
         });
     }
 
+    
+    /**
+     * bank manager action handler
+     */
 
     public void bankManagerOption(){
-
+        viewer.createNewClientButton.addActionListener(e->{
+            viewer.changePage(viewer.managerOptions, viewer.thepage);
+        });
+        viewer.undoTransactionButton.addActionListener(e->{
+            viewer.changePage(viewer.managerOptions, viewer.thepage);
+        });
+        viewer.restockMachineButton.addActionListener(e->{
+            viewer.changePage(viewer.managerOptions, viewer.thepage);
+        });
+        viewer.viewAccountCreationRequestsButton.addActionListener(e->{
+            viewer.changePage(viewer.managerOptions, viewer.thepage);
+        });
+        viewer.showAlertsButton.addActionListener(e->{
+            viewer.changePage(viewer.managerOptions, viewer.thepage);
+        });
+        viewer.logOutManager.addActionListener(e->{
+            viewer.changePage(viewer.managerOptions, viewer.welcomePage);
+        });
     }
 
 }

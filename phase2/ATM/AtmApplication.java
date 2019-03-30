@@ -20,7 +20,11 @@ public class AtmApplication {
 //        atm.printText();
 //        atm.save();
 
-        Atm atm = new Atm("phase1/ATM/BankUsers.txt","phase1/ATM/BankAccounts.txt","phase1/ATM/AtmInfo.txt", "phase1/ATM/alerts.txt", "","");
+        // TODO add transaction & messages file
+        //  delete acc request and client request bc bank manager will store it?
+        Atm atm = new Atm("phase2/ATM/testfiles/BankUsers.txt","phase2/ATM/testfiles/BankAccounts.txt",
+                "phase2/ATM/testfiles/AtmInfo.txt", "phase2/ATM/testfiles/alerts.txt",
+                "","", "", "");
 
         while(true) {
             String username = getStringFromUser("Username (-1 to exit): ");

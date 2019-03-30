@@ -38,15 +38,15 @@ public class ATMGUI {
     public JPanel welcomePage;
     public JButton newUser;
     public JButton returningUser;
-    public JLabel welcomeText;
 
 
-    // TODO NEW USER PAGE
+    // NEW USER PAGE
     public JPanel newUserPage;
-    public JComboBox accTypes;
     public JButton goBackNew;
-    public JFormattedTextField userPhone;
+    public JFormattedTextField userDesiredName;
     public JButton accRequestButton;
+    public JButton requestStatus;
+    public JComboBox newAccType;
 
     // RETURNING USER PAGE
     public JPanel returningUserPage;
@@ -94,7 +94,7 @@ public class ATMGUI {
     public JButton depositButton;
     public JButton goBackDeposit;
 
-    // TODO SUMMARY OF ACCOUNTS OPTION
+    // SUMMARY OF ACCOUNTS OPTION
     public JPanel summaryOfAccounts;
     public JLabel summaryText;
     public JTextArea accountSummaries;
@@ -129,7 +129,7 @@ public class ATMGUI {
     public JButton withdrawButton;
 
 
-    // TODO CHANGE PASS OPTION
+    // CHANGE PASS OPTION
     public JPanel changePassword;
     public JPasswordField newPassword;
     public JButton goBackPassword;
@@ -152,13 +152,58 @@ public class ATMGUI {
 
     // INSPECTOR CLIENT SUMMARY
     public JPanel clientSummary;
-    public JPanel allTransactions;
     public JFormattedTextField clientUsername;
     public JButton seeClientAccountSummaryButton;
     public JButton seeClientIncomingTransactionsButton;
     public JButton seeClientOutgoingTransactionsButton;
     public JTextArea clientSummaryOrTransaction;
     public JButton goBackClientSummary;
+
+    // ALL TRANSACTIONS PAGE
+    public JPanel allTransactions;
+    public JTextArea allTransactionText;
+
+    // NEW BANK ACCOUNT PAGE
+    public JPanel newAccount;
+    public JComboBox accType;
+    public JButton goBackNewAcc;
+    public JButton createAccountButton;
+
+    // BANK MANAGER CREATING A NEW CLIENT PAGE
+    public JPanel newClient;
+    public JTextField createUserManager;
+    public JPasswordField createPassManager;
+    public JButton goBackCreateAccManager;
+    public JButton createAccNew;
+    public JComboBox accTypeNew;
+
+    // RESTOCK MACHINE PAGE
+    public JPanel restockMachine;
+    public JButton goBackRestock;
+    public JButton restockATM;
+    public JSpinner restockFives;
+    public JSpinner restockTens;
+    public JSpinner restockTwenty;
+    public JSpinner restockFifty;
+
+    // UNDO TRANSACTION PAGE
+    public JPanel undoTransaction;
+    public JButton goBackUndo;
+    public JButton undoButton;
+    public JList recentTrans;
+
+    // VIEW NEW USER CREATION REQUESTS PAGE
+    public JPanel viewUserRequests;
+    public JButton goBackUserRequest;
+    public JButton acceptUserRequestButton;
+    public JButton declineUserRequestButton;
+    public JList userRequestsList;
+
+    // VIEW ALERTS PAGE
+    public JPanel viewAlerts;
+    public JButton goBackAlert;
+    public JButton clearAlertsButton;
+    public JTextArea alertText;
 
 
     public void changePage(JPanel currentPage, JPanel newPage){
@@ -167,7 +212,7 @@ public class ATMGUI {
     }
 
 
-    public void ATMGUI(){
+    public ATMGUI(){
 
 
     }
@@ -185,18 +230,27 @@ public class ATMGUI {
     }
 
     private void createUIComponents() {
-        numFives = new JSpinner(new SpinnerNumberModel(0, 0, 100, 1));
-        numTens = new JSpinner(new SpinnerNumberModel(0, 0, 100, 1));
-        numTwenty = new JSpinner(new SpinnerNumberModel(0, 0, 100, 1));
-        numFifty = new JSpinner(new SpinnerNumberModel(0, 0, 100, 1));
+        // ALLOW CLIENTS TO DEPOSIT AT LEAST 0 OF EACH NUMBER OF BILLS
+        numFives = new JSpinner(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
+        numTens = new JSpinner(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
+        numTwenty = new JSpinner(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
+        numFifty = new JSpinner(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
+
+        // ALLOW BANK MANAGERS TO RESTOCK AT LEAST 0 OF EACH NUMBER OF BILLS
+        restockFives = new JSpinner(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
+        restockTens = new JSpinner(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
+        restockTwenty = new JSpinner(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
+        restockFifty = new JSpinner(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
 
 
-        // TODO put this stuff in the button action for "view acc summary"
-        StringBuilder accountSummaries = new StringBuilder();
-        Map accountBalance = ClientActionHandler.checkBalance();
-        for (Object accountNumber:accountBalance.keySet()){
-            accountSummaries.append(accountNumber+": "+ accountBalance.get(accountNumber) + "\n");
-        }
-        summaryText.setText(String.valueOf(accountSummaries));
+
+
+//        // TODO put this stuff in the button action for "view acc summary"
+//        StringBuilder accountSummaries = new StringBuilder();
+//        Map accountBalance = ClientActionHandler.checkBalance();
+//        for (Object accountNumber:accountBalance.keySet()){
+//            accountSummaries.append(accountNumber+": "+ accountBalance.get(accountNumber) + "\n");
+//        }
+//        summaryText.setText(String.valueOf(accountSummaries));
     }
 }

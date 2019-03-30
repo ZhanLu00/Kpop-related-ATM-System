@@ -1,6 +1,7 @@
 package ATM.ActionHandler;
 import ATM.*;
 import ATM.BankAccounts.AssetAccounts.AssetAccount;
+import ATM.BankAccounts.AssetAccounts.ChequingAccount;
 import ATM.BankAccounts.BankAccount;
 import ATM.BankAccounts.DebtAccounts.DebtAccount;
 import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
@@ -172,6 +173,7 @@ public class ClientActionHandler {
             System.out.println("Enter 8 to pay a bill");
             System.out.println("Enter 9 to make a deposit");
             System.out.println("Enter 10 to request a creation of an account");
+            System.out.println("Enter 11 to set your primary chequing account");
 
             int input = Integer.parseInt(kbd.readLine());
 
@@ -194,6 +196,8 @@ public class ClientActionHandler {
                 inputNine();
             }else if (input == 10){
                 inputTen();
+            }else if (input == 11){
+                inputEleven();
             }
         }
     }
@@ -292,13 +296,36 @@ public class ClientActionHandler {
 
     public void inputTen() throws IOException {
         // request a creation of an account
-        System.out.println("account type that you want to create");
+        System.out.println("Account type that you want to create");
         String type = kbd.readLine();
         try {
             accountManager.requestNewAccount(client.getUsername(), type);
-            System.out.println("request send");
+            System.out.println("Request send");
         }catch (Exception e){
-            System.out.println("request declined");
+            System.out.println("Request declined");
+        }
+    }
+
+    /**
+     * Sets an chequing account as primary.
+     */
+    public void inputEleven() throws IOException {
+        System.out.println("Enter the account number that you want to select as new primary account");
+        int id = Integer.parseInt(kbd.readLine());
+        BankAccount newPrimary = accountManager.getAccount(id);
+
+        if (newPrimary instanceof ChequingAccount) {
+            for (int accountId : client.getAccounts()) {
+                BankAccount account = accountManager.getAccount(accountId);
+                if (account instanceof ChequingAccount && ((ChequingAccount) account).getPrimary()){
+                    ((ChequingAccount) account).setPrimary(false);
+                    break;
+                }
+            }
+            ((ChequingAccount) newPrimary).setPrimary(true);
+            System.out.print("Request has been done");
+        } else {
+            System.out.println("Request declined. The account you entered is not a chequing account");
         }
     }
 }

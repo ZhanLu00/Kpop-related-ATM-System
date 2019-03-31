@@ -184,7 +184,7 @@ public class ATMGUI {
     public JTextField jointAccNum;
     public JTextField jointUser;
     public JButton goBackJoinAcc;
-    public JButton JoinButton;
+    public JButton joinButton;
     public JFormattedTextField joinAccNum;
 
     // SET PRIMARY CHEQUING ACCOUNT

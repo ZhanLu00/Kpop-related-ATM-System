@@ -66,6 +66,8 @@ public class TransactionManager {
     /**
      * Undoes the transaction at a given index.
      * The transaction undone will be removed from transactions.
+     * Only transactions between accounts can be undone.
+     * Returns true if transaction is undone, false otherwise.
      */
     public boolean undoTransaction(int id, AccountManager accountManager) {
         if (id < 0 || id >= transactions.size()) {
@@ -74,15 +76,18 @@ public class TransactionManager {
 
         Transaction transaction = transactions.get(id);
 
-        double amount = transaction.getAmount();
+        if (transaction.getType().equals("transfer")){
+            double amount = transaction.getAmount();
 
-        BankAccount sender = accountManager.getAccount(transaction.getSender());
-        BankAccount receiver = accountManager.getAccount(transaction.getReceiver());
+            BankAccount sender = accountManager.getAccount(transaction.getSender());
+            BankAccount receiver = accountManager.getAccount(transaction.getReceiver());
 
 
-        if (receiver.withdraw(amount) && sender.deposit(amount) && transaction.getType().equals("transfer")) {
-            transactions.remove(id);
-            return true;
+            if (receiver.withdraw(amount) && sender.deposit(amount) && transaction.getType().equals("transfer")) {
+                transactions.remove(id);
+                return true;
+            }
+            return false;
         }
         return false;
     }

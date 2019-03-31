@@ -20,15 +20,15 @@ public class LineOfCreditAccountTest {
 
     @Test
     public void testDeposit() {
-        assertEquals(acc.getBalance(), 400);
+        assertEquals(acc.getBalance(), 400, 0.01);
         acc.deposit(100);
-        assertEquals(acc.getBalance(), 300);
+        assertEquals(acc.getBalance(), 300, 0.01);
     }
 
     @Test
     public void testWithdraw(){
-        assertFalse(acc.withdraw(21));
-        assertTrue(acc.withdraw(20));
-        assertEquals(acc.getBalance(), 420);
+        assertFalse(acc.withdraw(1 + acc.getMaxDebt() - acc.getBalance()));
+        assertTrue(acc.withdraw(acc.getMaxDebt() - acc.getBalance()));
+        assertEquals(acc.getBalance(), acc.getMaxDebt(), 0.01);
     }
 }

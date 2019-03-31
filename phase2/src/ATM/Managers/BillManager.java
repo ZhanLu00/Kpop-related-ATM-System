@@ -1,4 +1,4 @@
-package ATM.Managers;
+package src.ATM.Managers;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

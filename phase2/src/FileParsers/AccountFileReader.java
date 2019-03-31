@@ -1,13 +1,13 @@
-package FileParsers;
+package src.FileParsers;
 
-import ATM.BankAccounts.AssetAccounts.ChequingAccount;
-import ATM.BankAccounts.AssetAccounts.SavingsAccount;
-import ATM.BankAccounts.BankAccount;
-import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
-import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
-import ATM.BankAccounts.ExtraAccounts.ForeignCurrencyAccount;
-import ATM.BankAccounts.ExtraAccounts.LotteryAccount;
-import ATM.Managers.TimeManager;
+import src.ATM.BankAccounts.AssetAccounts.ChequingAccount;
+import src.ATM.BankAccounts.AssetAccounts.SavingsAccount;
+import src.ATM.BankAccounts.BankAccount;
+import src.ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
+import src.ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
+import src.ATM.BankAccounts.ExtraAccounts.ForeignCurrencyAccount;
+import src.ATM.BankAccounts.ExtraAccounts.LotteryAccount;
+import src.ATM.Managers.TimeManager;
 
 import java.io.BufferedReader;
 import java.io.File;

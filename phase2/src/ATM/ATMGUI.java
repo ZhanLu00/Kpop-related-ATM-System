@@ -1,8 +1,8 @@
-package ATM;
+package src.ATM;
 
-import ATM.Managers.AccountManager;
-import ATM.Managers.BillManager;
-import ATM.Users.Client;
+import src.ATM.Managers.AccountManager;
+import src.ATM.Managers.BillManager;
+import src.ATM.Users.Client;
 
 import javax.swing.*;
 import java.text.NumberFormat;

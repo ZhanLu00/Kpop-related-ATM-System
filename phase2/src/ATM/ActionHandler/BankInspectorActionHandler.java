@@ -1,11 +1,11 @@
-package ATM.ActionHandler;
+package src.ATM.ActionHandler;
 
-import ATM.Atm;
-import ATM.BankAccounts.BankAccount;
-import ATM.Managers.TimeManager;
-import ATM.Transaction;
-import ATM.Users.BankInspector;
-import ATM.Users.Client;
+import src.ATM.Atm;
+import src.ATM.BankAccounts.BankAccount;
+import src.ATM.Managers.TimeManager;
+import src.ATM.Transaction;
+import src.ATM.Users.BankInspector;
+import src.ATM.Users.Client;
 
 import java.io.*;
 import java.util.ArrayList;

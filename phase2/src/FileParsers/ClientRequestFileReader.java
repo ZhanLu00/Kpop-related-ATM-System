@@ -1,4 +1,4 @@
-package FileParsers;
+package src.FileParsers;
 
 import java.io.*;
 import java.util.ArrayList;

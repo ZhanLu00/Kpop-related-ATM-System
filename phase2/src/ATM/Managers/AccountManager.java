@@ -1,14 +1,14 @@
-package ATM.Managers;
+package src.ATM.Managers;
 
-import ATM.BankAccounts.AssetAccounts.ChequingAccount;
-import ATM.BankAccounts.ExtraAccounts.ForeignCurrencyAccount;
-import ATM.BankAccounts.ExtraAccounts.LotteryAccount;
-import ATM.BankAccounts.AssetAccounts.SavingsAccount;
-import ATM.BankAccounts.BankAccount;
-import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
-import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
-import ATM.BankAccounts.DebtAccounts.DebtAccount;
-import ATM.Transaction;
+import src.ATM.BankAccounts.AssetAccounts.ChequingAccount;
+import src.ATM.BankAccounts.ExtraAccounts.ForeignCurrencyAccount;
+import src.ATM.BankAccounts.ExtraAccounts.LotteryAccount;
+import src.ATM.BankAccounts.AssetAccounts.SavingsAccount;
+import src.ATM.BankAccounts.BankAccount;
+import src.ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
+import src.ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
+import src.ATM.BankAccounts.DebtAccounts.DebtAccount;
+import src.ATM.Transaction;
 
 import java.util.ArrayList;
 import java.util.Date;

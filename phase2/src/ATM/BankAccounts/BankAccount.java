@@ -15,9 +15,9 @@ import java.util.Date;
  */
 public abstract class BankAccount {
 
-    protected static int nextId = 0;
-    protected final int ID;
-    protected final Date DATE_CREATED;
+    private static int nextId = 0;
+    private final int ID;
+    private final Date DATE_CREATED;
     protected double balance = 0;
 
     public BankAccount(Date dateCreated, double initialBalance) {
@@ -72,7 +72,7 @@ public abstract class BankAccount {
         if(this.withdraw(amount)) {
             try {
                 String bill = amount + ", " + receiver;
-                BufferedWriter writer = new BufferedWriter(new FileWriter("/outgoing.txt"));
+                BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/src/ATM/testfiles/outgoing.txt"));
                 writer.append(bill);
             } catch (IOException e) {
                 e.printStackTrace();

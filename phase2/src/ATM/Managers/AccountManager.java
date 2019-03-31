@@ -9,6 +9,7 @@ import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
 import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
 import ATM.Transaction;
 import java.util.*;
+import java.util.function.Consumer;
 
 /**
  * An AccountManager class responsible for storing accounts.
@@ -51,8 +52,7 @@ public class AccountManager implements Iterable<BankAccount> {
     }
 
     /**
-     * Takes an id number and returns the BankAccount with corresponding id.
-     * If id > accounts.size(), method returns null.
+     * Takes an *id* and returns the BankAccount with corresponding id, if it exists.
      */
     public BankAccount getAccount(int id) {
         if (id < accounts.size()) {
@@ -63,15 +63,15 @@ public class AccountManager implements Iterable<BankAccount> {
     }
 
     /**
-     * Transfers money between two accounts.
-     * Returns true if the transaction is successful, false otherwise.
+     * Attempts to transfer *amount* from one account to another.
+     *
+     * Returns the Transaction if successful, and null otherwise.
      */
     public Transaction transfer(double amount, int senderId, int receiverId) {
         BankAccount sender = this.getAccount(senderId);
         BankAccount receiver = this.getAccount(receiverId);
         if(sender.withdraw(amount) && receiver.deposit(amount)) {
             return new Transaction(amount, senderId, receiverId, "transfer");
-
         } else {
             return null;
         }

@@ -16,6 +16,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Read accounts for the atm from a file
+ */
 public class AccountFileReader {
     private ArrayList<BankAccount> accounts;
 
@@ -32,6 +35,10 @@ public class AccountFileReader {
         }
     }
 
+    /**
+     * @param accountInfo
+     * Create account from a line in the this.fileName textfile
+     */
     private void createAccount(String accountInfo) {
         String[] separated = accountInfo.split(",");
         String type = separated[0].replace(",","");

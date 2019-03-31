@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Write the accounts from the atm to a text file
+ */
 public class AccountFileWriter {
     private String fileName;
     private ArrayList<BankAccount> accounts;
@@ -20,6 +23,10 @@ public class AccountFileWriter {
         this.accounts = accounts;
     }
 
+    /**
+     * @throws IOException
+     * Write the bank accounts to the this.fileName text file
+     */
     public void write() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
         writer.write("");

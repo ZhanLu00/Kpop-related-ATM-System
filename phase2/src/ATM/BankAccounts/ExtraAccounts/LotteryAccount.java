@@ -13,20 +13,8 @@ public class LotteryAccount extends LineOfCreditAccount {
     /**
      * Multiplies balance by a factor between 0.5 and 1.5 (inclusive).
      */
-    public void collectInterest() {
+    public void play() {
         this.balance *= ThreadLocalRandom.current().nextDouble(0.5, 1.5);
     }
 
-    /**
-     * Attempts to withdraw *amount* from account.
-     * Succeeds if balance >= amount.
-     */
-    public boolean withdraw(double amount) {
-        if (this.balance >= amount) {
-            this.balance -= amount;
-            return true;
-        } else {
-            return false;
-        }
-    }
 }

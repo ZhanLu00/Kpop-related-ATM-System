@@ -37,7 +37,7 @@ public class AccountManager implements Iterable<BankAccount> {
                 ((SavingsAccount) account).collectInterest();
             }
             else if (account instanceof LotteryAccount) {
-                ((LotteryAccount) account).collectInterest();
+                ((LotteryAccount) account).play();
             }
         }
     }

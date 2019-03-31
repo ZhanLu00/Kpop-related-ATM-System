@@ -67,7 +67,6 @@ public class TransactionManager {
      * Undoes the transaction at a given index.
      * The transaction undone will be removed from transactions.
      */
-    // FIXME CAN'T UNDO BILLS?
     public boolean undoTransaction(int id, AccountManager accountManager) {
         if (id < 0 || id >= transactions.size()) {
             return false;
@@ -81,7 +80,7 @@ public class TransactionManager {
         BankAccount receiver = accountManager.getAccount(transaction.getReceiver());
 
 
-        if (receiver.withdraw(amount) && sender.deposit(amount)) {
+        if (receiver.withdraw(amount) && sender.deposit(amount) && transaction.getType().equals("transfer")) {
             transactions.remove(id);
             return true;
         }

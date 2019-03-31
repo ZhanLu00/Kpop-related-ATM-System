@@ -1,4 +1,4 @@
-# src.ATM
+# ATM
 
 This program allows users can create to create or access their bank accountRequests(debt or asset).
 From there, users are able to view their account balance(s), transfer money between their accountRequests, transfer money to another user's account, withdraw money, pay bills, deposit money by entering a cheque or cash into the machine.

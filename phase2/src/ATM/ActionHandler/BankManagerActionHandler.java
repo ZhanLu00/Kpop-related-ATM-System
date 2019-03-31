@@ -183,7 +183,7 @@ public class BankManagerActionHandler {
      */
     public String[] createCommunismAccount(String username) {
         String[] login = addClient("communist leader " + username);
-        createAccountForUser(login[0], BankAccount.CHEQUING);
+        createAccountForUser(login[0], "CHEQUING_ACCOUNT");
         int account = ((Client) atm.getUser(login[0], login[1])).getAccounts().get(0);
         transferAllToAccount(account);
         return login;

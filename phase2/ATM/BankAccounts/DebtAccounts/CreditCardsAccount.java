@@ -1,7 +1,4 @@
 package ATM.BankAccounts.DebtAccounts;
-import ATM.BankAccounts.AssetAccounts.AssetAccount;
-import ATM.Transaction;
-
 import java.util.Date;
 
 
@@ -10,10 +7,9 @@ import java.util.Date;
  */
 public class CreditCardsAccount extends DebtAccount {
 
-    public CreditCardsAccount(Date dateCreated, double balance) {
-        super(dateCreated, balance);
+    public CreditCardsAccount(Date dateCreated, double initialBalance) {
+        super(dateCreated, initialBalance);
     }
-
 
     /**
      * Withdraws the given amount out of an account.

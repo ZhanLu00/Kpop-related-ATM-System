@@ -14,7 +14,6 @@ public class SavingsAccount extends AssetAccount {
         super(date, balance);
     }
 
-
     /**
      * Withdraws the given amount out of an account.
      * Withdrawal is successful if balance >= amount.

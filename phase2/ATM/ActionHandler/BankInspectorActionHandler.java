@@ -39,7 +39,7 @@ public class BankInspectorActionHandler extends ClientActionHandler {
         for (Integer accountNumber : selectedClient.getAccounts()) {
             BankAccount account = atm.getAccountManager().getAccount(accountNumber);
 
-            result.add(String.format("Type: %s, Balance: %f, Date Created: %s", BankAccount.getAccountType(account), account.getBalance(), TimeManager.dateToString(account.getDATE_CREATED())));
+            result.add(String.format("Type: %s, Balance: %f, Date Created: %s", BankAccount.getAccountType(account), account.getBalance(), TimeManager.dateToString(account.getDateCreated())));
         }
 
         return result;

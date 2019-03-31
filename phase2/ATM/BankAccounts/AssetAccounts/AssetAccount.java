@@ -10,13 +10,13 @@ import java.util.Date;
  */
 public abstract class AssetAccount extends BankAccount {
 
-
-    protected AssetAccount(Date date, double balance) {
-        super( date, balance);
+    public AssetAccount(Date date, double initialBalance) {
+        super(date, initialBalance);
     }
 
-    public double getBalance() {
-        return this.balance;
+    public boolean deposit(double amount) {
+        this.balance += amount;
+        return true;
     }
 
 }

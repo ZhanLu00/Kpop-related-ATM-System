@@ -255,7 +255,7 @@ public class ClientActionHandler {
             accountNumber = Integer.parseInt(kbd.readLine());
         }
         // the date of creation of one of their accounts
-        System.out.println(accountManager.getAccount(accountNumber).getDATE_CREATED());
+        System.out.println(accountManager.getAccount(accountNumber).getDateCreated());
     }
     public void inputFiveSix(int input) throws IOException {
         System.out.println("Enter the account that you want to transfer out");

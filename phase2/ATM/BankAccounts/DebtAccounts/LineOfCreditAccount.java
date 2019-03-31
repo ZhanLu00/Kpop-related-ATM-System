@@ -1,7 +1,4 @@
 package ATM.BankAccounts.DebtAccounts;
-import ATM.BankAccounts.AssetAccounts.AssetAccount;
-import ATM.Transaction;
-
 import java.util.Date;
 
 
@@ -10,10 +7,9 @@ import java.util.Date;
  */
 public class LineOfCreditAccount extends DebtAccount {
 
-    public LineOfCreditAccount(Date dateCreated, double balance) {
-        super(dateCreated, balance);
+    public LineOfCreditAccount(Date dateCreated, double initialBalance) {
+        super(dateCreated, initialBalance);
     }
-
 
     /**
      * Withdraws the given amount out of an account.
@@ -21,8 +17,8 @@ public class LineOfCreditAccount extends DebtAccount {
      * The method returns true if withdraw is successful, false otherwise.
      */
     public boolean withdraw(double amount) {
-        if (this.balance - amount <= -MAX_DEBT) {
-            this.balance -= amount;
+        if (this.balance + amount <= this.getMaxDebt()) {
+            this.balance += amount;
             return true;
         } else {
             return false;

@@ -35,7 +35,7 @@ public class AccountFileWriter {
                 balance = account.getBalance();
             }
 
-            Date date = account.getDATE_CREATED();
+            Date date = account.getDateCreated();
             String dateString = TimeManager.dateToString(date);
 
             if (account instanceof ForeignCurrencyAccount) {

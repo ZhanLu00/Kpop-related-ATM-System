@@ -10,16 +10,10 @@ import java.util.Date;
  */
 public class ChequingAccount extends AssetAccount {
 
-    private boolean primary;
-
-    public ChequingAccount(Date date, double balance, boolean primary) {
-        super(date,balance);
-        this.primary = primary;
+    public ChequingAccount(Date date, double initialBalance) {
+        super(date, initialBalance);
     }
 
-    public boolean getPrimary() { return primary; }
-
-    public void setPrimary(boolean primary) { this.primary = primary; }
     /**
      * Withdraws the given amount out of an account.
      * Withdrawal is successful if balance after withdrawal >= -100.

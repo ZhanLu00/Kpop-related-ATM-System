@@ -10,14 +10,32 @@ import java.util.Date;
  */
 public abstract class DebtAccount extends BankAccount {
 
-    protected DebtAccount(Date dateCreated, double balance) {
-        super(dateCreated, balance);
+    private double maxDebt = 420;
+
+    protected DebtAccount(Date dateCreated, double initialBalance) {
+        super(dateCreated, initialBalance);
     }
 
-    public static int MAX_DEBT = 420;
+    public boolean deposit(double amount) {
+        this.balance -= amount;
+        return true;
+    }
+
+    public double getMaxDebt() {
+        return this.maxDebt;
+    }
+
+    public boolean setMaxDebt(double newMaxDebt) {
+        if (newMaxDebt > 0) {
+            this.maxDebt = newMaxDebt;
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public double getBalance() {
-        return -this.balance;
+        return this.balance;
     }
 
 }

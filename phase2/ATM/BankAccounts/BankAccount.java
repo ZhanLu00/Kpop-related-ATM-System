@@ -17,83 +17,49 @@ import java.util.Date;
  */
 public abstract class BankAccount {
 
-    public static final String LINE_OF_CREDIT = "lineofcredit";
-    public static final String CREDIT_CARD = "creditcard";
-    public static final String SAVINGS = "savings";
-    public static final String CHEQUING ="chequing" ;
-    public static final String LOTTERY ="lottery";
-    public static final String FOREIGN_CURRENCY = "foreigncurrency";
-
-    // this is the id of next one
     protected static int nextId = 0;
-
-    protected int id;
+    protected final int ID;
     protected final Date DATE_CREATED;
-
     protected double balance = 0;
 
 
-    public BankAccount(Date date, double balance) {
-
-        this.id = nextId;
-        nextId += 1;
-
+    public BankAccount(Date date, double initialBalance) {
+        this.ID = nextId;
+        BankAccount.nextId += 1;
         this.DATE_CREATED = date;
-
-        this.balance = balance;
-
+        this.balance = initialBalance;
     }
-
-
-    /** Getters **/
-
-    public abstract double getBalance();
-
 
     public int getId() {
-        return id;
+        return this.ID;
     }
 
-    /**
-     * Returns the type of an account in a String format.
-     */
-    public static String getAccountType(BankAccount account) {
-        if (account instanceof ChequingAccount) {
-            return BankAccount.CHEQUING;
+    public String getType() {
+        if (this instanceof ChequingAccount) {
+            return "CHEQUING_ACCOUNT";
+        } else if (this instanceof SavingsAccount) {
+            return "SAVINGS_ACCOUNT";
+        } else if (this instanceof CreditCardsAccount) {
+            return "CREDIT_CARD_ACCOUNT";
+        } else if (this instanceof LineOfCreditAccount) {
+            return "LINE_OF_CREDIT_ACCOUNT";
+        } else if (this instanceof LotteryAccount) {
+            return "LOTTERY_ACCOUNT";
+        } else if (this instanceof ForeignCurrencyAccount) {
+            return "FOREIGN_CURRENCY_ACCOUNT";
+        } else {
+            return "UNKNOWN_ACCOUNT";
         }
-        else if (account instanceof SavingsAccount) {
-            return BankAccount.SAVINGS;
-        }
-        else if (account instanceof LotteryAccount) {
-            return BankAccount.LOTTERY;
-        }
-        else if (account instanceof CreditCardsAccount) {
-            return BankAccount.CREDIT_CARD;
-        }
-        else if (account instanceof LineOfCreditAccount) {
-            return BankAccount.LINE_OF_CREDIT;
-        }
-        else if (account instanceof ForeignCurrencyAccount) {
-            return BankAccount.FOREIGN_CURRENCY;
-        }
-        return "account";
     }
 
-    /**
-     * Deposits the given amount into an account.
-     */
-    public boolean deposit(double amount) {
-        this.balance += amount;
-        return true;
+    public double getBalance() {
+        return this.balance;
     }
 
-    /**
-     * Withdraws the given amount out of an account.
-     */
+    public abstract boolean deposit(double amount);
     public abstract boolean withdraw(double amount);
 
-
-    public Date getDATE_CREATED() {
+    public Date getDateCreated() {
         return DATE_CREATED;
     }
 

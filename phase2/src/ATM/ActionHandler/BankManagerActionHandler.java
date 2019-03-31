@@ -146,6 +146,31 @@ public class BankManagerActionHandler {
         return atm.getTransactionManager().undoTransaction(id, atm.getAccountManager());
     }
 
+    /**
+     * join account for user
+     */
+    public boolean joinAccount(String user1, String user2, int acc){
+        boolean succeed;
+        // find users
+        if (atm.getUserManager().userExists(user1) && atm.getUserManager().userExists(user2)){
+            // add acc in
+            if (atm.getUserManager().getUser(user1).getAccounts().contains(acc)){
+                if (atm.getUserManager().getUser(user2).getAccounts().contains(acc)){
+                }else{
+                    atm.getUserManager().getUser(user2).addAccount(acc);
+                }
+            }else{
+                if (atm.getUserManager().getUser(user2).getAccounts().contains(acc)){
+                }else{
+                    atm.getUserManager().getUser(user2).addAccount(acc);
+                }
+            }
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     /** Input Readers **/
     private int getIntFromUser(String display) throws IOException {
         System.out.print(display);

@@ -1,6 +1,5 @@
 package ATM.ActionHandler;
 
-import ATM.*;
 import ATM.Managers.AccountManager;
 import ATM.Managers.BillManager;
 import ATM.Managers.TransactionManager;
@@ -10,7 +9,6 @@ import ATM.Users.BankManager;
 import ATM.Users.Client;
 import ATM.Users.User;
 import ATM.ATMGUI;
-import ATM.ActionHandler.BankInspectorActionHandler;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -443,6 +441,10 @@ public class ActionHandler {
             viewer.changePage(viewer.managerOptions, viewer.viewUserRequests);
             viewUserCreationRequests();
         });
+        viewer.joinAccountsButton.addActionListener(e->{
+            viewer.changePage(viewer.managerOptions, viewer.joinAccounts);
+            jointAccounts();
+        });
         viewer.logOutManager.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.welcomePage);
             currentUser = null;
@@ -567,6 +569,24 @@ public class ActionHandler {
         });
         viewer.goBackUserRequest.addActionListener(e -> {
             viewer.changePage(viewer.viewUserRequests, viewer.managerOptions);
+        });
+    }
+
+    public void jointAccounts(){
+
+        viewer.JoinButton.addActionListener(e->{
+            // get input
+            int accNum;
+            String user1, user2;
+            accNum = Integer.parseInt(viewer.joinAccNum.getText());
+            user1 = viewer.jointUser1.getText();
+            user2 = viewer.jointUser2.getText();
+
+            // call func
+
+        });
+        viewer.goBackJoinAcc.addActionListener(e->{
+            viewer.changePage(viewer.joinAccounts, viewer.managerOptions);
         });
     }
 

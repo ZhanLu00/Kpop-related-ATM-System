@@ -236,5 +236,7 @@ public class ATMGUI {
         restockTwenty = new JSpinner(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
         restockFifty = new JSpinner(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
 
+        accountRequestsList.setSelectedIndex(0);
+        userRequestsList.setSelectedIndex(0);
     }
 }

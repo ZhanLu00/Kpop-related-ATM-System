@@ -1,5 +1,6 @@
 package ATM.ActionHandler;
 
+import ATM.BankAccounts.BankAccount;
 import ATM.Managers.AccountManager;
 import ATM.Managers.BillManager;
 import ATM.Managers.TransactionManager;
@@ -438,7 +439,6 @@ public class ActionHandler {
             }catch (Exception exp){
                 viewer.popUp("Please check your input.");
             }
-
         });
         viewer.goBackPrimary.addActionListener(e->{
             viewer.changePage(viewer.setPrimary, viewer.clientOptions);
@@ -532,15 +532,16 @@ public class ActionHandler {
     public void restockMachine(){
         viewer.restockATM.addActionListener(e -> {
             int numFives, numTens, numTwenty, numFifty;
-
-            numFives = (int) viewer.restockFives.getValue();
-            numTens = (int) viewer.restockTens.getValue();
-            numTwenty = (int) viewer.restockTwenty.getValue();
-            numFifty = (int) viewer.restockFifty.getValue();
-
-            // TODO CHECK IF VALID FIRST?
-            bankManagerActionHandler.restockBills(numFives, numTens, numTwenty, numFifty);
-            viewer.popUp("ATM has been restocked.");
+            try{
+                numFives = (int) viewer.restockFives.getValue();
+                numTens = (int) viewer.restockTens.getValue();
+                numTwenty = (int) viewer.restockTwenty.getValue();
+                numFifty = (int) viewer.restockFifty.getValue();
+                bankManagerActionHandler.restockBills(numFives, numTens, numTwenty, numFifty);
+                viewer.popUp("ATM has been restocked.");
+            }catch (Exception exp){
+                viewer.popUp("Please check your input.");
+            }
         });
         viewer.goBackRestock.addActionListener(e -> {
             viewer.changePage(viewer.restockMachine, viewer.managerOptions);
@@ -548,16 +549,20 @@ public class ActionHandler {
     }
 
     public void viewAccountCreationRequests(){
-        Object[] accRequests = accountManager.getAccountRequests().toArray();
-        viewer.accountRequestsList.setSelectedIndex(0);
-        viewer.accountRequestsList.setListData(accRequests);
+        ArrayList<String[]> accRequests = accountManager.getAccountRequests();
+        Object[] accRequestObject = accRequests.toArray();
+        viewer.accountRequestsList.setListData(accRequestObject);
         int selectedIndex = viewer.accountRequestsList.getSelectedIndex();
 
-        // TODO FINISH -- NEED TO GET USERNAME OF CLIENT WHO REQUESTED, WHAT TYPE IS viewer.accountRequestsList.getSelectedValue()
+        // TODO UPDATE REQUEST MANAGER STATUS -- ACCEPTED
         viewer.acceptAccountRequestButton.addActionListener(e -> {
-            String username = viewer.accountRequestsList.getSelectedValue().toString();
+            String username = accRequests.get(selectedIndex)[0];
+            String accType = accRequests.get(selectedIndex)[1];
+            User user = userManager.getUser(username);
+            BankAccount acc = accountManager.createAccount(accType);
+            ((Client) user).addAccounts(acc.getId());
         });
-
+        // TODO UPDATE REQUEST MANAGER STATUS -- DECLINED
         viewer.declineAccountRequestButton.addActionListener(e -> {
 
         });
@@ -589,15 +594,19 @@ public class ActionHandler {
     }
 
     public void viewUserCreationRequests(){
-        // FIXME -- WHERE TO GET LIST OF USER REQUESTS
-        Object[] userRequests = null;
-        viewer.userRequestsList.setSelectedIndex(0);
-        viewer.userRequestsList.setListData(userRequests);
-        int selectedIndex = viewer.userRequestsList.getSelectedIndex();
+        ArrayList<String> userRequests = userManager.getClientRequests();
+        Object[] userRequestObject = userRequests.toArray();
+        viewer.userRequestsList.setListData(userRequestObject);
+        int selectedIndex = viewer.accountRequestsList.getSelectedIndex();
 
+        // TODO UPDATE THE REQUEST STATUS OF USER
         viewer.acceptUserRequestButton.addActionListener(e -> {
+            String username = userRequests.get(selectedIndex);
+            String[] user = bankManagerActionHandler.addClient(username);
+            // TODO DELIVER THE USERNAME AND PASSWORD TO THE USER?
         });
 
+        // TODO UPDATE THE REQUEST STATUS OF USER
         viewer.declineUserRequestButton.addActionListener(e -> {
 
         });

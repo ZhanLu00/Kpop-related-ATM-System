@@ -35,7 +35,7 @@ Part 2: add the following feature
         - undo: improve functionality by add "batch undo"
             - given a transactiona
 
-    Joyce - TODO
+    Joyce - TODO i thought this was one by seel?
     + Refactor so that you can have joint user accountRequests where two distinct users can both withdraw, deposit, and check the balance on the same account.
         -  plz implement into action handler
 

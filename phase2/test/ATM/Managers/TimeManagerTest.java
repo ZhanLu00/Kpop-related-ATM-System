@@ -24,7 +24,7 @@ public class TimeManagerTest {
 
     @Test
     public void testDateStringConversion(){
-        assertEquals(TimeManager.dateFromString("2019 mar 25"), new Date(2019, 3, 25);
+        assertEquals(TimeManager.dateFromString("2019 mar 25"), new Date(2019, 3, 25));
         assertEquals(TimeManager.dateToString(new Date(2019, 3, 25)), "2019 mar 25");
     }
 

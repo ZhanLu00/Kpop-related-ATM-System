@@ -32,4 +32,11 @@ public class AtmTesting {
         actionHandler.initOperator();
     }
 
+    public void loadData(String fileName){
+
+    }
+
+
+
+
 }

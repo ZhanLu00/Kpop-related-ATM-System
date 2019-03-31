@@ -1,9 +1,9 @@
-package src.FileParsers;
+package FileParsers;
 
-import src.ATM.Users.BankInspector;
-import src.ATM.Users.BankManager;
-import src.ATM.Users.Client;
-import src.ATM.Users.User;
+import ATM.Users.BankInspector;
+import ATM.Users.BankManager;
+import ATM.Users.Client;
+import ATM.Users.User;
 
 import java.io.*;
 import java.util.ArrayList;

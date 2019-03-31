@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="src.ATM.ATMGUI">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ATM.ATMGUI">
   <grid id="27dc6" binding="root" layout-manager="CardLayout" hgap="0" vgap="0">
     <constraints>
       <xy x="22" y="-21" width="999" height="503"/>
@@ -114,12 +114,12 @@
             </constraints>
             <properties>
               <model>
-                <item value="Chequing Account"/>
-                <item value="Savings Account"/>
-                <item value="Credit Card Account"/>
-                <item value="Line of Credit Account"/>
-                <item value="Foreign Currency Account"/>
-                <item value="Lottery Account"/>
+                <item value="CHEQUING_ACCOUNT"/>
+                <item value="SAVINGS_ACCOUNT"/>
+                <item value="CREDIT_CARD_ACCOUNT"/>
+                <item value="LINE_OF_CREDIT_ACCOUNT"/>
+                <item value="FOREIGN_CURRENCY_ACCOUNT"/>
+                <item value="LOTTERY_ACCOUNT"/>
               </model>
             </properties>
           </component>
@@ -266,7 +266,7 @@
           </component>
         </children>
       </grid>
-      <grid id="724e2" binding="managerOptions" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="724e2" binding="managerOptions" layout-manager="GridLayoutManager" row-count="5" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <card name="Card5"/>
@@ -278,7 +278,7 @@
         <children>
           <component id="cafcc" class="javax.swing.JLabel">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font size="20"/>
@@ -304,7 +304,7 @@
           </component>
           <component id="e55c1" class="javax.swing.JButton" binding="restockMachineButton" default-binding="true">
             <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Restock Machine"/>
@@ -312,7 +312,7 @@
           </component>
           <component id="6eb8" class="javax.swing.JButton" binding="viewAccountCreationRequestsButton" default-binding="true">
             <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="View Account Creation Requests"/>
@@ -328,10 +328,18 @@
           </component>
           <component id="4026d" class="javax.swing.JButton" binding="logOutManager">
             <constraints>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Log out"/>
+            </properties>
+          </component>
+          <component id="43589" class="javax.swing.JButton" binding="viewUserCreationRequestsButton">
+            <constraints>
+              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="View User Creation Requests"/>
             </properties>
           </component>
         </children>
@@ -802,7 +810,7 @@
               <text value="See All Transactions"/>
             </properties>
           </component>
-          <component id="8696" class="javax.swing.JButton" binding="checkClientSAccountButton" default-binding="true">
+          <component id="8696" class="javax.swing.JButton" binding="checkClientsAccountButton">
             <constraints>
               <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -941,7 +949,7 @@
           </component>
         </children>
       </grid>
-      <grid id="cbea6" binding="allTransactions" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="cbea6" binding="allTransactions" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <card name="Card15"/>
@@ -967,6 +975,14 @@
               </grid>
             </constraints>
             <properties/>
+          </component>
+          <component id="6426d" class="javax.swing.JButton" binding="goBackTransactions">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Go back"/>
+            </properties>
           </component>
         </children>
       </grid>
@@ -994,12 +1010,12 @@
             </constraints>
             <properties>
               <model>
-                <item value="Chequing Account"/>
-                <item value="Savings Account"/>
-                <item value="Credit Card Account"/>
-                <item value="Line of Credit Account"/>
-                <item value="Foreign Currency Account"/>
-                <item value="Lottery Account"/>
+                <item value="CHEQUING_ACCOUNT"/>
+                <item value="SAVINGS_ACCOUNT"/>
+                <item value="CREDIT_CARD_ACCOUNT"/>
+                <item value="LINE_OF_CREDIT_ACCOUNT"/>
+                <item value="FOREIGN_CURRENCY_ACCOUNT"/>
+                <item value="LOTTERY_ACCOUNT"/>
               </model>
             </properties>
           </component>
@@ -1021,7 +1037,7 @@
           </component>
         </children>
       </grid>
-      <grid id="9164" binding="newClient" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="9164" binding="newClient" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <card name="Card17"/>
@@ -1039,14 +1055,6 @@
               <text value="Enter your client's desired new username:"/>
             </properties>
           </component>
-          <component id="bab7b" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Enter your client's desired new password:"/>
-            </properties>
-          </component>
           <component id="7aa0" class="javax.swing.JTextField" binding="createUserManager">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
@@ -1055,25 +1063,17 @@
             </constraints>
             <properties/>
           </component>
-          <component id="d5c0e" class="javax.swing.JPasswordField" binding="createPassManager">
+          <component id="6a6cb" class="javax.swing.JButton" binding="goBackCreateUserManager">
             <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties/>
-          </component>
-          <component id="6a6cb" class="javax.swing.JButton" binding="goBackCreateAccManager">
-            <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Go back"/>
             </properties>
           </component>
-          <component id="e069d" class="javax.swing.JButton" binding="createAccNew">
+          <component id="e069d" class="javax.swing.JButton" binding="createUserNew">
             <constraints>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Create Account"/>
@@ -1081,7 +1081,7 @@
           </component>
           <component id="b9935" class="javax.swing.JLabel">
             <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="What type of account would your client like?"/>
@@ -1089,16 +1089,16 @@
           </component>
           <component id="1c086" class="javax.swing.JComboBox" binding="accTypeNew">
             <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <model>
-                <item value="Chequing Account"/>
-                <item value="Savings Account"/>
-                <item value="Credit Card Account"/>
-                <item value="Line of Credit Account"/>
-                <item value="Foreign Currency Account"/>
-                <item value="Lottery Account"/>
+                <item value="CHEQUING_ACCOUNT"/>
+                <item value="SAVINGS_ACCOUNT"/>
+                <item value="CREDIT_CARD_ACCOUNT"/>
+                <item value="LINE_OF_CREDIT_ACCOUNT"/>
+                <item value="FOREIGN_CURRENCY_ACCOUNT"/>
+                <item value="LOTTERY_ACCOUNT"/>
               </model>
             </properties>
           </component>
@@ -1223,7 +1223,7 @@
               <text value="Undo Transaction"/>
             </properties>
           </component>
-          <component id="f48e0" class="javax.swing.JList" binding="recentTrans">
+          <component id="f48e0" class="javax.swing.JList" binding="recentTrans" custom-create="true">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="50"/>
@@ -1324,6 +1324,60 @@
           <component id="9389d" class="javax.swing.JTextArea" binding="alertText">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="50"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+        </children>
+      </grid>
+      <grid id="f06a2" binding="viewAccountRequests" layout-manager="GridLayoutManager" row-count="3" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <card name="Card22"/>
+        </constraints>
+        <properties>
+          <background color="-5872691"/>
+          <enabled value="true"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="657d8" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font size="20"/>
+              <text value="Here is a list of new account requests:"/>
+            </properties>
+          </component>
+          <component id="46ce2" class="javax.swing.JButton" binding="goBackAccRequest">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Go back"/>
+            </properties>
+          </component>
+          <component id="fa8b3" class="javax.swing.JButton" binding="declineAccountRequestButton" default-binding="true">
+            <constraints>
+              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Decline Account Request"/>
+            </properties>
+          </component>
+          <component id="e6b51" class="javax.swing.JButton" binding="acceptAccountRequestButton" default-binding="true">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Accept Account Request"/>
+            </properties>
+          </component>
+          <component id="be6fc" class="javax.swing.JList" binding="accountRequestsList">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="50"/>
               </grid>
             </constraints>

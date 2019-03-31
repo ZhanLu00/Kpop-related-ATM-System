@@ -1,7 +1,5 @@
-package src.ATM.BankAccounts.AssetAccounts;
-
-import src.ATM.BankAccounts.BankAccount;
-
+package ATM.BankAccounts.AssetAccounts;
+import ATM.BankAccounts.BankAccount;
 import java.util.Date;
 
 
@@ -10,8 +8,8 @@ import java.util.Date;
  */
 public abstract class AssetAccount extends BankAccount {
 
-    public AssetAccount(Date date, double initialBalance) {
-        super(date, initialBalance);
+    public AssetAccount(Date dateCreated, double initialBalance) {
+        super(dateCreated, initialBalance);
     }
 
     public boolean deposit(double amount) {

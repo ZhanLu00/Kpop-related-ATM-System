@@ -1,4 +1,4 @@
-package src.ATM.Managers;
+package ATM.Managers;
 
 import java.util.Date;
 

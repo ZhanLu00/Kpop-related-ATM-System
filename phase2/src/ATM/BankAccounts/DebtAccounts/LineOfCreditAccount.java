@@ -1,4 +1,4 @@
-package src.ATM.BankAccounts.DebtAccounts;
+package ATM.BankAccounts.DebtAccounts;
 
 import java.util.Date;
 
@@ -13,9 +13,8 @@ public class LineOfCreditAccount extends DebtAccount {
     }
 
     /**
-     * Withdraws the given amount out of an account.
-     * If the amount after withdrawal is less than the maximum debt that can incur, the withdraw is unsuccessful.
-     * The method returns true if withdraw is successful, false otherwise.
+     * Attempts to withdraw *amount* from account.
+     * Succeeds if balance after withdrawal <= maxDebt.
      */
     public boolean withdraw(double amount) {
         if (this.balance + amount <= this.getMaxDebt()) {

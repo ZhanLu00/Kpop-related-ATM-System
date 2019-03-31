@@ -1,14 +1,14 @@
-package src.ATM.BankAccounts.ExtraAccounts;
+package ATM.BankAccounts.ExtraAccounts;
 
-import src.ATM.BankAccounts.BankAccount;
+import ATM.BankAccounts.BankAccount;
 
 import java.util.Date;
 
 public class ForeignCurrencyAccount extends BankAccount {
     double exchangeRate;
     double foreignCurrencyBalance;
-    public ForeignCurrencyAccount(Date date, double balance, double exchangeRate){
-        super(date, balance);
+    public ForeignCurrencyAccount(Date date, double initialBalance, double exchangeRate){
+        super(date, initialBalance);
         this.exchangeRate = exchangeRate;
         this.foreignCurrencyBalance = exchangeRate * this.balance;
     }

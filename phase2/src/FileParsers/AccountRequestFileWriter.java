@@ -1,4 +1,4 @@
-package src.FileParsers;
+package FileParsers;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

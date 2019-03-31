@@ -1,8 +1,9 @@
-package src.ATM;
+package ATM;
 
-import src.ATM.Managers.AccountManager;
-import src.ATM.Managers.BillManager;
-import src.ATM.Users.Client;
+import ATM.Managers.AccountManager;
+import ATM.Managers.BillManager;
+import ATM.Users.Client;
+import jdk.nashorn.internal.scripts.JO;
 
 import javax.swing.*;
 import java.text.NumberFormat;
@@ -66,6 +67,7 @@ public class ATMGUI {
     public JButton viewAccountCreationRequestsButton;
     public JButton showAlertsButton;
     public JButton logOutManager;
+    public JButton viewUserCreationRequestsButton;
 
     // DEPOSIT OPTION
     public JPanel depositOption;
@@ -118,7 +120,7 @@ public class ATMGUI {
     public JPanel inspectorOptions;
     public JButton sendMessageToManagerButton;
     public JButton seeAllTransactionsButton;
-    public JButton checkClientSAccountButton;
+    public JButton checkClientsAccountButton;
     public JButton logOutInspector;
     public JButton moreOptionsButton; // TODO THIS BUTTON GOES TO CLIENT OPTIONS PAGE SINCE INSPECTOR CAN DO EVERYTHING CLIENTS CAN DO
 
@@ -140,6 +142,7 @@ public class ATMGUI {
     // ALL TRANSACTIONS PAGE
     public JPanel allTransactions;
     public JTextArea allTransactionText;
+    public JButton goBackTransactions;
 
     // NEW BANK ACCOUNT PAGE
     public JPanel newAccount;
@@ -150,9 +153,8 @@ public class ATMGUI {
     // BANK MANAGER CREATING A NEW CLIENT PAGE
     public JPanel newClient;
     public JTextField createUserManager;
-    public JPasswordField createPassManager;
-    public JButton goBackCreateAccManager;
-    public JButton createAccNew;
+    public JButton goBackCreateUserManager;
+    public JButton createUserNew;
     public JComboBox accTypeNew;
 
     // RESTOCK MACHINE PAGE
@@ -183,10 +185,22 @@ public class ATMGUI {
     public JButton clearAlertsButton;
     public JTextArea alertText;
 
+    // VIEW NEW ACCOUNT CREATION REQUESTS PAGE
+    public JPanel viewAccountRequests;
+    public JButton goBackAccRequest;
+    public JButton declineAccountRequestButton;
+    public JButton acceptAccountRequestButton;
+    public JList accountRequestsList;
+
+
 
     public void changePage(JPanel currentPage, JPanel newPage){
         currentPage.setVisible(false);
         newPage.setVisible(true);
+    }
+
+    public void popUp(String message){
+        JOptionPane.showMessageDialog(null, message);
     }
 
 
@@ -220,15 +234,5 @@ public class ATMGUI {
         restockTwenty = new JSpinner(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
         restockFifty = new JSpinner(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
 
-
-
-
-//        // TODO put this stuff in the button action for "view acc summary"
-//        StringBuilder accountSummaries = new StringBuilder();
-//        Map accountBalance = ClientActionHandler.checkBalance();
-//        for (Object accountNumber:accountBalance.keySet()){
-//            accountSummaries.append(accountNumber+": "+ accountBalance.get(accountNumber) + "\n");
-//        }
-//        summaryText.setText(String.valueOf(accountSummaries));
     }
 }

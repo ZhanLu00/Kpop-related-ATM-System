@@ -1,15 +1,14 @@
-package src.ATM.ActionHandler;
-
-import src.ATM.*;
-import src.ATM.BankAccounts.AssetAccounts.AssetAccount;
-import src.ATM.BankAccounts.AssetAccounts.ChequingAccount;
-import src.ATM.BankAccounts.BankAccount;
-import src.ATM.BankAccounts.DebtAccounts.DebtAccount;
-import src.ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
-import src.ATM.Managers.AccountManager;
-import src.ATM.Managers.BillManager;
-import src.ATM.Users.Client;
-import src.ATM.Atm;
+package ATM.ActionHandler;
+import ATM.*;
+import ATM.BankAccounts.AssetAccounts.AssetAccount;
+import ATM.BankAccounts.AssetAccounts.ChequingAccount;
+import ATM.BankAccounts.BankAccount;
+import ATM.BankAccounts.DebtAccounts.DebtAccount;
+import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
+import ATM.Managers.AccountManager;
+import ATM.Managers.BillManager;
+import ATM.Users.Client;
+import ATM.Atm;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -136,7 +135,7 @@ public class ClientActionHandler {
     /*
     Calculate the net total of all accounts of an user
      */
-    public Double netTotal(Map<Integer, Double> accounts){
+    public double netTotal(Map<Integer, Double> accounts){
         // The total of their debt account balances subtracted from the total of their asset account balances.
 
         double total = 0;
@@ -172,7 +171,7 @@ public class ClientActionHandler {
         if (pswd.length <= 6 || pswd.length >= 15){
             return false;
         }else {
-            this.client.setPassword(pswd.toString());
+            this.client.setPassword(String.valueOf(pswd));
             return true;
         }
     }

@@ -1,14 +1,14 @@
-package src.ATM;
+package ATM;
 
 
-import src.ATM.ActionHandler.ActionHandler;
-import src.ATM.Managers.AccountManager;
-import src.ATM.Managers.BillManager;
-import src.ATM.Managers.TransactionManager;
-import src.ATM.Managers.UserManager;
-import src.ATM.ATMGUI;
-import src.ATM.BankAccounts.BankAccount;
-import src.ATM.Users.User;
+import ATM.ActionHandler.ActionHandler;
+import ATM.Managers.AccountManager;
+import ATM.Managers.BillManager;
+import ATM.Managers.TransactionManager;
+import ATM.Managers.UserManager;
+import ATM.ATMGUI;
+import ATM.BankAccounts.BankAccount;
+import ATM.Users.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,7 +20,8 @@ public class AtmTesting {
     public ATMGUI atmgui = new ATMGUI();
 
     // model
-    private AccountManager accountManager = new AccountManager(new ArrayList<BankAccount>(), new ArrayList<String[]>(), new Date());
+    private AccountManager accountManager = new AccountManager(new ArrayList<BankAccount>(), new ArrayList<String[]>(),
+            new Date());
 
     private TransactionManager transactionManager = new TransactionManager();
 

@@ -1,4 +1,4 @@
-package src.FileParsers;
+package FileParsers;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -1,6 +1,6 @@
-package src.ATM.BankAccounts.ExtraAccounts;
+package ATM.BankAccounts.ExtraAccounts;
 
-import src.ATM.BankAccounts.BankAccount;
+import ATM.BankAccounts.BankAccount;
 
 import java.util.Date;
 

@@ -103,7 +103,7 @@ public class BillManager {
     }
 
     /**
-     * Deposits a given amount of bills into ATM.
+     * Deposits a given amount of cash into ATM.
      * amount % 5 == 0
      */
     public void deposit(int amount) {
@@ -116,6 +116,9 @@ public class BillManager {
         this.fives += amount/5;
     }
 
+    /**
+     * Deposits cash into ATM.
+     */
     public void deposit(int fives, int tens, int twenties, int fifties) {
         this.fives += Math.max(fives,0);
         this.tens += Math.max(tens,0);
@@ -123,6 +126,7 @@ public class BillManager {
         this.fifties += Math.max(fifties,0);
     }
 
+    /** Getters **/
     public int getFives(){
         return this.fives;
     }

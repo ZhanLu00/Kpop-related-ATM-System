@@ -1,6 +1,6 @@
-package ATM.ActionHandler;
+package src.ATM.ActionHandler;
 
-import ATM.*;
+import src.ATM.*;
 import ATM.Managers.AccountManager;
 import ATM.Managers.BillManager;
 import ATM.Managers.TransactionManager;
@@ -8,7 +8,10 @@ import ATM.Managers.UserManager;
 import ATM.Users.BankManager;
 import ATM.Users.Client;
 import ATM.Users.User;
+import ATM.ATMGUI;
+import ATM.ActionHandler.BankInspectorActionHandler;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -99,7 +102,7 @@ public class ActionHandler {
         viewer.accRequestButton.addActionListener(e->{
             // get input
             String username = viewer.userDesiredName.getText();
-            String type = viewer.newAccType.getSelectedItem.toString();
+            String type = viewer.newAccType.getSelectedItem().toString();
             // check if the username existed
             if (!userManager.userExists(username)){
                 // store the alert
@@ -113,7 +116,7 @@ public class ActionHandler {
         viewer.requestStatus.addActionListener(e->{
             // get input
             String username = viewer.userDesiredName.getText();
-            String type = viewer.newAccType.getSelectedItem.toString();
+            String type = viewer.newAccType.getSelectedItem().toString();
             // check if the request exist
             if (requestManager.requestExist()){
                 // then show the status

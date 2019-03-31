@@ -1,12 +1,13 @@
 package ATM.Managers;
 
 import ATM.Users.User;
-
+import ATM.Users.Client;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
+
 
 /**
  * A UserManager class that stores all the users.
@@ -46,6 +47,15 @@ public class UserManager implements Iterable<User> {
         for (User u : users){
             if (u.getUsername().equals(username) && u.getPassword().equals(password)){
                 return u;
+            }
+        }
+        User o = null;
+        return o;
+    }
+    public Client getUserByID(String username){
+        for (User u : users){
+            if (u.getUsername().equals(username)){
+                return (Client)u;
             }
         }
         return null;

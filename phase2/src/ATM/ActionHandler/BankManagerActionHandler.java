@@ -154,15 +154,15 @@ public class BankManagerActionHandler {
         // find users
         if (atm.getUserManager().userExists(user1) && atm.getUserManager().userExists(user2)){
             // add acc in
-            if (atm.getUserManager().getUser(user1).getAccounts().contains(acc)){
-                if (atm.getUserManager().getUser(user2).getAccounts().contains(acc)){
+            if (atm.getUserManager().getUserByID(user1).getAccounts().contains(acc)){
+                if (atm.getUserManager().getUserByID(user2).getAccounts().contains(acc)){
                 }else{
-                    atm.getUserManager().getUser(user2).addAccount(acc);
+                    atm.getUserManager().getUserByID(user2).addAccounts(acc);
                 }
             }else{
-                if (atm.getUserManager().getUser(user2).getAccounts().contains(acc)){
+                if (atm.getUserManager().getUserByID(user2).getAccounts().contains(acc)){
                 }else{
-                    atm.getUserManager().getUser(user2).addAccount(acc);
+                    atm.getUserManager().getUserByID(user2).addAccounts(acc);
                 }
             }
             return true;

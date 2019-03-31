@@ -155,15 +155,16 @@ public class ClientActionHandler {
 
 
     public boolean deposit(int id, int fives, int tens, int twenties, int fifties, double chequing) {
-        if (client.getAccounts().contains(id)){
+        if (client.getAccounts().contains(id)) {
             accountManager.getAccount(id).deposit(fives * 5 + tens * 10 + twenties * 20 + fifties * 50);
-            if (chequing <=0) {
+            if (chequing <= 0) {
                 billManager.deposit(fives, tens, twenties, fifties);
             }
             return true;
-        }else{
+        } else {
             return false;
         }
+    }
     /**
      * Deposits the give amount into an account by cash.
      * Both the balance of the account and the cash storage of ATM increases.
@@ -214,17 +215,6 @@ public class ClientActionHandler {
        return false;
     }
 
-    public boolean setPrimary(int accNum){
-        BankAccount newPrimary = accountManager.getAccount(accNum);
-
-        if (newPrimary instanceof ChequingAccount) {
-            client.setPrimaryAccount(accNum);
-            return true;
-        } else {
-            return false;
-        }
-
-    }
 
     /**
      * Interface

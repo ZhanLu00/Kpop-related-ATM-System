@@ -9,6 +9,7 @@ import ATM.Users.BankManager;
 import ATM.Users.Client;
 import ATM.Users.User;
 import ATM.ATMGUI;
+import ATM.Transaction;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -110,10 +111,10 @@ public class ActionHandler {
             if (!userManager.userExists(username)){
                 // store the alert
                 requestManager.addRequest("newUser", username, type);
-                JOptionPane.showMessageDialog(null, "Request submitted, please come back to check" +
+                viewer.popUp("Request submitted, please come back to check" +
                         "your status");
             }else{
-                JOptionPane.showMessageDialog(null, "Your username is already token");
+                viewer.popUp("Your username is already token");
             }
         });
         viewer.requestStatus.addActionListener(e->{

@@ -197,26 +197,22 @@ public class ClientActionHandler {
         }
     }
 
-    public boolean setPrimary(int accNum){
-        BankAccount newPrimary = accountManager.getAccount(accNum);
-
-        if (newPrimary instanceof ChequingAccount) {
-            for (int accountId : client.getAccounts()) {
-                BankAccount account = accountManager.getAccount(accountId);
-//                if (account instanceof ChequingAccount && ((ChequingAccount) account).getPrimary()){
-//                    ((ChequingAccount) account).setPrimary(false);
-//                    break;
-//                }
-            }
-            // ((ChequingAccount) newPrimary).setPrimary(true);
-            return true;
-        } else {
-            return false;
-        }
-
+    /**
+     * Sets a chequing account as primary account.
+     * Returns true if this action is successful, false otherwise.
+     */
+    public boolean setPrimary(int accNum) {
+       BankAccount account = accountManager.getAccount(accNum);
+       if (account instanceof ChequingAccount) {
+           client.setPrimaryAccount(accNum);
+           return true;
+       }
+       return false;
     }
 
-    /** Interface **/
+    /**
+     * Interface
+     **/
     public void displayCommandLineInterface() throws IOException {
         // basic info
         String userName = client.getUsername();
@@ -304,11 +300,11 @@ public class ClientActionHandler {
         int accountNumber = getAccountNum(accountNumbers);
         BankAccount account = accountManager.getAccount(accountNumber);
         ArrayList<Transaction> transactions = atm.getTransactionManager().getTransactionsBySender(accountNumber);
-        if(transactions.size() == 0 || transactions.get(transactions.size() - 1) == null) {
+        if (transactions.size() == 0 || transactions.get(transactions.size() - 1) == null) {
             System.out.println("The latest transaction is not viewable on this account");
         } else {
             Transaction transaction = transactions.get(transactions.size() - 1);
-            System.out.println(String.format("Sender: %d,  Receiver:  %d,  Amount: %f, Type: %s" , transaction.getSender(), transaction.getReceiver(), transaction.getAmount(), transaction.getType()));
+            System.out.println(String.format("Sender: %d,  Receiver:  %d,  Amount: %f, Type: %s", transaction.getSender(), transaction.getReceiver(), transaction.getAmount(), transaction.getType()));
 
         }
 
@@ -379,7 +375,9 @@ public class ClientActionHandler {
         }
     }
 
-    /** Helper functions for inputNine() **/
+    /**
+     * Helper functions for inputNine()
+     **/
     private int positiveNum(int amount) throws IOException {
         while (amount < 0) {
             System.out.println("Please enter a positive number");
@@ -456,10 +454,8 @@ public class ClientActionHandler {
     public void inputEleven(ArrayList<Integer> accountNumbers) throws IOException {
         System.out.println("Enter the account number that you want to select as new primary account");
         int accountNumber = getAccountNum(accountNumbers);
-        BankAccount newPrimary = accountManager.getAccount(accountNumber);
 
-        if (newPrimary instanceof ChequingAccount) {
-            client.setPrimaryAccount(accountNumber);
+        if (setPrimary(accountNumber)) {
             System.out.print("Request has been done");
         } else {
             System.out.println("Request declined. The account you entered is not a chequing account");

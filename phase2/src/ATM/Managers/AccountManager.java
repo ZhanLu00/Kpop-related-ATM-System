@@ -8,30 +8,32 @@ import ATM.BankAccounts.BankAccount;
 import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
 import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
 import ATM.Transaction;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.Spliterator;
+import java.util.*;
 import java.util.function.Consumer;
 
 /**
- * An AccountManager class that stores all accounts.
+ * An AccountManager class responsible for storing accounts.
  */
 public class AccountManager implements Iterable<BankAccount> {
+
     private ArrayList<BankAccount> accounts;
     private ArrayList<String[]> accountRequests;
     private CurrencyManager currencyManager;
-    private Date date;
+    private Date dateCreated;
 
-    public AccountManager(ArrayList<BankAccount> accounts, ArrayList<String[]> accountRequests, CurrencyManager currencyManager, Date date) {
+    public AccountManager(ArrayList<BankAccount> accounts,
+                          ArrayList<String[]> accountRequests,
+                          CurrencyManager currencyManager,
+                          Date dateCreated) {
+
         this.accounts = accounts;
         this.accountRequests = accountRequests;
         this.currencyManager = currencyManager;
-        this.date = date;
+        this.dateCreated = dateCreated;
+
     }
 
-    public void updateInterestAccounts() {
+    public void runUpdateCycle() {
         for (BankAccount account : accounts) {
             if (account instanceof SavingsAccount) {
                 ((SavingsAccount) account).collectInterest();
@@ -42,10 +44,6 @@ public class AccountManager implements Iterable<BankAccount> {
         }
     }
 
-//    public static void setMaxDebt(int newDebt) {
-//        DebtAccount.MAX_DEBT = newDebt;
-//    }
-
     /**
      * Adds an account to the list of accounts.
      */
@@ -54,8 +52,7 @@ public class AccountManager implements Iterable<BankAccount> {
     }
 
     /**
-     * Takes an id number and returns the BankAccount with corresponding id.
-     * If id > accounts.size(), method returns null.
+     * Takes an *id* and returns the BankAccount with corresponding id, if it exists.
      */
     public BankAccount getAccount(int id) {
         if (id < accounts.size()) {
@@ -66,15 +63,15 @@ public class AccountManager implements Iterable<BankAccount> {
     }
 
     /**
-     * Transfers money between two accounts.
-     * Returns true if the transaction is successful, false otherwise.
+     * Attempts to transfer *amount* from one account to another.
+     *
+     * Returns the Transaction if successful, and null otherwise.
      */
     public Transaction transfer(double amount, int senderId, int receiverId) {
         BankAccount sender = this.getAccount(senderId);
         BankAccount receiver = this.getAccount(receiverId);
         if(sender.withdraw(amount) && receiver.deposit(amount)) {
             return new Transaction(amount, senderId, receiverId, "transfer");
-
         } else {
             return null;
         }
@@ -117,18 +114,18 @@ public class AccountManager implements Iterable<BankAccount> {
     public BankAccount createAccount(String accountType) {
         switch (accountType) {
             case "CHEQUING_ACCOUNT":
-                return new ChequingAccount(date,0);
+                return new ChequingAccount(dateCreated,0);
             case "SAVINGS_ACCOUNT":
-                return new SavingsAccount(date,0);
+                return new SavingsAccount(dateCreated,0);
             case "LOTTERY_ACCOUNT":
-                return new LotteryAccount(date,0);
+                return new LotteryAccount(dateCreated,0);
             case "FOREIGN_CURRENCY_ACCOUNT":
                 String currencyType = "USD";
-                return new ForeignCurrencyAccount(date, 0, currencyType, currencyManager.getRate(currencyType));
+                return new ForeignCurrencyAccount(dateCreated, 0, currencyType, currencyManager.getRate(currencyType));
             case "CREDIT_CARD_ACCOUNT":
-                return new CreditCardsAccount(date,0);
+                return new CreditCardsAccount(dateCreated,0);
             case "LINE_OF_CREDIT_ACCOUNT":
-                return new LineOfCreditAccount(date,0);
+                return new LineOfCreditAccount(dateCreated,0);
             default:
                 return null;
         }

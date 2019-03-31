@@ -1,7 +1,3 @@
-put anything that need to do later here to reminds yourself and your group member!
-
-
-
 Phase 2:
 Part 1: fix problems from phase 1
 
@@ -95,7 +91,7 @@ Part 3: be creative and add more features to our app!
 
 
 Additional Todo:
-    Karan & Roger:
+    Karen & Roger:
     add profile name (attribute) in user
     update design uml
 

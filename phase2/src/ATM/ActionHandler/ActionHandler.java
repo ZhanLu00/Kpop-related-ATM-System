@@ -378,7 +378,7 @@ public class ActionHandler {
                 if (succeed) {
                     viewer.popUp("You have successfully changed your password. Don't forget it!");
                 } else {
-                    viewer.popUp("Please enter a password between 6 to 15 characters.");
+                    viewer.popUp("Please enter a password between 6 to 15 characters, exclusive.");
                 }
             }else{
                 viewer.popUp("Please check your input.");

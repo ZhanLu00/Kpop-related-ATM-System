@@ -298,8 +298,12 @@ public class ClientActionHandler {
         int accountNumber = accountNum(accountNumbers);
         BankAccount account = accountManager.getAccount(accountNumber);
         ArrayList<Transaction> transactions = atm.getTransactionManager().getTransactionsBySender(accountNumber);
-        Transaction transaction = transactions.get(transactions.size() - 1);
-        System.out.println(String.format("Sender: %d,  Receiver:  %d,  Amount: %f, Type: %s", transaction.getSender(), transaction.getReceiver(), transaction.getAmount(), transaction.getType()));
+        if (transactions.size() == 0 || transactions.get(transactions.size() - 1) == null) {
+            System.out.println("There is no transaction initiated by this account");
+        } else {
+            Transaction transaction = transactions.get(transactions.size() - 1);
+            System.out.println(String.format("Sender: %d,  Receiver:  %d,  Amount: %f, Type: %s", transaction.getSender(), transaction.getReceiver(), transaction.getAmount(), transaction.getType()));
+        }
     }
 
     public void inputThree(ArrayList<Integer> accountNumbers) throws IOException {

@@ -1,4 +1,4 @@
-package ATM.BankAccounts.AssetAccounts;
+package test.ATM.BankAccounts;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +10,7 @@ import ATM.BankAccounts.AssetAccounts.ChequingAccount;
 import static org.junit.Assert.*;
 
 public class ChequingAccountTest {
-    ATM.BankAccounts.AssetAccounts.ChequingAccount acc;
+    ChequingAccount acc;
     Date dt;
 
     @Before
@@ -28,7 +28,7 @@ public class ChequingAccountTest {
 
     @Test
     public void testWithdraw() {
-        assertFalse(acc.withdraw(600));
+        assertFalse(acc.withdraw(500.01));
         assertEquals(acc.getBalance(), 400);
         assertTrue(acc.withdraw(500));
         assertEquals(acc.getBalance(), -100);

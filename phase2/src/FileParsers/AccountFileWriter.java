@@ -39,7 +39,7 @@ public class AccountFileWriter {
             String dateString = TimeManager.dateToString(date);
 
             if (account instanceof ForeignCurrencyAccount) {
-                fileOut.append(String.format("%s,%f,%s,%f\n", type, balance, dateString, ((ForeignCurrencyAccount) account).getExchangeRate()));
+                fileOut.append(String.format("%s,%f,%s,%s,%f\n", type, ((ForeignCurrencyAccount) account).getForeignCurrencyBalance(), dateString, ((ForeignCurrencyAccount)account).getCurrencyType(), ((ForeignCurrencyAccount) account).getExchangeRate()));
             }
             else {
                 fileOut.append(String.format("%s,%f,%s\n", type, balance, dateString));

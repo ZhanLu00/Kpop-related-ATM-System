@@ -65,6 +65,8 @@ Each line is a new bank account. All accountRequests are initialized in the foll
 <account type>, <balance>, <date of creation>
 ```
 
+Foreign currency account balances are stored as their foreign currency balance.
+
 Account type can be one of the following: 'chequing', 'savings', 'lottery', 'foreigncurrency', lineofcredit', or 'creditcard'.
 
 Balances must be doubles greater than or equal to 0.

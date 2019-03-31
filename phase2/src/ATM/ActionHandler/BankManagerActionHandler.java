@@ -47,6 +47,7 @@ public class BankManagerActionHandler {
         if (newAccount != null) {
             // This loops through list of account the client owns if the account created is a chequing account.
             // If this is the first chequing Account the client owns, primary will be set to true.
+/*
             if (newAccount instanceof ChequingAccount) {
                 boolean primary = false;
                 // loop through all ids of a given user
@@ -61,6 +62,7 @@ public class BankManagerActionHandler {
                 // change the status of a given account to the opposite.
 //                ((ChequingAccount) newAccount).setPrimary(!primary);
             }
+*/
             // add an account to the accountUser
             accountUser.addAccounts(newAccount.getId());
             return newAccount.getId();

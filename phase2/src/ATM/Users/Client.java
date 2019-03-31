@@ -1,4 +1,4 @@
-package src.ATM.Users;
+package ATM.Users;
 import java.util.*;
 
 public class Client extends ATM.Users.User {

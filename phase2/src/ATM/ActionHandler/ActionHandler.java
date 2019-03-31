@@ -1,10 +1,11 @@
-package src.ATM.ActionHandler;
+package ATM.ActionHandler;
 
-import src.ATM.*;
+import ATM.*;
 import ATM.Managers.AccountManager;
 import ATM.Managers.BillManager;
 import ATM.Managers.TransactionManager;
 import ATM.Managers.UserManager;
+import ATM.Managers.RequestManager;
 import ATM.Users.BankManager;
 import ATM.Users.Client;
 import ATM.Users.User;
@@ -31,6 +32,8 @@ public class ActionHandler {
     private UserManager userManager;
 
     private BillManager billManager;
+
+    private RequestManager requestManager;
 
     // viewer/display
     private ATMGUI viewer;
@@ -121,16 +124,16 @@ public class ActionHandler {
             if (requestManager.requestExist()){
                 // then show the status
                 String status = requestManager.getStatus(username);
-                if (status == "accepted"){
-                    String pswd = userManager.getUser().getPassword();
-                    JOptionPane.showMessageDialog(null, "request accept, here is your initial password: \n " + pswd);
-                }else if (status == "pending") {
-                    JOptionPane.showMessageDialog(null, "request pending");
+                if (status.equals("accepted")){
+                    String pswd = userManager.getUser(username).getPassword();
+                    viewer.popUp("Request accepted, here is your initial password: \n " + pswd);
+                }else if (status.equals("pending")) {
+                    viewer.popUp("Request pending.");
                 }else{
-                    JOptionPane.showMessageDialog(null, "request declined");
+                    viewer.popUp("Request declined.");
                 }
             }else{
-                JOptionPane.showMessageDialog(null, "please request before check status");
+                viewer.popUp("Please request to make an account before you check your status.");
             }
         });
         viewer.goBackNew.addActionListener(e->{
@@ -168,8 +171,7 @@ public class ActionHandler {
                 }else{
                     viewer.usernameText.setText("");
                     viewer.passwordText.setText("");
-                    viewer.popUp("Incorrect username/password. " +
-                            "Please try again.");
+                    viewer.popUp("Incorrect username/password. Please try again.");
                 }
             }
         });

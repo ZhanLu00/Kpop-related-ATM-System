@@ -1,4 +1,4 @@
-package src.ATM.BankAccounts.ExtraAccounts;
+package ATM.BankAccounts.ExtraAccounts;
 
 import ATM.BankAccounts.BankAccount;
 

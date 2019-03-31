@@ -1,5 +1,5 @@
-package src.ATM.ActionHandler;
-import src.ATM.*;
+package ATM.ActionHandler;
+import ATM.*;
 import ATM.BankAccounts.AssetAccounts.AssetAccount;
 import ATM.BankAccounts.AssetAccounts.ChequingAccount;
 import ATM.BankAccounts.BankAccount;

@@ -27,8 +27,8 @@ public class LineOfCreditAccountTest {
 
     @Test
     public void testWithdraw(){
-        assertFalse(acc.withdraw(21));
-        assertTrue(acc.withdraw(20));
-        assertEquals(acc.getBalance(), 420, 0.01);
+        assertFalse(acc.withdraw(1 + acc.getMaxDebt() - acc.getBalance()));
+        assertTrue(acc.withdraw(acc.getMaxDebt() - acc.getBalance()));
+        assertEquals(acc.getBalance(), acc.getMaxDebt(), 0.01);
     }
 }

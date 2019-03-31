@@ -1,0 +1,2 @@
+chequing,1000.000000,2018 mar 18
+creditcard,523.000000,2017 feb 15

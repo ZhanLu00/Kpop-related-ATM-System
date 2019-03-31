@@ -5,6 +5,7 @@ public class Client extends ATM.Users.User {
 
 
     private ArrayList<Integer> accountNumbers;
+    private int primaryAccount = -1;
 
     public Client(String username, String password) {
         super(username, password);
@@ -21,5 +22,7 @@ public class Client extends ATM.Users.User {
         return this.accountNumbers;
     }
 
+    public int getPrimaryAccount(){ return this.primaryAccount; }
 
+    public void setPrimaryAccount(int primaryAccount) { this.primaryAccount = primaryAccount; }
 }

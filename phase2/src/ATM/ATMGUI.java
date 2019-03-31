@@ -133,6 +133,7 @@ public class ATMGUI {
     // NEW BANK ACCOUNT PAGE
     public JPanel newAccount;
     public JComboBox accType;
+    public JTextArea accRequestStatus;
     public JButton goBackNewAcc;
     public JButton createAccountButton;
 

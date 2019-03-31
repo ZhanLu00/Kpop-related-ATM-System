@@ -52,7 +52,7 @@ public class UserManager implements Iterable<User> {
         User o = null;
         return o;
     }
-    public Client getUserByID(String username){
+    public Client getUser(String username){
         for (User u : users){
             if (u.getUsername().equals(username)){
                 return (Client)u;
@@ -82,15 +82,6 @@ public class UserManager implements Iterable<User> {
         return false;
     }
 
-
-    public User getUser(String username) {
-        for (User user : users) {
-            if (user.getUsername().equals(username)) {
-                return user;
-            }
-        }
-        return null;
-    }
 
 
     /**

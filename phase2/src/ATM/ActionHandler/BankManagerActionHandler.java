@@ -150,19 +150,18 @@ public class BankManagerActionHandler {
      * join account for user
      */
     public boolean joinAccount(String user1, String user2, int acc){
-        boolean succeed;
         // find users
         if (atm.getUserManager().userExists(user1) && atm.getUserManager().userExists(user2)){
             // add acc in
-            if (atm.getUserManager().getUserByID(user1).getAccounts().contains(acc)){
-                if (atm.getUserManager().getUserByID(user2).getAccounts().contains(acc)){
+            if (atm.getUserManager().getUser(user1).getAccounts().contains(acc)){
+                if (atm.getUserManager().getUser(user2).getAccounts().contains(acc)){
                 }else{
-                    atm.getUserManager().getUserByID(user2).addAccounts(acc);
+                    atm.getUserManager().getUser(user2).addAccounts(acc);
                 }
             }else{
-                if (atm.getUserManager().getUserByID(user2).getAccounts().contains(acc)){
+                if (atm.getUserManager().getUser(user2).getAccounts().contains(acc)){
                 }else{
-                    atm.getUserManager().getUserByID(user2).addAccounts(acc);
+                    atm.getUserManager().getUser(user2).addAccounts(acc);
                 }
             }
             return true;

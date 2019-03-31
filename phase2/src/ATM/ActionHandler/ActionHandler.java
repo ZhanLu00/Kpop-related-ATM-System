@@ -13,6 +13,7 @@ import ATM.Users.User;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ActionHandler {
@@ -158,8 +159,8 @@ public class ActionHandler {
     }
 
 
-    /******************************************
-     * client action handler
+    /**
+     * Client action handler
      */
     public void clientOption(){
         // add listener
@@ -349,7 +350,7 @@ public class ActionHandler {
 
 
     /**
-     * bank manager action handler
+     * Bank Manager action handler
      */
 
     public void bankManagerOption(){
@@ -371,9 +372,15 @@ public class ActionHandler {
         });
         viewer.showAlertsButton.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.viewAlerts);
+            try {
+                showAlerts();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         });
         viewer.viewUserCreationRequestsButton.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.viewUserRequests);
+            viewUserCreationRequests();
         });
         viewer.logOutManager.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.welcomePage);
@@ -407,9 +414,9 @@ public class ActionHandler {
         Object[] transactions = transactionManager.getTransactions().toArray();
         viewer.recentTrans.setSelectedIndex(0);
         viewer.recentTrans.setListData(transactions);
+        int selectedIndex = viewer.recentTrans.getSelectedIndex();
         viewer.undoButton.addActionListener(e -> {
             // TODO CHECK IF THIS WORKS
-            int selectedIndex = viewer.recentTrans.getSelectedIndex()
             boolean undoStatus = bankManagerActionHandler.undoTransaction(selectedIndex);
             if (undoStatus){
                 viewer.popUp("Transaction successfully undone.");
@@ -443,7 +450,63 @@ public class ActionHandler {
     }
 
     public void viewAccountCreationRequests(){
+        Object[] accRequests = accountManager.getAccountRequests().toArray();
+        viewer.accountRequestsList.setSelectedIndex(0);
+        viewer.accountRequestsList.setListData(accRequests);
+        int selectedIndex = viewer.accountRequestsList.getSelectedIndex();
 
+        // TODO FINISH -- NEED TO GET USERNAME OF CLIENT WHO REQUESTED, WHAT TYPE IS viewer.accountRequestsList.getSelectedValue()
+        viewer.acceptAccountRequestButton.addActionListener(e -> {
+            String username = (String) viewer.accountRequestsList.getSelectedValue();
+        });
+
+        viewer.declineAccountRequestButton.addActionListener(e -> {
+
+        });
+        viewer.goBackAccRequest.addActionListener(e -> {
+            viewer.changePage(viewer.viewAccountRequests, viewer.managerOptions);
+        });
+    }
+
+    public void showAlerts() throws IOException {
+        StringBuilder alerts = new StringBuilder("");
+        ArrayList<String> alertsText = bankManagerActionHandler.getAlerts();
+        for (String alert : alertsText) {
+            alerts.append(alert);
+        }
+        viewer.alertText.setText(alerts.toString());
+
+        viewer.clearAlertsButton.addActionListener(e -> {
+            try {
+                bankManagerActionHandler.clearAlerts();
+                viewer.alertText.setText("");
+                viewer.popUp("The alerts have been cleared.");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
+        viewer.goBackAlert.addActionListener(e -> {
+            viewer.changePage(viewer.viewAlerts, viewer.managerOptions);
+        });
+    }
+
+    public void viewUserCreationRequests(){
+        // FIXME -- WHERE TO GET LIST OF USER REQUESTS
+        Object[] userRequests = null;
+        viewer.userRequestsList.setSelectedIndex(0);
+        viewer.userRequestsList.setListData(userRequests);
+        int selectedIndex = viewer.userRequestsList.getSelectedIndex();
+
+        // TODO FINISH -- NEED TO GET USERNAME OF CLIENT WHO REQUESTED, WHAT TYPE IS viewer.accountRequestsList.getSelectedValue()
+        viewer.acceptUserRequestButton.addActionListener(e -> {
+        });
+
+        viewer.declineUserRequestButton.addActionListener(e -> {
+
+        });
+        viewer.goBackUserRequest.addActionListener(e -> {
+            viewer.changePage(viewer.viewUserRequests, viewer.managerOptions);
+        });
     }
 
 

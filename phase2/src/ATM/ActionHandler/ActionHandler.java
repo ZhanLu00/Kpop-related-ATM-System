@@ -1,6 +1,7 @@
 package ATM.ActionHandler;
 
 import ATM.*;
+import ATM.BankAccounts.AssetAccounts.ChequingAccount;
 import ATM.Managers.AccountManager;
 import ATM.Managers.BillManager;
 import ATM.Managers.TransactionManager;
@@ -12,7 +13,6 @@ import ATM.Users.User;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Map;
 
 public class ActionHandler {
 
@@ -125,13 +125,14 @@ public class ActionHandler {
                         clientOption();
                     }else if(userType.equals("bankManager")){
                         viewer.changePage(viewer.returningUserPage, viewer.managerOptions);
+                        bankManagerOption();
                     }else{
                         viewer.changePage(viewer.returningUserPage, viewer.inspectorOptions);
                     }
                 }else{
                     viewer.usernameText.setText("");
                     viewer.passwordText.setText("");
-                    JOptionPane.showMessageDialog(null, "Incorrect username/password. " +
+                    viewer.popUp("Incorrect username/password. " +
                             "Please try again.");
                 }
             }
@@ -235,12 +236,12 @@ public class ActionHandler {
                 accountNum = Integer.parseInt(viewer.accNumWithdraw.getText());
                 boolean succeed = clientActionHandler.withdraw(accountManager.getAccount(accountNum), withdrawAmount);
                 if (succeed){
-                    JOptionPane.showMessageDialog(null, "Your withdrawal was successful.");
+                    viewer.popUp("Your withdrawal was successful.");
                 }else{
-                    JOptionPane.showMessageDialog(null, "You don't enough money.");
+                    viewer.popUp("You don't enough money.");
                 }
             }catch (Exception exp){
-                JOptionPane.showMessageDialog(null, "Please check your input.");
+                viewer.popUp("Please check your input.");
             }
         });
 
@@ -261,12 +262,12 @@ public class ActionHandler {
                 transAmt = Double.parseDouble(viewer.transInAccNum.getText());
                 boolean succeed = clientActionHandler.transfer(transAmt, outAccNum, inAccNum);
                 if (succeed){
-                    JOptionPane.showMessageDialog(null, "Your transfer was successful.");
+                    viewer.popUp("Your transfer was successful.");
                 }else{
-                    JOptionPane.showMessageDialog(null, "Please check your input or balance.");
+                    viewer.popUp("Please check your input or balance.");
                 }
             }catch (Exception exp){
-                JOptionPane.showMessageDialog(null, "Please check your input.");
+                viewer.popUp("Please check your input.");
             }
 
 
@@ -288,12 +289,12 @@ public class ActionHandler {
                 billAmt = Double.parseDouble(viewer.billAmt.getText());
                 boolean succeed = clientActionHandler.transfer(billAmt, billAccNum, billPayee);
                 if (succeed){
-                    JOptionPane.showMessageDialog(null, "You have successfully paid your bill.");
+                    viewer.popUp("You have successfully paid your bill.");
                 }else{
-                    JOptionPane.showMessageDialog(null, "You don't have enough money");
+                    viewer.popUp("You don't have enough money");
                 }
             }catch (Exception exp){
-                JOptionPane.showMessageDialog(null, "Please check your input.");
+                viewer.popUp("Please check your input.");
             }
         });
 
@@ -314,9 +315,9 @@ public class ActionHandler {
             numFifty = (int) viewer.numFifty.getValue();
             boolean succeed = clientActionHandler.deposit(numFives, numTens, numTwenty, numFifty);
             if (succeed){
-                JOptionPane.showMessageDialog(null, "Deposit successful.");
+                viewer.popUp("Deposit successful.");
             }else{
-                JOptionPane.showMessageDialog(null, "Please check your input.");
+                viewer.popUp("Please check your input.");
             }
         });
 
@@ -332,12 +333,12 @@ public class ActionHandler {
             if (pswd.length != 0) {
                 boolean succeed = clientActionHandler.changepswd(pswd);
                 if (succeed) {
-                    JOptionPane.showMessageDialog(null, "You have successfully changed your password. Don't forget it!");
+                    viewer.popUp("You have successfully changed your password. Don't forget it!");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Please enter a password between 6 to 15 characters.");
+                    viewer.popUp("Please enter a password between 6 to 15 characters.");
                 }
             }else{
-                JOptionPane.showMessageDialog(null, "Please check your input.");
+                viewer.popUp("Please check your input.");
             }
         });
         viewer.goBackPassword.addActionListener(e->{
@@ -351,32 +352,55 @@ public class ActionHandler {
      */
 
     public void bankManagerOption(){
-//        viewer.createNewClientButton.addActionListener(e->{
-//            viewer.changePage(viewer.managerOptions, viewer.thepage);
-//            createNewClient();
-//        });
-//        viewer.undoTransactionButton.addActionListener(e->{
-//            viewer.changePage(viewer.managerOptions, viewer.thepage);
-//        });
-//        viewer.restockMachineButton.addActionListener(e->{
-//            viewer.changePage(viewer.managerOptions, viewer.thepage);
-//        });
-//        viewer.viewAccountCreationRequestsButton.addActionListener(e->{
-//            viewer.changePage(viewer.managerOptions, viewer.thepage);
-//        });
-//        viewer.showAlertsButton.addActionListener(e->{
-//            viewer.changePage(viewer.managerOptions, viewer.thepage);
-//        });
-//        viewer.logOutManager.addActionListener(e->{
-//            viewer.changePage(viewer.managerOptions, viewer.welcomePage);
-//        });
+        viewer.createNewClientButton.addActionListener(e->{
+            viewer.changePage(viewer.managerOptions, viewer.newClient);
+            createNewClient();
+        });
+        viewer.undoTransactionButton.addActionListener(e->{
+            viewer.changePage(viewer.managerOptions, viewer.undoTransaction);
+            undoTransaction();
+        });
+        viewer.restockMachineButton.addActionListener(e->{
+            viewer.changePage(viewer.managerOptions, viewer.restockMachine);
+        });
+        viewer.viewAccountCreationRequestsButton.addActionListener(e->{
+            viewer.changePage(viewer.managerOptions, viewer.viewAccountRequests);
+        });
+        viewer.showAlertsButton.addActionListener(e->{
+            viewer.changePage(viewer.managerOptions, viewer.viewAlerts);
+        });
+        viewer.viewUserCreationRequestsButton.addActionListener(e->{
+            viewer.changePage(viewer.managerOptions, viewer.viewUserRequests);
+        });
+        viewer.logOutManager.addActionListener(e->{
+            viewer.changePage(viewer.managerOptions, viewer.welcomePage);
+        });
     }
 
     public void createNewClient(){
-//        viewer.button1.addActionListener(e->{
-//
-//
-//        });
+        viewer.createUserNew.addActionListener(e->{
+            String[] userCreated = bankManagerActionHandler.addClient(viewer.createUserManager.getText());
+            if (userCreated[0] == null){
+                viewer.createUserManager.setText("");
+                viewer.popUp("Username taken. Please select another username.");
+            }else{
+                viewer.popUp(String.format("User created. Your password is %s", userCreated[1]));
+                int accCreated = bankManagerActionHandler.createAccountForUser(userCreated[0],
+                        (String)viewer.accTypeNew.getSelectedItem());
+                if (accCreated == -1){
+                    viewer.popUp("Account could not be created. Please check your input.");
+                }else{
+                    bankManagerActionHandler.addAccountToUser(userCreated[0], accCreated);
+                }
+            }
+        });
+
+        viewer.goBackCreateUserManager.addActionListener(e->{
+            viewer.changePage(viewer.newClient, viewer.managerOptions);
+        });
+    }
+
+    public void undoTransaction(){
 
     }
 

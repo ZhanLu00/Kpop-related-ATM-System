@@ -3,6 +3,7 @@ package ATM;
 import ATM.Managers.AccountManager;
 import ATM.Managers.BillManager;
 import ATM.Users.Client;
+import jdk.nashorn.internal.scripts.JO;
 
 import javax.swing.*;
 import java.text.NumberFormat;
@@ -66,6 +67,7 @@ public class ATMGUI {
     public JButton viewAccountCreationRequestsButton;
     public JButton showAlertsButton;
     public JButton logOutManager;
+    public JButton viewUserCreationRequestsButton;
 
     // DEPOSIT OPTION
     public JPanel depositOption;
@@ -150,9 +152,8 @@ public class ATMGUI {
     // BANK MANAGER CREATING A NEW CLIENT PAGE
     public JPanel newClient;
     public JTextField createUserManager;
-    public JPasswordField createPassManager;
-    public JButton goBackCreateAccManager;
-    public JButton createAccNew;
+    public JButton goBackCreateUserManager;
+    public JButton createUserNew;
     public JComboBox accTypeNew;
 
     // RESTOCK MACHINE PAGE
@@ -183,10 +184,21 @@ public class ATMGUI {
     public JButton clearAlertsButton;
     public JTextArea alertText;
 
+    // VIEW NEW ACCOUNT CREATION RUESTS PAGE
+    public JPanel viewAccountRequests;
+    public JButton goBackAccRequest;
+    public JButton declineAccountRequestButton;
+    public JButton acceptAccountRequestButton;
+    public JList accountRequestsList;
+
 
     public void changePage(JPanel currentPage, JPanel newPage){
         currentPage.setVisible(false);
         newPage.setVisible(true);
+    }
+
+    public void popUp(String message){
+        JOptionPane.showMessageDialog(null, message);
     }
 
 

@@ -31,14 +31,14 @@ public class BankManagerActionHandler {
 
     /**
      * Creates a new bank account for user.
-     * Returns true if account was successfully created, false otherwise.
+     * Returns account id if account was successfully created, -1 otherwise.
      */
-    public boolean createAccountForUser(String username, String accountType){
+    public int createAccountForUser(String username, String accountType){
         Client accountUser = ((Client) atm.getUserManager().getUser(username));
 
         // the false condition:
         if (accountUser == null) {
-            return false;
+            return -1;
         }
 
         // create a new account that is processed by the account manager
@@ -63,9 +63,9 @@ public class BankManagerActionHandler {
             }
             // add an account to the accountUser
             accountUser.addAccounts(newAccount.getId());
-            return true;
+            return newAccount.getId();
         }
-        return false;
+        return -1;
     }
 
     public boolean fulfillAccountRequest(int requestNum) {
@@ -102,7 +102,7 @@ public class BankManagerActionHandler {
     // assign a random password to the new client and return its username and password
     public String[] addClient(String username) {
         if (atm.getUserManager().userExists(username)) {
-            return new String[]{"USER NOT CREATED. USERNAME ALREADY EXISTS", ""};
+            return new String[]{null, null};
         }
 
         Random r = new Random();
@@ -120,11 +120,11 @@ public class BankManagerActionHandler {
     }
 
     // clear all alerts
-    public void clearAccounts() throws IOException {
+    public void clearAlerts() throws IOException {
         atm.clearAlerts();
     }
 
-    //
+    // TODO GET RID OF THIS?
     private void setAtmDate(int day, int month, int year) {
         atm.getTimeManager().getDate().setDate(day);
         atm.getTimeManager().getDate().setMonth(month);

@@ -1,4 +1,7 @@
 package ATM.BankAccounts;
+import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
+import ATM.BankAccounts.ExtraAccounts.ForeignCurrencyAccount;
+
 import java.io.*;
 import java.util.Date;
 
@@ -38,7 +41,17 @@ public abstract class BankAccount {
             return "CHEQUING_ACCOUNT";
         } else if (this instanceof SavingsAccount) {
             return "SAVINGS_ACCOUNT";
-        } else if (this instanceof CREDIT)
+        } else if (this instanceof CreditCardsAccount) {
+            return "CREDIT_CARDS_ACCOUNT";
+        } else if (this instanceof LineOfCreditAccount) {
+            return "LINE_OF_CREDIT_ACCOUNT";
+        } else if (this instanceof LotteryAccount) {
+            return "LOTTERY_ACCOUNT";
+        } else if (this instanceof ForeignCurrencyAccount) {
+            return "FOREIGN_CURRENCY_ACCOUNT";
+        } else {
+            return "UNKNOWN";
+        }
 
     }
 

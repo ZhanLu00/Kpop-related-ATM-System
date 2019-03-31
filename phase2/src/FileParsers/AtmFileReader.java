@@ -6,6 +6,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Read number of bills and date of the atm from a file
+ */
 public class AtmFileReader {
     private String fileName;
     private Date date;
@@ -17,6 +20,10 @@ public class AtmFileReader {
         this.accountCreationRequests = new ArrayList<>();
     }
 
+    /**
+     * @throws IOException
+     * Read the information from the this.fileName text file
+     */
     public void read() throws IOException {
         File file = new File(fileName);
         FileReader fr = new FileReader(file);

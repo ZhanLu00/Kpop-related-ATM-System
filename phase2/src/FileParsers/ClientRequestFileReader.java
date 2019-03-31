@@ -3,6 +3,9 @@ package FileParsers;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * Read the client creation requests for the atm from a file
+ */
 public class ClientRequestFileReader {
     private ArrayList<String> clientRequests;
 

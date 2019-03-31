@@ -10,6 +10,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Class used to save the Atm users to a file
+ */
 public class UserFileWriter {
 
     private String fileName;
@@ -20,6 +23,10 @@ public class UserFileWriter {
         this.users = users;
     }
 
+    /**
+     * @throws IOException
+     * Write the atm users to the textfile at this.fileName
+     */
     public void write() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
         writer.write("");
@@ -50,6 +57,10 @@ public class UserFileWriter {
         writer.close();
     }
 
+    /**
+     * @param user
+     * @return the type of user as a string.
+     */
     private String getType(User user) {
         if (user instanceof BankInspector) {
             return "inspector";

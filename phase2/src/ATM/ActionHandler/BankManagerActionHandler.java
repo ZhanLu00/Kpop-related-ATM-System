@@ -48,6 +48,8 @@ public class BankManagerActionHandler {
             if (newAccount instanceof ChequingAccount && accountUser.getPrimaryAccount() == -1) {
                 accountUser.setPrimaryAccount(newAccount.getId());
             }
+            // add an account to the AccountManager
+            atm.getAccountManager().addAccount(newAccount);
             // add an account to the accountUser
             accountUser.addAccounts(newAccount.getId());
             return newAccount.getId();

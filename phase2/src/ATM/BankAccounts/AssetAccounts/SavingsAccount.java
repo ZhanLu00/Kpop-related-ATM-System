@@ -7,8 +7,8 @@ import java.util.Date;
  */
 public class SavingsAccount extends AssetAccount {
 
-    public SavingsAccount(Date dateCreated, double balance) {
-        super(dateCreated, balance);
+    public SavingsAccount(Date dateCreated, double initialBalance) {
+        super(dateCreated, initialBalance);
     }
 
     /**

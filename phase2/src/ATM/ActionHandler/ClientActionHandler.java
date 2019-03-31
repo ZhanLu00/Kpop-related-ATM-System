@@ -219,7 +219,7 @@ public class ClientActionHandler {
             }else if (input == 8){
                 inputEight();
             }else if (input == 9){
-                inputNine();
+                //inputNine();
             }else if (input == 10){
                 inputTen();
             }else if (input == 11){
@@ -335,12 +335,12 @@ public class ClientActionHandler {
         if (newPrimary instanceof ChequingAccount) {
             for (int accountId : client.getAccounts()) {
                 BankAccount account = accountManager.getAccount(accountId);
-                if (account instanceof ChequingAccount && ((ChequingAccount) account).getPrimary()){
-                    ((ChequingAccount) account).setPrimary(false);
-                    break;
-                }
+//                if (account instanceof ChequingAccount && ((ChequingAccount) account).getPrimary()){
+//                    ((ChequingAccount) account).setPrimary(false);
+//                    break;
+//                }
             }
-            ((ChequingAccount) newPrimary).setPrimary(true);
+//            ((ChequingAccount) newPrimary).setPrimary(true);
             System.out.print("Request has been done");
         } else {
             System.out.println("Request declined. The account you entered is not a chequing account");

@@ -1,4 +1,4 @@
-package src.ATM.Currency;
+package ATM.Currency;
 import java.util.*;
 
 

@@ -1,9 +1,9 @@
-package src.ATM.ActionHandler;
+package ATM.ActionHandler;
 
-import src.ATM.*;
-import src.ATM.BankAccounts.AssetAccounts.ChequingAccount;
-import src.ATM.BankAccounts.BankAccount;
-import src.ATM.Users.Client;
+import ATM.*;
+import ATM.BankAccounts.AssetAccounts.ChequingAccount;
+import ATM.BankAccounts.BankAccount;
+import ATM.Users.Client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -54,12 +54,12 @@ public class BankManagerActionHandler {
                     // get the account instance of the given id
                     BankAccount account = atm.getAccountManager().getAccount(id);
                     // the account is a chequing account and it is a primary account
-                    if(account instanceof ChequingAccount && ((ChequingAccount) account).getPrimary()) {
-                        primary = true;
-                    }
+//                    if(account instanceof ChequingAccount && ((ChequingAccount) account).getPrimary()) {
+//                        primary = true;
+//                    }
                 }
                 // change the status of a given account to the opposite.
-                ((ChequingAccount) newAccount).setPrimary(!primary);
+//                ((ChequingAccount) newAccount).setPrimary(!primary);
             }
             // add an account to the accountUser
             accountUser.addAccounts(newAccount.getId());

@@ -34,7 +34,7 @@ public class ActionHandler {
     // sub-action handler
     private BankInspectorActionHandler bankInspectorActionHandler;
 
-    private BankManagerActionHandler bankManagerActionHandler;
+    private src.ATM.ActionHandler.BankManagerActionHandler bankManagerActionHandler;
 
     private ClientActionHandler clientActionHandler;
 

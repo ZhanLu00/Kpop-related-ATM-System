@@ -44,7 +44,7 @@ public class BillManager {
         tens -= tensTaken;
 
         int fivesTaken = Math.min(amount / 5, fives);
-        amount -=  5 * fivesTaken;
+//        amount -=  5 * fivesTaken;
         fives -= fivesTaken;
 
         if (fifties < 20 || twenties < 20 || tens < 20 || fives < 20) {

@@ -2,14 +2,9 @@ package ATM.Currency;
 import java.util.*;
 
 
-
 public class CurrencyManager {
 
-    /**
-     * A list of exchange rates.
-     */
     private ArrayList<Object[]> rates = new ArrayList<>();
-
 
     /**
      * Gets the exchange rate from USD to the target currency.

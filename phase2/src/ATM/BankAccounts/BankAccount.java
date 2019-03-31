@@ -32,6 +32,16 @@ public abstract class BankAccount {
         return this.balance;
     }
 
+    public String getType() {
+
+        if (this instanceof ChequingAccount) {
+            return "CHEQUING_ACCOUNT";
+        } else if (this instanceof SavingsAccount) {
+            return "SAVINGS_ACCOUNT";
+        } else if (this instanceof CREDIT)
+
+    }
+
     public abstract boolean deposit(double amount);
     public abstract boolean withdraw(double amount);
 

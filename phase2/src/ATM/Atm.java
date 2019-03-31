@@ -1,7 +1,7 @@
-package src.ATM;
-import src.ATM.Managers.*;
+package ATM;
+import ATM.Managers.*;
 import ATM.Users.User;
-import src.FileParsers.*;
+import FileParsers.*;
 
 import java.io.*;
 import java.util.ArrayList;

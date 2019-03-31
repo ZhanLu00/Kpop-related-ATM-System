@@ -1,4 +1,4 @@
-package ATM.Currency;
+package ATM.Managers;
 import java.util.*;
 
 
@@ -6,8 +6,12 @@ public class CurrencyManager {
 
     private ArrayList<Object[]> rates = new ArrayList<>();
 
+    public CurrencyManager(ArrayList<Object[]> rates){
+        this.rates = rates;
+    }
+
     /**
-     * Gets the exchange rate from USD to the target currency.
+     * Gets the exchange rate from CAD to the target currency.
      */
     public double getRate(String targetPrefix){
         for (Object[] exchangeRate : rates) {

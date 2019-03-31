@@ -16,10 +16,12 @@ public class Atm {
     private AccountManager accountManager;
     private BillManager billManager;
     private TransactionManager transactionManager;
+    private CurrencyManager currencyManager;
 
     private String userFileName, accountFileName, atmFileName, alertsFileName, transactionsFileName, messagesFileName,
     clientRequestFileName, accountRequestFileName;
 
+    //TODO: Currency manager gets info from where?
     public Atm (String userFileName,  String accountFileName, String atmFileName, String alertsFileName, String transactionsFileName, String messagesFileName
     , String accountRequestFileName, String clientRequestFileName) throws IOException {
         UserFileReader userFileReader = new UserFileReader(userFileName);
@@ -35,7 +37,7 @@ public class Atm {
         this.timeManager = new TimeManager(atmFileReader.getDate(), true);
         Date date = timeManager.getDate();
         this.userManager = new UserManager(userFileReader.getUsers(), clientRequestFileReader.getClientRequests(), date);
-        this.accountManager = new AccountManager(accountFileReader.getAccounts(), accountRequestFileReader.getAccountRequests(), date);
+        this.accountManager = new AccountManager(accountFileReader.getAccounts(), accountRequestFileReader.getAccountRequests(), getCurrencyManager(), date);
         this.billManager = new BillManager(atmFileReader.getFives(), atmFileReader.getTens(), atmFileReader.getTwenties(), atmFileReader.getFifties(),alertsFileName);
 
         for (String[] accountCreationRequest : atmFileReader.getAccountCreationRequests()) {
@@ -45,6 +47,8 @@ public class Atm {
         if (date.getDate() == 1) {
             accountManager.updateInterestAccounts();
         }
+
+
 
         this.transactionManager = new TransactionManager(transactionFileReader.getTransactions());
 
@@ -99,6 +103,8 @@ public class Atm {
     public TransactionManager getTransactionManager() {
         return transactionManager;
     }
+
+    public CurrencyManager getCurrencyManager() { return currencyManager; }
 
     public ArrayList<String> readAlerts() throws IOException {
         File file = new File(alertsFileName);

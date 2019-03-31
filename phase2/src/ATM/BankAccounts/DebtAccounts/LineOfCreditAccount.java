@@ -17,7 +17,7 @@ public class LineOfCreditAccount extends DebtAccount {
      * Succeeds if balance after withdrawal <= maxDebt.
      */
     public boolean withdraw(double amount) {
-        if (this.balance + amount <= this.getMaxDebt()) {
+        if (this.balance + amount <= this.MAX_DEBT) {
             this.balance += amount;
             return true;
         } else {

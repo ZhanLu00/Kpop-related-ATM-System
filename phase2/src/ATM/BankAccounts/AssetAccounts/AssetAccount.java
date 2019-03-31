@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public abstract class AssetAccount extends BankAccount {
 
-    public AssetAccount(Date dateCreated, double initialBalance) {
+    AssetAccount(Date dateCreated, double initialBalance) {
         super(dateCreated, initialBalance);
     }
 

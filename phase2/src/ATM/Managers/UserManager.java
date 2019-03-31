@@ -49,8 +49,7 @@ public class UserManager implements Iterable<User> {
                 return u;
             }
         }
-        User o = null;
-        return o;
+        return null;
     }
     public Client getUser(String username){
         for (User u : users){

@@ -54,9 +54,7 @@ public class TimeManager {
                 break;
             }
         }
-
-        Date date = new Date(year,monthIndex,day);
-        return date;
+        return new Date(year,monthIndex,day);
     }
 
     /**
@@ -70,7 +68,6 @@ public class TimeManager {
 
         return String.format("%d %s %d", year, month, day);
     }
-
 
     public Date getDate() {
         return date;

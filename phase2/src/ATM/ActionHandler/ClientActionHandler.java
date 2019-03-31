@@ -45,10 +45,6 @@ public class ClientActionHandler {
         this.billManager = atm.getBillManager();
     }
 
-    public void getText() {
-
-    }
-
     // check balance
     public Map<Integer, Double> checkBalance() {
         Map balance = new HashMap<Integer, Double>();
@@ -64,7 +60,7 @@ public class ClientActionHandler {
     // check transaction history (of itself)
 
     // withdraw
-    public Boolean withdraw(BankAccount account, int amount) throws IOException {
+    public Boolean withdraw(BankAccount account, int amount) {
     /*
     @ TODO add the function below in the user interface part
     the function only returns true or false
@@ -344,7 +340,6 @@ public class ClientActionHandler {
         if (withdraw(account, amount)) {
             System.out.println("Withdraw Succeed");
         } else {
-            ;
         }
     }
 

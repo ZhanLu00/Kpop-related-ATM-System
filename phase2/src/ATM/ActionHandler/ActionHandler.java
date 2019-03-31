@@ -555,7 +555,7 @@ public class ActionHandler {
 
         // TODO FINISH -- NEED TO GET USERNAME OF CLIENT WHO REQUESTED, WHAT TYPE IS viewer.accountRequestsList.getSelectedValue()
         viewer.acceptAccountRequestButton.addActionListener(e -> {
-            String username = (String) viewer.accountRequestsList.getSelectedValue();
+            String username = viewer.accountRequestsList.getSelectedValue().toString();
         });
 
         viewer.declineAccountRequestButton.addActionListener(e -> {

@@ -17,4 +17,16 @@ public class LotteryAccount extends LineOfCreditAccount {
         this.balance *= ThreadLocalRandom.current().nextDouble(0.5, 1.5);
     }
 
+    /**
+     * Attempts to withdraw *amount* from account.
+     * Succeeds if balance >= amount.
+     */
+    public boolean withdraw(double amount) {
+        if (this.balance >= amount) {
+            this.balance -= amount;
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

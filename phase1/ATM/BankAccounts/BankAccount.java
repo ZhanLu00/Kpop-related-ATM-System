@@ -1,7 +1,7 @@
-package ATM.BankAccounts;
-import ATM.AccountManager;
-import ATM.BankAccounts.AssetAccounts.AssetAccount;
-import ATM.Transaction;
+package src.ATM.BankAccounts;
+import src.ATM.AccountManager;
+import src.ATM.BankAccounts.AssetAccounts.AssetAccount;
+import src.ATM.Transaction;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

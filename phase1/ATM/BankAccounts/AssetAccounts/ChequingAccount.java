@@ -1,6 +1,6 @@
-package ATM.BankAccounts.AssetAccounts;
+package src.ATM.BankAccounts.AssetAccounts;
 
-import ATM.Transaction;
+import src.ATM.Transaction;
 
 import java.util.Date;
 

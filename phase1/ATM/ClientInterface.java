@@ -1,6 +1,6 @@
-package ATM;
+package src.ATM;
 
-import ATM.BankAccounts.BankAccount;
+import src.ATM.BankAccounts.BankAccount;
 
 import java.io.BufferedReader;
 import java.io.IOException;

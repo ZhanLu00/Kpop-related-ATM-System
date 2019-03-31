@@ -1,6 +1,6 @@
-package ATM;
+package src.ATM;
 
-import ATM.Users.User;
+import src.ATM.Users.User;
 
 import java.util.ArrayList;
 import java.util.Date;

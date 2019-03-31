@@ -1,4 +1,4 @@
-# ATM
+# src.ATM
 
 This program allows users can create to create or access their bank accounts(debt or asset).
 From there, users are able to view their account balance(s), transfer money between their accounts, transfer money to another user's account, withdraw money, pay bills, deposit money by entering a cheque or cash into the machine.
@@ -9,7 +9,7 @@ Our motivation for the project was the 27% of our CSC207 mark.
 
 ## Running the program
 
-Open and run ATMApplication. The ATM will prompt the user to enter an username and a password (example of working usernames and 
+Open and run ATMApplication. The src.ATM will prompt the user to enter an username and a password (example of working usernames and 
 passwords can be found in BankUsers.txt). 
 
 Bank manager is able to create an client, restock the atm machine, undo transaction, view account creation requests, 
@@ -17,7 +17,7 @@ set time, and show and clear alerts.
 
 Clients are able to view a summary of all account balances and their net total. They can also view the most recent 
 transaction and the date of creation of any account they own. A client is able to transfer money between their accounts 
-or out to other user's, withdraw or deposit money with the ATM machine, pay a bill, and request a creation of an account 
+or out to other user's, withdraw or deposit money with the src.ATM machine, pay a bill, and request a creation of an account 
 from the bank manager.
 
 Both bank manager and clients are able to access the features above by entering the number corresponding to the actions
@@ -25,13 +25,13 @@ and following the prompt.
 
 ## Configuration
 
-There are several configuration files for this program called "AtmInfo.txt", "BankAccounts.txt" and "BankUsers.txt". They should be present in the same directory as the folder ATM.
+There are several configuration files for this program called "AtmInfo.txt", "BankAccounts.txt" and "BankUsers.txt". They should be present in the same directory as the folder src.ATM.
 
 #### Configuring AtmInfo.txt
 
-This file configures the ATM's information.
+This file configures the src.ATM's information.
 
-The first line will be the date the ATM was initialized written in the following format:
+The first line will be the date the src.ATM was initialized written in the following format:
 
 ```
 <year> <month> <date>
@@ -45,7 +45,7 @@ Each variable is separated by spaces. Months must be written in the following fo
 
 Years and dates are initialized with no leading zeros.
 
-The second line will be the number of each bill the ATM holds in the following format:
+The second line will be the number of each bill the src.ATM holds in the following format:
 
 ```
 <number of $5 bills>, <number of $10 bills>, <number of $20 bills>, <number of $50 bills>

@@ -1,10 +1,10 @@
-package ATM;
+package src.ATM;
 
-import ATM.BankAccounts.AssetAccounts.ChequingAccount;
-import ATM.BankAccounts.AssetAccounts.SavingsAccount;
-import ATM.BankAccounts.BankAccount;
-import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
-import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
+import src.ATM.BankAccounts.AssetAccounts.ChequingAccount;
+import src.ATM.BankAccounts.AssetAccounts.SavingsAccount;
+import src.ATM.BankAccounts.BankAccount;
+import src.ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
+import src.ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
 
 import java.util.ArrayList;
 import java.util.Date;

@@ -1,8 +1,8 @@
-package FileParsers;
+package src.FileParsers;
 
-import ATM.Users.BankManager;
-import ATM.Users.Client;
-import ATM.Users.User;
+import src.ATM.Users.BankManager;
+import src.ATM.Users.Client;
+import src.ATM.Users.User;
 
 import java.io.*;
 import java.util.ArrayList;

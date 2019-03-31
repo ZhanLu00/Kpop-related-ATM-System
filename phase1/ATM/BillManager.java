@@ -1,4 +1,4 @@
-package ATM;
+package src.ATM;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -53,7 +53,7 @@ public class BillManager {
     }
 
     /**
-     * Returns whether or not there are the correct number of bills in the ATM
+     * Returns whether or not there are the correct number of bills in the src.ATM
      * for the amount the user requested to withdraw.
      */
     public boolean withdrawable(int amount){

@@ -1,10 +1,10 @@
-package FileParsers;
+package src.FileParsers;
 
-import ATM.BankAccounts.BankAccount;
-import ATM.TimeManager;
-import ATM.Users.BankManager;
-import ATM.Users.Client;
-import ATM.Users.User;
+import src.ATM.BankAccounts.BankAccount;
+import src.ATM.TimeManager;
+import src.ATM.Users.BankManager;
+import src.ATM.Users.Client;
+import src.ATM.Users.User;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

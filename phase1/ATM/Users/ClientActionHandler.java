@@ -1,8 +1,8 @@
-package ATM.Users;
-import ATM.*;
-import ATM.BankAccounts.AssetAccounts.AssetAccount;
-import ATM.BankAccounts.BankAccount;
-import ATM.BankAccounts.DebtAccounts.DebtAccount;
+package src.ATM.Users;
+import src.ATM.*;
+import src.ATM.BankAccounts.AssetAccounts.AssetAccount;
+import src.ATM.BankAccounts.BankAccount;
+import src.ATM.BankAccounts.DebtAccounts.DebtAccount;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -78,7 +78,7 @@ public class ClientActionHandler {
 
             }else{
                 // print if there are not enough money in the atm
-                System.out.println("There are not enough money in this ATM, please try another one");
+                System.out.println("There are not enough money in this src.ATM, please try another one");
                 return false;
             }
         }

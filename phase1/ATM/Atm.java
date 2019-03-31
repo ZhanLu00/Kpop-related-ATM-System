@@ -1,6 +1,6 @@
-package ATM;
-import ATM.Users.User;
-import FileParsers.*;
+package src.ATM;
+import src.ATM.Users.User;
+import src.FileParsers.*;
 
 import java.io.*;
 import java.util.ArrayList;

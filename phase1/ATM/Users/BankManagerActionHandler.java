@@ -1,6 +1,6 @@
-package ATM.Users;
-import ATM.*;
-import ATM.BankAccounts.BankAccount;
+package src.ATM.Users;
+import src.ATM.*;
+import src.ATM.BankAccounts.BankAccount;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,7 +12,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;

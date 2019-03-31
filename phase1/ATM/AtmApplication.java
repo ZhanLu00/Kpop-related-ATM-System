@@ -1,6 +1,6 @@
-package ATM;
+package src.ATM;
 
-import ATM.Users.*;
+import src.ATM.Users.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,7 +14,7 @@ public class AtmApplication {
 //        atm.printText();
 //        atm.save();
 
-        Atm atm = new Atm("phase1/ATM/BankUsers.txt","phase1/ATM/BankAccounts.txt","phase1/ATM/AtmInfo.txt", "phase1/ATM/alerts.txt");
+        Atm atm = new Atm("phase1/src.ATM/BankUsers.txt","phase1/src.ATM/BankAccounts.txt","phase1/src.ATM/AtmInfo.txt", "phase1/src.ATM/alerts.txt");
 
         while(true) {
             String username = getStringFromUser("Username (-1 to exit): ");

@@ -15,10 +15,10 @@ import java.util.Date;
  */
 public abstract class BankAccount {
 
-    protected static int nextId = 0;
-    protected final int ID;
-    protected final Date DATE_CREATED;
-    protected double balance = 0;
+    private static int nextId = 0;
+    private final int ID;
+    private final Date DATE_CREATED;
+    protected double balance;
 
     public BankAccount(Date dateCreated, double initialBalance) {
         this.ID = nextId;
@@ -47,10 +47,10 @@ public abstract class BankAccount {
             return "SAVINGS_ACCOUNT";
         } else if (this instanceof CreditCardsAccount) {
             return "CREDIT_CARDS_ACCOUNT";
-        } else if (this instanceof LineOfCreditAccount) {
-            return "LINE_OF_CREDIT_ACCOUNT";
         } else if (this instanceof LotteryAccount) {
             return "LOTTERY_ACCOUNT";
+        } else if (this instanceof LineOfCreditAccount) {
+            return "LINE_OF_CREDIT_ACCOUNT";
         } else if (this instanceof ForeignCurrencyAccount) {
             return "FOREIGN_CURRENCY_ACCOUNT";
         } else {
@@ -72,7 +72,7 @@ public abstract class BankAccount {
         if(this.withdraw(amount)) {
             try {
                 String bill = amount + ", " + receiver;
-                BufferedWriter writer = new BufferedWriter(new FileWriter("/outgoing.txt"));
+                BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/src/ATM/testfiles/outgoing.txt"));
                 writer.append(bill);
             } catch (IOException e) {
                 e.printStackTrace();

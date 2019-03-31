@@ -40,7 +40,6 @@ public class ATMGUI {
     public JButton depositMoneyButton;
     public JButton goBackClient;
     public JButton changePasswordButton;
-    public JButton joinAccountsButton;
     public JButton setPrimaryChequingAccountButton;
 
     // MANAGER OPTIONS
@@ -50,8 +49,10 @@ public class ATMGUI {
     public JButton restockMachineButton;
     public JButton viewAccountCreationRequestsButton;
     public JButton showAlertsButton;
-    public JButton logOutManager;
     public JButton viewUserCreationRequestsButton;
+    public JButton joinAccountsButton;
+    public JButton logOutManager;
+
 
     // DEPOSIT OPTION
     public JPanel depositOption;
@@ -60,6 +61,7 @@ public class ATMGUI {
     public JSpinner numTwenty;
     public JSpinner numFifty;
     public JFormattedTextField depositAccNum;
+    public JFormattedTextField chequeAmt; // TODO HANDLE CHEQUE DEPOSIT OPTION IN ACTION HANDLER
     public JButton depositButton;
     public JButton goBackDeposit;
 
@@ -182,6 +184,7 @@ public class ATMGUI {
     public JTextField jointUser;
     public JButton goBackJoinAcc;
     public JButton JoinButton;
+    public JFormattedTextField joinAccNum;
 
     // SET PRIMARY CHEQUING ACCOUNT
     public JPanel setPrimary;
@@ -200,7 +203,6 @@ public class ATMGUI {
     }
 
     public ATMGUI(){
-
 
     }
 

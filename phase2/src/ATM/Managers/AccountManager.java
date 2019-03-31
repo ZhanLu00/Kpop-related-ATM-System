@@ -1,5 +1,6 @@
 package ATM.Managers;
 
+import ATM.Atm;
 import ATM.BankAccounts.AssetAccounts.ChequingAccount;
 import ATM.BankAccounts.ExtraAccounts.ForeignCurrencyAccount;
 import ATM.BankAccounts.ExtraAccounts.LotteryAccount;
@@ -22,11 +23,13 @@ import java.util.function.Consumer;
 public class AccountManager implements Iterable<BankAccount> {
     private ArrayList<BankAccount> accounts;
     private ArrayList<String[]> accountRequests;
+    private CurrencyManager currencyManager;
     private Date date;
 
-    public AccountManager(ArrayList<BankAccount> accounts, ArrayList<String[]> accountRequests, Date date) {
+    public AccountManager(ArrayList<BankAccount> accounts, ArrayList<String[]> accountRequests, CurrencyManager currencyManager, Date date) {
         this.accounts = accounts;
         this.accountRequests = accountRequests;
+        this.currencyManager = currencyManager;
         this.date = date;
     }
 
@@ -72,8 +75,8 @@ public class AccountManager implements Iterable<BankAccount> {
         BankAccount sender = this.getAccount(senderId);
         BankAccount receiver = this.getAccount(receiverId);
         if(sender.withdraw(amount) && receiver.deposit(amount)) {
-            Transaction transaction = new Transaction(amount, senderId, receiverId, "transfer");
-            return transaction;
+            return new Transaction(amount, senderId, receiverId, "transfer");
+
         } else {
             return null;
         }
@@ -81,6 +84,17 @@ public class AccountManager implements Iterable<BankAccount> {
 
     public void requestNewAccount(String clientName, String accountType) {
         accountRequests.add(new String[] {clientName, accountType});
+    }
+
+    /**
+     * Returns a list of all the users.
+     */
+    public void updateExchangeRates(){
+        for (BankAccount account: this.getAccounts()) {
+            if (account instanceof ForeignCurrencyAccount){
+                ((ForeignCurrencyAccount) account).setExchangeRate(this.currencyManager.getRate("USD"));
+            }
+        };
     }
 
     public ArrayList<String[]> getAccountRequests() {
@@ -97,7 +111,7 @@ public class AccountManager implements Iterable<BankAccount> {
 
     public BankAccount createAccount(String accountType) {
         if (accountType.equals("CHEQUING_ACCOUNT")) {
-            // All new ChequingAccount has its primary attribute set to false.
+//            // All new ChequingAccount has its primary attribute set to false.
             return new ChequingAccount(date,0);
         }
         else if (accountType.equals("SAVINGS_ACCOUNT")) {
@@ -107,7 +121,8 @@ public class AccountManager implements Iterable<BankAccount> {
             return new LotteryAccount(date,0);
         }
         else if (accountType.equals("FOREIGN_CURRENCY_ACCOUNT")){
-            return new ForeignCurrencyAccount(date, 0, 0.74);
+            String currencyType = "USD";
+            return new ForeignCurrencyAccount(date, 0, currencyType, currencyManager.getRate(currencyType));
         }
         else if (accountType.equals("CREDIT_CARD_ACCOUNT")) {
             return new CreditCardsAccount(date,0);

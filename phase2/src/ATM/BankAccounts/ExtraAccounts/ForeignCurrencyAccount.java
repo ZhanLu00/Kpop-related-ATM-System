@@ -7,12 +7,15 @@ import java.util.Date;
 public class ForeignCurrencyAccount extends BankAccount {
     double exchangeRate;
     double foreignCurrencyBalance;
-    public ForeignCurrencyAccount(Date date, double initialBalance, double exchangeRate){
+    String currencyType;
+    public ForeignCurrencyAccount(Date date, double initialBalance, String currencyType, double exchangeRate){
         super(date, initialBalance);
         this.exchangeRate = exchangeRate;
+        this.currencyType = currencyType;
         this.foreignCurrencyBalance = exchangeRate * this.balance;
     }
 
+    public String getCurrencyType() { return this.currencyType; }
     public double getBalance() {
         return this.balance;
     }
@@ -32,9 +35,14 @@ public class ForeignCurrencyAccount extends BankAccount {
     public double getExchangeRate() {
         return exchangeRate;
     }
+
+    /**
+     * Sets exchange rate and updates balances accordingly.
+     */
     public boolean setExchangeRate(double exchangeRate) {
         this.exchangeRate = exchangeRate;
         this.balance = this.foreignCurrencyBalance/exchangeRate;
+        return true;
     }
     /**
      * Withdraws the given amount out of an account as CAD.

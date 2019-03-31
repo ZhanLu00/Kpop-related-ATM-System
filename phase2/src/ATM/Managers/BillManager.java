@@ -98,6 +98,20 @@ public class BillManager {
         writer.close();
     }
 
+    /**
+     * Deposits a given amount of bills into ATM.
+     * amount % 5 == 0
+     */
+    public void deposit(int amount) {
+        this.fifties += amount/50;
+        amount %= 50;
+        this.twenties += amount/20;
+        amount %= 20;
+        this.tens += amount/10;
+        amount %= 10;
+        this.fives += amount/5;
+    }
+
     public void deposit(int fives, int tens, int twenties, int fifties) {
         this.fives += Math.max(fives,0);
         this.tens += Math.max(tens,0);

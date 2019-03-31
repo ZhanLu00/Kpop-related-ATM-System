@@ -41,10 +41,10 @@ public abstract class BankAccount {
             return "SAVINGS_ACCOUNT";
         } else if (this instanceof CreditCardsAccount) {
             return "CREDIT_CARD_ACCOUNT";
-        } else if (this instanceof LineOfCreditAccount) {
-            return "LINE_OF_CREDIT_ACCOUNT";
         } else if (this instanceof LotteryAccount) {
             return "LOTTERY_ACCOUNT";
+        } else if (this instanceof LineOfCreditAccount) {
+            return "LINE_OF_CREDIT_ACCOUNT";
         } else if (this instanceof ForeignCurrencyAccount) {
             return "FOREIGN_CURRENCY_ACCOUNT";
         } else {

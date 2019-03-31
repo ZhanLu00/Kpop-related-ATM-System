@@ -1,6 +1,6 @@
-package FileParsers;
+package src.FileParsers;
 
-import ATM.Managers.TimeManager;
+import src.ATM.Managers.TimeManager;
 
 import java.io.*;
 import java.util.ArrayList;

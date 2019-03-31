@@ -1,4 +1,4 @@
-package ATM.Users;
+package src.ATM.Users;
 
 public abstract class User {
     /** This use interface

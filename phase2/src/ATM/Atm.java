@@ -1,6 +1,7 @@
 package src.ATM;
+
 import src.ATM.Managers.*;
-import ATM.Users.User;
+import src.ATM.Users.User;
 import src.FileParsers.*;
 
 import java.io.*;

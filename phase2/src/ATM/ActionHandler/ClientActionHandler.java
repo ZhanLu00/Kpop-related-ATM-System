@@ -135,7 +135,7 @@ public class ClientActionHandler {
     /*
     Calculate the net total of all accounts of an user
      */
-    public Double netTotal(Map<Integer, Double> accounts){
+    public double netTotal(Map<Integer, Double> accounts){
         // The total of their debt account balances subtracted from the total of their asset account balances.
 
         double total = 0;
@@ -171,7 +171,7 @@ public class ClientActionHandler {
         if (pswd.length <= 6 || pswd.length >= 15){
             return false;
         }else {
-            this.client.setPassword(pswd.toString());
+            this.client.setPassword(String.valueOf(pswd));
             return true;
         }
     }

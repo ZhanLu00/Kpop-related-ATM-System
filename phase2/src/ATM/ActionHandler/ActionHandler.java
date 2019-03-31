@@ -12,6 +12,7 @@ import ATM.Users.User;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 
 public class ActionHandler {
 
@@ -28,7 +29,7 @@ public class ActionHandler {
 
     private BillManager billManager;
 
-    // viwer/display
+    // viewer/display
     private ATMGUI viewer;
 
     // sub-action handler
@@ -116,9 +117,9 @@ public class ActionHandler {
         viewer.loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean loginSuccess = login(viewer.usernameText.getText(), viewer.passwordText.getPassword().toString());
+                boolean loginSuccess = login(viewer.usernameText.getText(), String.valueOf(viewer.passwordText.getPassword()));
                 if (loginSuccess){
-                    if (userType == "client"){
+                    if (userType.equals("client")){
                         viewer.changePage(viewer.returningUserPage, viewer.clientOptions);
                         currentUser = userManager.getUser(viewer.usernameText.getText());
                         clientOption();
@@ -191,13 +192,36 @@ public class ActionHandler {
     }
 
     public void accountSummary(){
+        StringBuilder summary = new StringBuilder("Bank Accounts and Balances: \n");
         // a field for accounts sum
         // include creation date
-
-
+        // FIXME GET EACH BANK ACC CREATION DATE, ACC TYPE, ACC NUMBER AND BALANCE
+        for (Object accountNumber:accountBalance.keySet()) {
+            summary.append(accountNumber + ": " + accountBalance.get(accountNumber));
+        }
         // net total
+        // FIXME GET USER NET TOTAL
+        summary.append("Net total $%s", clientActionHandler.netTotal(currentUser.getAccounts()));
+
+
+        //set the summary text
+        viewer.accountSummaries.setText(summary.toString());
 
         // a field for transaction history
+        // FIXME are the transactions in chronological order? (ie index 0 is most recent)
+        //  rn it's looking for account number but we only have current user.....
+        Transaction recentTrans = transactionManager.getTransactionsBySender(currentUser).get(0);
+        viewer.mostRecentTransaction.setText(recentTrans.toString());
+
+        // request to create a new account
+        viewer.makeANewAccountButton.addActionListener(e -> {
+            viewer.changePage(viewer.summaryOfAccounts, viewer.newAccount);
+        });
+
+        // go back
+        viewer.goBackClientSummary.addActionListener(e -> {
+            viewer.changePage(viewer.summaryOfAccounts, viewer.clientOptions);
+        });
 
     }
 
@@ -211,12 +235,12 @@ public class ActionHandler {
                 accountNum = Integer.parseInt(viewer.accNumWithdraw.getText());
                 boolean succeed = clientActionHandler.withdraw(accountManager.getAccount(accountNum), withdrawAmount);
                 if (succeed){
-                    JOptionPane.showMessageDialog(null, "withdraw succeed");
+                    JOptionPane.showMessageDialog(null, "Your withdrawal was successful.");
                 }else{
-                    JOptionPane.showMessageDialog(null, "You don't have that much money");
+                    JOptionPane.showMessageDialog(null, "You don't enough money.");
                 }
             }catch (Exception exp){
-                JOptionPane.showMessageDialog(null, "Please check your input");
+                JOptionPane.showMessageDialog(null, "Please check your input.");
             }
         });
 
@@ -237,12 +261,12 @@ public class ActionHandler {
                 transAmt = Double.parseDouble(viewer.transInAccNum.getText());
                 boolean succeed = clientActionHandler.transfer(transAmt, outAccNum, inAccNum);
                 if (succeed){
-                    JOptionPane.showMessageDialog(null, "transfer succeed");
+                    JOptionPane.showMessageDialog(null, "Your transfer was successful.");
                 }else{
-                    JOptionPane.showMessageDialog(null, "Error: check your input and your balance");
+                    JOptionPane.showMessageDialog(null, "Please check your input or balance.");
                 }
             }catch (Exception exp){
-                JOptionPane.showMessageDialog(null, "Please check your input");
+                JOptionPane.showMessageDialog(null, "Please check your input.");
             }
 
 
@@ -264,12 +288,12 @@ public class ActionHandler {
                 billAmt = Double.parseDouble(viewer.billAmt.getText());
                 boolean succeed = clientActionHandler.transfer(billAmt, billAccNum, billPayee);
                 if (succeed){
-                    JOptionPane.showMessageDialog(null, "Pay bill succeed");
+                    JOptionPane.showMessageDialog(null, "You have successfully paid your bill.");
                 }else{
-                    JOptionPane.showMessageDialog(null, "You don't have that much money");
+                    JOptionPane.showMessageDialog(null, "You don't have enough money");
                 }
             }catch (Exception exp){
-                JOptionPane.showMessageDialog(null, "Please check your input");
+                JOptionPane.showMessageDialog(null, "Please check your input.");
             }
         });
 
@@ -284,15 +308,15 @@ public class ActionHandler {
         viewer.depositButton.addActionListener(e->{
             int numFives, numTens, numTwenty, numFifty;
 
-            numFives = Integer.parseInt(viewer.numFives.getToolTipText());
-            numTens = Integer.parseInt(viewer.numTens.getToolTipText());
-            numTwenty = Integer.parseInt(viewer.numTwenty.getToolTipText());
-            numFifty = Integer.parseInt(viewer.numFifty.getToolTipText());
+            numFives = (int) viewer.numFives.getValue();
+            numTens = (int) viewer.numTens.getValue();
+            numTwenty = (int) viewer.numTwenty.getValue();
+            numFifty = (int) viewer.numFifty.getValue();
             boolean succeed = clientActionHandler.deposit(numFives, numTens, numTwenty, numFifty);
             if (succeed){
-                JOptionPane.showMessageDialog(null, "deposit succeed");
+                JOptionPane.showMessageDialog(null, "Deposit successful.");
             }else{
-                JOptionPane.showMessageDialog(null, "something is wrong");
+                JOptionPane.showMessageDialog(null, "Please check your input.");
             }
         });
 
@@ -305,15 +329,15 @@ public class ActionHandler {
         viewer.changePswd.addActionListener(e->{
             // todo why this returns String
             char[] pswd = viewer.newPassword.getPassword();
-            if (pswd.length == 0) {
+            if (pswd.length != 0) {
                 boolean succeed = clientActionHandler.changepswd(pswd);
                 if (succeed) {
-                    JOptionPane.showMessageDialog(null, "password changed, please remember it!");
+                    JOptionPane.showMessageDialog(null, "You have successfully changed your password. Don't forget it!");
                 } else {
-                    JOptionPane.showMessageDialog(null, "please enter a password in between 6 to 15 character");
+                    JOptionPane.showMessageDialog(null, "Please enter a password between 6 to 15 characters.");
                 }
             }else{
-                JOptionPane.showMessageDialog(null, "Please check your input");
+                JOptionPane.showMessageDialog(null, "Please check your input.");
             }
         });
         viewer.goBackPassword.addActionListener(e->{

@@ -16,17 +16,19 @@ public class AtmTesting {
     // viewer
     public static ATMGUI atmgui = new ATMGUI();
 
+    //TODO: txt file for currency rates
+    private ArrayList<Object[]> rates = new ArrayList<>();
+    private CurrencyManager currencyManager = new CurrencyManager(rates);
+
     // model
+    private AccountManager accountManager = new AccountManager(new ArrayList<BankAccount>(), new ArrayList<String[]>(),
+            currencyManager, new Date());
+
     private TransactionManager transactionManager = new TransactionManager();
 
     private UserManager userManager = new UserManager(new ArrayList<User>(), new ArrayList<String>(), new Date());
 
     private BillManager billManager = new BillManager();
-
-    private CurrencyManager currencyManager = new CurrencyManager();
-
-    private AccountManager accountManager = new AccountManager(new ArrayList<BankAccount>(), new ArrayList<String[]>(),
-            currencyManager, new Date());
 
 
 

@@ -1,25 +1,8 @@
 package ATM;
 
-import ATM.Managers.AccountManager;
-import ATM.Managers.BillManager;
-import ATM.Users.Client;
-
 import javax.swing.*;
-import java.text.NumberFormat;
 
 public class ATMGUI {
-
-    NumberFormat df = NumberFormat.getCurrencyInstance(); //currency format
-
-    // FIXME ahhhh
-    public AccountManager accountManager;
-    public BillManager billManager;
-    public Client client;
-
-//    // FIXME what's messages file?
-//    Atm atm = new Atm("phase2/src.ATM/BankUsers.txt","phase2/src.ATM/BankAccounts.txt",
-//            "phase2/src.ATM/AtmInfo.txt", "phase2/src.ATM/alerts.txt", "phase2/", "");
-
 
     /**
      * initialize the form (do not modify this code)
@@ -57,6 +40,8 @@ public class ATMGUI {
     public JButton depositMoneyButton;
     public JButton goBackClient;
     public JButton changePasswordButton;
+    public JButton joinAccountsButton;
+    public JButton setPrimaryChequingAccountButton;
 
     // MANAGER OPTIONS
     public JPanel managerOptions;
@@ -121,7 +106,7 @@ public class ATMGUI {
     public JButton seeAllTransactionsButton;
     public JButton checkClientsAccountButton;
     public JButton logOutInspector;
-    public JButton moreOptionsButton; // TODO THIS BUTTON GOES TO CLIENT OPTIONS PAGE SINCE INSPECTOR CAN DO EVERYTHING CLIENTS CAN DO
+    public JButton moreOptionsButton;
 
     // SEND MANAGER MESSAGE OPTION
     public JPanel sendManagerMsg;
@@ -191,6 +176,18 @@ public class ATMGUI {
     public JButton acceptAccountRequestButton;
     public JList accountRequestsList;
 
+    // JOIN TWO CLIENT ACCOUNTS
+    public JPanel joinAccounts;
+    public JTextField jointAccNum;
+    public JTextField jointUser;
+    public JButton goBackJoinAcc;
+    public JButton JoinButton;
+
+    // SET PRIMARY CHEQUING ACCOUNT
+    public JPanel setPrimary;
+    public JComboBox selectPrimary;
+    public JButton goBackPrimary;
+    public JButton setPrimaryButton;
 
 
     public void changePage(JPanel currentPage, JPanel newPage){
@@ -201,7 +198,6 @@ public class ATMGUI {
     public void popUp(String message){
         JOptionPane.showMessageDialog(null, message);
     }
-
 
     public ATMGUI(){
 

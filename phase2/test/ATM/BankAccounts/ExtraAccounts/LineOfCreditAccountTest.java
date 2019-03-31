@@ -1,4 +1,4 @@
-package ATM.BankAccounts;
+package ATM.BankAccounts.ExtraAccounts;
 
 import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
 import org.junit.Before;

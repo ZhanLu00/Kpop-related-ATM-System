@@ -9,7 +9,7 @@ public class Client extends ATM.Users.User {
 
     public Client(String username, String password) {
         super(username, password);
-        this.accountNumbers = new ArrayList<Integer>(1);
+        this.accountNumbers = new ArrayList<>(1);
     }
 
 

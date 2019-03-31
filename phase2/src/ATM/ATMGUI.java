@@ -133,6 +133,7 @@ public class ATMGUI {
     // NEW BANK ACCOUNT PAGE
     public JPanel newAccount;
     public JComboBox accType;
+    public JTextArea accRequestStatus;
     public JButton goBackNewAcc;
     public JButton createAccountButton;
 
@@ -191,6 +192,7 @@ public class ATMGUI {
     public JComboBox selectPrimary;
     public JButton goBackPrimary;
     public JButton setPrimaryButton;
+    public JFormattedTextField primaryAccNum;
 
 
     public void changePage(JPanel currentPage, JPanel newPage){

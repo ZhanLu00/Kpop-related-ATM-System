@@ -171,6 +171,26 @@ public class ClientActionHandler {
         }
     }
 
+    public boolean setPrimary(int accNum){
+        BankAccount newPrimary = accountManager.getAccount(accNum);
+
+        //todo fix this
+        if (newPrimary instanceof ChequingAccount) {
+            for (int accountId : client.getAccounts()) {
+                BankAccount account = accountManager.getAccount(accountId);
+//                if (account instanceof ChequingAccount && ((ChequingAccount) account).getPrimary()){
+//                    ((ChequingAccount) account).setPrimary(false);
+//                    break;
+//                }
+            }
+            ((ChequingAccount) newPrimary).setPrimary(true);
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
 
     public void displayCommandLineInterface() throws IOException {
         // basic info

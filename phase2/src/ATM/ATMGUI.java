@@ -60,6 +60,7 @@ public class ATMGUI {
     public JSpinner numTwenty;
     public JSpinner numFifty;
     public JFormattedTextField depositAccNum;
+    public JFormattedTextField chequeAmt; // TODO HANDLE CHEQUE DEPOSIT OPTION IN ACTION HANDLER
     public JButton depositButton;
     public JButton goBackDeposit;
 

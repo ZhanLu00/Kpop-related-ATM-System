@@ -38,12 +38,8 @@ public class TimeManager {
     }
 
     /**
-<<<<<<< HEAD
-     * Takes string in form "2000 jan 1" and returns corresponding Date type object.
-=======
      * @param dateString in format yyyy month dd
      * @return Date object representing the date from the string
->>>>>>> 2fe8093a78367ef129ff0f8be31e4f9b92f9b911
      */
     public static Date dateFromString(String dateString){
         String[] split = dateString.split(" ");

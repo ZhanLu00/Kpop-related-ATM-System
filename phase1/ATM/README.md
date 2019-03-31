@@ -16,7 +16,7 @@ Bank manager is able to create an client, restock the atm machine, undo transact
 set time, and show and clear alerts.
 
 Clients are able to view a summary of all account balances and their net total. They can also view the most recent 
-transaction and the date of creation of any account they own. A client is able to transfer money between their accounts 
+transaction and the dateCreated of creation of any account they own. A client is able to transfer money between their accounts 
 or out to other user's, withdraw or deposit money with the src.ATM machine, pay a bill, and request a creation of an account 
 from the bank manager.
 
@@ -31,10 +31,10 @@ There are several configuration files for this program called "AtmInfo.txt", "Ba
 
 This file configures the src.ATM's information.
 
-The first line will be the date the src.ATM was initialized written in the following format:
+The first line will be the dateCreated the src.ATM was initialized written in the following format:
 
 ```
-<year> <month> <date>
+<year> <month> <dateCreated>
 ```
 
 Each variable is separated by spaces. Months must be written in the following format:
@@ -62,14 +62,14 @@ This file contains information of all the bank accounts.
 Each line is a new bank account. All accounts are initialized in the following format:
 
 ```
-<account type>, <balance>, <date of creation>
+<account type>, <balance>, <dateCreated of creation>
 ```
 
 Account type can be one of the following: 'chequing', 'savings', 'lineofcredit', or 'creditcard'.
 
 Balances must be doubles greater than or equal to 0.
 
-The date of creation is written in the same format as the first line of 'ATMInfo.txt'.
+The dateCreated of creation is written in the same format as the first line of 'ATMInfo.txt'.
 
 #### Configuring BankUsers.txt
 

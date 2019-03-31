@@ -33,7 +33,7 @@ public class BankManagerActionHandler {
      * Creates a new bank account for user.
      * Returns account id if account was successfully created, -1 otherwise.
      */
-    public int createAccountForUser(String username, String accountType){
+    public int createAccountForUser(String username, String accountType) {
         Client accountUser = ((Client) atm.getUserManager().getUser(username));
 
         // the false condition:
@@ -45,56 +45,42 @@ public class BankManagerActionHandler {
         BankAccount newAccount = atm.getAccountManager().createAccount(accountType);
 
         if (newAccount != null) {
-            // This loops through list of account the client owns if the account created is a chequing account.
-            // If this is the first chequing Account the client owns, primary will be set to true.
-/*
-            if (newAccount instanceof ChequingAccount) {
-                boolean primary = false;
-                // loop through all ids of a given user
-                for (int id : accountUser.getAccounts()) {
-                    // get the account instance of the given id
-                    BankAccount account = atm.getAccountManager().getAccount(id);
-                    // the account is a chequing account and it is a primary account
-//                    if(account instanceof ChequingAccount && ((ChequingAccount) account).getPrimary()) {
-//                        primary = true;
-//                    }
-                }
-                // change the status of a given account to the opposite.
-//                ((ChequingAccount) newAccount).setPrimary(!primary);
+            if (newAccount instanceof ChequingAccount && accountUser.getPrimaryAccount() == -1) {
+                accountUser.setPrimaryAccount(newAccount.getId());
             }
-*/
             // add an account to the accountUser
             accountUser.addAccounts(newAccount.getId());
             return newAccount.getId();
+        } else {
+            return -1;
         }
-        return -1;
     }
 
     /**
-     * If account can be created, return account id, -1 otherwise
+     * If account can be created return true, otherwise return false
      */
-    public int fulfillAccountRequest(int requestNum) {
+    public boolean fulfillAccountRequest(int requestNum) {
         // test for invalid request number
         if (requestNum >= atm.getAccountManager().getAccountRequests().size() || requestNum < 0) {
-            return -1;
+            return false;
         }
         // get the request object and remove it from the request list
         String[] request = atm.getAccountManager().getAccountRequests().remove(requestNum);
         String username = request[0];
         String accountType = request[1];
         // do some basic setups and create account
-        return createAccountForUser(username, accountType);
+        return createAccountForUser(username, accountType) != -1;
     }
 
     // repeatedly call on the previous method
     public boolean fulfillAllAccountRequests() {
         boolean allCompleted = true;
         while (atm.getAccountManager().getAccountRequests().size() > 0) {
-            if (fulfillAccountRequest(0) == -1) {
+            if (!fulfillAccountRequest(0)) {
                 allCompleted = false;
             }
         }
-        // if all changes are done, return Tre otherwise False
+        // if all changes are done, return True otherwise False
         return allCompleted;
     }
 
@@ -171,11 +157,11 @@ public class BankManagerActionHandler {
      * Transfers all existing non-debt account balances to a specified receiver account.
      * Returns true if receiver account is valid.
      */
-    public boolean transferAllToAccount(int receiverAccountId){
-        if (atm.getAccountManager().getAccount(receiverAccountId) == null){
+    public boolean transferAllToAccount(int receiverAccountId) {
+        if (atm.getAccountManager().getAccount(receiverAccountId) == null) {
             return false;
         }
-        for (BankAccount account:atm.getAccountManager().getAccounts()) {
+        for (BankAccount account : atm.getAccountManager().getAccounts()) {
             atm.getAccountManager().transfer(account.getBalance(), account.getId(), receiverAccountId);
         }
         return true;
@@ -257,32 +243,32 @@ public class BankManagerActionHandler {
         for (Transaction transaction : atm.getTransactionManager().getTransactions()) {
             System.out.println(String.format("%d)  Sender: %d,  Receiver: %d, Amount %f", c,
                     transaction.getSender(), transaction.getReceiver(), transaction.getAmount()));
-            c+=1;
+            c += 1;
         }
         int transaction = getIntFromUser("Which transaction would you like to undo: ");
         System.out.println(undoTransaction(transaction) ? ("Transaction Undone") : ("Error undoing transaction"));
     }
 
-//    public void inputFour() throws IOException {
-//        int c = 0;
-//        for (String[] accountRequest : atm.getAccountManager().getAccountRequests()) {
-//            System.out.println(String.format("%d) Username: %s,  Account Type %s", c, accountRequest[0], accountRequest[1]));
-//            c += 1;
-//        }
-//
-//        if (atm.getAccountManager().getAccountRequests().size() == 0) {
-//            System.out.println("No Requests");
-//        } else {
-//            int requestNum = getIntFromUser("which request do you want to fulfill (-1 for all): ");
-//            boolean result;
-//            if (requestNum == -1) {
-//                result = fulfillAllAccountRequests();
-//            } else {
-//                result = fulfillAccountRequest(requestNum);
-//            }
-//            System.out.println(result ? ("Account(s) created") : "Invalid. Check request number / user existence");
-//        }
-//    }
+    public void inputFour() throws IOException {
+        int c = 0;
+        for (String[] accountRequest : atm.getAccountManager().getAccountRequests()) {
+            System.out.println(String.format("%d) Username: %s,  Account Type %s", c, accountRequest[0], accountRequest[1]));
+            c += 1;
+        }
+
+        if (atm.getAccountManager().getAccountRequests().size() == 0) {
+            System.out.println("No Requests");
+        } else {
+            int requestNum = getIntFromUser("which request do you want to fulfill (-1 for all): ");
+            boolean result;
+            if (requestNum == -1) {
+                result = fulfillAllAccountRequests();
+            } else {
+                result = fulfillAccountRequest(requestNum);
+            }
+            System.out.println(result ? ("Account(s) created") : "Invalid. Check request number / user existence");
+        }
+    }
 
     public void inputFive() throws IOException {
         int day = getIntFromUser("day: ");

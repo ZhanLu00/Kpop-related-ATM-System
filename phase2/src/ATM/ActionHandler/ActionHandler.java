@@ -98,6 +98,7 @@ public class ActionHandler {
         });
 
     }
+
     /**
      * New User Page
      */
@@ -140,7 +141,6 @@ public class ActionHandler {
             viewer.changePage(viewer.newUserPage, viewer.welcomePage);
         });
     }
-
 
     /**
      * User Log in
@@ -224,10 +224,15 @@ public class ActionHandler {
             viewer.changePage(viewer.clientOptions, viewer.changePassword);
             changePswd();
         });
+        viewer.setPrimaryChequingAccountButton.addActionListener(e->{
+            viewer.changePage(viewer.clientOptions, viewer.setPrimary);
+            setPrimary();
+        });
         viewer.goBackClient.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.welcomePage);
             currentUser = null;
         });
+
     }
 
     public void accountSummary(){
@@ -384,6 +389,24 @@ public class ActionHandler {
         });
     }
 
+    public void setPrimary(){
+        viewer.setPrimaryButton.addActionListener(e->{
+            // get input
+            int accNum = Integer.parseInt(viewer.selectPrimary.getSelectedItem().toString());
+            // do action
+            if (clientActionHandler.setPrimary(accNum)){
+                JOptionPane.showMessageDialog(null, "You have been set a " +
+                        "new primary account successfully ");
+            }else{
+                JOptionPane.showMessageDialog(null, "Please select a chequing account");
+            }
+
+        });
+        viewer.goBackPrimary.addActionListener(e->{
+            viewer.changePage(viewer.setPrimary, viewer.clientOptions);
+        });
+
+    }
 
     /**
      * Bank Manager Action Handler

@@ -1,4 +1,4 @@
-package src.ATM.Users;
+package ATM.Users;
 
 public class BankManager extends User {
 

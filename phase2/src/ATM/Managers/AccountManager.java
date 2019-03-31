@@ -1,14 +1,14 @@
-package src.ATM.Managers;
+package ATM.Managers;
 
-import src.ATM.BankAccounts.AssetAccounts.ChequingAccount;
-import src.ATM.BankAccounts.ExtraAccounts.ForeignCurrencyAccount;
-import src.ATM.BankAccounts.ExtraAccounts.LotteryAccount;
-import src.ATM.BankAccounts.AssetAccounts.SavingsAccount;
-import src.ATM.BankAccounts.BankAccount;
-import src.ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
-import src.ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
-import src.ATM.BankAccounts.DebtAccounts.DebtAccount;
-import src.ATM.Transaction;
+import ATM.BankAccounts.AssetAccounts.ChequingAccount;
+import ATM.BankAccounts.ExtraAccounts.ForeignCurrencyAccount;
+import ATM.BankAccounts.ExtraAccounts.LotteryAccount;
+import ATM.BankAccounts.AssetAccounts.SavingsAccount;
+import ATM.BankAccounts.BankAccount;
+import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
+import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
+import ATM.BankAccounts.DebtAccounts.DebtAccount;
+import ATM.Transaction;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,7 +42,7 @@ public class AccountManager implements Iterable<BankAccount> {
     }
 
     public static void setMaxDebt(int newDebt) {
-        DebtAccount.MAX_DEBT = newDebt;
+        //DebtAccount.MAX_DEBT = newDebt;
     }
 
     /**
@@ -95,28 +95,28 @@ public class AccountManager implements Iterable<BankAccount> {
         return accounts.size();
     }
 
-    public BankAccount createAccount(String accountType) {
-        if (accountType.equals(BankAccount.CHEQUING)) {
-            // All new ChequingAccount has its primary attribute set to false.
-            return new ChequingAccount(date,0, false);
-        }
-        else if (accountType.equals(BankAccount.SAVINGS)) {
-            return new SavingsAccount(date,0);
-        }
-        else if (accountType.equals(BankAccount.LOTTERY)) {
-            return new LotteryAccount(date,0);
-        }
-        else if (accountType.equals(BankAccount.FOREIGN_CURRENCY)){
-            return new ForeignCurrencyAccount(date, 0, 0.74);
-        }
-        else if (accountType.equals(BankAccount.CREDIT_CARD)) {
-            return new CreditCardsAccount(date,0);
-        }
-        else if (accountType.equals(BankAccount.LINE_OF_CREDIT)) {
-            return new LineOfCreditAccount(date,0);
-        }
-        return null;
-    }
+//    public BankAccount createAccount(String accountType) {
+//        if (accountType.equals(BankAccount.CHEQUING)) {
+//            // All new ChequingAccount has its primary attribute set to false.
+//            return new ChequingAccount(date,0, false);
+//        }
+//        else if (accountType.equals(BankAccount.SAVINGS)) {
+//            return new SavingsAccount(date,0);
+//        }
+//        else if (accountType.equals(BankAccount.LOTTERY)) {
+//            return new LotteryAccount(date,0);
+//        }
+//        else if (accountType.equals(BankAccount.FOREIGN_CURRENCY)){
+//            return new ForeignCurrencyAccount(date, 0, 0.74);
+//        }
+//        else if (accountType.equals(BankAccount.CREDIT_CARD)) {
+//            return new CreditCardsAccount(date,0);
+//        }
+//        else if (accountType.equals(BankAccount.LINE_OF_CREDIT)) {
+//            return new LineOfCreditAccount(date,0);
+//        }
+//        return null;
+//    }
 
     private class AccountManagerIterator implements Iterator<BankAccount> {
         private ArrayList<BankAccount> bankAccounts;

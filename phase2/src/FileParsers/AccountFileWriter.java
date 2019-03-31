@@ -1,9 +1,9 @@
-package src.FileParsers;
+package FileParsers;
 
-import src.ATM.BankAccounts.BankAccount;
-import src.ATM.BankAccounts.DebtAccounts.DebtAccount;
-import src.ATM.BankAccounts.ExtraAccounts.ForeignCurrencyAccount;
-import src.ATM.Managers.TimeManager;
+import ATM.BankAccounts.BankAccount;
+import ATM.BankAccounts.DebtAccounts.DebtAccount;
+import ATM.BankAccounts.ExtraAccounts.ForeignCurrencyAccount;
+import ATM.Managers.TimeManager;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -25,7 +25,7 @@ public class AccountFileWriter {
         writer.write("");
         StringBuilder fileOut = new StringBuilder("");
         for (BankAccount account : accounts) {
-            String type = BankAccount.getAccountType(account);
+            String type = account.getType();
 
             double balance;
             if (account instanceof DebtAccount) {

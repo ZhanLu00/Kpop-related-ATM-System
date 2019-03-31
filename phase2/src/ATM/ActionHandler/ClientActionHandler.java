@@ -1,13 +1,13 @@
-package src.ATM.ActionHandler;
-import src.ATM.*;
-import src.ATM.BankAccounts.AssetAccounts.AssetAccount;
-import src.ATM.BankAccounts.AssetAccounts.ChequingAccount;
-import src.ATM.BankAccounts.BankAccount;
-import src.ATM.BankAccounts.DebtAccounts.DebtAccount;
-import src.ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
-import src.ATM.Managers.AccountManager;
-import src.ATM.Managers.BillManager;
-import src.ATM.Users.Client;
+package ATM.ActionHandler;
+import ATM.*;
+import ATM.BankAccounts.AssetAccounts.AssetAccount;
+import ATM.BankAccounts.AssetAccounts.ChequingAccount;
+import ATM.BankAccounts.BankAccount;
+import ATM.BankAccounts.DebtAccounts.DebtAccount;
+import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
+import ATM.Managers.AccountManager;
+import ATM.Managers.BillManager;
+import ATM.Users.Client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -156,7 +156,7 @@ public class ClientActionHandler {
         for (int accountN:accounts){
             BankAccount account = accountManager.getAccount(accountN);
             if (account instanceof ChequingAccount){
-                if (((ChequingAccount) account).getPrimary()){
+                if (true){ //((ChequingAccount) account).getPrimary()
                     account.deposit(fives*5+tens*10+twenties*20+fifties*50);
                     billManager.deposit(fives, tens, twenties, fifties);
                     return true;

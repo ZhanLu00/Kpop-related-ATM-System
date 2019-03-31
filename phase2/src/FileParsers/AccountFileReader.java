@@ -1,13 +1,13 @@
-package src.FileParsers;
+package FileParsers;
 
-import src.ATM.BankAccounts.AssetAccounts.ChequingAccount;
-import src.ATM.BankAccounts.AssetAccounts.SavingsAccount;
-import src.ATM.BankAccounts.BankAccount;
-import src.ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
-import src.ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
-import src.ATM.BankAccounts.ExtraAccounts.ForeignCurrencyAccount;
-import src.ATM.BankAccounts.ExtraAccounts.LotteryAccount;
-import src.ATM.Managers.TimeManager;
+import ATM.BankAccounts.AssetAccounts.ChequingAccount;
+import ATM.BankAccounts.AssetAccounts.SavingsAccount;
+import ATM.BankAccounts.BankAccount;
+import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
+import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
+import ATM.BankAccounts.ExtraAccounts.ForeignCurrencyAccount;
+import ATM.BankAccounts.ExtraAccounts.LotteryAccount;
+import ATM.Managers.TimeManager;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -39,25 +39,25 @@ public class AccountFileReader {
         Date date = TimeManager.dateFromString(separated[2].replace(",",""));
 
 
-        if (type.equals(BankAccount.CHEQUING)) {
-            accounts.add(new ChequingAccount(date,balance,false));
-        }
-        else if (type.equals(BankAccount.SAVINGS)) {
-            accounts.add(new SavingsAccount(date,balance));
-        }
-        else if (type.equals(BankAccount.CREDIT_CARD)) {
-            accounts.add(new CreditCardsAccount(date,balance));
-        }
-        else if (type.equals(BankAccount.LINE_OF_CREDIT)) {
-            accounts.add(new LineOfCreditAccount(date,balance));
-        }
-        else if (type.equals(BankAccount.LOTTERY)) {
-            accounts.add(new LotteryAccount(date,balance));
-        }
-        else if (type.equals(BankAccount.FOREIGN_CURRENCY)) {
-            double exchangeRate = Double.parseDouble(separated[3].replace(",",""));
-            accounts.add(new ForeignCurrencyAccount(date, balance, exchangeRate));
-        }
+//        if (type.equals(BankAccount.CHEQUING)) {
+//            accounts.add(new ChequingAccount(date,balance,false));
+//        }
+//        else if (type.equals(BankAccount.SAVINGS)) {
+//            accounts.add(new SavingsAccount(date,balance));
+//        }
+//        else if (type.equals(BankAccount.CREDIT_CARD)) {
+//            accounts.add(new CreditCardsAccount(date,balance));
+//        }
+//        else if (type.equals(BankAccount.LINE_OF_CREDIT)) {
+//            accounts.add(new LineOfCreditAccount(date,balance));
+//        }
+//        else if (type.equals(BankAccount.LOTTERY)) {
+//            accounts.add(new LotteryAccount(date,balance));
+//        }
+//        else if (type.equals(BankAccount.FOREIGN_CURRENCY)) {
+//            double exchangeRate = Double.parseDouble(separated[3].replace(",",""));
+//            accounts.add(new ForeignCurrencyAccount(date, balance, exchangeRate));
+//        }
 
     }
 

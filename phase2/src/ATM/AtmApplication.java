@@ -1,8 +1,8 @@
-package src.ATM;
+package ATM;
 
-import src.ATM.ActionHandler.BankManagerActionHandler;
-import src.ATM.ActionHandler.ClientActionHandler;
-import src.ATM.Users.*;
+import ATM.ActionHandler.BankManagerActionHandler;
+import ATM.ActionHandler.ClientActionHandler;
+import ATM.Users.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;

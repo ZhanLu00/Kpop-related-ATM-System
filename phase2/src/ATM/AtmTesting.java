@@ -1,11 +1,11 @@
-package src.ATM;
+package ATM;
 
 
-import src.ATM.ActionHandler.ActionHandler;
-import src.ATM.Managers.AccountManager;
-import src.ATM.Managers.BillManager;
-import src.ATM.Managers.TransactionManager;
-import src.ATM.Managers.UserManager;
+import ATM.ActionHandler.ActionHandler;
+import ATM.Managers.AccountManager;
+import ATM.Managers.BillManager;
+import ATM.Managers.TransactionManager;
+import ATM.Managers.UserManager;
 
 public class AtmTesting {
 

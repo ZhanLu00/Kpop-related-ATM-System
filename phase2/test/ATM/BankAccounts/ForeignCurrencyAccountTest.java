@@ -1,4 +1,4 @@
-package test.ATM.BankAccounts;
+package ATM.BankAccounts;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -38,4 +38,9 @@ public class ForeignCurrencyAccountTest {
         assertEquals(acc.getForeignCurrencyBalance(), 0);
     }
 
+    @Test
+    public void testSetExchangeRate() {
+        acc.setExchangeRate(0.1);
+        assertEquals(acc.getBalance(), 2000)
+    }
 }

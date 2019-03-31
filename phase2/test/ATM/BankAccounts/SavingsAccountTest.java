@@ -1,4 +1,4 @@
-package test.ATM.BankAccounts;
+package ATM.BankAccounts;
 
 import ATM.BankAccounts.AssetAccounts.SavingsAccount;
 import org.junit.Before;

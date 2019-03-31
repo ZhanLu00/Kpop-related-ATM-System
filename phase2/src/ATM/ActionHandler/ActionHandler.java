@@ -10,13 +10,13 @@ import ATM.Users.BankManager;
 import ATM.Users.Client;
 import ATM.Users.User;
 import ATM.ATMGUI;
-import ATM.ActionHandler.BankInspectorActionHandler;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Objects;
 
 public class ActionHandler {
 
@@ -111,20 +111,22 @@ public class ActionHandler {
             if (!userManager.userExists(username)){
                 // store the alert
                 requestManager.addRequest("newUser", username, type);
-                JOptionPane.showMessageDialog(null, "Request submitted, please come back to check" +
+                viewer.popUp("Request submitted, please come back to check" +
                         "your status");
             }else{
-                JOptionPane.showMessageDialog(null, "Your username is already token");
+                viewer.popUp("Your username is already taken. Please choose a different one");
+                viewer.userDesiredName.setText("");
             }
         });
         viewer.requestStatus.addActionListener(e->{
             // get input
             String username = viewer.userDesiredName.getText();
-            String type = viewer.newAccType.getSelectedItem().toString();
+            // FIXME GET RID OF FEATURE THAT ALLOWS BANK MANAGER TO SET UP ACC FOR USERS?
+            String type = String.valueOf(viewer.newAccType.getSelectedItem());
             // check if the request exist
-            if (requestManager.requestExist()){
+            if (requestManager.requestExist("newUser", username, null)){
                 // then show the status
-                String status = requestManager.getStatus(username);
+                String status = requestManager.getStatus("newUser", username);
                 if (status.equals("accepted")){
                     String pswd = userManager.getUser(username).getPassword();
                     viewer.popUp("Request accepted, here is your initial password: \n " + pswd);
@@ -236,27 +238,41 @@ public class ActionHandler {
     }
 
     public void accountSummary(){
-//        StringBuilder summary = new StringBuilder("Bank Accounts and Balances: \n");
-//        // a field for accounts sum
-//        // include creation date
-//        // FIXME GET EACH BANK ACC CREATION DATE, ACC TYPE, ACC NUMBER AND BALANCE
-//        for (Object accountNumber:accountBalance.keySet()) {
-//            summary.append(accountNumber + ": " + accountBalance.get(accountNumber));
-//        }
-//        // net total
-//        // FIXME GET USER NET TOTAL
-//        summary.append("Net total $%s", clientActionHandler.netTotal(currentUser.getAccounts()));
-//
-//
-//        //set the summary text
-//        viewer.accountSummaries.setText(summary.toString());
-//
-//        // a field for transaction history
-//        // FIXME are the transactions in chronological order? (ie index 0 is most recent)
-//        //  rn it's looking for account number but we only have current user.....
-//        Transaction recentTrans = transactionManager.getTransactionsBySender(currentUser.accountNum()).get(0);
-//        viewer.mostRecentTransaction.setText(recentTrans.toString());
+        Map accountBalance = clientActionHandler.checkBalance();
+        StringBuilder summary = new StringBuilder("Bank Accounts and Balances: \n");
+        for (Object accountNumber : accountBalance.keySet()) {
+            summary.append(accountNumber + ": " + accountBalance.get(accountNumber));
+        }
+        summary.append("Your net total is: " + clientActionHandler.netTotal(accountBalance));
+        viewer.accountSummaries.setText(summary.toString());
 
+        viewer.seeMostRecentTransactionButton.addActionListener(e -> {
+            viewer.accountInfo.setText("");
+            int accountNum;
+            try{
+                accountNum = Integer.parseInt(viewer.summaryAccNum.getText());
+                ArrayList<Transaction> transactions = transactionManager.getTransactionsBySender(accountNum);
+                if(transactions.size() == 0 || transactions.get(transactions.size() - 1) == null) {
+                    viewer.popUp("The latest transaction is not viewable on this account");
+                }else{
+                    Transaction transaction = transactions.get(transactions.size() - 1);
+                    viewer.accountInfo.setText(transaction.toString());
+                }
+            }catch (Exception exp){
+                viewer.popUp("Please check your input.");
+            }
+        });
+        // see account creation date
+        viewer.checkAccountCreationDateButton.addActionListener(e -> {
+            viewer.accountInfo.setText("");
+            int accountNum;
+            try{
+                accountNum = Integer.parseInt(viewer.summaryAccNum.getText());
+                viewer.accountInfo.setText(accountManager.getAccount(accountNum).getDateCreated().toString());
+            }catch (Exception exp){
+                viewer.popUp("Please check your input.");
+            }
+        });
         // request to create a new account
         viewer.makeANewAccountButton.addActionListener(e -> {
             viewer.changePage(viewer.summaryOfAccounts, viewer.newAccount);
@@ -350,14 +366,18 @@ public class ActionHandler {
     public void deposit(){
 
         viewer.depositButton.addActionListener(e->{
-            int numFives, numTens, numTwenty, numFifty;
-
+            int numFives, numTens, numTwenty, numFifty, account;
+            double numCheque;
+            account = Integer.parseInt(viewer.depositAccNum.getValue().toString());
             numFives = (int) viewer.numFives.getValue();
             numTens = (int) viewer.numTens.getValue();
             numTwenty = (int) viewer.numTwenty.getValue();
             numFifty = (int) viewer.numFifty.getValue();
-            boolean succeed = clientActionHandler.deposit(numFives, numTens, numTwenty, numFifty);
-            if (succeed){
+            //deposit by cash
+            numCheque = Double.parseDouble(Objects.requireNonNull(viewer.chequeAmt.getValue()).toString());
+            boolean succeedCheque = clientActionHandler.deposit(account, numCheque);
+            boolean succeedCash = clientActionHandler.deposit(account, numFives, numTens, numTwenty, numFifty);
+            if (succeedCheque || succeedCash){
                 viewer.popUp("Deposit successful.");
             }else{
                 viewer.popUp("Please check your input.");
@@ -392,13 +412,13 @@ public class ActionHandler {
     public void setPrimary(){
         viewer.setPrimaryButton.addActionListener(e->{
             // get input
-            int accNum = Integer.parseInt(viewer.selectPrimary.getSelectedItem().toString());
+            int accNum = Integer.parseInt(Objects.requireNonNull(viewer.selectPrimary.getSelectedItem()).toString());
             // do action
             if (clientActionHandler.setPrimary(accNum)){
-                JOptionPane.showMessageDialog(null, "You have been set a " +
-                        "new primary account successfully ");
+                viewer.popUp("You have successfully set a new " +
+                        "primary account.");
             }else{
-                JOptionPane.showMessageDialog(null, "Please select a chequing account");
+                viewer.popUp("Please select a chequing account");
             }
 
         });

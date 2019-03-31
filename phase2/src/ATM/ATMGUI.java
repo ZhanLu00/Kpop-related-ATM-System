@@ -61,7 +61,7 @@ public class ATMGUI {
     public JSpinner numTwenty;
     public JSpinner numFifty;
     public JFormattedTextField depositAccNum;
-    public JFormattedTextField chequeAmt; // TODO HANDLE CHEQUE DEPOSIT OPTION IN ACTION HANDLER
+    public JFormattedTextField chequeAmt;
     public JButton depositButton;
     public JButton goBackDeposit;
 
@@ -70,7 +70,10 @@ public class ATMGUI {
     public JTextArea accountSummaries;
     public JButton goBackSummary;
     public JButton makeANewAccountButton;
-    public JTextArea mostRecentTransaction;
+    public JTextArea accountInfo;
+    public JFormattedTextField summaryAccNum;
+    public JButton seeMostRecentTransactionButton;
+    public JButton checkAccountCreationDateButton;
 
     // TRANSFER OPTION
     public JPanel transferOption;

@@ -1,5 +1,7 @@
 package ATM.Managers;
 
+import com.sun.istack.internal.Nullable;
+
 import java.util.ArrayList;
 
 /**
@@ -60,7 +62,7 @@ public class RequestManager {
      * @param type The type of the account being created if checking for a account creation request
      * @return if the request exists or not
      */
-    public boolean requestExist(String requestType, String username, String type) {
+    public boolean requestExist(String requestType, String username, @Nullable String type) {
         if (requestType.equals("newUser")) {
             for (String requestUsername : clientRequests) {
                 if (username.equals(requestUsername)) {

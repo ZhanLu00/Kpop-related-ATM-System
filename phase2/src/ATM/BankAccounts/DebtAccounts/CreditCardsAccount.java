@@ -3,7 +3,7 @@ import java.util.Date;
 
 
 /**
- * A CreditCardAccount class.
+ * A CreditCardsAccount class.
  */
 public class CreditCardsAccount extends DebtAccount {
 

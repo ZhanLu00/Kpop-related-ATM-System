@@ -11,13 +11,12 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * A BankManagerActionHandler class.
+ * This class handles actions from BankManager, acting as an operation class.
+ * This class will need to access and modify fields from AccountManager, BankManager and Client.
+ */
 public class BankManagerActionHandler {
-    // this class will be handle actions from users
-    // acting as an operation class here
-    // two types of actions come from two types of user
-    // this class will need to access and mutate the Accounts from AccountManager
-    // bankManager
-    // Client
 
     // Bank manager's info is nessesary or not?
     // private BankManager bankManager;
@@ -74,25 +73,36 @@ public class BankManagerActionHandler {
         return createAccountForUser(username, accountType) != -1;
     }
 
-    // repeatedly call on the previous method
+    /**
+     * Fulfill all account requests.
+     * Basically repeatedly calls on the previous method.
+     * Returns true if this is successful, false otherwise.
+     */
     public boolean fulfillAllAccountRequests() {
         boolean allCompleted = true;
-        while (atm.getAccountManager().getAccountRequests().size() > 0) {
-            if (!fulfillAccountRequest(0)) {
+        int requestNum = atm.getAccountManager().getAccountRequests().size();
+        while (requestNum > 0) {
+            if (!fulfillAccountRequest(requestNum)) {
                 allCompleted = false;
             }
+            requestNum --;
         }
         // if all changes are done, return True otherwise False
         return allCompleted;
     }
 
-    // increase the amount of each cash by tge given number
+    /**
+     * Increase the amount of each cash by the given numbers.
+     */
     public void restockBills(int numFives, int numTens, int numTwenties, int numFifties) {
         atm.getBillManager().deposit(numFives, numTens, numTwenties, numFifties);
     }
 
-    // add new client if it is not under the current manager's management
-    // assign a random password to the new client and return its username and password
+    /**
+     * Add a new client if it not currently in UserManager.
+     * Assign a random password to the new client.
+     * Returns a string array of {username, password}.
+     */
     public String[] addClient(String username) {
         if (atm.getUserManager().userExists(username)) {
             return new String[]{null, null};
@@ -107,12 +117,16 @@ public class BankManagerActionHandler {
         return new String[]{username, randomPassword};
     }
 
-    // return an alert from atm alert array list
+    /**
+     * Return an arraylist of alert from atm alert.
+     */
     public ArrayList<String> getAlerts() throws IOException {
         return atm.readAlerts();
     }
 
-    // clear all alerts
+    /**
+     * Clear all alerts in the atm alert
+     */
     public void clearAlerts() throws IOException {
         atm.clearAlerts();
     }
@@ -124,10 +138,15 @@ public class BankManagerActionHandler {
         atm.getTimeManager().getDate().setYear(year);
     }
 
+    /**
+     * Undoes a transaction by id.
+     * Returns true of the transaction is undone, false otherwise.
+     */
     public boolean undoTransaction(int id) {
         return atm.getTransactionManager().undoTransaction(id, atm.getAccountManager());
     }
 
+    /** Input Readers **/
     private int getIntFromUser(String display) throws IOException {
         System.out.print(display);
         return Integer.parseInt(kbd.readLine());
@@ -138,6 +157,9 @@ public class BankManagerActionHandler {
         return kbd.readLine();
     }
 
+    /**
+     * Adds an account to client.accounts by client and account id.
+     */
     public boolean addAccountToUser(Client client, int accountId) {
         if (client == null || (accountId < 0 || accountId >= atm.getAccountManager().getAccounts().size())) {
             return false;
@@ -148,6 +170,9 @@ public class BankManagerActionHandler {
         return true;
     }
 
+    /**
+     * Adds an account to client.account by username and account id.
+     */
     public boolean addAccountToUser(String username, int accountId) {
         Client client = ((Client) atm.getUserManager().getUser(username));
 
@@ -182,6 +207,7 @@ public class BankManagerActionHandler {
         return login;
     }
 
+    /** Interface **/
     public void displayCommandLineInterface() throws IOException {
         while (true) {
             System.out.println("Please select an option:");
@@ -203,7 +229,7 @@ public class BankManagerActionHandler {
             } else if (input == 3) {
                 inputThree();
             } else if (input == 4) {
-                // inputFour();
+                 inputFour();
             } else if (input == 5) {
                 inputFive();
             } else if (input == 6) {

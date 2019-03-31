@@ -129,7 +129,6 @@ public class ClientActionHandler {
 
     }
 
-
     /*
     Calculate the net total of all accounts of an user
      */
@@ -157,7 +156,7 @@ public class ClientActionHandler {
         return true;
     }
 
-    public boolean deposit(int id, double amount){
+    public boolean deposit(int id, double amount) {
         BankAccount account = accountManager.getAccount(id);
         account.deposit(amount);
         return true;
@@ -339,7 +338,7 @@ public class ClientActionHandler {
         System.out.println("Enter the number of fifties you want to deposit");
         int fifties = Integer.parseInt(kbd.readLine());
         fifties = positiveNum(fifties);
-        return new int[] {fives, tens, twenties, fifties};
+        return new int[]{fives, tens, twenties, fifties};
     }
 
     public void inputNine() throws IOException {

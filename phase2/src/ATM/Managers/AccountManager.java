@@ -1,6 +1,5 @@
 package ATM.Managers;
 
-import ATM.Atm;
 import ATM.BankAccounts.AssetAccounts.ChequingAccount;
 import ATM.BankAccounts.ExtraAccounts.ForeignCurrencyAccount;
 import ATM.BankAccounts.ExtraAccounts.LotteryAccount;
@@ -8,7 +7,6 @@ import ATM.BankAccounts.AssetAccounts.SavingsAccount;
 import ATM.BankAccounts.BankAccount;
 import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
 import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
-import ATM.BankAccounts.DebtAccounts.DebtAccount;
 import ATM.Transaction;
 
 import java.util.ArrayList;
@@ -39,7 +37,7 @@ public class AccountManager implements Iterable<BankAccount> {
                 ((SavingsAccount) account).collectInterest();
             }
             else if (account instanceof LotteryAccount) {
-                ((LotteryAccount) account).collectInterest();
+                ((LotteryAccount) account).play();
             }
         }
     }

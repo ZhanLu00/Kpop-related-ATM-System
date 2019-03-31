@@ -73,6 +73,7 @@ public class ActionHandler {
     public void initOperator(){
         this.runStage = 100;
         // basic on the current page, add listener
+        // start from the main page
         viewer.newUser.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -87,17 +88,6 @@ public class ActionHandler {
                 runStage = 102;
             }
         });
-
-        // start from the main page
-
-
-        // add listener to buttons, make sure to set the event as defined
-
-        // log in page
-        // add listener to buttons and input field
-
-        // based on the user type, call different method for windows
-
 
 
     }

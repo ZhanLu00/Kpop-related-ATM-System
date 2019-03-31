@@ -5,6 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Write all the client creation requests from the atm to a file
+ */
 public class ClientRequestFileWriter {
 
     private String fileName;

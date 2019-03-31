@@ -8,6 +8,9 @@ import ATM.Users.User;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * Read the users for the program from the file
+ */
 public class UserFileReader {
     private ArrayList<User> users;
 
@@ -22,6 +25,10 @@ public class UserFileReader {
         }
     }
 
+    /**
+     * @param userInfo
+     * Create a user from the line of information from the file
+     */
     private void createUser(String userInfo) {
         String[] separated = userInfo.split(",");
         String userType = separated[0].replace(",","");

@@ -24,6 +24,12 @@ import java.util.Map;
  * This class will need to access and modify fields from AccountManager, BankManager and Client.
  */
 public class ClientActionHandler {
+    // this class will be handle actions from users
+    // acting as an operation class here
+    // two types of actions come from two types of user
+    // this class will need to access and mutate the Accounts from AccountManager
+    // bankManager
+    // Client
 
     private Client client;
     private AccountManager accountManager;
@@ -39,13 +45,7 @@ public class ClientActionHandler {
         this.billManager = atm.getBillManager();
     }
 
-    public void getText() {
-        //TODO: do we need this?
-    }
-
-    /**
-     * Returns a summary of balance owned by the client.
-     */
+    // check balance
     public Map<Integer, Double> checkBalance() {
         Map balance = new HashMap<Integer, Double>();
 
@@ -57,13 +57,10 @@ public class ClientActionHandler {
         return balance;
     }
 
+    // check transaction history (of itself)
 
-    /**
-     * Withdraws a given amount.
-     * The balance is decreased from the account and the number of cash stored in the ATM is also decreased.
-     * Returns true if the withdrawal is successful, false otherwise.
-     */
-    public Boolean withdraw(BankAccount account, int amount) throws IOException {
+    // withdraw
+    public Boolean withdraw(BankAccount account, int amount) {
     /*
     @ TODO add the function below in the user interface part
     the function only returns true or false
@@ -92,11 +89,7 @@ public class ClientActionHandler {
         }
     }
 
-    /**
-     * Transfers money between two accounts.
-     * Records the transaction with type "transfer" in TransactionManager.
-     * Returns true if the transfer is successful, false otherwise.
-     */
+    // transfer
     public Boolean transfer(double amount, int senderId, int receiverId) {
 
         Transaction transaction = this.accountManager.transfer(amount, senderId, receiverId);
@@ -110,17 +103,13 @@ public class ClientActionHandler {
     }
 
 
-    /**
-     * Requests creation of an account.
-     */
+    // request creation of an account
     public void accountCreation(String type) {
         this.accountManager.requestNewAccount(this.client.getUsername(), type);
     }
 
-    /**
-     * Pay a bill with the given amount.
-     * Records the transaction with type "bill" in TransactionManager.
-     * Returns true if the bill paying is successful, false otherwise.
+    /*
+    Pay a bill
      */
     public Boolean payBill(int transOut, double amount, int transIn) {
         BankAccount account = accountManager.getAccount(transOut);
@@ -131,7 +120,8 @@ public class ClientActionHandler {
             // withdraw money from transOut account
             if (account.payBill(amount, transIn)) {
                 // save the transaction history
-                atm.getTransactionManager().addTransaction(amount, transOut, transIn, "bill");
+                Transaction transaction = new Transaction(amount, transOut, transIn, "bill");
+                atm.getTransactionManager().addTransaction(transaction);
                 return true;
             } else {
                 return false;
@@ -140,8 +130,8 @@ public class ClientActionHandler {
 
     }
 
-    /**
-     * Calculates and returns the net total of all accounts the client owns.
+    /*
+    Calculate the net total of all accounts of an user
      */
     public double netTotal(Map<Integer, Double> accounts) {
         // The total of their debt account balances subtracted from the total of their asset account balances.
@@ -160,6 +150,17 @@ public class ClientActionHandler {
     }
 
 
+    public boolean deposit(int id, int fives, int tens, int twenties, int fifties, double chequing) {
+        if (client.getAccounts().contains(id)) {
+            accountManager.getAccount(id).deposit(fives * 5 + tens * 10 + twenties * 20 + fifties * 50);
+            if (chequing <= 0) {
+                billManager.deposit(fives, tens, twenties, fifties);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
     /**
      * Deposits the give amount into an account by cash.
      * Both the balance of the account and the cash storage of ATM increases.
@@ -196,27 +197,24 @@ public class ClientActionHandler {
             return true;
         }
     }
-//
-//    public boolean setPrimary(int accNum){
-//        BankAccount newPrimary = accountManager.getAccount(accNum);
-//
-//        if (newPrimary instanceof ChequingAccount) {
-//            for (int accountId : client.getAccounts()) {
-//                BankAccount account = accountManager.getAccount(accountId);
-////                if (account instanceof ChequingAccount && ((ChequingAccount) account).getPrimary()){
-////                    ((ChequingAccount) account).setPrimary(false);
-////                    break;
-////                }
-//            }
-//            ((ChequingAccount) newPrimary).setPrimary(true);
-//            return true;
-//        } else {
-//            return false;
-//        }
-//
-//    }
 
-    /** Interface **/
+    /**
+     * Sets a chequing account as primary account.
+     * Returns true if this action is successful, false otherwise.
+     */
+    public boolean setPrimary(int accNum) {
+       BankAccount account = accountManager.getAccount(accNum);
+       if (account instanceof ChequingAccount) {
+           client.setPrimaryAccount(accNum);
+           return true;
+       }
+       return false;
+    }
+
+
+    /**
+     * Interface
+     **/
     public void displayCommandLineInterface() throws IOException {
         // basic info
         String userName = client.getUsername();
@@ -240,7 +238,6 @@ public class ClientActionHandler {
             System.out.println("Enter 9 to make a deposit");
             System.out.println("Enter 10 to request a creation of an account");
             System.out.println("Enter 11 to set your primary chequing account");
-            System.out.println("Enter 12 to quit");
 
             int input = Integer.parseInt(kbd.readLine());
 
@@ -264,15 +261,8 @@ public class ClientActionHandler {
             } else if (input == 10) {
                 inputTen();
             } else if (input == 11) {
-                inputEleven(accountNumbers);
-            } else if (input == 12) {
-                break;
-            } else {
-                System.out.println("Invalid input");
+                inputEleven();
             }
-
-            System.out.println();
-            System.out.println();
         }
     }
 
@@ -285,9 +275,9 @@ public class ClientActionHandler {
     }
 
     /**
-     * Helper function for input 2, 3 and 11.
+     * Helper function for input 2 and 3
      */
-    private int getAccountNum(ArrayList<Integer> accountNumbers) throws IOException {
+    private int accountNum(ArrayList<Integer> accountNumbers) throws IOException {
         System.out.println("Enter the account that you want to check");
         int accountNumber = Integer.parseInt(kbd.readLine());
         while (!accountNumbers.contains(accountNumber)) {
@@ -296,27 +286,18 @@ public class ClientActionHandler {
         return accountNumber;
     }
 
-    /**
-     * Displays the latest transaction on this account where the sender is the client.
-     */
     public void inputTwo(ArrayList<Integer> accountNumbers) throws IOException {
         // view wth most recent transaction
-        int accountNumber = getAccountNum(accountNumbers);
+        int accountNumber = accountNum(accountNumbers);
         BankAccount account = accountManager.getAccount(accountNumber);
-        ArrayList<Transaction> transactions = atm.getTransactionManager().getTransactionsBySender(accountNumber);
-        if(transactions.size() == 0 || transactions.get(transactions.size() - 1) == null) {
-            System.out.println("The latest transaction is not viewable on this account");
-        } else {
-            Transaction transaction = transactions.get(transactions.size() - 1);
-            System.out.println(String.format("Sender: %d,  Receiver:  %d,  Amount: %f, Type: %s" , transaction.getSender(), transaction.getReceiver(), transaction.getAmount(), transaction.getType()));
+        // Transaction transaction = account.getLastTransaction();
 
-        }
-
+        //System.out.println(String.format("Sender: %d,  Receiver:  %d,  Amount: %f", transaction.getSender(), transaction.getReceiver(), transaction.getAmount()));
     }
 
     public void inputThree(ArrayList<Integer> accountNumbers) throws IOException {
         // check the date of creation
-        int accountNumber = getAccountNum(accountNumbers);
+        int accountNumber = accountNum(accountNumbers);
         // the date of creation of one of their accounts
         System.out.println(accountManager.getAccount(accountNumber).getDateCreated());
     }
@@ -359,7 +340,6 @@ public class ClientActionHandler {
         if (withdraw(account, amount)) {
             System.out.println("Withdraw Succeed");
         } else {
-            ;
         }
     }
 
@@ -379,7 +359,6 @@ public class ClientActionHandler {
         }
     }
 
-    /** Helper functions for inputNine() **/
     private int positiveNum(int amount) throws IOException {
         while (amount < 0) {
             System.out.println("Please enter a positive number");
@@ -453,13 +432,13 @@ public class ClientActionHandler {
     /**
      * Sets an chequing account as primary.
      */
-    public void inputEleven(ArrayList<Integer> accountNumbers) throws IOException {
+    public void inputEleven() throws IOException {
         System.out.println("Enter the account number that you want to select as new primary account");
-        int accountNumber = getAccountNum(accountNumbers);
-        BankAccount newPrimary = accountManager.getAccount(accountNumber);
+        int id = Integer.parseInt(kbd.readLine());
+        BankAccount newPrimary = accountManager.getAccount(id);
 
         if (newPrimary instanceof ChequingAccount) {
-            client.setPrimaryAccount(accountNumber);
+            client.setPrimaryAccount(id);
             System.out.print("Request has been done");
         } else {
             System.out.println("Request declined. The account you entered is not a chequing account");

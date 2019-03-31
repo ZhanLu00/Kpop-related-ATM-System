@@ -6,6 +6,10 @@ public class CurrencyManager {
 
     private ArrayList<Object[]> rates = new ArrayList<>();
 
+    public CurrencyManager(){
+        this.rates = new ArrayList<>();
+    }
+
     public CurrencyManager(ArrayList<Object[]> rates){
         this.rates = rates;
     }

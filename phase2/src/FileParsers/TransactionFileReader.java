@@ -5,6 +5,9 @@ import ATM.Transaction;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * Read the transactions of the atm from a file
+ */
 public class TransactionFileReader {
     private ArrayList<Transaction> transactions;
     private String fileName;
@@ -14,6 +17,10 @@ public class TransactionFileReader {
         this.transactions = new ArrayList<>();
     }
 
+    /**
+     * @throws IOException
+     * Read and generate transactions line by line from the this.fileName text file
+     */
     public void read() throws IOException {
         File file = new File(fileName);
         FileReader fr = new FileReader(file);

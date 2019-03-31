@@ -5,6 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Read Account creation requests from a text file
+ */
 public class AccountRequestFileWriter {
     private String fileName;
     private ArrayList<String[]> accountRequests;

@@ -49,7 +49,7 @@ public class AtmApplication {
 
         atm.save();
     }
-«
+
     private static int getIntFromUser(String display) throws IOException {
         System.out.print(display);
         return Integer.parseInt(kbd.readLine());

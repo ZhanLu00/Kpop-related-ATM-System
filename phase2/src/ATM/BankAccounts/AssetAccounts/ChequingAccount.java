@@ -1,4 +1,4 @@
-package ATM.BankAccounts.AssetAccounts;
+package src.ATM.BankAccounts.AssetAccounts;
 
 import java.util.Date;
 

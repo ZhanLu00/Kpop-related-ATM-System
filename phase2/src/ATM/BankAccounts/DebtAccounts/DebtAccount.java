@@ -8,10 +8,23 @@ import java.util.Date;
  */
 public abstract class DebtAccount extends BankAccount {
 
-    final double MAX_DEBT = 420;
+    private double MAX_DEBT = 3000;
 
     DebtAccount(Date dateCreated, double initialBalance) {
         super(dateCreated, initialBalance);
+    }
+
+    public double getMaxDebt() {
+        return this.MAX_DEBT;
+    }
+
+    public boolean setMaxDebt(double newMaxDebt) {
+        if (newMaxDebt > 0) {
+            this.MAX_DEBT = newMaxDebt;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean deposit(double amount) {

@@ -30,6 +30,9 @@ public class BankInspectorActionHandler extends ClientActionHandler {
         selectedClient = (Client) atm.getUserManager().getUser(clientName);
     }
 
+    /**
+     * Returns an formatted String ArrayList of accounts selectedClient owns.
+     */
     public ArrayList<String> getClientAccountSummary() {
         if (selectedClient == null) {
             return null;
@@ -46,6 +49,9 @@ public class BankInspectorActionHandler extends ClientActionHandler {
         return result;
     }
 
+    /**
+     * Returns an String ArrayList of all the transactions done with selectedClient as the sender.
+     */
     public ArrayList<String> getClientOutgoingTransactions() {
         if (selectedClient == null) {
             return null;
@@ -61,6 +67,9 @@ public class BankInspectorActionHandler extends ClientActionHandler {
         return result;
     }
 
+    /**
+     * Returns a String arrayList of all the transactions done with selectedClient as the receiver
+     */
     public ArrayList<String> getClientIncomingTransactions() {
         if (selectedClient == null) {
             return null;
@@ -75,6 +84,9 @@ public class BankInspectorActionHandler extends ClientActionHandler {
         return result;
     }
 
+    /**
+     * Returns a String ArrayList of all the transactions done with selectedClient
+     */
     public ArrayList<String> getAllTransactions() {
         ArrayList<String> result = new ArrayList<>();
         ArrayList<String> incoming = getClientIncomingTransactions();
@@ -91,6 +103,9 @@ public class BankInspectorActionHandler extends ClientActionHandler {
         return result;
     }
 
+    /**
+     * Sends a message to the manager.
+     */
     public void sendMessageToManager(String alert) throws IOException {
         File file = new File(messageFile);
         FileReader fr = new FileReader(file);

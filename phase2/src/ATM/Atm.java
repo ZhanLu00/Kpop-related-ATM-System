@@ -45,7 +45,7 @@ public class Atm {
         }
 
         if (date.getDate() == 1) {
-            accountManager.updateInterestAccounts();
+            accountManager.runUpdateCycle();
         }
 
 

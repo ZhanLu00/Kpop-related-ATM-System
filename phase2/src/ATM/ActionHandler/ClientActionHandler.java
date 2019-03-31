@@ -18,6 +18,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A ClientActionHandler class.
+ * This class handles actions from Client, acting as an operation class.
+ * This class will need to access and modify fields from AccountManager, BankManager and Client.
+ */
 public class ClientActionHandler {
     // this class will be handle actions from users
     // acting as an operation class here
@@ -159,8 +164,34 @@ public class ClientActionHandler {
         }else{
             return false;
         }
+    /**
+     * Deposits the give amount into an account by cash.
+     * Both the balance of the account and the cash storage of ATM increases.
+     * This method always returns true.
+     */
+    public boolean deposit(int id, int fives, int tens, int twenties, int fifties) {
+        BankAccount account = accountManager.getAccount(id);
+        account.deposit(fives * 5 + tens * 10 + twenties * 20 + fifties * 50);
+        billManager.deposit(fives, tens, twenties, fifties);
+        return true;
     }
 
+    /**
+     * Deposits the given amount into an account by cheque.
+     * Only the balance of the account increases. The cash storage of ATM remains the same.
+     * This method always returns true.
+     */
+    public boolean deposit(int id, double amount) {
+        BankAccount account = accountManager.getAccount(id);
+        account.deposit(amount);
+        return true;
+    }
+
+    /**
+     * Changes the password of this client.
+     * 6 < pswd.length < 15
+     * Returns true if password is reset, false otherwise.
+     */
     public boolean changepswd(char[] pswd) {
         if (pswd.length <= 6 || pswd.length >= 15) {
             return false;
@@ -168,6 +199,19 @@ public class ClientActionHandler {
             this.client.setPassword(String.valueOf(pswd));
             return true;
         }
+    }
+
+    /**
+     * Sets a chequing account as primary account.
+     * Returns true if this action is successful, false otherwise.
+     */
+    public boolean setPrimary(int accNum) {
+       BankAccount account = accountManager.getAccount(accNum);
+       if (account instanceof ChequingAccount) {
+           client.setPrimaryAccount(accNum);
+           return true;
+       }
+       return false;
     }
 
     public boolean setPrimary(int accNum){
@@ -182,7 +226,9 @@ public class ClientActionHandler {
 
     }
 
-
+    /**
+     * Interface
+     **/
     public void displayCommandLineInterface() throws IOException {
         // basic info
         String userName = client.getUsername();

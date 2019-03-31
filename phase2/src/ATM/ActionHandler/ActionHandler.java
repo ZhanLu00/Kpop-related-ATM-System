@@ -10,11 +10,12 @@ import ATM.Users.Client;
 import ATM.Users.User;
 import ATM.ATMGUI;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Objects;
 
 public class ActionHandler {
 
@@ -120,7 +121,7 @@ public class ActionHandler {
             String username = viewer.userDesiredName.getText();
             String type = viewer.newAccType.getSelectedItem().toString();
             // check if the request exist
-            if (requestManager.requestExist("newUser", username,type)){
+            if (requestManager.requestExist("newUser", username, null)){
                 // then show the status
                 String status = requestManager.getStatus("newUser", username);
                 if (status.equals("accepted")){
@@ -234,27 +235,41 @@ public class ActionHandler {
     }
 
     public void accountSummary(){
-//        StringBuilder summary = new StringBuilder("Bank Accounts and Balances: \n");
-//        // a field for accounts sum
-//        // include creation date
-//        // FIXME GET EACH BANK ACC CREATION DATE, ACC TYPE, ACC NUMBER AND BALANCE
-//        for (Object accountNumber:accountBalance.keySet()) {
-//            summary.append(accountNumber + ": " + accountBalance.get(accountNumber));
-//        }
-//        // net total
-//        // FIXME GET USER NET TOTAL
-//        summary.append("Net total $%s", clientActionHandler.netTotal(currentUser.getAccounts()));
-//
-//
-//        //set the summary text
-//        viewer.accountSummaries.setText(summary.toString());
-//
-//        // a field for transaction history
-//        // FIXME are the transactions in chronological order? (ie index 0 is most recent)
-//        //  rn it's looking for account number but we only have current user.....
-//        Transaction recentTrans = transactionManager.getTransactionsBySender(currentUser.accountNum()).get(0);
-//        viewer.mostRecentTransaction.setText(recentTrans.toString());
+        Map accountBalance = clientActionHandler.checkBalance();
+        StringBuilder summary = new StringBuilder("Bank Accounts and Balances: \n");
+        for (Object accountNumber : accountBalance.keySet()) {
+            summary.append(accountNumber + ": " + accountBalance.get(accountNumber));
+        }
+        summary.append("Your net total is: " + clientActionHandler.netTotal(accountBalance));
+        viewer.accountSummaries.setText(summary.toString());
 
+        viewer.seeMostRecentTransactionButton.addActionListener(e -> {
+            viewer.accountInfo.setText("");
+            int accountNum;
+            try{
+                accountNum = Integer.parseInt(viewer.summaryAccNum.getText());
+                ArrayList<Transaction> transactions = transactionManager.getTransactionsBySender(accountNum);
+                if(transactions.size() == 0 || transactions.get(transactions.size() - 1) == null) {
+                    viewer.popUp("The latest transaction is not viewable on this account");
+                }else{
+                    Transaction transaction = transactions.get(transactions.size() - 1);
+                    viewer.accountInfo.setText(transaction.toString());
+                }
+            }catch (Exception exp){
+                viewer.popUp("Please check your input.");
+            }
+        });
+        // see account creation date
+        viewer.checkAccountCreationDateButton.addActionListener(e -> {
+            viewer.accountInfo.setText("");
+            int accountNum;
+            try{
+                accountNum = Integer.parseInt(viewer.summaryAccNum.getText());
+                viewer.accountInfo.setText(accountManager.getAccount(accountNum).getDateCreated().toString());
+            }catch (Exception exp){
+                viewer.popUp("Please check your input.");
+            }
+        });
         // request to create a new account
         viewer.makeANewAccountButton.addActionListener(e -> {
             viewer.changePage(viewer.summaryOfAccounts, viewer.newAccount);
@@ -348,18 +363,23 @@ public class ActionHandler {
     public void deposit(){
 
         viewer.depositButton.addActionListener(e->{
-            int id, numFives, numTens, numTwenty, numFifty;
-            double chequeAmt;
-            id = viewer.depositAccNum.getText().;
-            chequeAmt = Double.parseDouble(viewer.chequeAmt.getText());
-            numFives = (int) viewer.numFives.getValue();
-            numTens = (int) viewer.numTens.getValue();
-            numTwenty = (int) viewer.numTwenty.getValue();
-            numFifty = (int) viewer.numFifty.getValue();
-            boolean succeed = clientActionHandler.deposit(id, numFives, numTens, numTwenty, numFifty, chequeAmt);
-            if (succeed){
-                viewer.popUp("Deposit successful.");
-            }else{
+            int numFives, numTens, numTwenty, numFifty, account;
+            double numCheque;
+            try{
+                account = (int) viewer.depositAccNum.getValue();
+                numFives = (int) viewer.numFives.getValue();
+                numTens = (int) viewer.numTens.getValue();
+                numTwenty = (int) viewer.numTwenty.getValue();
+                numFifty = (int) viewer.numFifty.getValue();
+                numCheque = (double) viewer.chequeAmt.getValue();
+                boolean succeedCheque = clientActionHandler.deposit(account, numCheque);
+                boolean succeedCash = clientActionHandler.deposit(account, numFives, numTens, numTwenty, numFifty);
+                if (succeedCheque || succeedCash){
+                    viewer.popUp("Deposit successful.");
+                }else{
+                    viewer.popUp("Please check your input.");
+                }
+            }catch (Exception exp){
                 viewer.popUp("Please check your input.");
             }
         });
@@ -391,14 +411,18 @@ public class ActionHandler {
 
     public void setPrimary(){
         viewer.setPrimaryButton.addActionListener(e->{
-            // get input
-            int accNum = Integer.parseInt(viewer.selectPrimary.getSelectedItem().toString());
-            // do action
-            if (clientActionHandler.setPrimary(accNum)){
-                JOptionPane.showMessageDialog(null, "You have been set a " +
-                        "new primary account successfully ");
-            }else{
-                JOptionPane.showMessageDialog(null, "Please select a chequing account");
+            try{
+                // get input
+                int accNum = (int) viewer.selectPrimary.getSelectedItem();
+                // do action
+                if (clientActionHandler.setPrimary(accNum)){
+                    viewer.popUp("You have successfully set a new " +
+                            "primary account.");
+                }else{
+                    viewer.popUp("Please select a chequing account");
+                }
+            }catch (Exception exp){
+                viewer.popUp("Please check your input.");
             }
 
         });
@@ -440,10 +464,6 @@ public class ActionHandler {
         viewer.viewUserCreationRequestsButton.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.viewUserRequests);
             viewUserCreationRequests();
-        });
-        viewer.joinAccountsButton.addActionListener(e->{
-            viewer.changePage(viewer.managerOptions, viewer.joinAccounts);
-            jointAccounts();
         });
         viewer.logOutManager.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.welcomePage);
@@ -569,24 +589,6 @@ public class ActionHandler {
         });
         viewer.goBackUserRequest.addActionListener(e -> {
             viewer.changePage(viewer.viewUserRequests, viewer.managerOptions);
-        });
-    }
-
-    public void jointAccounts(){
-
-        viewer.JoinButton.addActionListener(e->{
-            // get input
-            int accNum;
-            String user1, user2;
-            accNum = Integer.parseInt(viewer.joinAccNum.getText());
-            user1 = viewer.jointUser1.getText();
-            user2 = viewer.jointUser2.getText();
-
-            // call func
-
-        });
-        viewer.goBackJoinAcc.addActionListener(e->{
-            viewer.changePage(viewer.joinAccounts, viewer.managerOptions);
         });
     }
 

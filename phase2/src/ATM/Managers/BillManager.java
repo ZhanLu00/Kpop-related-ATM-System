@@ -44,7 +44,7 @@ public class BillManager {
         tens -= tensTaken;
 
         int fivesTaken = Math.min(amount / 5, fives);
-        amount -=  5 * fivesTaken;
+//        amount -=  5 * fivesTaken;
         fives -= fivesTaken;
 
         if (fifties < 20 || twenties < 20 || tens < 20 || fives < 20) {
@@ -77,6 +77,10 @@ public class BillManager {
         }
     }
 
+    /**
+     * @throws IOException
+     * Write alerts to the alertsFileName text file if the stock of bills is low
+     */
     private void writeAlerts() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(alertsFileName));
         if (fifties < 20) {
@@ -99,7 +103,7 @@ public class BillManager {
     }
 
     /**
-     * Deposits a given amount of bills into ATM.
+     * Deposits a given amount of cash into ATM.
      * amount % 5 == 0
      */
     public void deposit(int amount) {
@@ -112,6 +116,9 @@ public class BillManager {
         this.fives += amount/5;
     }
 
+    /**
+     * Deposits cash into ATM.
+     */
     public void deposit(int fives, int tens, int twenties, int fifties) {
         this.fives += Math.max(fives,0);
         this.tens += Math.max(tens,0);
@@ -119,6 +126,7 @@ public class BillManager {
         this.fifties += Math.max(fifties,0);
     }
 
+    /** Getters **/
     public int getFives(){
         return this.fives;
     }

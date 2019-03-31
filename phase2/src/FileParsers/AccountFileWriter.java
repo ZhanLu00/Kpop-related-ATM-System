@@ -25,7 +25,7 @@ public class AccountFileWriter {
         writer.write("");
         StringBuilder fileOut = new StringBuilder("");
         for (BankAccount account : accounts) {
-            String type = BankAccount.getAccountType(account);
+            String type = account.getType();
 
             double balance;
             if (account instanceof DebtAccount) {

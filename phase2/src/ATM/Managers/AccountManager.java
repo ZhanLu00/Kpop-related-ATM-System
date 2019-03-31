@@ -41,9 +41,9 @@ public class AccountManager implements Iterable<BankAccount> {
         }
     }
 
-    public static void setMaxDebt(int newDebt) {
-        DebtAccount.MAX_DEBT = newDebt;
-    }
+//    public static void setMaxDebt(int newDebt) {
+//        DebtAccount.MAX_DEBT = newDebt;
+//    }
 
     /**
      * Adds an account to the list of accounts.

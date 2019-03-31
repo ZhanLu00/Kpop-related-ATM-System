@@ -40,7 +40,7 @@ public class AccountFileReader {
 
 
         if (type.equals(BankAccount.CHEQUING)) {
-            accounts.add(new ChequingAccount(date,balance,false));
+            accounts.add(new ChequingAccount(date,balance));
         }
         else if (type.equals(BankAccount.SAVINGS)) {
             accounts.add(new SavingsAccount(date,balance));

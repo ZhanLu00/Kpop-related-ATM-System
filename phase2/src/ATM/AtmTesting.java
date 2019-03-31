@@ -25,9 +25,8 @@ public class AtmTesting {
 
         Atm atm = new Atm (userFileName,  accountFileName, atmFileName, alertsFileName, transactionsFileName,
                 messagesFileName, accountRequestFileName, clientRequestFileName);
-        ATMGUI atmgui = new ATMGUI();
-        ActionHandler actionHandler = new ActionHandler(atmgui);
-
+        ATMGUI gui = new ATMGUI();
+        ActionHandler actionHandler = new ActionHandler(atm, gui);
         actionHandler.initViewer();
         actionHandler.initOperator();
     }

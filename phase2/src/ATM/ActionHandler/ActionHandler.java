@@ -1,5 +1,6 @@
 package ATM.ActionHandler;
 
+import ATM.Atm;
 import ATM.BankAccounts.BankAccount;
 import ATM.Managers.AccountManager;
 import ATM.Managers.BillManager;
@@ -59,7 +60,7 @@ public class ActionHandler {
     /**
      * Initialize attributes
      */
-    public ActionHandler(ATMGUI atmgui){
+    public ActionHandler(Atm atm, ATMGUI atmgui){
 //        this.accountManager = atm.getAccountManager();
 //        this.userManager = atm.getUserManager();
 //        this.billManager = atm.getBillManager();

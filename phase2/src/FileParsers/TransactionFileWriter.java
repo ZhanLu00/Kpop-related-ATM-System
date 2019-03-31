@@ -1,6 +1,6 @@
-package src.FileParsers;
+package FileParsers;
 
-import src.ATM.Transaction;
+import ATM.Transaction;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

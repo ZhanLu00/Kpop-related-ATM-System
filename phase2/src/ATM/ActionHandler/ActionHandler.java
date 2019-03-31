@@ -1,13 +1,13 @@
-package src.ATM.ActionHandler;
+package ATM.ActionHandler;
 
-import src.ATM.*;
-import src.ATM.Managers.AccountManager;
-import src.ATM.Managers.BillManager;
-import src.ATM.Managers.TransactionManager;
-import src.ATM.Managers.UserManager;
-import src.ATM.Users.BankManager;
-import src.ATM.Users.Client;
-import src.ATM.Users.User;
+import ATM.*;
+import ATM.Managers.AccountManager;
+import ATM.Managers.BillManager;
+import ATM.Managers.TransactionManager;
+import ATM.Managers.UserManager;
+import ATM.Users.BankManager;
+import ATM.Users.Client;
+import ATM.Users.User;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -34,7 +34,7 @@ public class ActionHandler {
     // sub-action handler
     private BankInspectorActionHandler bankInspectorActionHandler;
 
-    private BankManagerActionHandler bankManagerActionHandler;
+    private src.ATM.ActionHandler.BankManagerActionHandler bankManagerActionHandler;
 
     private ClientActionHandler clientActionHandler;
 

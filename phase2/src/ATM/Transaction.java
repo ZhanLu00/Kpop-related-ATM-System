@@ -1,4 +1,4 @@
-package src.ATM;
+package ATM;
 
 /**
  * A Transaction class.

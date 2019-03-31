@@ -6,11 +6,6 @@ import src.ATM.Managers.AccountManager;
 import src.ATM.Managers.BillManager;
 import src.ATM.Managers.TransactionManager;
 import src.ATM.Managers.UserManager;
-import src.ATM.Users.User;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
 
 public class AtmTesting {
 

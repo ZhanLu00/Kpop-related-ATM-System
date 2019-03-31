@@ -1,9 +1,9 @@
-package src.FileParsers;
+package FileParsers;
 
-import src.ATM.BankAccounts.BankAccount;
-import src.ATM.BankAccounts.DebtAccounts.DebtAccount;
-import src.ATM.BankAccounts.ExtraAccounts.ForeignCurrencyAccount;
-import src.ATM.Managers.TimeManager;
+import ATM.BankAccounts.BankAccount;
+import ATM.BankAccounts.DebtAccounts.DebtAccount;
+import ATM.BankAccounts.ExtraAccounts.ForeignCurrencyAccount;
+import ATM.Managers.TimeManager;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

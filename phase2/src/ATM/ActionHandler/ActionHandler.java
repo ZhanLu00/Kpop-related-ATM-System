@@ -1,6 +1,5 @@
 package ATM.ActionHandler;
 
-import ATM.*;
 import ATM.Managers.AccountManager;
 import ATM.Managers.BillManager;
 import ATM.Managers.TransactionManager;
@@ -111,18 +110,16 @@ public class ActionHandler {
             if (!userManager.userExists(username)){
                 // store the alert
                 requestManager.addRequest("newUser", username, type);
-                viewer.popUp("Request submitted, please come back to check" +
+                JOptionPane.showMessageDialog(null, "Request submitted, please come back to check" +
                         "your status");
             }else{
-                viewer.popUp("Your username is already taken. Please choose a different one");
-                viewer.userDesiredName.setText("");
+                JOptionPane.showMessageDialog(null, "Your username is already token");
             }
         });
         viewer.requestStatus.addActionListener(e->{
             // get input
             String username = viewer.userDesiredName.getText();
-            // FIXME GET RID OF FEATURE THAT ALLOWS BANK MANAGER TO SET UP ACC FOR USERS?
-            String type = String.valueOf(viewer.newAccType.getSelectedItem());
+            String type = viewer.newAccType.getSelectedItem().toString();
             // check if the request exist
             if (requestManager.requestExist("newUser", username, null)){
                 // then show the status
@@ -301,6 +298,7 @@ public class ActionHandler {
     public void withdraw(){
 
         viewer.withdrawButton.addActionListener(e->{
+            boolean inputOk = false;
             int withdrawAmount, accountNum;
             try{
                 withdrawAmount = Integer.parseInt(viewer.withdrawAmt.getText());
@@ -324,6 +322,7 @@ public class ActionHandler {
     public void transfer(){
 
         viewer.transferButton.addActionListener(e->{
+            boolean inputOk = false;
             int outAccNum, inAccNum;
             double transAmt;
             try{
@@ -339,6 +338,8 @@ public class ActionHandler {
             }catch (Exception exp){
                 viewer.popUp("Please check your input.");
             }
+
+
         });
 
         viewer.goBackTransfer.addActionListener(e->{
@@ -348,6 +349,7 @@ public class ActionHandler {
 
     public void payBill(){
         viewer.payBillButton.addActionListener(e->{
+            boolean inputOk = false;
             int billAccNum, billPayee;
             double billAmt;
             try{
@@ -372,6 +374,7 @@ public class ActionHandler {
     }
 
     public void deposit(){
+
         viewer.depositButton.addActionListener(e->{
             int numFives, numTens, numTwenty, numFifty, account;
             double numCheque;
@@ -408,7 +411,7 @@ public class ActionHandler {
                 if (succeed) {
                     viewer.popUp("You have successfully changed your password. Don't forget it!");
                 } else {
-                    viewer.popUp("Please enter a password between 6 to 15 characters, exclusive.");
+                    viewer.popUp("Please enter a password between 6 to 15 characters.");
                 }
             }else{
                 viewer.popUp("Please check your input.");
@@ -434,6 +437,7 @@ public class ActionHandler {
             }catch (Exception exp){
                 viewer.popUp("Please check your input.");
             }
+
         });
         viewer.goBackPrimary.addActionListener(e->{
             viewer.changePage(viewer.setPrimary, viewer.clientOptions);

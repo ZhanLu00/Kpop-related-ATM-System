@@ -184,8 +184,8 @@ public class ATMGUI {
 
     // JOIN TWO CLIENT ACCOUNTS
     public JPanel joinAccounts;
-    public JTextField jointAccNum;
-    public JTextField jointUser;
+    public JTextField jointUser1;
+    public JTextField jointUser2;
     public JButton goBackJoinAcc;
     public JButton joinButton;
     public JFormattedTextField joinAccNum;

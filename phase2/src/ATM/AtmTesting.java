@@ -6,6 +6,11 @@ import src.ATM.Managers.AccountManager;
 import src.ATM.Managers.BillManager;
 import src.ATM.Managers.TransactionManager;
 import src.ATM.Managers.UserManager;
+import src.ATM.Users.User;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class AtmTesting {
 
@@ -13,11 +18,11 @@ public class AtmTesting {
     public ATMGUI atmgui = new ATMGUI();
 
     // model
-    private AccountManager accountManager = new AccountManager();
+    private AccountManager accountManager = new AccountManager(new ArrayList<BankAccount>, new ArrayList<String[]>, new Date);
 
     private TransactionManager transactionManager = new TransactionManager();
 
-    private UserManager userManager = new UserManager();
+    private UserManager userManager = new UserManager(new ArrayList<User>, new ArrayList<String>, new Date());
 
     private BillManager billManager = new BillManager();
 
@@ -29,13 +34,14 @@ public class AtmTesting {
     String messagesFileName = "/testfiles/messages.txt";
     String accountRequestFileName = "/testfiles/accountRequests.txt";
     String clientRequestFileName = "/testfiles/clientRequest.txt";
-    public Atm atm = new Atm (userFileName,  accountFileName, atmFileName, alertsFileName, transactionsFileName,
-            messagesFileName, accountRequestFileName, clientRequestFileName);
+
 
     // controller
     public ActionHandler actionHandler = new ActionHandler(atmgui);
 
-    public void main(){
+    public void main(String[] args) throws IOException {
+        public Atm atm = new Atm (userFileName,  accountFileName, atmFileName, alertsFileName, transactionsFileName,
+                messagesFileName, accountRequestFileName, clientRequestFileName);
         actionHandler.initViewer();
         actionHandler.initOperator();
     }

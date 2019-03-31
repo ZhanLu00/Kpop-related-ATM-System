@@ -38,10 +38,9 @@ public class BillManagerTest {
 
     @Test
     public void testWithdrawable(){
-        int amount = (5 + 10 + 15 + 20)*20;
-        assertTrue(billManager.withdrawable(amount));
-        assertFalse(billManager.withdrawable(amount + 5));
-        assertFalse(billManager.withdrawable(amount - 1));
+        assertTrue(billManager.withdrawable(1000));
+        assertFalse(billManager.withdrawable(1005));
+        assertFalse(billManager.withdrawable(999));
         BillManager billManager1 = new BillManager(1, 2, 0, 1, "alerts.txt");
         assertFalse(billManager1.withdrawable(40));
         assertTrue(billManager1.withdrawable(20));

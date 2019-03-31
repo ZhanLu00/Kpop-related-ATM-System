@@ -54,7 +54,7 @@ public class TimeManager {
                 break;
             }
         }
-        return new Date(year,monthIndex,day);
+        return new Date(year,monthIndex + 1,day);
     }
 
     /**
@@ -63,7 +63,7 @@ public class TimeManager {
      */
     public static String dateToString(Date date) {
         int year = date.getYear();
-        String month = months[date.getMonth()];
+        String month = months[date.getMonth()-1];
         int day = date.getDate();
 
         return String.format("%d %s %d", year, month, day);

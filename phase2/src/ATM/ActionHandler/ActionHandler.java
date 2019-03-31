@@ -288,7 +288,6 @@ public class ActionHandler {
     public void withdraw(){
 
         viewer.withdrawButton.addActionListener(e->{
-            boolean inputOk = false;
             int withdrawAmount, accountNum;
             try{
                 withdrawAmount = Integer.parseInt(viewer.withdrawAmt.getText());
@@ -312,7 +311,6 @@ public class ActionHandler {
     public void transfer(){
 
         viewer.transferButton.addActionListener(e->{
-            boolean inputOk = false;
             int outAccNum, inAccNum;
             double transAmt;
             try{
@@ -328,8 +326,6 @@ public class ActionHandler {
             }catch (Exception exp){
                 viewer.popUp("Please check your input.");
             }
-
-
         });
 
         viewer.goBackTransfer.addActionListener(e->{
@@ -339,7 +335,6 @@ public class ActionHandler {
 
     public void payBill(){
         viewer.payBillButton.addActionListener(e->{
-            boolean inputOk = false;
             int billAccNum, billPayee;
             double billAmt;
             try{
@@ -364,22 +359,24 @@ public class ActionHandler {
     }
 
     public void deposit(){
-
         viewer.depositButton.addActionListener(e->{
             int numFives, numTens, numTwenty, numFifty, account;
             double numCheque;
-            account = Integer.parseInt(viewer.depositAccNum.getValue().toString());
-            numFives = (int) viewer.numFives.getValue();
-            numTens = (int) viewer.numTens.getValue();
-            numTwenty = (int) viewer.numTwenty.getValue();
-            numFifty = (int) viewer.numFifty.getValue();
-            //deposit by cash
-            numCheque = Double.parseDouble(Objects.requireNonNull(viewer.chequeAmt.getValue()).toString());
-            boolean succeedCheque = clientActionHandler.deposit(account, numCheque);
-            boolean succeedCash = clientActionHandler.deposit(account, numFives, numTens, numTwenty, numFifty);
-            if (succeedCheque || succeedCash){
-                viewer.popUp("Deposit successful.");
-            }else{
+            try{
+                account = (int) viewer.depositAccNum.getValue();
+                numFives = (int) viewer.numFives.getValue();
+                numTens = (int) viewer.numTens.getValue();
+                numTwenty = (int) viewer.numTwenty.getValue();
+                numFifty = (int) viewer.numFifty.getValue();
+                numCheque = (double) viewer.chequeAmt.getValue();
+                boolean succeedCheque = clientActionHandler.deposit(account, numCheque);
+                boolean succeedCash = clientActionHandler.deposit(account, numFives, numTens, numTwenty, numFifty);
+                if (succeedCheque || succeedCash){
+                    viewer.popUp("Deposit successful.");
+                }else{
+                    viewer.popUp("Please check your input.");
+                }
+            }catch (Exception exp){
                 viewer.popUp("Please check your input.");
             }
         });
@@ -411,16 +408,19 @@ public class ActionHandler {
 
     public void setPrimary(){
         viewer.setPrimaryButton.addActionListener(e->{
-            // get input
-            int accNum = Integer.parseInt(Objects.requireNonNull(viewer.selectPrimary.getSelectedItem()).toString());
-            // do action
-            if (clientActionHandler.setPrimary(accNum)){
-                viewer.popUp("You have successfully set a new " +
-                        "primary account.");
-            }else{
-                viewer.popUp("Please select a chequing account");
+            try{
+                // get input
+                int accNum = (int) viewer.selectPrimary.getSelectedItem();
+                // do action
+                if (clientActionHandler.setPrimary(accNum)){
+                    viewer.popUp("You have successfully set a new " +
+                            "primary account.");
+                }else{
+                    viewer.popUp("Please select a chequing account");
+                }
+            }catch (Exception exp){
+                viewer.popUp("Please check your input.");
             }
-
         });
         viewer.goBackPrimary.addActionListener(e->{
             viewer.changePage(viewer.setPrimary, viewer.clientOptions);

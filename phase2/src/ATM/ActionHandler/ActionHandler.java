@@ -78,6 +78,7 @@ public class ActionHandler {
             public void actionPerformed(ActionEvent e) {
                 viewer.changePage(viewer.welcomePage, viewer.newUserPage);
                 runStage = 101;
+                newUser();
             }
         });
         viewer.returningUser.addActionListener(new ActionListener() {
@@ -85,21 +86,52 @@ public class ActionHandler {
             public void actionPerformed(ActionEvent e) {
                 viewer.changePage(viewer.welcomePage, viewer.returningUserPage);
                 runStage = 102;
+                login();
             }
         });
 
-        // start from the main page
-
-
-        // add listener to buttons, make sure to set the event as defined
-
-        // log in page
-        // add listener to buttons and input field
-
-        // based on the user type, call different method for windows
-
-
-
+    }
+    /**
+     * New User Page
+     */
+    public void newUser(){
+        viewer.accRequestButton.addActionListener(e->{
+            // get input
+            String username = viewer.userDesiredName.getText();
+            String type = viewer.newAccType.getSelectedItem.toString();
+            // check if the username existed
+            if (!userManager.userExists(username)){
+                // store the alert
+                requestManager.addRequest("newUser", username, type);
+                JOptionPane.showMessageDialog(null, "Request submitted, please come back to check" +
+                        "your status");
+            }else{
+                JOptionPane.showMessageDialog(null, "Your username is already token");
+            }
+        });
+        viewer.requestStatus.addActionListener(e->{
+            // get input
+            String username = viewer.userDesiredName.getText();
+            String type = viewer.newAccType.getSelectedItem.toString();
+            // check if the request exist
+            if (requestManager.requestExist()){
+                // then show the status
+                String status = requestManager.getStatus(username);
+                if (status == "accepted"){
+                    String pswd = userManager.getUser().getPassword();
+                    JOptionPane.showMessageDialog(null, "request accept, here is your initial password: \n " + pswd);
+                }else if (status == "pending") {
+                    JOptionPane.showMessageDialog(null, "request pending");
+                }else{
+                    JOptionPane.showMessageDialog(null, "request declined");
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "please request before check status");
+            }
+        });
+        viewer.goBackNew.addActionListener(e->{
+            viewer.changePage(viewer.newUserPage, viewer.welcomePage);
+        });
     }
 
 

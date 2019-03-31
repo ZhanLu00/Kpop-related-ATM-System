@@ -1,4 +1,4 @@
-package ATM.BankAccounts.ExtraAccounts;
+package src.ATM.BankAccounts.ExtraAccounts;
 import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
 
 import java.util.Date;

@@ -1,7 +1,7 @@
-package ATM.BankAccounts;
+package src.ATM.BankAccounts;
 import ATM.BankAccounts.AssetAccounts.ChequingAccount;
 import ATM.BankAccounts.AssetAccounts.SavingsAccount;
-import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
+import src.ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
 import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
 import ATM.BankAccounts.ExtraAccounts.ForeignCurrencyAccount;
 import ATM.BankAccounts.ExtraAccounts.LotteryAccount;

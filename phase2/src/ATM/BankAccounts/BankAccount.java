@@ -1,10 +1,10 @@
-package ATM.BankAccounts;
-import ATM.BankAccounts.AssetAccounts.ChequingAccount;
-import ATM.BankAccounts.ExtraAccounts.ForeignCurrencyAccount;
-import ATM.BankAccounts.ExtraAccounts.LotteryAccount;
-import ATM.BankAccounts.AssetAccounts.SavingsAccount;
-import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
-import ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
+package src.ATM.BankAccounts;
+import src.ATM.BankAccounts.AssetAccounts.ChequingAccount;
+import src.ATM.BankAccounts.AssetAccounts.SavingsAccount;
+import src.ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
+import src.ATM.BankAccounts.DebtAccounts.LineOfCreditAccount;
+import src.ATM.BankAccounts.ExtraAccounts.ForeignCurrencyAccount;
+import src.ATM.BankAccounts.ExtraAccounts.LotteryAccount;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -41,10 +41,10 @@ public abstract class BankAccount {
             return "SAVINGS_ACCOUNT";
         } else if (this instanceof CreditCardsAccount) {
             return "CREDIT_CARD_ACCOUNT";
-        } else if (this instanceof LineOfCreditAccount) {
-            return "LINE_OF_CREDIT_ACCOUNT";
         } else if (this instanceof LotteryAccount) {
             return "LOTTERY_ACCOUNT";
+        } else if (this instanceof LineOfCreditAccount) {
+            return "LINE_OF_CREDIT_ACCOUNT";
         } else if (this instanceof ForeignCurrencyAccount) {
             return "FOREIGN_CURRENCY_ACCOUNT";
         } else {

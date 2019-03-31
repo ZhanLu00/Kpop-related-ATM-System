@@ -6,5 +6,4 @@ public class BankManager extends User {
         super(username, password);
     }
 
-
 }

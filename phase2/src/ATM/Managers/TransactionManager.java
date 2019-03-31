@@ -73,7 +73,6 @@ public class TransactionManager {
         if (id < 0 || id >= transactions.size()) {
             return false;
         }
-
         Transaction transaction = transactions.get(id);
 
         if (transaction.getType().equals("transfer")){
@@ -82,8 +81,7 @@ public class TransactionManager {
             BankAccount sender = accountManager.getAccount(transaction.getSender());
             BankAccount receiver = accountManager.getAccount(transaction.getReceiver());
 
-
-            if (receiver.withdraw(amount) && sender.deposit(amount) && transaction.getType().equals("transfer")) {
+            if (receiver.withdraw(amount) && sender.deposit(amount)) {
                 transactions.remove(id);
                 return true;
             }

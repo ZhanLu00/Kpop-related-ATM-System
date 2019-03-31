@@ -240,7 +240,7 @@ public class BankManagerActionHandler {
             } else if (input == 8) {
                 break;
             } else {
-                System.out.print("Invalid Input. ");
+                System.out.print("Invalid Input");
             }
             System.out.println();
             System.out.println();

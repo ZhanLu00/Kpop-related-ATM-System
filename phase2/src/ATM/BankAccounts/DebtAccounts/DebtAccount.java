@@ -1,6 +1,5 @@
 package ATM.BankAccounts.DebtAccounts;
 import ATM.BankAccounts.BankAccount;
-
 import java.util.Date;
 
 
@@ -31,10 +30,6 @@ public abstract class DebtAccount extends BankAccount {
         } else {
             return false;
         }
-    }
-
-    public double getBalance() {
-        return this.balance;
     }
 
 }

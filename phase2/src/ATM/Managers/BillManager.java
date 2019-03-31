@@ -77,6 +77,10 @@ public class BillManager {
         }
     }
 
+    /**
+     * @throws IOException
+     * Write alerts to the alertsFileName text file if the stock of bills is low
+     */
     private void writeAlerts() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(alertsFileName));
         if (fifties < 20) {

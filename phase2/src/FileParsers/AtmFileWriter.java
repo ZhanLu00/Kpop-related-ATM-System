@@ -9,6 +9,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
 
+/**
+ * Write the current date for the atm and the number of bills to a file
+ */
 public class AtmFileWriter {
     private String fileName;
     private Date date;
@@ -22,6 +25,10 @@ public class AtmFileWriter {
         this.accountManager = accountManager;
     }
 
+    /**
+     * @throws IOException
+     * Write the information to the text file at this.fileName
+     */
     public void write() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
         writer.write(TimeManager.dateToString(date) + "\n");

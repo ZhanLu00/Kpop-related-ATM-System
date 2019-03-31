@@ -7,6 +7,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * save the transactions that occurred with the atm to a file\
+ */
 public class TransactionFileWriter {
     private ArrayList<Transaction> transactions;
     private String fileName;
@@ -16,6 +19,10 @@ public class TransactionFileWriter {
         this.fileName = fileName;
     }
 
+    /**
+     * @throws IOException
+     *  * Write the transactions to the textfile at this.fileName
+     */
     public void write() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
 

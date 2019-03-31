@@ -2,10 +2,7 @@ package ATM;
 
 
 import ATM.ActionHandler.ActionHandler;
-import ATM.Managers.AccountManager;
-import ATM.Managers.BillManager;
-import ATM.Managers.TransactionManager;
-import ATM.Managers.UserManager;
+import ATM.Managers.*;
 import ATM.ATMGUI;
 import ATM.BankAccounts.BankAccount;
 import ATM.Users.User;
@@ -20,14 +17,18 @@ public class AtmTesting {
     public ATMGUI atmgui = new ATMGUI();
 
     // model
-    private AccountManager accountManager = new AccountManager(new ArrayList<BankAccount>(), new ArrayList<String[]>(),
-            new Date());
-
     private TransactionManager transactionManager = new TransactionManager();
 
     private UserManager userManager = new UserManager(new ArrayList<User>(), new ArrayList<String>(), new Date());
 
     private BillManager billManager = new BillManager();
+
+    private CurrencyManager currencyManager = new CurrencyManager();
+
+    private AccountManager accountManager = new AccountManager(new ArrayList<BankAccount>(), new ArrayList<String[]>(),
+            currencyManager, new Date());
+
+
 
     String userFileName = "/testfiles/userfiles.txt";
     String accountFileName = "/testfiles/accounts.txt";

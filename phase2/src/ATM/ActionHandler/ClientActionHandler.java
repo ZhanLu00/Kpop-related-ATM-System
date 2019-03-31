@@ -119,7 +119,8 @@ public class ClientActionHandler {
             // withdraw money from transOut account
             if (account.payBill(amount, transIn)) {
                 // save the transaction history
-
+                Transaction transaction = new Transaction(amount, transOut, transIn, "bill");
+                atm.getTransactionManager().addTransaction(transaction);
                 return true;
             } else {
                 return false;

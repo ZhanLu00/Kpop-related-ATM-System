@@ -274,6 +274,7 @@ public class ActionHandler {
         // request to create a new account
         viewer.makeANewAccountButton.addActionListener(e -> {
             viewer.changePage(viewer.summaryOfAccounts, viewer.newAccount);
+            createNewAccount();
         });
 
         // go back
@@ -281,6 +282,18 @@ public class ActionHandler {
             viewer.changePage(viewer.summaryOfAccounts, viewer.clientOptions);
         });
 
+    }
+
+    public void createNewAccount(){
+        String accType = viewer.accType.getSelectedItem().toString();
+        if (requestManager.requestExist("newAccount", currentUser.username, accType))
+        // TODO CHECK IF THIS IS RIGHT
+        viewer.createAccountButton.addActionListener(e -> {
+            accountManager.requestNewAccount(currentUser.username, accType);
+        });
+        viewer.goBackNewAcc.addActionListener(e -> {
+            viewer.changePage(viewer.newAccount, viewer.summaryOfAccounts);
+        });
     }
 
     public void withdraw(){
@@ -623,8 +636,7 @@ public class ActionHandler {
 
     public void sendMessageToManager() {
         viewer.sendMessageToManagerButton.addActionListener(e -> {
-            // TODO CHECK IF THIS WORKS
-            if (viewer.inspectorMsg.getText().equals("")){
+            if (viewer.inspectorMsg.getText().isEmpty()){
                 viewer.popUp("Please enter a message.");
             }else{
                 try {
@@ -632,6 +644,7 @@ public class ActionHandler {
                     viewer.popUp("Your message has been sent.");
                     viewer.inspectorMsg.setText("");
                 } catch (IOException e1) {
+                    viewer.popUp("Error! Please try again.");
                     e1.printStackTrace();
                 }
             }

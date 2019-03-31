@@ -55,6 +55,8 @@ public class AccountFileReader {
             accounts.add(new LotteryAccount(date,balance));
         }
         else if (type.equals("FOREIGN_CURRENCY_ACCOUNT")) {
+            //converts account balance to CAD using old exchange rate
+            //uses this CAD value to recreate account
             double oldExchangeRate = Double.parseDouble(separated[4].replace(",",""));
             String currencyType = separated[3].replace(",","");
             accounts.add(new ForeignCurrencyAccount(date, balance*oldExchangeRate, currencyType, oldExchangeRate));

@@ -13,6 +13,7 @@ import ATM.Users.User;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class ActionHandler {
 
@@ -211,7 +212,7 @@ public class ActionHandler {
         // a field for transaction history
         // FIXME are the transactions in chronological order? (ie index 0 is most recent)
         //  rn it's looking for account number but we only have current user.....
-        Transaction recentTrans = transactionManager.getTransactionsBySender(currentUser).get(0);
+        Transaction recentTrans = transactionManager.getTransactionsBySender(currentUser.accountNum()).get(0);
         viewer.mostRecentTransaction.setText(recentTrans.toString());
 
         // request to create a new account
@@ -362,9 +363,11 @@ public class ActionHandler {
         });
         viewer.restockMachineButton.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.restockMachine);
+            restockMachine();
         });
         viewer.viewAccountCreationRequestsButton.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.viewAccountRequests);
+            viewAccountCreationRequests();
         });
         viewer.showAlertsButton.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.viewAlerts);
@@ -401,6 +404,45 @@ public class ActionHandler {
     }
 
     public void undoTransaction(){
+        Object[] transactions = transactionManager.getTransactions().toArray();
+        viewer.recentTrans.setSelectedIndex(0);
+        viewer.recentTrans.setListData(transactions);
+        viewer.undoButton.addActionListener(e -> {
+            // TODO CHECK IF THIS WORKS
+            int selectedIndex = viewer.recentTrans.getSelectedIndex()
+            boolean undoStatus = bankManagerActionHandler.undoTransaction(selectedIndex);
+            if (undoStatus){
+                viewer.popUp("Transaction successfully undone.");
+                viewer.recentTrans.remove(selectedIndex);
+            }else{
+                viewer.popUp("Can't undo transaction.");
+            }
+
+        });
+        viewer.goBackUndo.addActionListener(e -> {
+            viewer.changePage(viewer.undoTransaction, viewer.managerOptions);
+        });
+    }
+
+    public void restockMachine(){
+        viewer.restockATM.addActionListener(e -> {
+            int numFives, numTens, numTwenty, numFifty;
+
+            numFives = (int) viewer.restockFives.getValue();
+            numTens = (int) viewer.restockTens.getValue();
+            numTwenty = (int) viewer.restockTwenty.getValue();
+            numFifty = (int) viewer.restockFifty.getValue();
+
+            // TODO CHECK IF VALID FIRST?
+            bankManagerActionHandler.restockBills(numFives, numTens, numTwenty, numFifty);
+            viewer.popUp("ATM has been restocked.");
+        });
+        viewer.goBackRestock.addActionListener(e -> {
+            viewer.changePage(viewer.restockMachine, viewer.managerOptions);
+        });
+    }
+
+    public void viewAccountCreationRequests(){
 
     }
 

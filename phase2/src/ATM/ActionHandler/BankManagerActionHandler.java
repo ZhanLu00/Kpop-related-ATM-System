@@ -68,10 +68,13 @@ public class BankManagerActionHandler {
         return -1;
     }
 
-    public boolean fulfillAccountRequest(int requestNum) {
+    /**
+     * If account can be created, return account id, -1 otherwise
+     */
+    public int fulfillAccountRequest(int requestNum) {
         // test for invalid request number
         if (requestNum >= atm.getAccountManager().getAccountRequests().size() || requestNum < 0) {
-            return false;
+            return -1;
         }
         // get the request object and remove it from the request list
         String[] request = atm.getAccountManager().getAccountRequests().remove(requestNum);
@@ -85,7 +88,7 @@ public class BankManagerActionHandler {
     public boolean fulfillAllAccountRequests() {
         boolean allCompleted = true;
         while (atm.getAccountManager().getAccountRequests().size() > 0) {
-            if (!fulfillAccountRequest(0)) {
+            if (fulfillAccountRequest(0) == -1) {
                 allCompleted = false;
             }
         }
@@ -131,7 +134,7 @@ public class BankManagerActionHandler {
         atm.getTimeManager().getDate().setYear(year);
     }
 
-    private boolean undoTransaction(int id) {
+    public boolean undoTransaction(int id) {
         return atm.getTransactionManager().undoTransaction(id, atm.getAccountManager());
     }
 
@@ -210,7 +213,7 @@ public class BankManagerActionHandler {
             } else if (input == 3) {
                 inputThree();
             } else if (input == 4) {
-                inputFour();
+                // inputFour();
             } else if (input == 5) {
                 inputFive();
             } else if (input == 6) {
@@ -258,26 +261,26 @@ public class BankManagerActionHandler {
         System.out.println(undoTransaction(transaction) ? ("Transaction Undone") : ("Error undoing transaction"));
     }
 
-    public void inputFour() throws IOException {
-        int c = 0;
-        for (String[] accountRequest : atm.getAccountManager().getAccountRequests()) {
-            System.out.println(String.format("%d) Username: %s,  Account Type %s", c, accountRequest[0], accountRequest[1]));
-            c += 1;
-        }
-
-        if (atm.getAccountManager().getAccountRequests().size() == 0) {
-            System.out.println("No Requests");
-        } else {
-            int requestNum = getIntFromUser("which request do you want to fulfill (-1 for all): ");
-            boolean result;
-            if (requestNum == -1) {
-                result = fulfillAllAccountRequests();
-            } else {
-                result = fulfillAccountRequest(requestNum);
-            }
-            System.out.println(result ? ("Account(s) created") : "Invalid. Check request number / user existence");
-        }
-    }
+//    public void inputFour() throws IOException {
+//        int c = 0;
+//        for (String[] accountRequest : atm.getAccountManager().getAccountRequests()) {
+//            System.out.println(String.format("%d) Username: %s,  Account Type %s", c, accountRequest[0], accountRequest[1]));
+//            c += 1;
+//        }
+//
+//        if (atm.getAccountManager().getAccountRequests().size() == 0) {
+//            System.out.println("No Requests");
+//        } else {
+//            int requestNum = getIntFromUser("which request do you want to fulfill (-1 for all): ");
+//            boolean result;
+//            if (requestNum == -1) {
+//                result = fulfillAllAccountRequests();
+//            } else {
+//                result = fulfillAccountRequest(requestNum);
+//            }
+//            System.out.println(result ? ("Account(s) created") : "Invalid. Check request number / user existence");
+//        }
+//    }
 
     public void inputFive() throws IOException {
         int day = getIntFromUser("day: ");

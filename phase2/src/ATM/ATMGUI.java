@@ -232,15 +232,5 @@ public class ATMGUI {
         restockTwenty = new JSpinner(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
         restockFifty = new JSpinner(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
 
-
-
-
-//        // TODO put this stuff in the button action for "view acc summary"
-//        StringBuilder accountSummaries = new StringBuilder();
-//        Map accountBalance = ClientActionHandler.checkBalance();
-//        for (Object accountNumber:accountBalance.keySet()){
-//            accountSummaries.append(accountNumber+": "+ accountBalance.get(accountNumber) + "\n");
-//        }
-//        summaryText.setText(String.valueOf(accountSummaries));
     }
 }

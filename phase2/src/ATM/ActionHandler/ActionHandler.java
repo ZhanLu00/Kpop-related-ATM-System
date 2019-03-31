@@ -1,5 +1,6 @@
 package ATM.ActionHandler;
 
+import ATM.Atm;
 import ATM.BankAccounts.BankAccount;
 import ATM.Managers.AccountManager;
 import ATM.Managers.BillManager;
@@ -17,7 +18,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Objects;
 
 public class ActionHandler {
 
@@ -59,7 +59,7 @@ public class ActionHandler {
     /**
      * Initialize attributes
      */
-    public ActionHandler(ATMGUI atmgui){
+    public ActionHandler(Atm atm, ATMGUI atmgui){
 //        this.accountManager = atm.getAccountManager();
 //        this.userManager = atm.getUserManager();
 //        this.billManager = atm.getBillManager();
@@ -479,6 +479,10 @@ public class ActionHandler {
             viewer.changePage(viewer.managerOptions, viewer.viewUserRequests);
             viewUserCreationRequests();
         });
+        viewer.joinAccountsButton.addActionListener(e -> {
+            viewer.changePage(viewer.managerOptions, viewer.joinAccounts);
+            joinAccounts();
+        });
         viewer.logOutManager.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.welcomePage);
             currentUser = null;
@@ -615,6 +619,29 @@ public class ActionHandler {
         });
     }
 
+    public void joinAccounts(){
+        // FIXME NOT DONE
+        viewer.joinButton.addActionListener(e -> {
+            try{
+                Client user1 = userManager.getUser(viewer.jointUser1.getText());
+                Client user2 = userManager.getUser(viewer.jointUser2.getText());
+                BankAccount joinAcc = accountManager.getAccount(Integer.parseInt(viewer.joinAccNum.getText()));
+                if (user1 == null || user2 == null){
+                    viewer.popUp("Please enter valid usernames.");
+                } else if (!user1.getAccounts().contains(joinAcc) || !user2.getAccounts().contains(joinAcc)){
+                    viewer.popUp("Please choose an account that at least one of the users currently own");
+                }else{
+                    bankManagerActionHandler.joinAccount(user1.getUsername(), user2.getUsername(), joinAcc.getId());
+                }
+            }catch (Exception exp){
+                viewer.popUp("Please check your input.");
+            }
+        });
+        viewer.goBackJoinAcc.addActionListener(e -> {
+            viewer.changePage(viewer.joinAccounts, viewer.managerOptions);
+        });
+    }
+
     /**
      * Bank Inspector Action Handler
      */
@@ -665,7 +692,6 @@ public class ActionHandler {
     }
 
     public void seeAllTransactions() {
-        // TODO IS THIS ALL TRANSACTIONS FOR ALL CLIENTS OR JUST ONE CLIENT?
         StringBuilder transactions = new StringBuilder();
         ArrayList<String> transactionText = bankInspectorActionHandler.getAllTransactions();
         for (String transaction : transactionText) {

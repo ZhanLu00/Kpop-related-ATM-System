@@ -21,22 +21,14 @@ public class AtmTesting {
     private CurrencyManager currencyManager = new CurrencyManager(rates);
 
     // model
-<<<<<<< HEAD
     private AccountManager accountManager = new AccountManager(new ArrayList<BankAccount>(), new ArrayList<String[]>(),
             currencyManager, new Date());
 
-=======
->>>>>>> 2fe8093a78367ef129ff0f8be31e4f9b92f9b911
     private TransactionManager transactionManager = new TransactionManager();
 
     private UserManager userManager = new UserManager(new ArrayList<User>(), new ArrayList<String>(), new Date());
 
     private BillManager billManager = new BillManager();
-
-    private CurrencyManager currencyManager = new CurrencyManager();
-
-    private AccountManager accountManager = new AccountManager(new ArrayList<BankAccount>(), new ArrayList<String[]>(),
-            currencyManager, new Date());
 
 
 

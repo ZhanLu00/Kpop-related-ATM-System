@@ -1,6 +1,6 @@
-package ATM.ActionHandler;
+package src.ATM.ActionHandler;
 
-import ATM.*;
+import src.ATM.*;
 import ATM.Managers.AccountManager;
 import ATM.Managers.BillManager;
 import ATM.Managers.TransactionManager;
@@ -8,7 +8,10 @@ import ATM.Managers.UserManager;
 import ATM.Users.BankManager;
 import ATM.Users.Client;
 import ATM.Users.User;
+import ATM.ATMGUI;
+import ATM.ActionHandler.BankInspectorActionHandler;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -79,6 +82,7 @@ public class ActionHandler {
             public void actionPerformed(ActionEvent e) {
                 viewer.changePage(viewer.welcomePage, viewer.newUserPage);
                 runStage = 101;
+                newUser();
             }
         });
         viewer.returningUser.addActionListener(new ActionListener() {
@@ -86,21 +90,52 @@ public class ActionHandler {
             public void actionPerformed(ActionEvent e) {
                 viewer.changePage(viewer.welcomePage, viewer.returningUserPage);
                 runStage = 102;
+                login();
             }
         });
 
-        // start from the main page
-
-
-        // add listener to buttons, make sure to set the event as defined
-
-        // log in page
-        // add listener to buttons and input field
-
-        // based on the user type, call different method for windows
-
-
-
+    }
+    /**
+     * New User Page
+     */
+    public void newUser(){
+        viewer.accRequestButton.addActionListener(e->{
+            // get input
+            String username = viewer.userDesiredName.getText();
+            String type = viewer.newAccType.getSelectedItem().toString();
+            // check if the username existed
+            if (!userManager.userExists(username)){
+                // store the alert
+                requestManager.addRequest("newUser", username, type);
+                JOptionPane.showMessageDialog(null, "Request submitted, please come back to check" +
+                        "your status");
+            }else{
+                JOptionPane.showMessageDialog(null, "Your username is already token");
+            }
+        });
+        viewer.requestStatus.addActionListener(e->{
+            // get input
+            String username = viewer.userDesiredName.getText();
+            String type = viewer.newAccType.getSelectedItem().toString();
+            // check if the request exist
+            if (requestManager.requestExist()){
+                // then show the status
+                String status = requestManager.getStatus(username);
+                if (status == "accepted"){
+                    String pswd = userManager.getUser().getPassword();
+                    JOptionPane.showMessageDialog(null, "request accept, here is your initial password: \n " + pswd);
+                }else if (status == "pending") {
+                    JOptionPane.showMessageDialog(null, "request pending");
+                }else{
+                    JOptionPane.showMessageDialog(null, "request declined");
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "please request before check status");
+            }
+        });
+        viewer.goBackNew.addActionListener(e->{
+            viewer.changePage(viewer.newUserPage, viewer.welcomePage);
+        });
     }
 
 
@@ -194,26 +229,26 @@ public class ActionHandler {
     }
 
     public void accountSummary(){
-        StringBuilder summary = new StringBuilder("Bank Accounts and Balances: \n");
-        // a field for accounts sum
-        // include creation date
-        // FIXME GET EACH BANK ACC CREATION DATE, ACC TYPE, ACC NUMBER AND BALANCE
-        for (Object accountNumber:accountBalance.keySet()) {
-            summary.append(accountNumber + ": " + accountBalance.get(accountNumber));
-        }
-        // net total
-        // FIXME GET USER NET TOTAL
-        summary.append("Net total $%s", clientActionHandler.netTotal(currentUser.getAccounts()));
-
-
-        //set the summary text
-        viewer.accountSummaries.setText(summary.toString());
-
-        // a field for transaction history
-        // FIXME are the transactions in chronological order? (ie index 0 is most recent)
-        //  rn it's looking for account number but we only have current user.....
-        Transaction recentTrans = transactionManager.getTransactionsBySender(currentUser.accountNum()).get(0);
-        viewer.mostRecentTransaction.setText(recentTrans.toString());
+//        StringBuilder summary = new StringBuilder("Bank Accounts and Balances: \n");
+//        // a field for accounts sum
+//        // include creation date
+//        // FIXME GET EACH BANK ACC CREATION DATE, ACC TYPE, ACC NUMBER AND BALANCE
+//        for (Object accountNumber:accountBalance.keySet()) {
+//            summary.append(accountNumber + ": " + accountBalance.get(accountNumber));
+//        }
+//        // net total
+//        // FIXME GET USER NET TOTAL
+//        summary.append("Net total $%s", clientActionHandler.netTotal(currentUser.getAccounts()));
+//
+//
+//        //set the summary text
+//        viewer.accountSummaries.setText(summary.toString());
+//
+//        // a field for transaction history
+//        // FIXME are the transactions in chronological order? (ie index 0 is most recent)
+//        //  rn it's looking for account number but we only have current user.....
+//        Transaction recentTrans = transactionManager.getTransactionsBySender(currentUser.accountNum()).get(0);
+//        viewer.mostRecentTransaction.setText(recentTrans.toString());
 
         // request to create a new account
         viewer.makeANewAccountButton.addActionListener(e -> {
@@ -469,7 +504,7 @@ public class ActionHandler {
     }
 
     public void showAlerts() throws IOException {
-        StringBuilder alerts = new StringBuilder("");
+        StringBuilder alerts = new StringBuilder();
         ArrayList<String> alertsText = bankManagerActionHandler.getAlerts();
         for (String alert : alertsText) {
             alerts.append(alert);
@@ -538,6 +573,18 @@ public class ActionHandler {
 
     public void sendMessageToManager() {
         viewer.sendMessageToManagerButton.addActionListener(e -> {
+            // TODO CHECK IF THIS WORKS
+            if (viewer.inspectorMsg.getText().equals("")){
+                viewer.popUp("Please enter a message.");
+            }else{
+                try {
+                    bankInspectorActionHandler.sendMessageToManager(viewer.inspectorMsg.getText());
+                    viewer.popUp("Your message has been sent.");
+                    viewer.inspectorMsg.setText("");
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
 
         });
         viewer.goBackMsg.addActionListener(e -> {
@@ -546,7 +593,13 @@ public class ActionHandler {
     }
 
     public void seeAllTransactions() {
-        viewer.allTransactionText.setText("");
+        // TODO IS THIS ALL TRANSACTIONS FOR ALL CLIENTS OR JUST ONE CLIENT?
+        StringBuilder transactions = new StringBuilder();
+        ArrayList<String> transactionText = bankInspectorActionHandler.getAllTransactions();
+        for (String transaction : transactionText) {
+            transactions.append(transaction);
+        }
+        viewer.allTransactionText.setText(transactions.toString());
 
         viewer.goBackTransactions.addActionListener(e -> {
             viewer.changePage(viewer.allTransactions, viewer.inspectorOptions);
@@ -554,16 +607,33 @@ public class ActionHandler {
     }
 
     public void checkClientsAccount(){
+        bankInspectorActionHandler.selectClient(viewer.clientUsername.getText());
+        StringBuilder text = new StringBuilder();
         viewer.seeClientAccountSummaryButton.addActionListener(e -> {
-
+            viewer.clientSummaryOrTransaction.setText("");
+            ArrayList<String> clientSummary = bankInspectorActionHandler.getClientAccountSummary();
+            for (String summary : clientSummary) {
+                text.append(summary);
+            }
+            viewer.clientSummaryOrTransaction.setText(text.toString());
         });
 
         viewer.seeClientIncomingTransactionsButton.addActionListener(e -> {
-
+            viewer.clientSummaryOrTransaction.setText("");
+            ArrayList<String> incomingTransactions = bankInspectorActionHandler.getClientIncomingTransactions();
+            for (String incoming : incomingTransactions) {
+                text.append(incoming);
+            }
+            viewer.clientSummaryOrTransaction.setText(text.toString());
         });
 
         viewer.seeClientOutgoingTransactionsButton.addActionListener(e -> {
-
+            viewer.clientSummaryOrTransaction.setText("");
+            ArrayList<String> outgoingTransactions = bankInspectorActionHandler.getClientOutgoingTransactions();
+            for (String outgoing : outgoingTransactions) {
+                text.append(outgoing);
+            }
+            viewer.clientSummaryOrTransaction.setText(text.toString());
         });
 
         viewer.goBackClientSummary.addActionListener(e -> {

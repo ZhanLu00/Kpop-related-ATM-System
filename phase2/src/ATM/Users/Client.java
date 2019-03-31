@@ -1,7 +1,7 @@
-package ATM.Users;
+package src.ATM.Users;
 import java.util.*;
 
-public class Client extends User {
+public class Client extends ATM.Users.User {
 
 
     private ArrayList<Integer> accountNumbers;

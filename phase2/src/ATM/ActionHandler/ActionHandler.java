@@ -1,7 +1,6 @@
 package ATM.ActionHandler;
 
 import ATM.*;
-import ATM.BankAccounts.AssetAccounts.ChequingAccount;
 import ATM.Managers.AccountManager;
 import ATM.Managers.BillManager;
 import ATM.Managers.TransactionManager;
@@ -10,7 +9,6 @@ import ATM.Users.BankManager;
 import ATM.Users.Client;
 import ATM.Users.User;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -130,6 +128,7 @@ public class ActionHandler {
                         bankManagerOption();
                     }else{
                         viewer.changePage(viewer.returningUserPage, viewer.inspectorOptions);
+                        bankInspectorOption();
                     }
                 }else{
                     viewer.usernameText.setText("");
@@ -160,7 +159,7 @@ public class ActionHandler {
 
 
     /**
-     * Client action handler
+     * Client Action Handler
      */
     public void clientOption(){
         // add listener
@@ -350,7 +349,7 @@ public class ActionHandler {
 
 
     /**
-     * Bank Manager action handler
+     * Bank Manager Action Handler
      */
 
     public void bankManagerOption(){
@@ -384,6 +383,7 @@ public class ActionHandler {
         });
         viewer.logOutManager.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.welcomePage);
+            currentUser = null;
         });
     }
 
@@ -497,7 +497,6 @@ public class ActionHandler {
         viewer.userRequestsList.setListData(userRequests);
         int selectedIndex = viewer.userRequestsList.getSelectedIndex();
 
-        // TODO FINISH -- NEED TO GET USERNAME OF CLIENT WHO REQUESTED, WHAT TYPE IS viewer.accountRequestsList.getSelectedValue()
         viewer.acceptUserRequestButton.addActionListener(e -> {
         });
 
@@ -509,6 +508,66 @@ public class ActionHandler {
         });
     }
 
+    /**
+     * Bank Inspector Action Handler
+     */
+
+    public void bankInspectorOption(){
+        viewer.sendMessageToManagerButton.addActionListener(e -> {
+            viewer.changePage(viewer.inspectorOptions, viewer.sendManagerMsg);
+            sendMessageToManager();
+        });
+        viewer.seeAllTransactionsButton.addActionListener(e -> {
+            viewer.changePage(viewer.inspectorOptions, viewer.allTransactions);
+            seeAllTransactions();
+
+        });
+        viewer.checkClientsAccountButton.addActionListener(e -> {
+            viewer.changePage(viewer.inspectorOptions, viewer.clientSummary);
+            checkClientsAccount();
+        });
+        viewer.moreOptionsButton.addActionListener(e -> {
+            viewer.changePage(viewer.inspectorOptions, viewer.summaryOfAccounts);
+        });
+        viewer.logOutInspector.addActionListener(e -> {
+            viewer.changePage(viewer.inspectorOptions, viewer.welcomePage);
+            currentUser = null;
+        });
+    }
 
 
+    public void sendMessageToManager() {
+        viewer.sendMessageToManagerButton.addActionListener(e -> {
+
+        });
+        viewer.goBackMsg.addActionListener(e -> {
+            viewer.changePage(viewer.sendManagerMsg, viewer.inspectorOptions);
+        });
+    }
+
+    public void seeAllTransactions() {
+        viewer.allTransactionText.setText("");
+
+        viewer.goBackTransactions.addActionListener(e -> {
+            viewer.changePage(viewer.allTransactions, viewer.inspectorOptions);
+        });
+    }
+
+    public void checkClientsAccount(){
+        viewer.seeClientAccountSummaryButton.addActionListener(e -> {
+
+        });
+
+        viewer.seeClientIncomingTransactionsButton.addActionListener(e -> {
+
+        });
+
+        viewer.seeClientOutgoingTransactionsButton.addActionListener(e -> {
+
+        });
+
+        viewer.goBackClientSummary.addActionListener(e -> {
+            viewer.changePage(viewer.clientSummary, viewer.inspectorOptions);
+        });
+    }
 }

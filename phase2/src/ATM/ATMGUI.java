@@ -120,7 +120,7 @@ public class ATMGUI {
     public JPanel inspectorOptions;
     public JButton sendMessageToManagerButton;
     public JButton seeAllTransactionsButton;
-    public JButton checkClientSAccountButton;
+    public JButton checkClientsAccountButton;
     public JButton logOutInspector;
     public JButton moreOptionsButton; // TODO THIS BUTTON GOES TO CLIENT OPTIONS PAGE SINCE INSPECTOR CAN DO EVERYTHING CLIENTS CAN DO
 
@@ -142,6 +142,7 @@ public class ATMGUI {
     // ALL TRANSACTIONS PAGE
     public JPanel allTransactions;
     public JTextArea allTransactionText;
+    public JButton goBackTransactions;
 
     // NEW BANK ACCOUNT PAGE
     public JPanel newAccount;
@@ -184,12 +185,13 @@ public class ATMGUI {
     public JButton clearAlertsButton;
     public JTextArea alertText;
 
-    // VIEW NEW ACCOUNT CREATION RUESTS PAGE
+    // VIEW NEW ACCOUNT CREATION REQUESTS PAGE
     public JPanel viewAccountRequests;
     public JButton goBackAccRequest;
     public JButton declineAccountRequestButton;
     public JButton acceptAccountRequestButton;
     public JList accountRequestsList;
+
 
 
     public void changePage(JPanel currentPage, JPanel newPage){

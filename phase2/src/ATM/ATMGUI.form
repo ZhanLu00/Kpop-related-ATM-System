@@ -810,7 +810,7 @@
               <text value="See All Transactions"/>
             </properties>
           </component>
-          <component id="8696" class="javax.swing.JButton" binding="checkClientSAccountButton" default-binding="true">
+          <component id="8696" class="javax.swing.JButton" binding="checkClientsAccountButton">
             <constraints>
               <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -949,7 +949,7 @@
           </component>
         </children>
       </grid>
-      <grid id="cbea6" binding="allTransactions" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="cbea6" binding="allTransactions" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <card name="Card15"/>
@@ -975,6 +975,14 @@
               </grid>
             </constraints>
             <properties/>
+          </component>
+          <component id="6426d" class="javax.swing.JButton" binding="goBackTransactions">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Go back"/>
+            </properties>
           </component>
         </children>
       </grid>

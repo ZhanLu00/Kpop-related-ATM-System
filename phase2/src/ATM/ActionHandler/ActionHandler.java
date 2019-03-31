@@ -122,9 +122,9 @@ public class ActionHandler {
             String username = viewer.userDesiredName.getText();
             String type = viewer.newAccType.getSelectedItem().toString();
             // check if the request exist
-            if (requestManager.requestExist()){
+            if (requestManager.requestExist("newUser", username,type)){
                 // then show the status
-                String status = requestManager.getStatus(username);
+                String status = requestManager.getStatus("newUser", username);
                 if (status.equals("accepted")){
                     String pswd = userManager.getUser(username).getPassword();
                     viewer.popUp("Request accepted, here is your initial password: \n " + pswd);
@@ -350,13 +350,15 @@ public class ActionHandler {
     public void deposit(){
 
         viewer.depositButton.addActionListener(e->{
-            int numFives, numTens, numTwenty, numFifty;
-
+            int id, numFives, numTens, numTwenty, numFifty;
+            double chequeAmt;
+            id = viewer.depositAccNum.getText().;
+            chequeAmt = Double.parseDouble(viewer.chequeAmt.getText());
             numFives = (int) viewer.numFives.getValue();
             numTens = (int) viewer.numTens.getValue();
             numTwenty = (int) viewer.numTwenty.getValue();
             numFifty = (int) viewer.numFifty.getValue();
-            boolean succeed = clientActionHandler.deposit(numFives, numTens, numTwenty, numFifty);
+            boolean succeed = clientActionHandler.deposit(id, numFives, numTens, numTwenty, numFifty, chequeAmt);
             if (succeed){
                 viewer.popUp("Deposit successful.");
             }else{

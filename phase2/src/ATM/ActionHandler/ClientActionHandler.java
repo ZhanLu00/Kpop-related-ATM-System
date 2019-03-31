@@ -149,18 +149,18 @@ public class ClientActionHandler {
     }
 
 
-    public boolean deposit(int id, int fives, int tens, int twenties, int fifties) {
-        BankAccount account = accountManager.getAccount(id);
-        account.deposit(fives * 5 + tens * 10 + twenties * 20 + fifties * 50);
-        billManager.deposit(fives, tens, twenties, fifties);
-        return true;
+    public boolean deposit(int id, int fives, int tens, int twenties, int fifties, double chequing) {
+        if (client.getAccounts().contains(id)){
+            accountManager.getAccount(id).deposit(fives * 5 + tens * 10 + twenties * 20 + fifties * 50);
+            if (chequing <=0) {
+                billManager.deposit(fives, tens, twenties, fifties);
+            }
+            return true;
+        }else{
+            return false;
+        }
     }
 
-    public boolean deposit(int id, double amount) {
-        BankAccount account = accountManager.getAccount(id);
-        account.deposit(amount);
-        return true;
-    }
 
     public boolean changepswd(char[] pswd) {
         if (pswd.length <= 6 || pswd.length >= 15) {
@@ -173,17 +173,8 @@ public class ClientActionHandler {
 
     public boolean setPrimary(int accNum){
         BankAccount newPrimary = accountManager.getAccount(accNum);
-
-        //todo fix this
         if (newPrimary instanceof ChequingAccount) {
-            for (int accountId : client.getAccounts()) {
-                BankAccount account = accountManager.getAccount(accountId);
-//                if (account instanceof ChequingAccount && ((ChequingAccount) account).getPrimary()){
-//                    ((ChequingAccount) account).setPrimary(false);
-//                    break;
-//                }
-            }
-            ((ChequingAccount) newPrimary).setPrimary(true);
+            client.setPrimaryAccount(accNum);
             return true;
         } else {
             return false;

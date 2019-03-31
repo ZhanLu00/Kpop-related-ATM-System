@@ -23,7 +23,7 @@ public class LotteryAccountTest {
     public void testDeposit() {
         assertEquals(acc.getBalance(), 400);
         acc.deposit(100);
-        assertEquals(acc.getBalance(), 500);
+        assertEquals(acc.getBalance(), 300);
     }
 
     @Test
@@ -35,11 +35,11 @@ public class LotteryAccountTest {
     }
 
     @Test
-    public void testCollectInterest(){
+    public void testPlay(){
         for (int i = 0; i < 100; i++) {
             acc.balance = 400;
-            acc.collectInterest();
-            assertTrue(bal*0.5 <= acc.getBalance() <= bal*1.5);
+            acc.play();
+            assertTrue(200 <= acc.getBalance() && acc.getBalance() <= 600);
         }
     }
 }

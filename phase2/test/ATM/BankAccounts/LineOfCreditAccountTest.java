@@ -19,6 +19,13 @@ public class LineOfCreditAccountTest {
     }
 
     @Test
+    public void testDeposit() {
+        assertEquals(acc.getBalance(), 400);
+        acc.deposit(100);
+        assertEquals(acc.getBalance(), 300);
+    }
+
+    @Test
     public void testWithdraw(){
         assertFalse(acc.withdraw(21));
         assertTrue(acc.withdraw(20));

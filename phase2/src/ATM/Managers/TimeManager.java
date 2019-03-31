@@ -23,6 +23,9 @@ public class TimeManager {
         }
     }
 
+    /**
+     * Takes string in form "2000 jan 1" and returns corresponding Date type object.
+     */
     public static Date dateFromString(String dateString){
         String[] split = dateString.split(" ");
         int year = Integer.parseInt(split[0]);

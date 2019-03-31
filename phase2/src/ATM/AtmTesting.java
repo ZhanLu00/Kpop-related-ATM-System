@@ -2,10 +2,7 @@ package ATM;
 
 
 import ATM.ActionHandler.ActionHandler;
-import ATM.Managers.AccountManager;
-import ATM.Managers.BillManager;
-import ATM.Managers.TransactionManager;
-import ATM.Managers.UserManager;
+import ATM.Managers.*;
 import ATM.ATMGUI;
 import ATM.BankAccounts.BankAccount;
 import ATM.Users.User;
@@ -19,9 +16,13 @@ public class AtmTesting {
     // viewer
     public ATMGUI atmgui = new ATMGUI();
 
+    //TODO: txt file for currency rates
+    private ArrayList<Object[]> rates = new ArrayList<>();
+    private CurrencyManager currencyManager = new CurrencyManager(rates);
+
     // model
     private AccountManager accountManager = new AccountManager(new ArrayList<BankAccount>(), new ArrayList<String[]>(),
-            new Date());
+            currencyManager, new Date());
 
     private TransactionManager transactionManager = new TransactionManager();
 

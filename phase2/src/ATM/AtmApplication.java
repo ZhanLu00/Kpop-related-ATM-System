@@ -23,10 +23,10 @@ public class AtmApplication {
 //        atm.save();
 
 
-        Atm atm = new Atm("phase2/ATM/testfiles/BankUsers.txt","phase2/ATM/testfiles/BankAccounts.txt",
-                "phase2/ATM/testfiles/AtmInfo.txt", "phase2/ATM/testfiles/alerts.txt",
-                "phase2/ATM/testfiles/transactions.txt","phase2/ATM/testfiles/messages.txt",
-                "phase2/ATM/testfiles/accountRequests.txt", "phase2/ATM/testfiles/clientRequests.txt");
+        Atm atm = new Atm("phase2/src/ATM/testfiles/BankUsers.txt","phase2/src/ATM/testfiles/BankAccounts.txt",
+                "phase2/src/ATM/testfiles/AtmInfo.txt", "phase2/src/ATM/testfiles/alerts.txt",
+                "phase2/src/ATM/testfiles/transactions.txt","phase2/src/ATM/testfiles/messages.txt",
+                "phase2/src/ATM/testfiles/accountRequests.txt", "phase2/src/ATM/testfiles/clientRequests.txt");
 
         while(true) {
             String username = getStringFromUser("Username (-1 to exit): ");

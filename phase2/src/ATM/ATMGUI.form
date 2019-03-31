@@ -1508,14 +1508,8 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Select the chequing account you would like to set to your primary:"/>
+              <text value="Enter the account number that you want to select as new primary account:"/>
             </properties>
-          </component>
-          <component id="81e60" class="javax.swing.JComboBox" binding="selectPrimary">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties/>
           </component>
           <component id="7871c" class="javax.swing.JButton" binding="goBackPrimary">
             <constraints>
@@ -1532,6 +1526,14 @@
             <properties>
               <text value="Set As Primary Chequing Account"/>
             </properties>
+          </component>
+          <component id="4cefe" class="javax.swing.JFormattedTextField" binding="primaryAccNum">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties/>
           </component>
         </children>
       </grid>

@@ -191,6 +191,7 @@ public class ATMGUI {
     public JComboBox selectPrimary;
     public JButton goBackPrimary;
     public JButton setPrimaryButton;
+    public JFormattedTextField primaryAccNum;
 
 
     public void changePage(JPanel currentPage, JPanel newPage){

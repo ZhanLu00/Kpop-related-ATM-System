@@ -117,13 +117,9 @@ public class ClientActionHandler {
             return false;
         } else {
             // withdraw money from transOut account
-            if (account.withdraw(amount)) {
-
-                /*
-                @ TODO please implement the function below
-                 */
-                account.payBill(amount, transIn);
+            if (account.payBill(amount, transIn)) {
                 // save the transaction history
+
                 return true;
             } else {
                 return false;

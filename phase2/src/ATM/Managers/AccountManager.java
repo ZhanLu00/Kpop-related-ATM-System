@@ -75,8 +75,8 @@ public class AccountManager implements Iterable<BankAccount> {
         BankAccount sender = this.getAccount(senderId);
         BankAccount receiver = this.getAccount(receiverId);
         if(sender.withdraw(amount) && receiver.deposit(amount)) {
-            Transaction transaction = new Transaction(amount, senderId, receiverId, "transfer");
-            return transaction;
+            return new Transaction(amount, senderId, receiverId, "transfer");
+
         } else {
             return null;
         }

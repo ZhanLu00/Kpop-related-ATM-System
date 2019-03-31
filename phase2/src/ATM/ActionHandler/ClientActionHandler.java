@@ -238,6 +238,7 @@ public class ClientActionHandler {
             System.out.println("Enter 9 to make a deposit");
             System.out.println("Enter 10 to request a creation of an account");
             System.out.println("Enter 11 to set your primary chequing account");
+            System.out.println("Enter 12 to quit");
 
             int input = Integer.parseInt(kbd.readLine());
 
@@ -262,7 +263,13 @@ public class ClientActionHandler {
                 inputTen();
             } else if (input == 11) {
                 inputEleven();
+            } else if (input == 12) {
+                break;
+            } else {
+                System.out.println("Invalid input");
             }
+            System.out.println();
+            System.out.println();
         }
     }
 
@@ -290,9 +297,9 @@ public class ClientActionHandler {
         // view wth most recent transaction
         int accountNumber = accountNum(accountNumbers);
         BankAccount account = accountManager.getAccount(accountNumber);
-        // Transaction transaction = account.getLastTransaction();
-
-        //System.out.println(String.format("Sender: %d,  Receiver:  %d,  Amount: %f", transaction.getSender(), transaction.getReceiver(), transaction.getAmount()));
+        ArrayList<Transaction> transactions = atm.getTransactionManager().getTransactionsBySender(accountNumber);
+        Transaction transaction = transactions.get(transactions.size() - 1);
+        System.out.println(String.format("Sender: %d,  Receiver:  %d,  Amount: %f, Type: %s", transaction.getSender(), transaction.getReceiver(), transaction.getAmount(), transaction.getType()));
     }
 
     public void inputThree(ArrayList<Integer> accountNumbers) throws IOException {

@@ -288,6 +288,7 @@ public class ClientActionHandler {
         System.out.println("Enter the account that you want to check");
         int accountNumber = Integer.parseInt(kbd.readLine());
         while (!accountNumbers.contains(accountNumber)) {
+            System.out.println("Please enter an account you own");
             accountNumber = Integer.parseInt(kbd.readLine());
         }
         return accountNumber;

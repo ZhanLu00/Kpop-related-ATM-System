@@ -25,7 +25,7 @@ public class AtmApplication {
         //  delete acc request and client request bc bank manager will store it?
         Atm atm = new Atm("phase2/src/ATM/testfiles/BankUsers.txt","phase2/src/ATM/testfiles/BankAccounts.txt",
                 "phase2/src/ATM/testfiles/AtmInfo.txt", "phase2/src/ATM/testfiles/alerts.txt",
-                "phase2/src/ATM/testfiles/transactions.txt","phase2/src/ATM/testfiles/messages.txt", "", "");
+                "phase2/src/ATM/testfiles/transactions.txt","phase2/src/ATM/testfiles/messages.txt", "phase2/src/ATM/testfiles/accountRequests.txt", "phase2/src/ATM/testfiles/clientRequests.txt");
 
         while(true) {
             String username = getStringFromUser("Username (-1 to exit): ");

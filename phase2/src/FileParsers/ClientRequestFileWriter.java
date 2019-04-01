@@ -11,9 +11,9 @@ import java.util.ArrayList;
 public class ClientRequestFileWriter {
 
     private String fileName;
-    private ArrayList<String> usernames;
+    private ArrayList<String[]> usernames;
 
-    public ClientRequestFileWriter(String fileName, ArrayList<String> usernames) {
+    public ClientRequestFileWriter(String fileName, ArrayList<String[]> usernames) {
         this.fileName = fileName;
         this.usernames = usernames;
     }
@@ -27,8 +27,8 @@ public class ClientRequestFileWriter {
         writer.write("");
         StringBuilder fileOut = new StringBuilder();
 
-        for (String username:usernames) {
-            fileOut.append(String.format("%s\n",username));
+        for (String[] username:usernames) {
+            fileOut.append(String.format("%s,%s\n",username[0],username[1]));
         }
 
         writer.append(fileOut);

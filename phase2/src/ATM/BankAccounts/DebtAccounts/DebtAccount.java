@@ -18,6 +18,9 @@ public abstract class DebtAccount extends BankAccount {
         return this.MAX_DEBT;
     }
 
+    /**
+     * Sets max debt and returns true if argument > 0.
+     */
     public boolean setMaxDebt(double newMaxDebt) {
         if (newMaxDebt > 0) {
             this.MAX_DEBT = newMaxDebt;

@@ -99,6 +99,14 @@ public class ActionHandler {
                 login();
             }
         });
+        viewer.exitButton.addActionListener(e -> {
+            try {
+                atm.save();
+                System.exit(0);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
 
     }
 
@@ -286,7 +294,7 @@ public class ActionHandler {
         });
 
         // go back
-        viewer.goBackClientSummary.addActionListener(e -> {
+        viewer.goBackSummary.addActionListener(e -> {
             viewer.changePage(viewer.summaryOfAccounts, viewer.clientOptions);
         });
 
@@ -336,7 +344,6 @@ public class ActionHandler {
     public void transfer(){
 
         viewer.transferButton.addActionListener(e->{
-            boolean inputOk = false;
             int outAccNum, inAccNum;
             double transAmt;
             try{
@@ -380,7 +387,7 @@ public class ActionHandler {
             }
         });
 
-        viewer.goBackWithdraw.addActionListener(e->{
+        viewer.goBackBill.addActionListener(e->{
             viewer.changePage(viewer.payBill, viewer.clientOptions);
         });
 
@@ -436,7 +443,7 @@ public class ActionHandler {
 
     public void setPrimary(){
         viewer.setPrimaryButton.addActionListener(e->{
-            Object accNum = viewer.selectPrimary.getSelectedItem();
+            Object accNum = viewer.primaryAccNum.getValue();
             if (accNum instanceof Integer){
                 if (clientActionHandler.setPrimary((int)accNum)){
                     viewer.popUp("You have successfully set a new " +
@@ -545,15 +552,15 @@ public class ActionHandler {
 
     public void restockMachine(){
         viewer.restockATM.addActionListener(e -> {
-            int numFives, numTens, numTwenty, numFifty;
-            try{
-                numFives = (int) viewer.restockFives.getValue();
-                numTens = (int) viewer.restockTens.getValue();
-                numTwenty = (int) viewer.restockTwenty.getValue();
-                numFifty = (int) viewer.restockFifty.getValue();
-                bankManagerActionHandler.restockBills(numFives, numTens, numTwenty, numFifty);
+            Object numFives, numTens, numTwenty, numFifty;
+            numFives = viewer.restockFives.getValue();
+            numTens = viewer.restockTens.getValue();
+            numTwenty = viewer.restockTwenty.getValue();
+            numFifty = viewer.restockFifty.getValue();
+            if (numFives instanceof Integer && numTens instanceof Integer && numTwenty instanceof Integer && numFifty instanceof Integer){
+                bankManagerActionHandler.restockBills((int)numFives, (int)numTens, (int)numTwenty, (int)numFifty);
                 viewer.popUp("ATM has been restocked.");
-            }catch (Exception exp){
+            }else{
                 viewer.popUp("Please check your input.");
             }
         });

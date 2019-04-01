@@ -4,6 +4,8 @@ package ATM;
 import ATM.ActionHandler.ActionHandler;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 public class AtmTesting {
@@ -31,6 +33,7 @@ public class AtmTesting {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         gui.welcomePage.setVisible(true);
+
 
         ActionHandler actionHandler = new ActionHandler(atm, gui);
         actionHandler.initViewer();

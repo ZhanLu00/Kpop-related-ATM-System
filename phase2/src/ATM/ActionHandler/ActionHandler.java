@@ -117,14 +117,14 @@ public class ActionHandler {
         viewer.accRequestButton.addActionListener(e->{
             // get input
             String username = viewer.userDesiredName.getText();
-            String type = viewer.newAccType.getSelectedItem().toString();
+            String acc = viewer.newAccType.getSelectedItem().toString();
             // check if the username existed
             if (!userManager.userExists(username)){
                 // store the alert
                 if (requestManager.requestExist("newUser", username, null)){
                     viewer.popUp("Only check status for this username is allowed");
                 }else{
-                    requestManager.addRequest("newUser", username, type);
+                    requestManager.addRequest("newUser", username, acc);
                     viewer.popUp("Request submitted, please come back to check" +
                             "your status");
                 }
@@ -150,7 +150,7 @@ public class ActionHandler {
                     viewer.popUp("Request declined.");
                 }
             }else{
-                viewer.popUp("Please request to make an account before you check your status.");
+                viewer.popUp("Please request to an account before you check your status.");
             }
         });
         viewer.goBackNew.addActionListener(e->{

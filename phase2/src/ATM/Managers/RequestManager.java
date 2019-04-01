@@ -8,6 +8,9 @@ import java.util.ArrayList;
  * Manage the account and user creation requests of the atm
  */
 public class RequestManager {
+    /**
+     * string[] format: username, requestAccountType, status
+     */
     private ArrayList<String[]> accountRequests;
     private ArrayList<String[]> clientRequests;
 
@@ -16,20 +19,6 @@ public class RequestManager {
         this.clientRequests = clientRequests;
     }
 
-    /**
-     * @param username the username of account user
-     * @param type the type of account
-     */
-    public void addAccountRequest(String username, String type) {
-        accountRequests.add(new String[]{username,type});
-    }
-
-    /**
-     * @param username The username of the new client
-     */
-    public void addClientRequest(String username) {
-        clientRequests.add(new String[]{username,"pending"});
-    }
 
     public ArrayList<String[]> getAccountRequests() {
         return accountRequests;
@@ -43,14 +32,14 @@ public class RequestManager {
     /**
      * @param requestType add new client if set to newUser and new account of type 'type' if set to newAccount
      * @param username
-     * @param type
+     * @param acc
      */
-    public void addRequest(String requestType, String username, String type) {
+    public void addRequest(String requestType, String username, String acc) {
         if (requestType.equals("newUser")) {
-            addClientRequest(username);
+            clientRequests.add(new String[]{username, acc, "pending"});
         }
         else if (requestType.equals("newAccount")) {
-            addAccountRequest(username,type);
+            accountRequests.add(new String[]{username,acc, "pending"});
         }
     }
 
@@ -86,7 +75,7 @@ public class RequestManager {
      * @return the status of the request
      */
     public String getStatus(String requestType, String username) {
-        if (requestType == "newUser"){
+        if (requestType.equals("newUser")){
             for (String[] info : this.clientRequests){
                 if (username.equals(info[0])){
                     return info[2];
@@ -94,8 +83,8 @@ public class RequestManager {
             }
         }else{
             for (String[] info: this.accountRequests){
-                if (username == info[0]){
-                    return info[1];
+                if (username.equals(info[0])){
+                    return info[2];
                 }
             }
         }

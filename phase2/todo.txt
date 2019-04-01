@@ -110,5 +110,23 @@ Office Hour:
     - GUI: split the class into smaller classes, eg. create classes for buttons and different component
 
 
+TODO:
+gui:
+    + welcome page:
+        - add an hidden button to change the page to the communism page
+    + communism:
+        - add a button to go back to the "surface" system
+    + new user:
+        - statusButton: requestmanager: error
+
+    + client:
+        + transfer: button not working
+        + withdraw: button not working
+
+
+    + BankManager:
+        + view summery:
+            - fix string problem
+
 
 

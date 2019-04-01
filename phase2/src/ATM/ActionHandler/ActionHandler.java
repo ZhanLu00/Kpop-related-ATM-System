@@ -624,7 +624,7 @@ public class ActionHandler {
 
         // TODO UPDATE THE REQUEST STATUS OF USER
         viewer.acceptUserRequestButton.addActionListener(e -> {
-            String[] username = userRequests.get(selectedIndex);
+            String username = userRequests.get(selectedIndex)[0];
             String[] user = bankManagerActionHandler.addClient(username);
             // TODO DELIVER THE USERNAME AND PASSWORD TO THE USER?
         });

@@ -10,9 +10,6 @@ import java.io.InputStreamReader;
 
 public class AtmApplication {
 
-
-    // tet
-
     private static BufferedReader kbd = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args) throws IOException {

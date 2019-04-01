@@ -630,10 +630,10 @@ public class ActionHandler {
                 BankAccount joinAcc = accountManager.getAccount(Integer.parseInt(viewer.joinAccNum.getText()));
                 if (user1 == null || user2 == null){
                     viewer.popUp("Please enter valid usernames.");
-                } else if (!user1.getAccounts().contains(joinAcc) || !user2.getAccounts().contains(joinAcc)){
-                    viewer.popUp("Please choose an account that at least one of the users currently own");
+                }else if (bankManagerActionHandler.joinAccount(user1.getUsername(), user2.getUsername(), joinAcc.getId())){
+                    viewer.popUp("Accounts has been jointed");
                 }else{
-                    bankManagerActionHandler.joinAccount(user1.getUsername(), user2.getUsername(), joinAcc.getId());
+                    viewer.popUp("Something is wrong with your input");
                 }
             }catch (Exception exp){
                 viewer.popUp("Please check your input.");

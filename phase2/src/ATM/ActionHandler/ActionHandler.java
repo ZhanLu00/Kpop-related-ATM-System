@@ -435,7 +435,7 @@ public class ActionHandler {
 
     public void setPrimary(){
         viewer.setPrimaryButton.addActionListener(e->{
-            Object accNum = viewer.selectPrimary.getSelectedItem();
+            Object accNum = viewer.primaryAccNum.getValue();
             if (accNum instanceof Integer){
                 if (clientActionHandler.setPrimary((int)accNum)){
                     viewer.popUp("You have successfully set a new " +

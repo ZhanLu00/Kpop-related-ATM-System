@@ -7,6 +7,7 @@ import ATM.Managers.BillManager;
 import ATM.Managers.TransactionManager;
 import ATM.Managers.UserManager;
 import ATM.Managers.RequestManager;
+import ATM.Users.BankInspector;
 import ATM.Users.BankManager;
 import ATM.Users.Client;
 import ATM.Users.User;
@@ -47,6 +48,8 @@ public class ActionHandler {
 
     private ClientActionHandler clientActionHandler;
 
+    private Atm atm;
+
 
     // attributes for execution
     private String userType;
@@ -66,6 +69,7 @@ public class ActionHandler {
         this.billManager = atm.getBillManager();
         this.requestManager = atm.getRequestManager();
         this.viewer = atmgui;
+        this.atm = atm;
     }
 
     /**
@@ -101,7 +105,7 @@ public class ActionHandler {
     /**
      * New User Page
      */
-    public void newUser(){
+    private void newUser(){
         viewer.accRequestButton.addActionListener(e->{
             // get input
             String username = viewer.userDesiredName.getText();
@@ -160,12 +164,17 @@ public class ActionHandler {
                         viewer.changePage(viewer.returningUserPage, viewer.clientOptions);
                         currentUser = userManager.getUser(viewer.usernameText.getText());
                         clientOption();
+                        clientActionHandler = new ClientActionHandler((Client)currentUser, atm);
+
                     }else if(userType.equals("bankManager")){
                         viewer.changePage(viewer.returningUserPage, viewer.managerOptions);
                         bankManagerOption();
+                        bankManagerActionHandler = new BankManagerActionHandler(atm);
                     }else{
                         viewer.changePage(viewer.returningUserPage, viewer.inspectorOptions);
                         bankInspectorOption();
+                        currentUser = userManager.getUser(viewer.usernameText.getText());
+                        bankInspectorActionHandler = new BankInspectorActionHandler((BankInspector) currentUser,atm,"messages.txt");
                     }
                 }else{
                     viewer.usernameText.setText("");
@@ -618,18 +627,22 @@ public class ActionHandler {
     }
 
     public void joinAccounts(){
-        // FIXME NOT DONE
         viewer.joinButton.addActionListener(e -> {
             try{
-                Client user1 = (Client) userManager.getUser(viewer.jointUser1.getText());
-                Client user2 = (Client) userManager.getUser(viewer.jointUser2.getText());
+                Client user1 = (Client)userManager.getUser(viewer.jointUser1.getText());
+                Client user2 = (Client)userManager.getUser(viewer.jointUser2.getText());
                 BankAccount joinAcc = accountManager.getAccount(Integer.parseInt(viewer.joinAccNum.getText()));
                 if (user1 == null || user2 == null){
                     viewer.popUp("Please enter valid usernames.");
                 } else if (!user1.getAccounts().contains(joinAcc) || !user2.getAccounts().contains(joinAcc)){
                     viewer.popUp("Please choose an account that at least one of the users currently own");
                 }else{
-                    bankManagerActionHandler.joinAccount(user1.getUsername(), user2.getUsername(), joinAcc.getId());
+                    boolean successful = bankManagerActionHandler.joinAccount(user1.getUsername(), user2.getUsername(), joinAcc.getId());
+                    if (successful){
+                        viewer.popUp("Account joined.");
+                    }else{
+                        viewer.popUp("Please check your input and try again.");
+                    }
                 }
             }catch (Exception exp){
                 viewer.popUp("Please check your input.");

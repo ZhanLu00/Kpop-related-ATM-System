@@ -131,7 +131,6 @@ public class BankManagerActionHandler {
         atm.clearAlerts();
     }
 
-//     TODO GET RID OF THIS?
     private void setAtmDate(int day, int month, int year) {
         atm.getTimeManager().getDate().setDate(day);
         atm.getTimeManager().getDate().setMonth(month);

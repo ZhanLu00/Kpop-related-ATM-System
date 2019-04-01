@@ -433,17 +433,15 @@ public class ActionHandler {
 
     public void setPrimary(){
         viewer.setPrimaryButton.addActionListener(e->{
-            try{
-                // get input
-                int accNum = (int) viewer.selectPrimary.getSelectedItem();
-                // do action
-                if (clientActionHandler.setPrimary(accNum)){
+            Object accNum = viewer.selectPrimary.getSelectedItem();
+            if (accNum instanceof Integer){
+                if (clientActionHandler.setPrimary((int)accNum)){
                     viewer.popUp("You have successfully set a new " +
                             "primary account.");
                 }else{
                     viewer.popUp("Please select a chequing account");
                 }
-            }catch (Exception exp){
+            }else{
                 viewer.popUp("Please check your input.");
             }
         });

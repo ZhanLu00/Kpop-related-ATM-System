@@ -249,7 +249,7 @@ public class ActionHandler {
         for (Object accountNumber : accountBalance.keySet()) {
             summary.append(accountNumber + ": " + accountBalance.get(accountNumber));
         }
-        summary.append("Your net total is: " + clientActionHandler.netTotal(accountBalance));
+        summary.append("Your net total is: " + clientActionHandler.netTotal(accountBalance) + "\n");
         viewer.accountSummaries.setText(summary.toString());
 
         viewer.seeMostRecentTransactionButton.addActionListener(e -> {
@@ -293,12 +293,17 @@ public class ActionHandler {
     }
 
     public void createNewAccount(){
-        String accType = viewer.accType.getSelectedItem().toString();
-        if (requestManager.requestExist("newAccount", currentUser.username, accType))
-        // TODO CHECK IF THIS IS RIGHT
         viewer.createAccountButton.addActionListener(e -> {
-            accountManager.requestNewAccount(currentUser.username, accType);
+            String accType = viewer.accType.getSelectedItem().toString();
+            if (requestManager.requestExist("newAccount", currentUser.username, accType)){
+                accountManager.requestNewAccount(currentUser.username, accType);
+                viewer.popUp("request submitted");
+            }else{
+                viewer.popUp("something is wrong");
+            }
         });
+
+
         viewer.goBackNewAcc.addActionListener(e -> {
             viewer.changePage(viewer.newAccount, viewer.summaryOfAccounts);
         });
@@ -358,14 +363,13 @@ public class ActionHandler {
 
     public void payBill(){
         viewer.payBillButton.addActionListener(e->{
-            boolean inputOk = false;
             int billAccNum, billPayee;
             double billAmt;
             try{
                 billAccNum = Integer.parseInt(viewer.billAccNum.getText());
                 billPayee = Integer.parseInt(viewer.billPayee.getText());
                 billAmt = Double.parseDouble(viewer.billAmt.getText());
-                boolean succeed = clientActionHandler.transfer(billAmt, billAccNum, billPayee);
+                boolean succeed = clientActionHandler.payBill(billAccNum, billAmt, billPayee);
                 if (succeed){
                     viewer.popUp("You have successfully paid your bill.");
                 }else{
@@ -413,7 +417,6 @@ public class ActionHandler {
 
     public void changePswd(){
         viewer.changePswd.addActionListener(e->{
-            // todo why this returns String
             char[] pswd = viewer.newPassword.getPassword();
             if (pswd.length != 0) {
                 boolean succeed = clientActionHandler.changepswd(pswd);
@@ -433,17 +436,15 @@ public class ActionHandler {
 
     public void setPrimary(){
         viewer.setPrimaryButton.addActionListener(e->{
-            try{
-                // get input
-                int accNum = (int) viewer.selectPrimary.getSelectedItem();
-                // do action
-                if (clientActionHandler.setPrimary(accNum)){
+            Object accNum = viewer.selectPrimary.getSelectedItem();
+            if (accNum instanceof Integer){
+                if (clientActionHandler.setPrimary((int)accNum)){
                     viewer.popUp("You have successfully set a new " +
                             "primary account.");
                 }else{
                     viewer.popUp("Please select a chequing account");
                 }
-            }catch (Exception exp){
+            }else{
                 viewer.popUp("Please check your input.");
             }
         });
@@ -523,8 +524,9 @@ public class ActionHandler {
         Object[] transactions = transactionManager.getTransactions().toArray();
         viewer.recentTrans.setSelectedIndex(0);
         viewer.recentTrans.setListData(transactions);
-        int selectedIndex = viewer.recentTrans.getSelectedIndex();
+
         viewer.undoButton.addActionListener(e -> {
+            int selectedIndex = viewer.recentTrans.getSelectedIndex();
             // TODO CHECK IF THIS WORKS
             boolean undoStatus = bankManagerActionHandler.undoTransaction(selectedIndex);
             if (undoStatus){
@@ -542,15 +544,15 @@ public class ActionHandler {
 
     public void restockMachine(){
         viewer.restockATM.addActionListener(e -> {
-            int numFives, numTens, numTwenty, numFifty;
-            try{
-                numFives = (int) viewer.restockFives.getValue();
-                numTens = (int) viewer.restockTens.getValue();
-                numTwenty = (int) viewer.restockTwenty.getValue();
-                numFifty = (int) viewer.restockFifty.getValue();
-                bankManagerActionHandler.restockBills(numFives, numTens, numTwenty, numFifty);
+            Object numFives, numTens, numTwenty, numFifty;
+            numFives = viewer.restockFives.getValue();
+            numTens = viewer.restockTens.getValue();
+            numTwenty = viewer.restockTwenty.getValue();
+            numFifty = viewer.restockFifty.getValue();
+            if (numFives instanceof Integer && numTens instanceof Integer && numTwenty instanceof Integer && numFifty instanceof Integer){
+                bankManagerActionHandler.restockBills((int)numFives, (int)numTens, (int)numTwenty, (int)numFifty);
                 viewer.popUp("ATM has been restocked.");
-            }catch (Exception exp){
+            }else{
                 viewer.popUp("Please check your input.");
             }
         });

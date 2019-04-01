@@ -10,9 +10,6 @@ import java.io.InputStreamReader;
 
 public class AtmApplication {
 
-
-    // tet
-
     private static BufferedReader kbd = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args) throws IOException {
@@ -21,8 +18,6 @@ public class AtmApplication {
 //        atm.printText();
 //        atm.save();
 
-        // TODO add transaction & messages file
-        //  delete acc request and client request bc bank manager will store it?
         Atm atm = new Atm("phase2/resources/BankUsers.txt","phase2/resources/BankAccounts.txt",
                 "phase2/resources/AtmInfo.txt", "phase2/resources/alerts.txt",
                 "phase2/resources/transactions.txt","phase2/resources/messages.txt", "phase2/resources/accountRequests.txt", "phase2/resources/clientRequests.txt");

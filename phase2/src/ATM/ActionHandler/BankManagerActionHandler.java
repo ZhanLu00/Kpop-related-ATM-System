@@ -33,7 +33,7 @@ public class BankManagerActionHandler {
      * Returns account id if account was successfully created, -1 otherwise.
      */
     int createAccountForUser(String username, String accountType) {
-        Client accountUser = (Client)(atm.getUserManager().getUser(username));
+        Client accountUser = atm.getUserManager().getUser(username);
 
         // the false condition:
         if (accountUser == null) {
@@ -152,15 +152,15 @@ public class BankManagerActionHandler {
         // find users
         if (atm.getUserManager().userExists(user1) && atm.getUserManager().userExists(user2)){
             // add acc in
-            if (((Client)atm.getUserManager().getUser(user1)).getAccounts().contains(acc)){
-                if (((Client)atm.getUserManager().getUser(user2)).getAccounts().contains(acc)){
+            if (atm.getUserManager().getUser(user1).getAccounts().contains(acc)){
+                if (atm.getUserManager().getUser(user2).getAccounts().contains(acc)){
                 }else{
-                    ((Client) atm.getUserManager().getUser(user2)) .addAccounts(acc);
+                    atm.getUserManager().getUser(user2).addAccounts(acc);
                 }
             }else{
-                if (((Client)atm.getUserManager().getUser(user2)).getAccounts().contains(acc)){
+                if (atm.getUserManager().getUser(user2).getAccounts().contains(acc)){
                 }else{
-                    ((Client)atm.getUserManager().getUser(user2)).addAccounts(acc);
+                    atm.getUserManager().getUser(user2).addAccounts(acc);
                 }
             }
             return true;
@@ -197,7 +197,7 @@ public class BankManagerActionHandler {
      * Adds an account to client.accounts by username and account id.
      */
     boolean addAccountToUser(String username, int accountId) {
-        Client client = (Client)atm.getUserManager().getUser(username);
+        Client client = atm.getUserManager().getUser(username);
         return addAccountToUser(client, accountId);
     }
 

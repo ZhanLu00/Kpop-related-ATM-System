@@ -544,15 +544,15 @@ public class ActionHandler {
 
     public void restockMachine(){
         viewer.restockATM.addActionListener(e -> {
-            int numFives, numTens, numTwenty, numFifty;
-            try{
-                numFives = (int) viewer.restockFives.getValue();
-                numTens = (int) viewer.restockTens.getValue();
-                numTwenty = (int) viewer.restockTwenty.getValue();
-                numFifty = (int) viewer.restockFifty.getValue();
-                bankManagerActionHandler.restockBills(numFives, numTens, numTwenty, numFifty);
+            Object numFives, numTens, numTwenty, numFifty;
+            numFives = viewer.restockFives.getValue();
+            numTens = viewer.restockTens.getValue();
+            numTwenty = viewer.restockTwenty.getValue();
+            numFifty = viewer.restockFifty.getValue();
+            if (numFives instanceof Integer && numTens instanceof Integer && numTwenty instanceof Integer && numFifty instanceof Integer){
+                bankManagerActionHandler.restockBills((int)numFives, (int)numTens, (int)numTwenty, (int)numFifty);
                 viewer.popUp("ATM has been restocked.");
-            }catch (Exception exp){
+            }else{
                 viewer.popUp("Please check your input.");
             }
         });

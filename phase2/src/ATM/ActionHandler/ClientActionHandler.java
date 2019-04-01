@@ -110,7 +110,7 @@ public class ClientActionHandler {
     /*
     Pay a bill
      */
-    Boolean payBill(int transOut, double amount, int transIn) {
+    public Boolean payBill(int transOut, double amount, int transIn) {
         BankAccount account = accountManager.getAccount(transOut);
         // check if there are enough balance
         if (account.getBalance() < amount) {

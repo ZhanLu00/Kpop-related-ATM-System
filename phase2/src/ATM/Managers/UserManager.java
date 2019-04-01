@@ -56,10 +56,10 @@ public class UserManager implements Iterable<User> {
      * Returns a client with the corresponding username.
      * If no user user with the username is found, returns null.
      */
-    public Client getUser(String username){
+    public User getUser(String username){
         for (User u : users){
             if (u.getUsername().equals(username)){
-                return (Client)u;
+                return u;
             }
         }
         return null;

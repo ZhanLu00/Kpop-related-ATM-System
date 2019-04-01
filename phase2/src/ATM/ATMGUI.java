@@ -199,6 +199,10 @@ public class ATMGUI {
     public JFormattedTextField primaryAccNum;
 
 
+    // COMMUNISM
+    public JPanel communismPage;
+    public JButton communismButton;
+
     public void changePage(JPanel currentPage, JPanel newPage) {
         currentPage.setVisible(false);
         newPage.setVisible(true);

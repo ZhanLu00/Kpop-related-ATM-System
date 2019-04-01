@@ -617,14 +617,14 @@ public class ActionHandler {
     }
 
     public void viewUserCreationRequests(){
-        ArrayList<String> userRequests = userManager.getClientRequests();
+        ArrayList<String[]> userRequests = userManager.getClientRequests();
         Object[] userRequestObject = userRequests.toArray();
         viewer.userRequestsList.setListData(userRequestObject);
         int selectedIndex = viewer.accountRequestsList.getSelectedIndex();
 
         // TODO UPDATE THE REQUEST STATUS OF USER
         viewer.acceptUserRequestButton.addActionListener(e -> {
-            String username = userRequests.get(selectedIndex);
+            String[] username = userRequests.get(selectedIndex);
             String[] user = bankManagerActionHandler.addClient(username);
             // TODO DELIVER THE USERNAME AND PASSWORD TO THE USER?
         });

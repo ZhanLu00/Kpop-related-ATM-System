@@ -286,7 +286,7 @@ public class ActionHandler {
         });
 
         // go back
-        viewer.goBackClientSummary.addActionListener(e -> {
+        viewer.goBackSummary.addActionListener(e -> {
             viewer.changePage(viewer.summaryOfAccounts, viewer.clientOptions);
         });
 
@@ -336,7 +336,6 @@ public class ActionHandler {
     public void transfer(){
 
         viewer.transferButton.addActionListener(e->{
-            boolean inputOk = false;
             int outAccNum, inAccNum;
             double transAmt;
             try{
@@ -380,7 +379,7 @@ public class ActionHandler {
             }
         });
 
-        viewer.goBackWithdraw.addActionListener(e->{
+        viewer.goBackBill.addActionListener(e->{
             viewer.changePage(viewer.payBill, viewer.clientOptions);
         });
 
@@ -436,7 +435,7 @@ public class ActionHandler {
 
     public void setPrimary(){
         viewer.setPrimaryButton.addActionListener(e->{
-            Object accNum = viewer.selectPrimary.getSelectedItem();
+            Object accNum = viewer.primaryAccNum.getValue();
             if (accNum instanceof Integer){
                 if (clientActionHandler.setPrimary((int)accNum)){
                     viewer.popUp("You have successfully set a new " +

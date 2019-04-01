@@ -26,7 +26,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font size="26"/>
+              <font name="Ayuthaya" size="26" style="0"/>
               <text value="Welcome to Kpop Related"/>
             </properties>
           </component>
@@ -203,7 +203,7 @@
               <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font size="20"/>
+              <font name="Ayuthaya" size="20" style="0"/>
               <horizontalTextPosition value="0"/>
               <text value="What would you like to do today?"/>
             </properties>
@@ -289,7 +289,7 @@
               <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font size="20"/>
+              <font name="Ayuthaya" size="20" style="0"/>
               <horizontalTextPosition value="0"/>
               <text value="What would you like to do today?"/>
             </properties>
@@ -399,7 +399,7 @@
               <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font size="20"/>
+              <font name="Ayuthaya" size="20" style="0"/>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
               <text value="How much money are you depositing today?"/>
@@ -507,7 +507,7 @@
             </constraints>
             <properties>
               <focusable value="false"/>
-              <font size="22"/>
+              <font name="Ayuthaya" size="22" style="0"/>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
               <text value="Here is a summary of all your account balances:"/>
@@ -520,7 +520,9 @@
               </grid>
             </constraints>
             <properties>
-              <font size="18"/>
+              <editable value="false"/>
+              <enabled value="true"/>
+              <font/>
             </properties>
           </component>
           <component id="8a97a" class="javax.swing.JButton" binding="goBackSummary">
@@ -854,7 +856,7 @@
               <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font size="20"/>
+              <font name="Ayuthaya" size="20" style="0"/>
               <text value="What would you like to do today?"/>
             </properties>
           </component>
@@ -915,7 +917,7 @@
               <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font size="16"/>
+              <font name="Ayuthaya" size="16" style="0"/>
               <text value="Enter the message you would like to send to the manager:"/>
             </properties>
           </component>
@@ -1028,7 +1030,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font size="20"/>
+              <font name="Ayuthaya" size="20" style="0"/>
               <text value="Here are all the transactions:"/>
             </properties>
           </component>
@@ -1283,7 +1285,7 @@
               <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font size="20"/>
+              <font name="Ayuthaya" size="20" style="0"/>
               <text value="Select one of the transactions to undo (remember you can't undo bill payments):"/>
             </properties>
           </component>
@@ -1328,7 +1330,7 @@
               <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font size="20"/>
+              <font name="Ayuthaya" size="20" style="0"/>
               <text value="Here is a list of new user requests:"/>
             </properties>
           </component>
@@ -1381,7 +1383,7 @@
               <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font size="20"/>
+              <font name="Ayuthaya" size="20" style="0"/>
               <text value="Here are your alerts:"/>
             </properties>
           </component>
@@ -1427,7 +1429,7 @@
               <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font size="20"/>
+              <font name="Ayuthaya" size="20" style="0"/>
               <text value="Here is a list of new account requests:"/>
             </properties>
           </component>

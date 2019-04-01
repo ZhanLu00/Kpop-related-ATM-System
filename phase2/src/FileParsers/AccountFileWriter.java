@@ -30,7 +30,7 @@ public class AccountFileWriter {
     public void write() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
         writer.write("");
-        StringBuilder fileOut = new StringBuilder("");
+        StringBuilder fileOut = new StringBuilder();
         for (BankAccount account : accounts) {
             String type = account.getType();
 

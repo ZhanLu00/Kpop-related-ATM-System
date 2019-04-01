@@ -106,7 +106,7 @@ public class ActionHandler {
     /**
      * New User Page
      */
-    public void newUser(){
+    private void newUser(){
         viewer.accRequestButton.addActionListener(e->{
             // get input
             String username = viewer.userDesiredName.getText();
@@ -149,7 +149,7 @@ public class ActionHandler {
     /**
      * User Log in
      */
-    public void login(){
+    private void login(){
         viewer.goBackReturn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -180,7 +180,7 @@ public class ActionHandler {
             }
         });
     }
-    public boolean login(String userId, String pswd){
+    private boolean login(String userId, String pswd){
         if (userManager.userExists(userId)){
             if (userManager.getUser(userId).getPassword().equals(pswd)){
                 currentUser = userManager.getUser(userId);

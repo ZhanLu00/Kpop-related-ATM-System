@@ -267,7 +267,7 @@ public class ATMGUI {
         welcomePage.setBackground(new Color(-1661602));
         root.add(welcomePage, "Card1");
         final JLabel label1 = new JLabel();
-        Font label1Font = this.$$$getFont$$$(null, -1, 26, label1.getFont());
+        Font label1Font = this.$$$getFont$$$("Ayuthaya", Font.PLAIN, 26, label1.getFont());
         if (label1Font != null) label1.setFont(label1Font);
         label1.setText("Welcome to Kpop Related");
         welcomePage.add(label1, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -338,7 +338,7 @@ public class ATMGUI {
         clientOptions.setBackground(new Color(-7420340));
         root.add(clientOptions, "Card4");
         final JLabel label6 = new JLabel();
-        Font label6Font = this.$$$getFont$$$(null, -1, 20, label6.getFont());
+        Font label6Font = this.$$$getFont$$$("Ayuthaya", Font.PLAIN, 20, label6.getFont());
         if (label6Font != null) label6.setFont(label6Font);
         label6.setHorizontalTextPosition(0);
         label6.setText("What would you like to do today?");
@@ -372,7 +372,7 @@ public class ATMGUI {
         managerOptions.setBackground(new Color(-7420340));
         root.add(managerOptions, "Card5");
         final JLabel label7 = new JLabel();
-        Font label7Font = this.$$$getFont$$$(null, -1, 20, label7.getFont());
+        Font label7Font = this.$$$getFont$$$("Ayuthaya", Font.PLAIN, 20, label7.getFont());
         if (label7Font != null) label7.setFont(label7Font);
         label7.setHorizontalTextPosition(0);
         label7.setText("What would you like to do today?");
@@ -415,7 +415,7 @@ public class ATMGUI {
         label10.setText("Number of $20 bills");
         depositOption.add(label10, new com.intellij.uiDesigner.core.GridConstraints(4, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label11 = new JLabel();
-        Font label11Font = this.$$$getFont$$$(null, -1, 20, label11.getFont());
+        Font label11Font = this.$$$getFont$$$("Ayuthaya", Font.PLAIN, 20, label11.getFont());
         if (label11Font != null) label11.setFont(label11Font);
         label11.setHorizontalAlignment(0);
         label11.setHorizontalTextPosition(0);
@@ -452,14 +452,16 @@ public class ATMGUI {
         root.add(summaryOfAccounts, "Card7");
         final JLabel label15 = new JLabel();
         label15.setFocusable(false);
-        Font label15Font = this.$$$getFont$$$(null, -1, 22, label15.getFont());
+        Font label15Font = this.$$$getFont$$$("Ayuthaya", Font.PLAIN, 22, label15.getFont());
         if (label15Font != null) label15.setFont(label15Font);
         label15.setHorizontalAlignment(0);
         label15.setHorizontalTextPosition(0);
         label15.setText("Here is a summary of all your account balances:");
         summaryOfAccounts.add(label15, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 4, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         accountSummaries = new JTextArea();
-        Font accountSummariesFont = this.$$$getFont$$$(null, -1, 18, accountSummaries.getFont());
+        accountSummaries.setEditable(false);
+        accountSummaries.setEnabled(true);
+        Font accountSummariesFont = this.$$$getFont$$$(null, -1, -1, accountSummaries.getFont());
         if (accountSummariesFont != null) accountSummaries.setFont(accountSummariesFont);
         summaryOfAccounts.add(accountSummaries, new com.intellij.uiDesigner.core.GridConstraints(3, 0, 1, 4, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         goBackSummary = new JButton();
@@ -572,7 +574,7 @@ public class ATMGUI {
         inspectorOptions.setBackground(new Color(-7420340));
         root.add(inspectorOptions, "Card11");
         final JLabel label26 = new JLabel();
-        Font label26Font = this.$$$getFont$$$(null, -1, 20, label26.getFont());
+        Font label26Font = this.$$$getFont$$$("Ayuthaya", Font.PLAIN, 20, label26.getFont());
         if (label26Font != null) label26.setFont(label26Font);
         label26.setText("What would you like to do today?");
         inspectorOptions.add(label26, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 3, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -596,7 +598,7 @@ public class ATMGUI {
         sendManagerMsg.setBackground(new Color(-5872691));
         root.add(sendManagerMsg, "Card12");
         final JLabel label27 = new JLabel();
-        Font label27Font = this.$$$getFont$$$(null, -1, 16, label27.getFont());
+        Font label27Font = this.$$$getFont$$$("Ayuthaya", Font.PLAIN, 16, label27.getFont());
         if (label27Font != null) label27.setFont(label27Font);
         label27.setText("Enter the message you would like to send to the manager:");
         sendManagerMsg.add(label27, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -636,7 +638,7 @@ public class ATMGUI {
         allTransactions.setBackground(new Color(-5872691));
         root.add(allTransactions, "Card15");
         final JLabel label29 = new JLabel();
-        Font label29Font = this.$$$getFont$$$(null, -1, 20, label29.getFont());
+        Font label29Font = this.$$$getFont$$$("Ayuthaya", Font.PLAIN, 20, label29.getFont());
         if (label29Font != null) label29.setFont(label29Font);
         label29.setText("Here are all the transactions:");
         allTransactions.add(label29, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -732,7 +734,7 @@ public class ATMGUI {
         undoTransaction.setBackground(new Color(-5872691));
         root.add(undoTransaction, "Card19");
         final JLabel label38 = new JLabel();
-        Font label38Font = this.$$$getFont$$$(null, -1, 20, label38.getFont());
+        Font label38Font = this.$$$getFont$$$("Ayuthaya", Font.PLAIN, 20, label38.getFont());
         if (label38Font != null) label38.setFont(label38Font);
         label38.setText("Select one of the transactions to undo (remember you can't undo bill payments):");
         undoTransaction.add(label38, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -749,7 +751,7 @@ public class ATMGUI {
         viewUserRequests.setBackground(new Color(-5872691));
         root.add(viewUserRequests, "Card20");
         final JLabel label39 = new JLabel();
-        Font label39Font = this.$$$getFont$$$(null, -1, 20, label39.getFont());
+        Font label39Font = this.$$$getFont$$$("Ayuthaya", Font.PLAIN, 20, label39.getFont());
         if (label39Font != null) label39.setFont(label39Font);
         label39.setText("Here is a list of new user requests:");
         viewUserRequests.add(label39, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 3, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -769,7 +771,7 @@ public class ATMGUI {
         viewAlerts.setBackground(new Color(-5872691));
         root.add(viewAlerts, "Card21");
         final JLabel label40 = new JLabel();
-        Font label40Font = this.$$$getFont$$$(null, -1, 20, label40.getFont());
+        Font label40Font = this.$$$getFont$$$("Ayuthaya", Font.PLAIN, 20, label40.getFont());
         if (label40Font != null) label40.setFont(label40Font);
         label40.setText("Here are your alerts:");
         viewAlerts.add(label40, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -787,7 +789,7 @@ public class ATMGUI {
         viewAccountRequests.setEnabled(true);
         root.add(viewAccountRequests, "Card22");
         final JLabel label41 = new JLabel();
-        Font label41Font = this.$$$getFont$$$(null, -1, 20, label41.getFont());
+        Font label41Font = this.$$$getFont$$$("Ayuthaya", Font.PLAIN, 20, label41.getFont());
         if (label41Font != null) label41.setFont(label41Font);
         label41.setText("Here is a list of new account requests:");
         viewAccountRequests.add(label41, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 3, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));

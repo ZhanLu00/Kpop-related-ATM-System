@@ -2,21 +2,13 @@ package ATM;
 
 
 import ATM.ActionHandler.ActionHandler;
-import ATM.Managers.*;
-import ATM.ATMGUI;
-import ATM.BankAccounts.BankAccount;
-import ATM.Users.User;
 
 import javax.swing.*;
-import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
 
 public class AtmTesting {
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         String userFileName = "phase2/resources/userfiles.txt";
         String accountFileName = "phase2/resources/accounts.txt";
         String atmFileName = "phase2/resources/Atminfo.txt";
@@ -26,7 +18,7 @@ public class AtmTesting {
         String accountRequestFileName = "phase2/resources/accountRequests.txt";
         String clientRequestFileName = "phase2/resources//clientRequests.txt";
 
-        Atm atm = new Atm (userFileName,  accountFileName, atmFileName, alertsFileName, transactionsFileName,
+        Atm atm = new Atm(userFileName, accountFileName, atmFileName, alertsFileName, transactionsFileName,
                 messagesFileName, accountRequestFileName, clientRequestFileName);
 
         ATMGUI gui = new ATMGUI();
@@ -44,12 +36,4 @@ public class AtmTesting {
         actionHandler.initViewer();
         actionHandler.initOperator();
     }
-
-    public void loadData(String fileName){
-
-    }
-
-
-
-
 }

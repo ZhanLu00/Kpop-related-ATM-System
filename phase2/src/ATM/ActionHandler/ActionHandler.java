@@ -60,10 +60,12 @@ public class ActionHandler {
      * Initialize attributes
      */
     public ActionHandler(Atm atm, ATMGUI atmgui){
-//        this.accountManager = atm.getAccountManager();
-//        this.userManager = atm.getUserManager();
-//        this.billManager = atm.getBillManager();
-//        this.transactionManager = atm.getTransactionManager();
+        this.accountManager = atm.getAccountManager();
+        this.userManager = atm.getUserManager();
+        this.billManager = atm.getBillManager();
+        this.transactionManager = atm.getTransactionManager();
+        this.billManager = atm.getBillManager();
+        this.requestManager = atm.getRequestManager();
         this.viewer = atmgui;
     }
 

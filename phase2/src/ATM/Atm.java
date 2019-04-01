@@ -17,6 +17,7 @@ public class Atm {
     private BillManager billManager;
     private TransactionManager transactionManager;
     private CurrencyManager currencyManager;
+    private RequestManager requestManager;
 
     private String userFileName, accountFileName, atmFileName, alertsFileName, transactionsFileName, messagesFileName,
     clientRequestFileName, accountRequestFileName;
@@ -31,6 +32,7 @@ public class Atm {
         AccountRequestFileReader accountRequestFileReader = new AccountRequestFileReader(accountRequestFileName);
         ClientRequestFileReader clientRequestFileReader = new ClientRequestFileReader(clientRequestFileName);
 
+
         transactionFileReader.read();
         atmFileReader.read();
 
@@ -39,6 +41,7 @@ public class Atm {
         this.userManager = new UserManager(userFileReader.getUsers(), clientRequestFileReader.getClientRequests(), date);
         this.accountManager = new AccountManager(accountFileReader.getAccounts(), accountRequestFileReader.getAccountRequests(), getCurrencyManager(), date);
         this.billManager = new BillManager(atmFileReader.getFives(), atmFileReader.getTens(), atmFileReader.getTwenties(), atmFileReader.getFifties(),alertsFileName);
+        this.requestManager = new RequestManager(accountRequestFileReader.getAccountRequests(), clientRequestFileReader.getClientRequests());
 
         for (String[] accountCreationRequest : atmFileReader.getAccountCreationRequests()) {
             accountManager.requestNewAccount(accountCreationRequest[0],accountCreationRequest[1]);
@@ -125,13 +128,17 @@ public class Atm {
         writer.close();
     }
 
+    public RequestManager getRequestManager() {
+        return requestManager;
+    }
+
     public void save() throws IOException {
         AccountFileWriter accountFileWriter = new AccountFileWriter(accountFileName,accountManager.getAccounts());
         UserFileWriter userFileWriter = new UserFileWriter(userFileName, userManager.getUsers());
         AtmFileWriter atmFileWriter = new AtmFileWriter(atmFileName, timeManager.getDate(), billManager, accountManager);
         TransactionFileWriter transactionFileWriter = new TransactionFileWriter(transactionManager.getTransactions(), transactionsFileName);
-        AccountRequestFileWriter accountRequestFileWriter = new AccountRequestFileWriter(accountRequestFileName,accountManager.getAccountRequests());
-        ClientRequestFileWriter clientRequestFileWriter = new ClientRequestFileWriter(clientRequestFileName, userManager.getClientRequests());
+        AccountRequestFileWriter accountRequestFileWriter = new AccountRequestFileWriter(accountRequestFileName,requestManager.getAccountRequests());
+        ClientRequestFileWriter clientRequestFileWriter = new ClientRequestFileWriter(clientRequestFileName, requestManager.getClientRequests());
 
         accountFileWriter.write();
         userFileWriter.write();

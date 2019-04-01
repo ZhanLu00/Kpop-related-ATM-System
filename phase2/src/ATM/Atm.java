@@ -42,6 +42,9 @@ public class Atm {
         this.accountManager = new AccountManager(accountFileReader.getAccounts(), accountRequestFileReader.getAccountRequests(), getCurrencyManager(), date);
         this.billManager = new BillManager(atmFileReader.getFives(), atmFileReader.getTens(), atmFileReader.getTwenties(), atmFileReader.getFifties(),alertsFileName);
         this.requestManager = new RequestManager(accountRequestFileReader.getAccountRequests(), clientRequestFileReader.getClientRequests());
+        ArrayList<Object[]> rates = new ArrayList<>();
+        rates.add(new Object[]{"USD", 0.75});
+        this.currencyManager = new CurrencyManager(rates);
 
         for (String[] accountCreationRequest : atmFileReader.getAccountCreationRequests()) {
             accountManager.requestNewAccount(accountCreationRequest[0],accountCreationRequest[1]);

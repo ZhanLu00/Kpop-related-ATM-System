@@ -124,8 +124,10 @@ public class ActionHandler {
                 requestManager.addRequest("newUser", username, type);
                 viewer.popUp("Request submitted, please come back to check" +
                         "your status");
+                viewer.userDesiredName.setText("");
             }else{
-                viewer.popUp("Your username is already token");
+                viewer.popUp("Your username is already taken");
+                viewer.userDesiredName.setText("");
             }
         });
         viewer.requestStatus.addActionListener(e->{
@@ -168,12 +170,11 @@ public class ActionHandler {
             public void actionPerformed(ActionEvent e) {
                 boolean loginSuccess = login(viewer.usernameText.getText(), String.valueOf(viewer.passwordText.getPassword()));
                 if (loginSuccess){
+                    currentUser = userManager.getUser(viewer.usernameText.getText());
                     if (userType.equals("client")){
                         viewer.changePage(viewer.returningUserPage, viewer.clientOptions);
-                        currentUser = userManager.getUser(viewer.usernameText.getText());
                         clientOption();
                         clientActionHandler = new ClientActionHandler((Client)currentUser, atm);
-
                     }else if(userType.equals("bankManager")){
                         viewer.changePage(viewer.returningUserPage, viewer.managerOptions);
                         bankManagerOption();
@@ -181,14 +182,15 @@ public class ActionHandler {
                     }else{
                         viewer.changePage(viewer.returningUserPage, viewer.inspectorOptions);
                         bankInspectorOption();
-                        currentUser = userManager.getUser(viewer.usernameText.getText());
-                        bankInspectorActionHandler = new BankInspectorActionHandler((BankInspector) currentUser,atm,"messages.txt");
+                        bankInspectorActionHandler = new BankInspectorActionHandler((BankInspector) currentUser,atm,
+                                "phase2/resources/messages.txt");
                     }
                 }else{
-                    viewer.usernameText.setText("");
-                    viewer.passwordText.setText("");
+                    System.out.println(loginSuccess + viewer.usernameText.getText());
                     viewer.popUp("Incorrect username/password. Please try again.");
                 }
+                viewer.usernameText.setText("");
+                viewer.passwordText.setText("");
             }
         });
     }
@@ -196,7 +198,7 @@ public class ActionHandler {
         if (userManager.userExists(userId)){
             if (userManager.getUser(userId).getPassword().equals(pswd)){
                 currentUser = userManager.getUser(userId);
-                // use type
+                // user type
                 if (currentUser instanceof Client){
                     userType = "client";
                 }else if (currentUser instanceof BankManager){
@@ -224,7 +226,7 @@ public class ActionHandler {
             viewer.changePage(viewer.clientOptions, viewer.withdrawOption);
             withdraw();
         });
-        viewer.transferButton.addActionListener(e->{
+        viewer.transferMoneyButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.transferOption);
             transfer();
         });

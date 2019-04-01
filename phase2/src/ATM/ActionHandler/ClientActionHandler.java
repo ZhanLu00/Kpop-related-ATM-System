@@ -46,7 +46,7 @@ public class ClientActionHandler {
     }
 
     // check balance
-    public Map<Integer, Double> checkBalance() {
+    Map<Integer, Double> checkBalance() {
         Map balance = new HashMap<Integer, Double>();
 
         // get account numbers first
@@ -89,7 +89,7 @@ public class ClientActionHandler {
     }
 
     // transfer
-    public Boolean transfer(double amount, int senderId, int receiverId) {
+    Boolean transfer(double amount, int senderId, int receiverId) {
 
         Transaction transaction = this.accountManager.transfer(amount, senderId, receiverId);
 
@@ -110,7 +110,7 @@ public class ClientActionHandler {
     /*
     Pay a bill
      */
-    public Boolean payBill(int transOut, double amount, int transIn) {
+    Boolean payBill(int transOut, double amount, int transIn) {
         BankAccount account = accountManager.getAccount(transOut);
         // check if there are enough balance
         if (account.getBalance() < amount) {
@@ -132,7 +132,7 @@ public class ClientActionHandler {
     /*
     Calculate the net total of all accounts of an user
      */
-    public double netTotal(Map<Integer, Double> accounts) {
+    double netTotal(Map<Integer, Double> accounts) {
         // The total of their debt account balances subtracted from the total of their asset account balances.
 
         double total = 0;
@@ -189,7 +189,7 @@ public class ClientActionHandler {
      * 6 < pswd.length < 15
      * Returns true if password is reset, false otherwise.
      */
-    public boolean changepswd(char[] pswd) {
+    boolean changepswd(char[] pswd) {
         if (pswd.length <= 6 || pswd.length >= 15) {
             return false;
         } else {
@@ -202,7 +202,7 @@ public class ClientActionHandler {
      * Sets a chequing account as primary account.
      * Returns true if this action is successful, false otherwise.
      */
-    public boolean setPrimary(int accNum) {
+    boolean setPrimary(int accNum) {
        BankAccount account = accountManager.getAccount(accNum);
        if (account instanceof ChequingAccount) {
            client.setPrimaryAccount(accNum);
@@ -273,7 +273,7 @@ public class ClientActionHandler {
         }
     }
 
-    public void inputOne(Map accountBalance) {
+    private void inputOne(Map accountBalance) {
         // show user account's balance
         System.out.println("Bank Accounts and Balance:");
         for (Object accountNumber : accountBalance.keySet()) {
@@ -294,10 +294,9 @@ public class ClientActionHandler {
         return accountNumber;
     }
 
-    public void inputTwo(ArrayList<Integer> accountNumbers) throws IOException {
+    private void inputTwo(ArrayList<Integer> accountNumbers) throws IOException {
         // view wth most recent transaction
         int accountNumber = accountNum(accountNumbers);
-        BankAccount account = accountManager.getAccount(accountNumber);
         ArrayList<Transaction> transactions = atm.getTransactionManager().getTransactionsBySender(accountNumber);
         if (transactions.size() == 0 || transactions.get(transactions.size() - 1) == null) {
             System.out.println("There is no transaction initiated by this account");
@@ -307,14 +306,14 @@ public class ClientActionHandler {
         }
     }
 
-    public void inputThree(ArrayList<Integer> accountNumbers) throws IOException {
+    private void inputThree(ArrayList<Integer> accountNumbers) throws IOException {
         // check the date of creation
         int accountNumber = accountNum(accountNumbers);
         // the date of creation of one of their accounts
         System.out.println(accountManager.getAccount(accountNumber).getDateCreated());
     }
 
-    public void inputFiveSix(int input) throws IOException {
+    private void inputFiveSix(int input) throws IOException {
         System.out.println("Enter the account that you want to transfer out");
         int transOut = Integer.parseInt(kbd.readLine());
         System.out.println("Enter the account that you want to transfer in");
@@ -335,7 +334,7 @@ public class ClientActionHandler {
         }
     }
 
-    public void inputSeven(ArrayList<Integer> accountNumbers) throws IOException {
+    private void inputSeven(ArrayList<Integer> accountNumbers) throws IOException {
         // withdraw
         System.out.println("Enter the account that you want to withdraw from");
         int accountNumber = Integer.parseInt(kbd.readLine());
@@ -353,10 +352,11 @@ public class ClientActionHandler {
         if (withdraw(account, amount)) {
             System.out.println("Withdraw Succeed");
         } else {
+            System.out.println("Withdraw Failed");
         }
     }
 
-    public void inputEight() throws IOException {
+    private void inputEight() throws IOException {
         // pay a bill
         System.out.println("Enter the account number that you pay from");
         int accountN = Integer.parseInt(kbd.readLine());
@@ -396,7 +396,7 @@ public class ClientActionHandler {
         return new int[]{fives, tens, twenties, fifties};
     }
 
-    public void inputNine() throws IOException {
+    private void inputNine() throws IOException {
         // checks for id to deposit
         int id;
         if (client.getPrimaryAccount() != -1) {
@@ -430,7 +430,7 @@ public class ClientActionHandler {
         System.out.print("Request has been done");
     }
 
-    public void inputTen() throws IOException {
+    private void inputTen() throws IOException {
         // request a creation of an account
         System.out.println("Account type that you want to create");
         String type = kbd.readLine();
@@ -445,7 +445,7 @@ public class ClientActionHandler {
     /**
      * Sets an chequing account as primary.
      */
-    public void inputEleven() throws IOException {
+    private void inputEleven() throws IOException {
         System.out.println("Enter the account number that you want to select as new primary account");
         int id = Integer.parseInt(kbd.readLine());
         BankAccount newPrimary = accountManager.getAccount(id);

@@ -249,7 +249,7 @@ public class ActionHandler {
         for (Object accountNumber : accountBalance.keySet()) {
             summary.append(accountNumber + ": " + accountBalance.get(accountNumber));
         }
-        summary.append("Your net total is: " + clientActionHandler.netTotal(accountBalance));
+        summary.append("Your net total is: " + clientActionHandler.netTotal(accountBalance) + "\n");
         viewer.accountSummaries.setText(summary.toString());
 
         viewer.seeMostRecentTransactionButton.addActionListener(e -> {

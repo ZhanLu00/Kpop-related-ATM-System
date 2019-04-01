@@ -53,8 +53,6 @@ public class ActionHandler {
 
     private User currentUser;
 
-    private int runStage;
-
 
 
     /**
@@ -82,13 +80,11 @@ public class ActionHandler {
      * Initialize operator
      */
     public void initOperator(){
-        this.runStage = 100;
         // basic on the current page, add listener
         viewer.newUser.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewer.changePage(viewer.welcomePage, viewer.newUserPage);
-                runStage = 101;
                 newUser();
             }
         });
@@ -96,7 +92,6 @@ public class ActionHandler {
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewer.changePage(viewer.welcomePage, viewer.returningUserPage);
-                runStage = 102;
                 login();
             }
         });

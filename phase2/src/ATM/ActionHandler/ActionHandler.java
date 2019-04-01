@@ -113,7 +113,7 @@ public class ActionHandler {
     /**
      * New User Page
      */
-    private void newUser(){
+    public void newUser(){
         viewer.accRequestButton.addActionListener(e->{
             // get input
             String username = viewer.userDesiredName.getText();
@@ -121,9 +121,14 @@ public class ActionHandler {
             // check if the username existed
             if (!userManager.userExists(username)){
                 // store the alert
-                requestManager.addRequest("newUser", username, type);
-                viewer.popUp("Request submitted, please come back to check" +
-                        "your status");
+                if (requestManager.requestExist("newUser", username, null)){
+                    viewer.popUp("Only check status for this username is allowed");
+                }else{
+                    requestManager.addRequest("newUser", username, type);
+                    viewer.popUp("Request submitted, please come back to check" +
+                            "your status");
+                }
+
             }else{
                 viewer.popUp("Your username is already token");
             }
@@ -156,7 +161,7 @@ public class ActionHandler {
     /**
      * User Log in
      */
-    private void login(){
+    public void login(){
         viewer.goBackReturn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -192,7 +197,7 @@ public class ActionHandler {
             }
         });
     }
-    private boolean login(String userId, String pswd){
+    public boolean login(String userId, String pswd){
         if (userManager.userExists(userId)){
             if (userManager.getUser(userId).getPassword().equals(pswd)){
                 currentUser = userManager.getUser(userId);
@@ -570,23 +575,30 @@ public class ActionHandler {
     }
 
     public void viewAccountCreationRequests(){
-        ArrayList<String[]> accRequests = accountManager.getAccountRequests();
+        ArrayList<String[]> accRequests = requestManager.getAccountRequests();
         Object[] accRequestObject = accRequests.toArray();
         viewer.accountRequestsList.setListData(accRequestObject);
 
         viewer.acceptAccountRequestButton.addActionListener(e -> {
+            // get input
             int selectedIndex = viewer.accountRequestsList.getSelectedIndex();
-
             String username = accRequests.get(selectedIndex)[0];
             String accType = accRequests.get(selectedIndex)[1];
+            // get user
             User user = userManager.getUser(username);
             BankAccount acc = accountManager.createAccount(accType);
             ((Client) user).addAccounts(acc.getId());
             atm.getRequestManager().updateStatus("newAccount", currentUser.username, "accepted");
+            viewer.popUp("accepted");
 
         });viewer.declineAccountRequestButton.addActionListener(e -> {
+            // get input
+            int selectedIndex = viewer.accountRequestsList.getSelectedIndex();
+            String username = accRequests.get(selectedIndex)[0];
+            String accType = accRequests.get(selectedIndex)[1];
+            // decline
             atm.getRequestManager().updateStatus("newAccount", currentUser.username, "declined");
-
+            viewer.popUp("declined");
 
         });
         viewer.goBackAccRequest.addActionListener(e -> {
@@ -617,20 +629,30 @@ public class ActionHandler {
     }
 
     public void viewUserCreationRequests(){
-        ArrayList<String[]> userRequests = userManager.getClientRequests();
+        // get request
+        ArrayList<String[]> userRequests = requestManager.getClientRequests();
+        // covert to array
         Object[] userRequestObject = userRequests.toArray();
+        // set data to be display in the list
         viewer.userRequestsList.setListData(userRequestObject);
-        int selectedIndex = viewer.accountRequestsList.getSelectedIndex();
 
-        // TODO UPDATE THE REQUEST STATUS OF USER
+
         viewer.acceptUserRequestButton.addActionListener(e -> {
+            // get input
+            int selectedIndex = viewer.accountRequestsList.getSelectedIndex();
             String username = userRequests.get(selectedIndex)[0];
+            // create user
             String[] user = bankManagerActionHandler.addClient(username);
-            // TODO DELIVER THE USERNAME AND PASSWORD TO THE USER?
+            // update status
+            requestManager.updateStatus("newUser", username, "succeed");
         });
 
-        // TODO UPDATE THE REQUEST STATUS OF USER
         viewer.declineUserRequestButton.addActionListener(e -> {
+            // get input
+            int selectedIndex = viewer.accountRequestsList.getSelectedIndex();
+            String username = userRequests.get(selectedIndex)[0];
+            // change status
+            requestManager.updateStatus("newUser", username, "declined");
 
         });
         viewer.goBackUserRequest.addActionListener(e -> {

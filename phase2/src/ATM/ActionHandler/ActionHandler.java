@@ -13,6 +13,7 @@ import ATM.Users.User;
 import ATM.ATMGUI;
 import ATM.Transaction;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -622,7 +623,6 @@ public class ActionHandler {
     }
 
     public void joinAccounts(){
-        // FIXME NOT DONE
         viewer.joinButton.addActionListener(e -> {
             try{
                 Client user1 = userManager.getUser(viewer.jointUser1.getText());
@@ -633,7 +633,12 @@ public class ActionHandler {
                 } else if (!user1.getAccounts().contains(joinAcc) || !user2.getAccounts().contains(joinAcc)){
                     viewer.popUp("Please choose an account that at least one of the users currently own");
                 }else{
-                    bankManagerActionHandler.joinAccount(user1.getUsername(), user2.getUsername(), joinAcc.getId());
+                    boolean successful = bankManagerActionHandler.joinAccount(user1.getUsername(), user2.getUsername(), joinAcc.getId());
+                    if (successful){
+                        viewer.popUp("Account joined.");
+                    }else{
+                        viewer.popUp("Please check your input and try again.");
+                    }
                 }
             }catch (Exception exp){
                 viewer.popUp("Please check your input.");

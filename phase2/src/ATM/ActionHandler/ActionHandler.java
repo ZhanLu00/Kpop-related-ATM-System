@@ -293,12 +293,17 @@ public class ActionHandler {
     }
 
     public void createNewAccount(){
-        String accType = viewer.accType.getSelectedItem().toString();
-        if (requestManager.requestExist("newAccount", currentUser.username, accType))
-        // TODO CHECK IF THIS IS RIGHT
         viewer.createAccountButton.addActionListener(e -> {
-            accountManager.requestNewAccount(currentUser.username, accType);
+            String accType = viewer.accType.getSelectedItem().toString();
+            if (requestManager.requestExist("newAccount", currentUser.username, accType)){
+                accountManager.requestNewAccount(currentUser.username, accType);
+                viewer.popUp("request submitted");
+            }else{
+                viewer.popUp("something is wrong");
+            }
         });
+
+
         viewer.goBackNewAcc.addActionListener(e -> {
             viewer.changePage(viewer.newAccount, viewer.summaryOfAccounts);
         });
@@ -358,14 +363,13 @@ public class ActionHandler {
 
     public void payBill(){
         viewer.payBillButton.addActionListener(e->{
-            boolean inputOk = false;
             int billAccNum, billPayee;
             double billAmt;
             try{
                 billAccNum = Integer.parseInt(viewer.billAccNum.getText());
                 billPayee = Integer.parseInt(viewer.billPayee.getText());
                 billAmt = Double.parseDouble(viewer.billAmt.getText());
-                boolean succeed = clientActionHandler.transfer(billAmt, billAccNum, billPayee);
+                boolean succeed = clientActionHandler.payBill(billAccNum, billAmt, billPayee);
                 if (succeed){
                     viewer.popUp("You have successfully paid your bill.");
                 }else{
@@ -413,7 +417,6 @@ public class ActionHandler {
 
     public void changePswd(){
         viewer.changePswd.addActionListener(e->{
-            // todo why this returns String
             char[] pswd = viewer.newPassword.getPassword();
             if (pswd.length != 0) {
                 boolean succeed = clientActionHandler.changepswd(pswd);
@@ -521,8 +524,9 @@ public class ActionHandler {
         Object[] transactions = transactionManager.getTransactions().toArray();
         viewer.recentTrans.setSelectedIndex(0);
         viewer.recentTrans.setListData(transactions);
-        int selectedIndex = viewer.recentTrans.getSelectedIndex();
+
         viewer.undoButton.addActionListener(e -> {
+            int selectedIndex = viewer.recentTrans.getSelectedIndex();
             // TODO CHECK IF THIS WORKS
             boolean undoStatus = bankManagerActionHandler.undoTransaction(selectedIndex);
             if (undoStatus){

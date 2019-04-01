@@ -13,10 +13,8 @@ public class CurrencyManagerTest {
 
     @Before
     public void setUp() {
-        Object[] currencies1 = {"USD", 0.75};
-        Object[] currencies2 = {"CNY", 5.00};
-        rates.add(currencies1);
-        rates.add(currencies2);
+        rates.add(new Object[]{"USD", 0.75});
+        rates.add(new Object[]{"CNY", 5.00});
         currencyManager = new CurrencyManager(rates);
     }
 

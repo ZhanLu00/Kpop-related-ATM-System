@@ -106,7 +106,7 @@ public class ActionHandler {
     /**
      * New User Page
      */
-    private void newUser(){
+    public void newUser(){
         viewer.accRequestButton.addActionListener(e->{
             // get input
             String username = viewer.userDesiredName.getText();
@@ -202,7 +202,7 @@ public class ActionHandler {
     /**
      * Client Action Handler
      */
-    private void clientOption(){
+    public void clientOption(){
         // add listener
         viewer.viewAccountSummaryButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.summaryOfAccounts);
@@ -239,11 +239,11 @@ public class ActionHandler {
 
     }
 
-    private void accountSummary(){
+    public void accountSummary(){
         Map accountBalance = clientActionHandler.checkBalance();
         StringBuilder summary = new StringBuilder("Bank Accounts and Balances: \n");
         for (Object accountNumber : accountBalance.keySet()) {
-//            summary.append(accountNumber + ": " + accountBalance.get(accountNumber));
+            summary.append(accountNumber + ": " + accountBalance.get(accountNumber));
         }
         summary.append("Your net total is: " + clientActionHandler.netTotal(accountBalance));
         viewer.accountSummaries.setText(summary.toString());
@@ -288,7 +288,7 @@ public class ActionHandler {
 
     }
 
-    private void createNewAccount(){
+    public void createNewAccount(){
         String accType = viewer.accType.getSelectedItem().toString();
         if (requestManager.requestExist("newAccount", currentUser.username, accType))
         // TODO CHECK IF THIS IS RIGHT
@@ -303,7 +303,7 @@ public class ActionHandler {
     public void withdraw(){
 
         viewer.withdrawButton.addActionListener(e->{
-//            boolean inputOk = false;
+            boolean inputOk = false;
             int withdrawAmount, accountNum;
             try{
                 withdrawAmount = Integer.parseInt(viewer.withdrawAmt.getText());
@@ -324,10 +324,10 @@ public class ActionHandler {
         });
     }
 
-    private void transfer(){
+    public void transfer(){
 
         viewer.transferButton.addActionListener(e->{
-//            boolean inputOk = false;
+            boolean inputOk = false;
             int outAccNum, inAccNum;
             double transAmt;
             try{
@@ -352,7 +352,7 @@ public class ActionHandler {
         });
     }
 
-    private void payBill(){
+    public void payBill(){
         viewer.payBillButton.addActionListener(e->{
             boolean inputOk = false;
             int billAccNum, billPayee;
@@ -407,8 +407,9 @@ public class ActionHandler {
         });
     }
 
-    private void changePswd(){
+    public void changePswd(){
         viewer.changePswd.addActionListener(e->{
+            // todo why this returns String
             char[] pswd = viewer.newPassword.getPassword();
             if (pswd.length != 0) {
                 boolean succeed = clientActionHandler.changepswd(pswd);
@@ -426,7 +427,7 @@ public class ActionHandler {
         });
     }
 
-    private void setPrimary(){
+    public void setPrimary(){
         viewer.setPrimaryButton.addActionListener(e->{
             try{
                 // get input
@@ -452,7 +453,7 @@ public class ActionHandler {
      * Bank Manager Action Handler
      */
 
-    private void bankManagerOption(){
+    public void bankManagerOption(){
         viewer.createNewClientButton.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.newClient);
             createNewClient();
@@ -491,7 +492,7 @@ public class ActionHandler {
         });
     }
 
-    private void createNewClient(){
+    public void createNewClient(){
         viewer.createUserNew.addActionListener(e->{
             String[] userCreated = bankManagerActionHandler.addClient(viewer.createUserManager.getText());
             if (userCreated[0] == null){
@@ -514,7 +515,7 @@ public class ActionHandler {
         });
     }
 
-    private void undoTransaction(){
+    public void undoTransaction(){
         Object[] transactions = transactionManager.getTransactions().toArray();
         viewer.recentTrans.setSelectedIndex(0);
         viewer.recentTrans.setListData(transactions);
@@ -535,7 +536,7 @@ public class ActionHandler {
         });
     }
 
-    private void restockMachine(){
+    public void restockMachine(){
         viewer.restockATM.addActionListener(e -> {
             int numFives, numTens, numTwenty, numFifty;
             try{
@@ -554,7 +555,7 @@ public class ActionHandler {
         });
     }
 
-    private void viewAccountCreationRequests(){
+    public void viewAccountCreationRequests(){
         ArrayList<String[]> accRequests = accountManager.getAccountRequests();
         Object[] accRequestObject = accRequests.toArray();
         viewer.accountRequestsList.setListData(accRequestObject);
@@ -577,7 +578,7 @@ public class ActionHandler {
         });
     }
 
-    private void showAlerts() throws IOException {
+    public void showAlerts() throws IOException {
         StringBuilder alerts = new StringBuilder();
         ArrayList<String> alertsText = bankManagerActionHandler.getAlerts();
         for (String alert : alertsText) {
@@ -599,7 +600,7 @@ public class ActionHandler {
         });
     }
 
-    private void viewUserCreationRequests(){
+    public void viewUserCreationRequests(){
         ArrayList<String> userRequests = userManager.getClientRequests();
         Object[] userRequestObject = userRequests.toArray();
         viewer.userRequestsList.setListData(userRequestObject);
@@ -621,23 +622,19 @@ public class ActionHandler {
         });
     }
 
-    private void joinAccounts(){
+    public void joinAccounts(){
+        // FIXME NOT DONE
         viewer.joinButton.addActionListener(e -> {
             try{
-                Client user1 = (Client) userManager.getUser(viewer.jointUser1.getText());
-                Client user2 = (Client) userManager.getUser(viewer.jointUser2.getText());
+                Client user1 = userManager.getUser(viewer.jointUser1.getText());
+                Client user2 = userManager.getUser(viewer.jointUser2.getText());
                 BankAccount joinAcc = accountManager.getAccount(Integer.parseInt(viewer.joinAccNum.getText()));
                 if (user1 == null || user2 == null){
                     viewer.popUp("Please enter valid usernames.");
                 } else if (!user1.getAccounts().contains(joinAcc) || !user2.getAccounts().contains(joinAcc)){
                     viewer.popUp("Please choose an account that at least one of the users currently own");
                 }else{
-                    boolean successful = bankManagerActionHandler.joinAccount(user1.getUsername(), user2.getUsername(), joinAcc.getId());
-                    if (successful){
-                        viewer.popUp("Account joined.");
-                    }else{
-                        viewer.popUp("Please check your input and try again.");
-                    }
+                    bankManagerActionHandler.joinAccount(user1.getUsername(), user2.getUsername(), joinAcc.getId());
                 }
             }catch (Exception exp){
                 viewer.popUp("Please check your input.");
@@ -652,7 +649,7 @@ public class ActionHandler {
      * Bank Inspector Action Handler
      */
 
-    private void bankInspectorOption(){
+    public void bankInspectorOption(){
         viewer.sendMessageToManagerButton.addActionListener(e -> {
             viewer.changePage(viewer.inspectorOptions, viewer.sendManagerMsg);
             sendMessageToManager();
@@ -676,7 +673,7 @@ public class ActionHandler {
     }
 
 
-    private void sendMessageToManager() {
+    public void sendMessageToManager() {
         viewer.sendMessageToManagerButton.addActionListener(e -> {
             if (viewer.inspectorMsg.getText().isEmpty()){
                 viewer.popUp("Please enter a message.");
@@ -697,7 +694,7 @@ public class ActionHandler {
         });
     }
 
-    private void seeAllTransactions() {
+    public void seeAllTransactions() {
         StringBuilder transactions = new StringBuilder();
         ArrayList<String> transactionText = bankInspectorActionHandler.getAllTransactions();
         for (String transaction : transactionText) {
@@ -710,7 +707,7 @@ public class ActionHandler {
         });
     }
 
-    private void checkClientsAccount(){
+    public void checkClientsAccount(){
         bankInspectorActionHandler.selectClient(viewer.clientUsername.getText());
         StringBuilder text = new StringBuilder();
         viewer.seeClientAccountSummaryButton.addActionListener(e -> {

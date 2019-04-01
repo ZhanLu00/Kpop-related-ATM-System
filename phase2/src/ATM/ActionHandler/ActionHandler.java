@@ -99,6 +99,14 @@ public class ActionHandler {
                 login();
             }
         });
+        viewer.exitButton.addActionListener(e -> {
+            try {
+                atm.save();
+                System.exit(0);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
 
     }
 

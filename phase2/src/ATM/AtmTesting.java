@@ -34,17 +34,6 @@ public class AtmTesting {
         frame.setVisible(true);
         gui.welcomePage.setVisible(true);
 
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                try {
-                    atm.save();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-                System.exit(0);
-            }
-        });
 
         ActionHandler actionHandler = new ActionHandler(atm, gui);
         actionHandler.initViewer();

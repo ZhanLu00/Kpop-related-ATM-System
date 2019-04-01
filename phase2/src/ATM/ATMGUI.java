@@ -1,6 +1,7 @@
 package ATM;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class ATMGUI {
 
@@ -212,15 +213,15 @@ public class ATMGUI {
     }
 
     public void init(){
-        final ATMGUI atm = new ATMGUI();
-        JFrame frame = new JFrame("src/ATM");
-        frame.setResizable(false);
-        frame.setLocation(500,300);
-        frame.setSize(600, 500);
-        frame.setContentPane(atm.root);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-        atm.welcomePage.setVisible(true);
+//        final ATMGUI atm = new ATMGUI();
+//        JFrame frame = new JFrame("src/ATM");
+//        frame.setResizable(false);
+//        frame.setLocation(500,300);
+//        frame.setSize(600, 500);
+//        frame.setContentPane(atm.root);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setVisible(true);
+//        atm.welcomePage.setVisible(true);
     }
 
     private void createUIComponents() {
@@ -236,7 +237,8 @@ public class ATMGUI {
         restockTwenty = new JSpinner(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
         restockFifty = new JSpinner(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
 
-        accountRequestsList.setSelectedIndex(0);
-        userRequestsList.setSelectedIndex(0);
+//        accountRequestsList.setSelectedIndex(0);
+//        userRequestsList.setSelectedIndexi(0);
     }
+
 }

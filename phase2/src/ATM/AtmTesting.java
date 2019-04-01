@@ -7,6 +7,9 @@ import ATM.ATMGUI;
 import ATM.BankAccounts.BankAccount;
 import ATM.Users.User;
 
+import javax.swing.*;
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,7 +28,18 @@ public class AtmTesting {
 
         Atm atm = new Atm (userFileName,  accountFileName, atmFileName, alertsFileName, transactionsFileName,
                 messagesFileName, accountRequestFileName, clientRequestFileName);
+
         ATMGUI gui = new ATMGUI();
+
+        JFrame frame = new JFrame("src/ATM");
+        frame.setResizable(false);
+        frame.setLocation(500,300);
+        frame.setSize(800, 500);
+        frame.setContentPane(gui.root);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        gui.welcomePage.setVisible(true);
+
         ActionHandler actionHandler = new ActionHandler(atm, gui);
         actionHandler.initViewer();
         actionHandler.initOperator();

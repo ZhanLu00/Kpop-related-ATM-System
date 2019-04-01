@@ -567,7 +567,6 @@ public class ActionHandler {
         Object[] accRequestObject = accRequests.toArray();
         viewer.accountRequestsList.setListData(accRequestObject);
 
-        // TODO UPDATE REQUEST MANAGER STATUS -- ACCEPTED
         viewer.acceptAccountRequestButton.addActionListener(e -> {
             int selectedIndex = viewer.accountRequestsList.getSelectedIndex();
 
@@ -576,10 +575,11 @@ public class ActionHandler {
             User user = userManager.getUser(username);
             BankAccount acc = accountManager.createAccount(accType);
             ((Client) user).addAccounts(acc.getId());
+            atm.getRequestManager().updateStatus("newAccount", currentUser.username, "accepted");
 
-        });
-        // TODO UPDATE REQUEST MANAGER STATUS -- DECLINED
-        viewer.declineAccountRequestButton.addActionListener(e -> {
+        });viewer.declineAccountRequestButton.addActionListener(e -> {
+            atm.getRequestManager().updateStatus("newAccount", currentUser.username, "declined");
+
 
         });
         viewer.goBackAccRequest.addActionListener(e -> {

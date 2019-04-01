@@ -1,8 +1,9 @@
 package ATM;
 
 import javax.swing.*;
+import java.awt.*;
 
-public class ATMGUI {
+public class ATMGUI extends JFrame{
 
     /**
      * initialize the form (do not modify this code)
@@ -213,7 +214,7 @@ public class ATMGUI {
 
     public void init(){
         final ATMGUI atm = new ATMGUI();
-        JFrame frame = new JFrame("src/ATM");
+        JFrame frame = new JFrame("ATM");
         frame.setResizable(false);
         frame.setLocation(500,300);
         frame.setSize(600, 500);
@@ -236,7 +237,7 @@ public class ATMGUI {
         restockTwenty = new JSpinner(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
         restockFifty = new JSpinner(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
 
-        accountRequestsList.setSelectedIndex(0);
-        userRequestsList.setSelectedIndex(0);
+        // accountRequestsList.setSelectedIndex(0);
+        // userRequestsList.setSelectedIndex(0);
     }
 }

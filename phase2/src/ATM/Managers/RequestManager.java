@@ -9,9 +9,9 @@ import java.util.ArrayList;
  */
 public class RequestManager {
     private ArrayList<String[]> accountRequests;
-    private ArrayList<String> clientRequests;
+    private ArrayList<String[]> clientRequests;
 
-    public RequestManager(ArrayList<String[]> accountRequests, ArrayList<String> clientRequests) {
+    public RequestManager(ArrayList<String[]> accountRequests, ArrayList<String[]> clientRequests) {
         this.accountRequests = accountRequests;
         this.clientRequests = clientRequests;
     }
@@ -21,21 +21,21 @@ public class RequestManager {
      * @param type the type of account
      */
     public void addAccountRequest(String username, String type) {
-        accountRequests.add(new String[]{username,type});
+        accountRequests.add(new String[]{username,type,"pending"});
     }
 
     /**
      * @param username The username of the new client
      */
     public void addClientRequest(String username) {
-        clientRequests.add(username);
+        clientRequests.add(new String[]{username,"pending"});
     }
 
     public ArrayList<String[]> getAccountRequests() {
         return accountRequests;
     }
 
-    public ArrayList<String> getClientRequests() {
+    public ArrayList<String[]> getClientRequests() {
         return clientRequests;
     }
 
@@ -64,8 +64,8 @@ public class RequestManager {
      */
     public boolean requestExist(String requestType, String username, @Nullable String type) {
         if (requestType.equals("newUser")) {
-            for (String requestUsername : clientRequests) {
-                if (username.equals(requestUsername)) {
+            for (String[] requestUsername : clientRequests) {
+                if (username.equals(requestUsername[0])) {
                     return true;
                 }
             }
@@ -86,6 +86,13 @@ public class RequestManager {
      * @return the status of the request
      */
     public String getStatus(String requestType, String username) {
-        return "accepted";
+        if (requestType.equals("newUser")) {
+            for (String[] requestUsername : clientRequests) {
+                if (username.equals(requestUsername[0])) {
+                    return requestUsername[1];
+                }
+            }
+        }
+        return null;
     }
 }

@@ -9,9 +9,9 @@ import java.util.ArrayList;
  */
 public class RequestManager {
     private ArrayList<String[]> accountRequests;
-    private ArrayList<String[]> clientRequests;
+    private ArrayList<String> clientRequests;
 
-    public RequestManager(ArrayList<String[]> accountRequests, ArrayList<String[]> clientRequests) {
+    public RequestManager(ArrayList<String[]> accountRequests, ArrayList<String> clientRequests) {
         this.accountRequests = accountRequests;
         this.clientRequests = clientRequests;
     }
@@ -21,21 +21,21 @@ public class RequestManager {
      * @param type the type of account
      */
     public void addAccountRequest(String username, String type) {
-        accountRequests.add(new String[]{username,type,"pending"});
+        accountRequests.add(new String[]{username,type});
     }
 
     /**
      * @param username The username of the new client
      */
     public void addClientRequest(String username) {
-        clientRequests.add(new String[]{username,"pending"});
+        clientRequests.add(username);
     }
 
     public ArrayList<String[]> getAccountRequests() {
         return accountRequests;
     }
 
-    public ArrayList<String[]> getClientRequests() {
+    public ArrayList<String> getClientRequests() {
         return clientRequests;
     }
 
@@ -64,8 +64,8 @@ public class RequestManager {
      */
     public boolean requestExist(String requestType, String username, @Nullable String type) {
         if (requestType.equals("newUser")) {
-            for (String[] requestUsername : clientRequests) {
-                if (username.equals(requestUsername[0])) {
+            for (String requestUsername : clientRequests) {
+                if (username.equals(requestUsername)) {
                     return true;
                 }
             }
@@ -86,13 +86,39 @@ public class RequestManager {
      * @return the status of the request
      */
     public String getStatus(String requestType, String username) {
-        if (requestType.equals("newUser")) {
-            for (String[] requestUsername : clientRequests) {
-                if (username.equals(requestUsername[0])) {
-                    return requestUsername[1];
+        if (requestType == "newUser"){
+            for (String[] info : this.clientRequests){
+                if (username.equals(info[0])){
+                    return info[2];
+                }
+            }
+        }else{
+            for (String[] info: this.accountRequests){
+                if (username == info[0]){
+                    return info[1];
                 }
             }
         }
-        return null;
+        return "";
+    }
+
+    public boolean updateStatus(String requestType, String username, String status){
+        int inde = 0;
+        if (requestType.equals("newUser")){
+            for (String[] info : this.clientRequests){
+                if (username.equals(info[0])){
+                    this.clientRequests.set(inde, new String[]{info[0], info[1], status});
+                }
+                inde +=1;
+            }
+        }else {
+            for (String[] info : this.accountRequests) {
+                if (username.equals(info[0])) {
+                    this.accountRequests.set(inde, new String[]{info[0], status});
+                    return false;
+                }
+                inde += 1;
+            }
+        }
     }
 }

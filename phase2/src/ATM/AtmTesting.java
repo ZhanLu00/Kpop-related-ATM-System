@@ -25,8 +25,8 @@ public class AtmTesting {
 
         JFrame frame = new JFrame("src/ATM");
         frame.setResizable(false);
-        frame.setLocation(500, 300);
-        frame.setSize(800, 500);
+        frame.setLocation(500,300);
+        frame.setSize(900, 500);
         frame.setContentPane(gui.root);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);

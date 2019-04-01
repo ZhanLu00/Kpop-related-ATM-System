@@ -18,7 +18,7 @@ import java.util.Random;
  */
 public class BankManagerActionHandler {
 
-    // Bank manager's info is nessesary or not?
+    // Bank manager's info is necessary or not?
     // private BankManager bankManager;
     private Atm atm;
     private BufferedReader kbd = new BufferedReader(new InputStreamReader(System.in));
@@ -32,8 +32,8 @@ public class BankManagerActionHandler {
      * Creates a new bank account for user.
      * Returns account id if account was successfully created, -1 otherwise.
      */
-    public int createAccountForUser(String username, String accountType) {
-        Client accountUser = ((Client) atm.getUserManager().getUser(username));
+    int createAccountForUser(String username, String accountType) {
+        Client accountUser = atm.getUserManager().getUser(username);
 
         // the false condition:
         if (accountUser == null) {
@@ -60,7 +60,7 @@ public class BankManagerActionHandler {
     /**
      * If account can be created return true, otherwise return false
      */
-    public boolean fulfillAccountRequest(int requestNum) {
+    private boolean fulfillAccountRequest(int requestNum) {
         // test for invalid request number
         if (requestNum >= atm.getAccountManager().getAccountRequests().size() || requestNum < 0) {
             return false;
@@ -78,7 +78,7 @@ public class BankManagerActionHandler {
      * Basically repeatedly calls on the previous method.
      * Returns true if this is successful, false otherwise.
      */
-    public boolean fulfillAllAccountRequests() {
+    private boolean fulfillAllAccountRequests() {
         boolean allCompleted = true;
         int requestNum = atm.getAccountManager().getAccountRequests().size();
         while (requestNum > 0) {
@@ -94,7 +94,7 @@ public class BankManagerActionHandler {
     /**
      * Increase the amount of each cash by the given numbers.
      */
-    public void restockBills(int numFives, int numTens, int numTwenties, int numFifties) {
+    void restockBills(int numFives, int numTens, int numTwenties, int numFifties) {
         atm.getBillManager().deposit(numFives, numTens, numTwenties, numFifties);
     }
 
@@ -103,7 +103,7 @@ public class BankManagerActionHandler {
      * Assign a random password to the new client.
      * Returns a string array of {username, password}.
      */
-    public String[] addClient(String username) {
+    String[] addClient(String username) {
         if (atm.getUserManager().userExists(username)) {
             return new String[]{null, null};
         }
@@ -120,18 +120,17 @@ public class BankManagerActionHandler {
     /**
      * Return an arraylist of alert from atm alert.
      */
-    public ArrayList<String> getAlerts() throws IOException {
+    ArrayList<String> getAlerts() throws IOException {
         return atm.readAlerts();
     }
 
     /**
      * Clear all alerts in the atm alert
      */
-    public void clearAlerts() throws IOException {
+    void clearAlerts() throws IOException {
         atm.clearAlerts();
     }
 
-    // TODO GET RID OF THIS?
     private void setAtmDate(int day, int month, int year) {
         atm.getTimeManager().getDate().setDate(day);
         atm.getTimeManager().getDate().setMonth(month);
@@ -142,14 +141,14 @@ public class BankManagerActionHandler {
      * Undoes a transaction by id.
      * Returns true of the transaction is undone, false otherwise.
      */
-    public boolean undoTransaction(int id) {
+    boolean undoTransaction(int id) {
         return atm.getTransactionManager().undoTransaction(id, atm.getAccountManager());
     }
 
     /**
      * join account for user
      */
-    public boolean joinAccount(String user1, String user2, int acc){
+    boolean joinAccount(String user1, String user2, int acc){
         // find users
         if (atm.getUserManager().userExists(user1) && atm.getUserManager().userExists(user2)){
             // add acc in
@@ -184,7 +183,7 @@ public class BankManagerActionHandler {
     /**
      * Adds an account to client.accounts by client and account id.
      */
-    public boolean addAccountToUser(Client client, int accountId) {
+    private boolean addAccountToUser(Client client, int accountId) {
         if (client == null || (accountId < 0 || accountId >= atm.getAccountManager().getAccounts().size())) {
             return false;
         }
@@ -195,12 +194,10 @@ public class BankManagerActionHandler {
     }
 
     /**
-     * Adds an account to client.account by username and account id.
+     * Adds an account to client.accounts by username and account id.
      */
-    public boolean addAccountToUser(String username, int accountId) {
-        Client client = ((Client) atm.getUserManager().getUser(username));
-
-
+    boolean addAccountToUser(String username, int accountId) {
+        Client client = atm.getUserManager().getUser(username);
         return addAccountToUser(client, accountId);
     }
 
@@ -208,7 +205,7 @@ public class BankManagerActionHandler {
      * Transfers all existing non-debt account balances to a specified receiver account.
      * Returns true if receiver account is valid.
      */
-    public boolean transferAllToAccount(int receiverAccountId) {
+    private boolean transferAllToAccount(int receiverAccountId) {
         if (atm.getAccountManager().getAccount(receiverAccountId) == null) {
             return false;
         }
@@ -271,7 +268,7 @@ public class BankManagerActionHandler {
         }
     }
 
-    public void inputOne() throws IOException {
+    private void inputOne() throws IOException {
         String username = getStringFromUser("Username for new client: ");
         String[] userInfo = addClient(username);
 
@@ -280,7 +277,7 @@ public class BankManagerActionHandler {
         System.out.println("Password: " + userInfo[1]);
     }
 
-    public void inputTwo() throws IOException {
+    private void inputTwo() throws IOException {
         int numFives = getIntFromUser("Number of fives: ");
         int numTens = getIntFromUser("Number of tens: ");
         int numTwenties = getIntFromUser("Number of twenties: ");
@@ -289,7 +286,7 @@ public class BankManagerActionHandler {
         restockBills(numFives, numTens, numTwenties, numFifties);
     }
 
-    public void inputThree() throws IOException {
+    private void inputThree() throws IOException {
         int c = 0;
 
         for (Transaction transaction : atm.getTransactionManager().getTransactions()) {
@@ -301,7 +298,7 @@ public class BankManagerActionHandler {
         System.out.println(undoTransaction(transaction) ? ("Transaction Undone") : ("Error undoing transaction"));
     }
 
-    public void inputFour() throws IOException {
+    private void inputFour() throws IOException {
         int c = 0;
         for (String[] accountRequest : atm.getAccountManager().getAccountRequests()) {
             System.out.println(String.format("%d) Username: %s,  Account Type %s", c, accountRequest[0], accountRequest[1]));
@@ -322,7 +319,7 @@ public class BankManagerActionHandler {
         }
     }
 
-    public void inputFive() throws IOException {
+    private void inputFive() throws IOException {
         int day = getIntFromUser("day: ");
         int month = getIntFromUser("month(as number 0-11): ");
         int year = getIntFromUser("year: ");
@@ -330,7 +327,7 @@ public class BankManagerActionHandler {
         setAtmDate(day, month, year);
     }
 
-    public void inputSix() throws IOException {
+    private void inputSix() throws IOException {
         System.out.println("ALERTS:");
         for (String alert : getAlerts()) {
             System.out.println(alert);

@@ -198,7 +198,7 @@ public class BankManagerActionHandler {
      * Adds an account to client.account by username and account id.
      */
     public boolean addAccountToUser(String username, int accountId) {
-        Client client = ((Client)z atm.getUserManager().getUser(username));
+        Client client = ((Client) atm.getUserManager().getUser(username));
 
 
         return addAccountToUser(client, accountId);

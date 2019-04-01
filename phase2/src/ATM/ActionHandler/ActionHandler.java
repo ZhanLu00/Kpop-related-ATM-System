@@ -532,6 +532,7 @@ public class ActionHandler {
             if (undoStatus){
                 viewer.popUp("Transaction successfully undone.");
                 viewer.recentTrans.remove(selectedIndex);
+
             }else{
                 viewer.popUp("Can't undo transaction.");
             }
@@ -565,15 +566,17 @@ public class ActionHandler {
         ArrayList<String[]> accRequests = accountManager.getAccountRequests();
         Object[] accRequestObject = accRequests.toArray();
         viewer.accountRequestsList.setListData(accRequestObject);
-        int selectedIndex = viewer.accountRequestsList.getSelectedIndex();
 
         // TODO UPDATE REQUEST MANAGER STATUS -- ACCEPTED
         viewer.acceptAccountRequestButton.addActionListener(e -> {
+            int selectedIndex = viewer.accountRequestsList.getSelectedIndex();
+
             String username = accRequests.get(selectedIndex)[0];
             String accType = accRequests.get(selectedIndex)[1];
             User user = userManager.getUser(username);
             BankAccount acc = accountManager.createAccount(accType);
             ((Client) user).addAccounts(acc.getId());
+
         });
         // TODO UPDATE REQUEST MANAGER STATUS -- DECLINED
         viewer.declineAccountRequestButton.addActionListener(e -> {

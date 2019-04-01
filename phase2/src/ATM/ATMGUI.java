@@ -15,7 +15,7 @@ public class ATMGUI {
     public JPanel welcomePage;
     public JButton newUser;
     public JButton returningUser;
-
+    public JButton exitButton;
 
     // NEW USER PAGE
     public JPanel newUserPage;

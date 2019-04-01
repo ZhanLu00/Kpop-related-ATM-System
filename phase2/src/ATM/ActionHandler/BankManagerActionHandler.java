@@ -17,14 +17,10 @@ import java.util.Random;
  * This class will need to access and modify fields from AccountManager, BankManager and Client.
  */
 public class BankManagerActionHandler {
-
-    // Bank manager's info is necessary or not?
-    // private BankManager bankManager;
     private Atm atm;
     private BufferedReader kbd = new BufferedReader(new InputStreamReader(System.in));
 
     public BankManagerActionHandler(Atm atm) {
-//        this.bankManager = bankManager;
         this.atm = atm;
     }
 

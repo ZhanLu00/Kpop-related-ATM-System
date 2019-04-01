@@ -102,7 +102,7 @@ public class ActionHandler {
         viewer.exitButton.addActionListener(e -> {
             try {
                 atm.save();
-                viewer.popUp("Progress saved. Close the program.");
+                System.exit(0);
             } catch (IOException e1) {
                 e1.printStackTrace();
             }

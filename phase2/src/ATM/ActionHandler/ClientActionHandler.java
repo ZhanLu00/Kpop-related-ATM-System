@@ -50,7 +50,7 @@ public class ClientActionHandler {
         Map balance = new HashMap<Integer, Double>();
 
         // get account numbers first
-        for (int accountNumber : this.client.getAccounts()) {
+        for (Integer accountNumber : this.client.getAccounts()) {
             // get balance from each of the bank number
             balance.put(accountNumber, this.accountManager.getAccount(accountNumber).getBalance());
         }
@@ -74,8 +74,7 @@ public class ClientActionHandler {
         } else {
 
             if (account.withdraw(amount)) {
-                boolean withdrawable = billManager.withdrawable(amount);
-                if (withdrawable) {
+                if (billManager.withdrawable(amount)) {
                     return true;
                 } else {
                     System.out.println("There are not enough money in this src.ATM, please try another one");
@@ -142,7 +141,7 @@ public class ClientActionHandler {
             BankAccount account = accountManager.getAccount(accountNumber);
             if (account instanceof DebtAccount) {
                 total -= account.getBalance();
-            } else if (account instanceof AssetAccount) {
+            } else {
                 total += account.getBalance();
             }
         }
@@ -150,17 +149,18 @@ public class ClientActionHandler {
     }
 
 
-    public boolean deposit(int id, int fives, int tens, int twenties, int fifties, double chequing) {
-        if (client.getAccounts().contains(id)) {
-            accountManager.getAccount(id).deposit(fives * 5 + tens * 10 + twenties * 20 + fifties * 50);
-            if (chequing <= 0) {
-                billManager.deposit(fives, tens, twenties, fifties);
-            }
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    public boolean deposit(int id, int fives, int tens, int twenties, int fifties, double chequing) {
+//        if (client.getAccounts().contains(id)) {
+//            accountManager.getAccount(id).deposit(fives * 5 + tens * 10 + twenties * 20 + fifties * 50);
+//            if (chequing <= 0) {
+//                billManager.deposit(fives, tens, twenties, fifties);
+//            }
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
+
     /**
      * Deposits the give amount into an account by cash.
      * Both the balance of the account and the cash storage of ATM increases.

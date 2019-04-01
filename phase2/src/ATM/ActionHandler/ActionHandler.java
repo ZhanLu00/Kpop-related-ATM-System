@@ -13,6 +13,7 @@ import ATM.Users.User;
 import ATM.ATMGUI;
 import ATM.Transaction;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -148,7 +149,7 @@ public class ActionHandler {
     /**
      * User Log in
      */
-    public void login(){
+    private void login(){
         viewer.goBackReturn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -179,7 +180,7 @@ public class ActionHandler {
             }
         });
     }
-    public boolean login(String userId, String pswd){
+    private boolean login(String userId, String pswd){
         if (userManager.userExists(userId)){
             if (userManager.getUser(userId).getPassword().equals(pswd)){
                 currentUser = userManager.getUser(userId);
@@ -630,10 +631,10 @@ public class ActionHandler {
                 BankAccount joinAcc = accountManager.getAccount(Integer.parseInt(viewer.joinAccNum.getText()));
                 if (user1 == null || user2 == null){
                     viewer.popUp("Please enter valid usernames.");
-                }else if (bankManagerActionHandler.joinAccount(user1.getUsername(), user2.getUsername(), joinAcc.getId())){
-                    viewer.popUp("Accounts has been jointed");
+                } else if (!user1.getAccounts().contains(joinAcc) || !user2.getAccounts().contains(joinAcc)){
+                    viewer.popUp("Please choose an account that at least one of the users currently own");
                 }else{
-                    viewer.popUp("Something is wrong with your input");
+                    bankManagerActionHandler.joinAccount(user1.getUsername(), user2.getUsername(), joinAcc.getId());
                 }
             }catch (Exception exp){
                 viewer.popUp("Please check your input.");

@@ -26,7 +26,6 @@ public class UserFileReader {
     }
 
     /**
-     * @param userInfo
      * Create a user from the line of information from the file
      */
     private void createUser(String userInfo) {

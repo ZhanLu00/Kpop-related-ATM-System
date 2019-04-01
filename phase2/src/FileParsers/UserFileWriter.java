@@ -58,7 +58,6 @@ public class UserFileWriter {
     }
 
     /**
-     * @param user
      * @return the type of user as a string.
      */
     private String getType(User user) {

@@ -624,8 +624,8 @@ public class ActionHandler {
     private void joinAccounts(){
         viewer.joinButton.addActionListener(e -> {
             try{
-                Client user1 = userManager.getUser(viewer.jointUser1.getText());
-                Client user2 = userManager.getUser(viewer.jointUser2.getText());
+                Client user1 = (Client) userManager.getUser(viewer.jointUser1.getText());
+                Client user2 = (Client) userManager.getUser(viewer.jointUser2.getText());
                 BankAccount joinAcc = accountManager.getAccount(Integer.parseInt(viewer.joinAccNum.getText()));
                 if (user1 == null || user2 == null){
                     viewer.popUp("Please enter valid usernames.");

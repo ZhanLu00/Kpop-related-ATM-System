@@ -330,7 +330,7 @@ public class ActionHandler {
                 requestManager.addRequest("newAccount", currentUser.username, accType);
                 viewer.popUp("request submitted");
             }else{
-                viewer.popUp("something is wrong");
+                viewer.popUp("Something is wrong. Please check your input.");
             }
         });
 
@@ -597,7 +597,6 @@ public class ActionHandler {
 
         viewer.undoButton.addActionListener(e -> {
             int selectedIndex = viewer.recentTrans.getSelectedIndex();
-            // TODO CHECK IF THIS WORKS
             boolean undoStatus = bankManagerActionHandler.undoTransaction(selectedIndex);
             if (undoStatus){
                 viewer.popUp("Transaction successfully undone.");

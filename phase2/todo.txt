@@ -61,7 +61,6 @@ Part 3: be creative and add more features to our app!
     Yuhan & Zhan
     + UI:
         - TODO ADD ACTION HANDLERS FOR SETTING PRIMARY CHEQUING ACCS + JOINT ACCS
-        - TODO RUN GUI
         - design pages( a lot of them)
             - welcome page
             - log in page
@@ -116,7 +115,7 @@ gui:
         - add an hidden button to change the page to the communism page
 
     + communism:
-        - add a button to go back to the "surface" system
+        - add a button to go back to the "surface" system killed
 
     + new user: killed
         - statusButton: requestmanager: error killed
@@ -124,20 +123,24 @@ gui:
 
     + login:
         - clean input box after logged in killed
-        - shows wrong password when enter a right one,
-        - stilllogged in when things abobe happends
+        - shows wrong password when entered a right one,
+        - stilllogged in when things above happened
+        - bank inspector cant log in killed
 
     + client:
-        + transfer: button not working killed
-        + withdraw: button not working killed
+        + transfer:
+            -button not working killed
+        + withdraw:
+            - button not working killed
             - input wrong
         + accountSummary
             - request for new account: always wrong
         + deposit
             - input wrong
             - cash did not get updated
-        + change password
-            - length at 6 is wrong
+        + change password killed
+            - length at 6 is wrong killed
+            - empty enter filed when page changed killed
         + set primary chequing account
             - something is wrong
 
@@ -149,7 +152,23 @@ gui:
             - check
         + restock mechine:
             - check
+        + requestAccount:
+
+        + requestUser killed
+            - index error?? killed
+            - display error ?? killed
 
 Date:
     + always wrong, always give the wrong date!!!
+
+
+File readers/writers
+    + clientRequest
+        - add status killed
+
+
+Files
+    + usefiles:
+        - add bank inspector killed
+
 

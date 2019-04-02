@@ -25,7 +25,7 @@ public class AccountRequestFileWriter {
     public void write() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
         writer.write("");
-        StringBuilder fileOut = new StringBuilder("");
+        StringBuilder fileOut = new StringBuilder();
         for (String[] account : accountRequests) {
             fileOut.append(String.format("%s,%s,%s\n", account[0], account[1], account[2]));
         }

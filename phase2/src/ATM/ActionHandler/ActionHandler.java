@@ -328,9 +328,9 @@ public class ActionHandler {
             String accType = viewer.accType.getSelectedItem().toString();
             if (!requestManager.requestExist("newAccount", currentUser.username, accType)){
                 accountManager.requestNewAccount(currentUser.username, accType);
-                viewer.popUp("request submitted");
+                viewer.popUp("Request submitted");
             }else{
-                viewer.popUp("something is wrong");
+                viewer.popUp("Something is wrong. Please check your input.");
             }
         });
 
@@ -344,7 +344,6 @@ public class ActionHandler {
     public void withdraw(){
 
         viewer.withdrawButton.addActionListener(e->{
-            boolean inputOk = false;
             int withdrawAmount, accountNum;
             try{
                 withdrawAmount = Integer.parseInt(viewer.withdrawAmt.getText());
@@ -597,7 +596,6 @@ public class ActionHandler {
 
         viewer.undoButton.addActionListener(e -> {
             int selectedIndex = viewer.recentTrans.getSelectedIndex();
-            // TODO CHECK IF THIS WORKS
             boolean undoStatus = bankManagerActionHandler.undoTransaction(selectedIndex);
             if (undoStatus){
                 viewer.popUp("Transaction successfully undone.");

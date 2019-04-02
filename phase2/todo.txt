@@ -162,7 +162,7 @@ gui:
         + restock mechine:
             - check
         + requestAccount:
-
+            - TODO doesn't work, requested accs are saved in atminfo.txt, nothing is displayed on screen when requesting acc to be made
         + requestUser killed
             - index error?? killed
             - display error ?? killed

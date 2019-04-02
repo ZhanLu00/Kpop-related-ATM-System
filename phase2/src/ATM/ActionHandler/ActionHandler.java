@@ -233,11 +233,11 @@ public class ActionHandler {
             viewer.changePage(viewer.clientOptions, viewer.summaryOfAccounts);
             accountSummary();
         });
-        viewer.withdrawButton.addActionListener(e->{
+        viewer.withdrawMoneyButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.withdrawOption);
             withdraw();
         });
-        viewer.transferButton.addActionListener(e->{
+        viewer.transferMoneyButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.transferOption);
             transfer();
         });

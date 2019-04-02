@@ -237,7 +237,7 @@ public class ActionHandler {
             viewer.changePage(viewer.clientOptions, viewer.withdrawOption);
             withdraw();
         });
-        viewer.transferButton.addActionListener(e->{
+        viewer.transferMoneyButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.transferOption);
             transfer();
         });
@@ -317,7 +317,7 @@ public class ActionHandler {
     public void createNewAccount(){
         viewer.createAccountButton.addActionListener(e -> {
             String accType = viewer.accType.getSelectedItem().toString();
-            if (requestManager.requestExist("newAccount", currentUser.username, accType)){
+            if (!requestManager.requestExist("newAccount", currentUser.username, accType)){
                 accountManager.requestNewAccount(currentUser.username, accType);
                 viewer.popUp("request submitted");
             }else{
@@ -585,19 +585,20 @@ public class ActionHandler {
 
     public void viewAccountCreationRequests(){
 
-        ArrayList<String[]> accRequests = accountManager.getAccountRequests();
-
+        ArrayList<String[]> accRequests = requestManager.getClientRequestsByStatus("newAccount","pending");
         viewer.accountRequestsList.setListData(bankManagerActionHandler.formatRequest(accRequests));
 
         viewer.acceptAccountRequestButton.addActionListener(e -> {
             int selectedIndex = viewer.accountRequestsList.getSelectedIndex();
 
-            String username = accRequests.get(selectedIndex)[0];
-            String accType = accRequests.get(selectedIndex)[1];
+            String username = accRequests.get(selectedIndex+1)[0];
+            String accType = accRequests.get(selectedIndex+1)[1];
             User user = userManager.getUser(username);
             BankAccount acc = accountManager.createAccount(accType);
             ((Client) user).addAccounts(acc.getId());
             atm.getRequestManager().updateStatus("newAccount", currentUser.username, "accepted");
+            ArrayList<String[]> accRequests1 = requestManager.getClientRequestsByStatus("newAccount","pending");
+            viewer.accountRequestsList.setListData(bankManagerActionHandler.formatRequest(accRequests1));
 
         });
         viewer.declineAccountRequestButton.addActionListener(e -> {

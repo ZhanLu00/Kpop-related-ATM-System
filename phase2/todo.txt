@@ -119,20 +119,27 @@ gui:
         - add a button to go back to the "surface" system
 
     + new user: killed
-        - statusButton: requestmanager: error
+        - statusButton: requestmanager: error killed
         - status: show password if approved killed!
 
-    + login: killed
-        - clean input box after logged in
+    + login:
+        - clean input box after logged in killed
+        - shows wrong password when enter a right one,
+        - stilllogged in when things abobe happends
 
     + client:
-        + transfer: button not working
-        + withdraw: button not working
+        + transfer: button not working killed
+        + withdraw: button not working killed
+            - input wrong
         + accountSummary
             - request for new account: always wrong
         + deposit
             - input wrong
             - cash did not get updated
+        + change password
+            - length at 6 is wrong
+        + set primary chequing account
+            - something is wrong
 
 
     + BankManager:
@@ -141,5 +148,8 @@ gui:
         + create new user:
             - check
         + restock mechine:
-            -check
+            - check
+
+Date:
+    + always wrong, always give the wrong date!!!
 

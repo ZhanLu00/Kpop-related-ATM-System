@@ -101,7 +101,7 @@ public class BankManagerActionHandler {
     public Vector formatRequest(ArrayList<String[]> requests){
         Vector formatted = new Vector();
         for (String[] rec:requests){
-            String info = "Username: " +rec[0] + "  InitialAccount: "+ rec[1];
+            String info = "Username: " +rec[0] + "  Account: "+ rec[1];
             formatted.addElement(info);
             System.out.println(info);
         }

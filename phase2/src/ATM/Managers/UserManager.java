@@ -16,10 +16,10 @@ import java.util.function.Consumer;
 public class UserManager implements Iterable<User> {
 
     private ArrayList <User> users;
-    private ArrayList <String> clientRequests;
+    private ArrayList <String[]> clientRequests;
     private Date date;
 
-    public UserManager(ArrayList<User> users, ArrayList<String> clientRequests, Date date){
+    public UserManager(ArrayList<User> users, ArrayList<String[]> clientRequests, Date date){
         this.users = users;
         this.clientRequests = clientRequests;
         this.date = date;
@@ -68,7 +68,7 @@ public class UserManager implements Iterable<User> {
     /**
      * Returns a list of all the users requests (represented by usernames).
      */
-    public ArrayList<String> getClientRequests() {return clientRequests;}
+    public ArrayList<String[]> getClientRequests() {return clientRequests;}
 
     /**
      * Returns a list of all the users.

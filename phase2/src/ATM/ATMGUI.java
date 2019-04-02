@@ -15,7 +15,7 @@ public class ATMGUI {
     public JPanel welcomePage;
     public JButton newUser;
     public JButton returningUser;
-
+    public JButton exitButton;
 
     // NEW USER PAGE
     public JPanel newUserPage;
@@ -198,6 +198,11 @@ public class ATMGUI {
     public JButton setPrimaryButton;
     public JFormattedTextField primaryAccNum;
 
+
+    // COMMUNISM
+    public JPanel communismPage;
+    public JButton communismButton;
+    private JButton backButton;
 
     public void changePage(JPanel currentPage, JPanel newPage) {
         currentPage.setVisible(false);

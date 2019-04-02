@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Vector;
 
 /**
  * A BankManagerActionHandler class.
@@ -17,14 +18,10 @@ import java.util.Random;
  * This class will need to access and modify fields from AccountManager, BankManager and Client.
  */
 public class BankManagerActionHandler {
-
-    // Bank manager's info is necessary or not?
-    // private BankManager bankManager;
     private Atm atm;
     private BufferedReader kbd = new BufferedReader(new InputStreamReader(System.in));
 
     public BankManagerActionHandler(Atm atm) {
-//        this.bankManager = bankManager;
         this.atm = atm;
     }
 
@@ -99,11 +96,24 @@ public class BankManagerActionHandler {
     }
 
     /**
+     * To return an array of String contains formatted requests
+     */
+    public Vector formatRequest(ArrayList<String[]> requests){
+        Vector formatted = new Vector();
+        for (String[] rec:requests){
+            String info = "Username: " +rec[0] + "  Account: "+ rec[1];
+            formatted.addElement(info);
+            System.out.println(info);
+        }
+
+        return formatted;
+    }
+    /**
      * Add a new client if it not currently in UserManager.
      * Assign a random password to the new client.
      * Returns a string array of {username, password}.
      */
-    String[] addClient(String username) {
+    public String[] addClient(String username) {
         if (atm.getUserManager().userExists(username)) {
             return new String[]{null, null};
         }
@@ -113,9 +123,10 @@ public class BankManagerActionHandler {
 
         Client client = new Client(username, randomPassword);
         atm.getUserManager().addUser(client);
-
         return new String[]{username, randomPassword};
     }
+
+
 
     /**
      * Return an arraylist of alert from atm alert.

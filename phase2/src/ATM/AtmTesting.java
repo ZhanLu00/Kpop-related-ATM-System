@@ -4,6 +4,8 @@ package ATM;
 import ATM.ActionHandler.ActionHandler;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 public class AtmTesting {
@@ -23,14 +25,15 @@ public class AtmTesting {
 
         ATMGUI gui = new ATMGUI();
 
-        JFrame frame = new JFrame("src/ATM");
+        JFrame frame = new JFrame("Kpop Related's ATM");
         frame.setResizable(false);
         frame.setLocation(500,300);
         frame.setSize(900, 500);
         frame.setContentPane(gui.root);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setVisible(true);
         gui.welcomePage.setVisible(true);
+
 
         ActionHandler actionHandler = new ActionHandler(atm, gui);
         actionHandler.initViewer();

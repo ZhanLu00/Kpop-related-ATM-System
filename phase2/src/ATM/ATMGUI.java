@@ -2,6 +2,7 @@ package ATM;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class ATMGUI {
 
@@ -211,6 +212,15 @@ public class ATMGUI {
 
     public void popUp(String message) {
         JOptionPane.showMessageDialog(null, message);
+    }
+
+    /**
+     * This button will remove all the action listener from a button
+     */
+    public void removeAL(JButton b){
+        for (ActionListener acc:b.getActionListeners()){
+            b.removeActionListener(acc);
+        }
     }
 
     public ATMGUI() {

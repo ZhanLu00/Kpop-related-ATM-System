@@ -89,7 +89,6 @@ public class ActionHandler {
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewer.changePage(viewer.welcomePage, viewer.newUserPage);
-                newUser();
             }
         });
         newUser();
@@ -98,7 +97,6 @@ public class ActionHandler {
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewer.changePage(viewer.welcomePage, viewer.returningUserPage);
-                login();
             }
         });
 
@@ -169,7 +167,8 @@ public class ActionHandler {
     private void login(){
         viewer.goBackReturn.addActionListener(e->{
             viewer.changePage(viewer.returningUserPage, viewer.welcomePage);
-
+            viewer.usernameText.setText("");
+            viewer.passwordText.setText("");
         });
         viewer.loginButton.addActionListener(new ActionListener() {
             @Override
@@ -182,18 +181,21 @@ public class ActionHandler {
                         viewer.usernameText.setText("");
                         viewer.passwordText.setText("");
                         clientActionHandler = new ClientActionHandler((Client)currentUser, atm);
+                        clientOption();
 
                     }else if(userType.equals("bankManager")){
                         viewer.changePage(viewer.returningUserPage, viewer.managerOptions);
                         bankManagerActionHandler = new BankManagerActionHandler(atm);
                         viewer.usernameText.setText("");
                         viewer.passwordText.setText("");
+                        bankManagerOption();
                     }else{
                         viewer.changePage(viewer.returningUserPage, viewer.inspectorOptions);
                         viewer.usernameText.setText("");
                         viewer.passwordText.setText("");
                         currentUser = userManager.getUser(viewer.usernameText.getText());
                         bankInspectorActionHandler = new BankInspectorActionHandler((BankInspector) currentUser,atm,"messages.txt");
+                        bankInspectorOption();
                     }
                 }else{
                     viewer.usernameText.setText("");
@@ -229,35 +231,42 @@ public class ActionHandler {
         // add listener
         viewer.viewAccountSummaryButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.summaryOfAccounts);
+            accountSummary();
         });
-        accountSummary();
         viewer.withdrawMoneyButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.withdrawOption);
+            withdraw();
         });
-        withdraw();
         viewer.transferMoneyButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.transferOption);
+            transfer();
         });
-        transfer();
         viewer.payABillButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.payBill);
+            payBill();
         });
-        payBill();
         viewer.depositMoneyButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.depositOption);
+            deposit();
         });
-        deposit();
         viewer.changePasswordButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.changePassword);
+            changePswd();
         });
-        changePswd();
         viewer.setPrimaryChequingAccountButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.setPrimary);
+            setPrimary();
         });
-        setPrimary();
         viewer.goBackClient.addActionListener(e->{
             // todo clean all the action listener
             viewer.changePage(viewer.clientOptions, viewer.welcomePage);
+            viewer.removeAL(viewer.viewAccountSummaryButton);
+            viewer.removeAL(viewer.withdrawMoneyButton);
+            viewer.removeAL(viewer.transferMoneyButton);
+            viewer.removeAL(viewer.payABillButton);
+            viewer.removeAL(viewer.depositMoneyButton);
+            viewer.removeAL(viewer.changePasswordButton);
+            viewer.removeAL(viewer.setPrimaryChequingAccountButton);
         });
 
     }
@@ -307,6 +316,9 @@ public class ActionHandler {
         // go back
         viewer.goBackSummary.addActionListener(e -> {
             viewer.changePage(viewer.summaryOfAccounts, viewer.clientOptions);
+            viewer.removeAL(viewer.seeMostRecentTransactionButton);
+            viewer.removeAL(viewer.makeANewAccountButton);
+            viewer.removeAL(viewer.checkAccountCreationDateButton);
         });
 
     }
@@ -325,6 +337,7 @@ public class ActionHandler {
 
         viewer.goBackNewAcc.addActionListener(e -> {
             viewer.changePage(viewer.newAccount, viewer.summaryOfAccounts);
+            viewer.removeAL(viewer.createAccountButton);
         });
     }
 
@@ -349,6 +362,9 @@ public class ActionHandler {
 
         viewer.goBackWithdraw.addActionListener(e->{
             viewer.changePage(viewer.withdrawOption, viewer.clientOptions);
+            viewer.withdrawAmt.setText("");
+            viewer.accNumWithdraw.setText("");
+            viewer.removeAL(viewer.withdrawButton);
         });
     }
 
@@ -360,7 +376,7 @@ public class ActionHandler {
             try{
                 outAccNum = Integer.parseInt(viewer.transOutAccNum.getText());
                 inAccNum = Integer.parseInt(viewer.transInAccNum.getText());
-                transAmt = Double.parseDouble(viewer.transInAccNum.getText());
+                transAmt = Double.parseDouble(viewer.transAmt.getText());
                 boolean succeed = clientActionHandler.transfer(transAmt, outAccNum, inAccNum);
                 if (succeed){
                     viewer.popUp("Your transfer was successful.");
@@ -376,6 +392,11 @@ public class ActionHandler {
 
         viewer.goBackTransfer.addActionListener(e->{
             viewer.changePage(viewer.transferOption, viewer.clientOptions);
+            viewer.transOutAccNum.setText("");
+            viewer.transInAccNum.setText("");
+            viewer.transAmt.setText("");
+            viewer.removeAL(viewer.transferButton);
+
         });
     }
 
@@ -400,6 +421,11 @@ public class ActionHandler {
 
         viewer.goBackBill.addActionListener(e->{
             viewer.changePage(viewer.payBill, viewer.clientOptions);
+            viewer.billAccNum.setText("");
+            viewer.billPayee.setText("");
+            viewer.billAmt.setText("");
+            viewer.removeAL(viewer.payBillButton);
+
         });
 
     }
@@ -432,6 +458,14 @@ public class ActionHandler {
 
         viewer.goBackDeposit.addActionListener(e->{
             viewer.changePage(viewer.depositOption, viewer.clientOptions);
+            viewer.numFives.setValue(0);
+            viewer.numTens.setValue(0);
+            viewer.numTwenty.setValue(0);
+            viewer.numFifty.setValue(0);
+            viewer.depositAccNum.setText("");
+            viewer.chequeAmt.setText("");
+            viewer.removeAL(viewer.depositButton);
+
         });
     }
 
@@ -452,12 +486,13 @@ public class ActionHandler {
         viewer.goBackPassword.addActionListener(e->{
             viewer.changePage(viewer.changePassword, viewer.clientOptions);
             viewer.newPassword.setText("");
+            viewer.removeAL(viewer.changePswd);
         });
     }
 
     public void setPrimary(){
         viewer.setPrimaryButton.addActionListener(e->{
-            Object accNum = viewer.primaryAccNum.getValue();
+            Object accNum = viewer.primaryAccNum.getText();
             if (accNum instanceof Integer){
                 if (clientActionHandler.setPrimary((int)accNum)){
                     viewer.popUp("You have successfully set a new " +
@@ -471,6 +506,8 @@ public class ActionHandler {
         });
         viewer.goBackPrimary.addActionListener(e->{
             viewer.changePage(viewer.setPrimary, viewer.clientOptions);
+            viewer.primaryAccNum.setText("");
+            viewer.removeAL(viewer.setPrimaryButton);
         });
 
     }
@@ -516,12 +553,21 @@ public class ActionHandler {
         viewer.logOutManager.addActionListener(e->{
             // to do clean all the action listener
             viewer.changePage(viewer.managerOptions, viewer.welcomePage);
+            viewer.removeAL(viewer.createNewClientButton);
+            viewer.removeAL(viewer.undoTransactionButton);
+            viewer.removeAL(viewer.restockMachineButton);
+            viewer.removeAL(viewer.viewAccountCreationRequestsButton);
+            viewer.removeAL(viewer.showAlertsButton);
+            viewer.removeAL(viewer.viewUserCreationRequestsButton);
+            viewer.removeAL(viewer.joinAccountsButton);
         });
     }
 
     public void createNewClient(){
         viewer.createUserNew.addActionListener(e->{
-            String[] userCreated = bankManagerActionHandler.addClient(viewer.createUserManager.getText());
+            // get input
+            String username = viewer.createUserManager.getText();
+            String[] userCreated = bankManagerActionHandler.addClient(username);
             if (userCreated[0] == null){
                 viewer.createUserManager.setText("");
                 viewer.popUp("Username taken. Please select another username.");
@@ -539,6 +585,8 @@ public class ActionHandler {
 
         viewer.goBackCreateUserManager.addActionListener(e->{
             viewer.changePage(viewer.newClient, viewer.managerOptions);
+            viewer.createUserManager.setText("");
+            viewer.removeAL(viewer.createUserNew);
         });
     }
 
@@ -562,6 +610,7 @@ public class ActionHandler {
         });
         viewer.goBackUndo.addActionListener(e -> {
             viewer.changePage(viewer.undoTransaction, viewer.managerOptions);
+            viewer.removeAL(viewer.undoButton);
         });
     }
 
@@ -581,6 +630,11 @@ public class ActionHandler {
         });
         viewer.goBackRestock.addActionListener(e -> {
             viewer.changePage(viewer.restockMachine, viewer.managerOptions);
+            viewer.restockFives.setValue(0);
+            viewer.restockTens.setValue(0);
+            viewer.restockTwenty.setValue(0);
+            viewer.restockFifty.setValue(0);
+            viewer.removeAL(viewer.restockATM);
         });
     }
 
@@ -609,6 +663,8 @@ public class ActionHandler {
         });
         viewer.goBackAccRequest.addActionListener(e -> {
             viewer.changePage(viewer.viewAccountRequests, viewer.managerOptions);
+            viewer.removeAL(viewer.acceptAccountRequestButton);
+            viewer.removeAL(viewer.declineAccountRequestButton);
         });
     }
 
@@ -631,6 +687,8 @@ public class ActionHandler {
         });
         viewer.goBackAlert.addActionListener(e -> {
             viewer.changePage(viewer.viewAlerts, viewer.managerOptions);
+            viewer.alertText.setText("");
+            viewer.removeAL(viewer.clearAlertsButton);
         });
     }
 
@@ -676,6 +734,8 @@ public class ActionHandler {
         });
         viewer.goBackUserRequest.addActionListener(e -> {
             viewer.changePage(viewer.viewUserRequests, viewer.managerOptions);
+            viewer.removeAL(viewer.acceptUserRequestButton);
+            viewer.removeAL(viewer.declineUserRequestButton);
         });
     }
 
@@ -703,6 +763,10 @@ public class ActionHandler {
         });
         viewer.goBackJoinAcc.addActionListener(e -> {
             viewer.changePage(viewer.joinAccounts, viewer.managerOptions);
+            viewer.jointUser1.setText("");
+            viewer.jointUser2.setText("");
+            viewer.joinAccNum.setText("");
+            viewer.removeAL(viewer.joinButton);
         });
     }
 
@@ -727,8 +791,11 @@ public class ActionHandler {
             viewer.changePage(viewer.inspectorOptions, viewer.summaryOfAccounts);
         });
         viewer.logOutInspector.addActionListener(e -> {
-            // todo clean all the action listener
             viewer.changePage(viewer.inspectorOptions, viewer.welcomePage);
+            viewer.removeAL(viewer.sendMessageToManagerButton);
+            viewer.removeAL(viewer.seeAllTransactionsButton);
+            viewer.removeAL(viewer.checkClientsAccountButton);
+            viewer.removeAL(viewer.moreOptionsButton);
         });
     }
 
@@ -751,6 +818,7 @@ public class ActionHandler {
         });
         viewer.goBackMsg.addActionListener(e -> {
             viewer.changePage(viewer.sendManagerMsg, viewer.inspectorOptions);
+            viewer.removeAL(viewer.sendMessageToManagerButton);
         });
     }
 
@@ -799,6 +867,10 @@ public class ActionHandler {
 
         viewer.goBackClientSummary.addActionListener(e -> {
             viewer.changePage(viewer.clientSummary, viewer.inspectorOptions);
+            viewer.clientUsername.setText("");
+            viewer.removeAL(viewer.seeClientIncomingTransactionsButton);
+            viewer.removeAL(viewer.seeClientOutgoingTransactionsButton);
+            viewer.removeAL(viewer.seeClientAccountSummaryButton);
         });
     }
 }

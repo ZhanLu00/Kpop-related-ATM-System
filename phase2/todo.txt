@@ -146,6 +146,7 @@ gui:
                 - whenever open the app, the first time it will show add once, the second time add twice an so on,
                   this is not just happening here, also in other functions, eg log in, the rist time login everything is fine
                   this is actually happening everywhere, the # of popup window got commutive up
+                - i fking fixed this problem, such a genius hahahah
         + change password killed
             - length at 6 is wrong killed
             - empty enter filed when page changed killed

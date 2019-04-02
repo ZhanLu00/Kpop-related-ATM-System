@@ -90,12 +90,6 @@ public class AccountManager implements Iterable<BankAccount> {
         }
     }
 
-    /**
-     * Adds an array in the format of {clientName, accountType} into accountRequests.
-     */
-    public void requestNewAccount(String clientName, String accountType) {
-        accountRequests.add(new String[] {clientName, accountType});
-    }
 
     /**
      * Updates the exchange rate for all foreign currency accounts.

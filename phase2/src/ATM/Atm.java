@@ -46,9 +46,9 @@ public class Atm {
         rates.add(new Object[]{"USD", 0.75});
         this.currencyManager = new CurrencyManager(rates);
 
-        for (String[] accountCreationRequest : atmFileReader.getAccountCreationRequests()) {
-            accountManager.requestNewAccount(accountCreationRequest[0],accountCreationRequest[1]);
-        }
+//        for (String[] accountCreationRequest : atmFileReader.getAccountCreationRequests()) {
+//            accountManager.requestNewAccount(accountCreationRequest[0],accountCreationRequest[1]);
+//        }
 
         if (date.getDate() == 1) {
             accountManager.runUpdateCycle();

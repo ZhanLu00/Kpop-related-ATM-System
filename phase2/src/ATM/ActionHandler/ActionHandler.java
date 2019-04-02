@@ -327,7 +327,7 @@ public class ActionHandler {
         viewer.createAccountButton.addActionListener(e -> {
             String accType = viewer.accType.getSelectedItem().toString();
             if (!requestManager.requestExist("newAccount", currentUser.username, accType)){
-                accountManager.requestNewAccount(currentUser.username, accType);
+                requestManager.addRequest("newAccount", currentUser.username, accType);
                 viewer.popUp("request submitted");
             }else{
                 viewer.popUp("something is wrong");
@@ -519,20 +519,20 @@ public class ActionHandler {
     public void bankManagerOption(){
         viewer.createNewClientButton.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.newClient);
+            createNewClient();
         });
-        createNewClient();
         viewer.undoTransactionButton.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.undoTransaction);
+            undoTransaction();
         });
-        undoTransaction();
         viewer.restockMachineButton.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.restockMachine);
+            restockMachine();
         });
-        restockMachine();
         viewer.viewAccountCreationRequestsButton.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.viewAccountRequests);
+            viewAccountCreationRequests();
         });
-        viewAccountCreationRequests();
         // todo what is this
         viewer.showAlertsButton.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.viewAlerts);
@@ -544,12 +544,12 @@ public class ActionHandler {
         });
         viewer.viewUserCreationRequestsButton.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.viewUserRequests);
+            viewUserCreationRequests();
         });
-        viewUserCreationRequests();
         viewer.joinAccountsButton.addActionListener(e -> {
             viewer.changePage(viewer.managerOptions, viewer.joinAccounts);
+            joinAccounts();
         });
-        joinAccounts();
         viewer.logOutManager.addActionListener(e->{
             // to do clean all the action listener
             viewer.changePage(viewer.managerOptions, viewer.welcomePage);

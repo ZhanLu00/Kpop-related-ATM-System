@@ -120,6 +120,7 @@ gui:
 
     + new user: killed
         - statusButton: requestmanager: error
+        - status: show password if approved killed!
 
     + login: killed
         - clean input box after logged in
@@ -134,10 +135,9 @@ gui:
             - cash did not get updated
 
 
-
     + BankManager:
         + view summery: whyyyyyyyy???? not working, skip for now
-            - fix string problem killed!
+            - fix string problem killed!!!
         + create new user:
             - check
         + restock mechine:

@@ -138,7 +138,7 @@ public class ActionHandler {
             String username = viewer.userDesiredName.getText();
             String type = viewer.newAccType.getSelectedItem().toString();
             // check if the request exist
-            if (requestManager.requestExist("newUser", username, null)){
+            if (requestManager.requestExist("newUser", username, type)){
                 // then show the status
                 String status = requestManager.getStatus("newUser", username);
                 if (status.equals("accepted")){
@@ -639,8 +639,8 @@ public class ActionHandler {
         viewer.acceptUserRequestButton.addActionListener(e -> {
             // get input
             int selectedIndex = viewer.accountRequestsList.getSelectedIndex();
-            String username = userRequests.get(selectedIndex)[0];
-            String accType = userRequests.get(selectedIndex)[1];
+            String username = userRequests.get(selectedIndex+1)[0];
+            String accType = userRequests.get(selectedIndex+1)[1];
             // add user, add initial account, change status
             // add user
             bankManagerActionHandler.addClient(username);
@@ -650,7 +650,7 @@ public class ActionHandler {
             ((Client)userManager.getUser(username)).addAccounts(acc.getId());
             accountManager.addAccount(acc);
             // update status
-            requestManager.updateStatus("newUser", username, "succeed");
+            requestManager.updateStatus("newUser", username, "accepted");
             viewer.popUp("This request has been accept");
             // update the window
             ArrayList<String[]> userRequests1 = requestManager.getClientRequestsByStatus("newUser", "pending");

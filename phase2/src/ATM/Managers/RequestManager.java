@@ -24,6 +24,8 @@ public class RequestManager {
         return accountRequests;
     }
 
+
+
     public ArrayList<String[]> getClientRequests() {
         return clientRequests;
     }
@@ -51,10 +53,10 @@ public class RequestManager {
      * @param type The type of the account being created if checking for a account creation request
      * @return if the request exists or not
      */
-    public boolean requestExist(String requestType, String username, @Nullable String type) {
+    public boolean requestExist(String requestType, String username, String type) {
         if (requestType.equals("newUser")) {
-            for (String[] requestUsername : clientRequests) {
-                if (username.equals(requestUsername[0])) {
+            for (String[] clientRequest : clientRequests) {
+                if (username.equals(clientRequest[0]) && clientRequest[1].equals(type)) {
                     return true;
                 }
             }
@@ -91,20 +93,39 @@ public class RequestManager {
         return "";
     }
 
+    public ArrayList<String[]> getClientRequestsByStatus(String type, String status){
+        ArrayList<String[]> requests = new ArrayList<String[]>();
+        if (type.equals("newUser")){
+            for (String[] request: this.clientRequests){
+                if (request[2].equals(status)){
+                    requests.add(request);
+                }
+            }
+        }else{
+            for (String[] request: this.accountRequests){
+                if (request[2].equals(status)){
+                    requests.add(request);
+                }
+            }
+        }
+        return requests;
+    }
+
     public boolean updateStatus(String requestType, String username, String status){
         int inde = 0;
         if (requestType.equals("newUser")){
             for (String[] info : this.clientRequests){
                 if (username.equals(info[0])){
                     this.clientRequests.set(inde, new String[]{info[0], info[1], status});
+                    return true;
                 }
                 inde +=1;
             }
         }else {
             for (String[] info : this.accountRequests) {
                 if (username.equals(info[0])) {
-                    this.accountRequests.set(inde, new String[]{info[0], status});
-                    return false;
+                    this.accountRequests.set(inde, new String[]{info[0], info[1], status});
+                    return true;
                 }
                 inde += 1;
             }

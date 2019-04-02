@@ -28,7 +28,7 @@ public class ClientRequestFileWriter {
         StringBuilder fileOut = new StringBuilder();
 
         for (String[] username:usernames) {
-            fileOut.append(String.format("%s,%s\n",username[0],username[1]));
+            fileOut.append(String.format("%s,%s,%s\n",username[0],username[1], username[2]));
         }
 
         writer.append(fileOut);

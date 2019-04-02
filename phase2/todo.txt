@@ -114,19 +114,32 @@ TODO:
 gui:
     + welcome page:
         - add an hidden button to change the page to the communism page
+
     + communism:
         - add a button to go back to the "surface" system
-    + new user:
+
+    + new user: killed
         - statusButton: requestmanager: error
+
+    + login: killed
+        - clean input box after logged in
 
     + client:
         + transfer: button not working
         + withdraw: button not working
+        + accountSummary
+            - request for new account: always wrong
+        + deposit
+            - input wrong
+            - cash did not get updated
+
 
 
     + BankManager:
-        + view summery:
-            - fix string problem
-
-
+        + view summery: whyyyyyyyy???? not working, skip for now
+            - fix string problem killed!
+        + create new user:
+            - check
+        + restock mechine:
+            -check
 

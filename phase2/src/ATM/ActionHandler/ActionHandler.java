@@ -210,12 +210,12 @@ public class ActionHandler {
             if (userManager.getUser(userId).getPassword().equals(pswd)){
                 currentUser = userManager.getUser(userId);
                 // use type
-                if (currentUser instanceof Client){
-                    userType = "client";
+                if (currentUser instanceof BankInspector){
+                    userType = "bankInspector";
                 }else if (currentUser instanceof BankManager){
                     userType = "bankManager";
                 }else{
-                    userType = "bankInspector";
+                    userType = "client";
                 }
                 return true;
             }
@@ -444,7 +444,7 @@ public class ActionHandler {
                 if (succeed) {
                     viewer.popUp("You have successfully changed your password. Don't forget it!");
                 } else {
-                    viewer.popUp("Please enter a password between 6 to 15 characters.");
+                    viewer.popUp("Please enter a password between 5 to 10 characters.");
                 }
             }else{
                 viewer.popUp("Please check your input.");
@@ -452,6 +452,7 @@ public class ActionHandler {
         });
         viewer.goBackPassword.addActionListener(e->{
             viewer.changePage(viewer.changePassword, viewer.clientOptions);
+            viewer.newPassword.setText("");
         });
     }
 

@@ -186,11 +186,11 @@ public class ClientActionHandler {
 
     /**
      * Changes the password of this client.
-     * 6 < pswd.length < 15
+     * 6 < pswd.length < 10
      * Returns true if password is reset, false otherwise.
      */
     boolean changepswd(char[] pswd) {
-        if (pswd.length <= 6 || pswd.length >= 15) {
+        if (pswd.length < 5 || pswd.length >= 10) {
             return false;
         } else {
             this.client.setPassword(String.valueOf(pswd));

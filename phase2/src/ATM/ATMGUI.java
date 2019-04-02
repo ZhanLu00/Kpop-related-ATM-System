@@ -202,6 +202,7 @@ public class ATMGUI {
     // COMMUNISM
     public JPanel communismPage;
     public JButton communismButton;
+    private JButton backButton;
 
     public void changePage(JPanel currentPage, JPanel newPage) {
         currentPage.setVisible(false);

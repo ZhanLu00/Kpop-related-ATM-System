@@ -1,4 +1,0 @@
-manager,admin,admin,
-client,jeff,57011,0,1
-client,test1,39874,
-client,cooldude,50948,

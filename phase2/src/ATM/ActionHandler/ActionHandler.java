@@ -413,21 +413,23 @@ public class ActionHandler {
             int numFives, numTens, numTwenty, numFifty, account;
             double numCheque;
             try{
-                account = (int) viewer.depositAccNum.getValue();
+                // get input
+                account = Integer.parseInt(viewer.depositAccNum.getText());
                 numFives = (int) viewer.numFives.getValue();
                 numTens = (int) viewer.numTens.getValue();
                 numTwenty = (int) viewer.numTwenty.getValue();
                 numFifty = (int) viewer.numFifty.getValue();
-                numCheque = (double) viewer.chequeAmt.getValue();
+                numCheque = Double.parseDouble(viewer.chequeAmt.getText());
+                // check if
                 boolean succeedCheque = clientActionHandler.deposit(account, numCheque);
                 boolean succeedCash = clientActionHandler.deposit(account, numFives, numTens, numTwenty, numFifty);
                 if (succeedCheque || succeedCash){
                     viewer.popUp("Deposit successful.");
                 }else{
-                    viewer.popUp("Please check your input.");
+                    viewer.popUp("Something is wrong");
                 }
             }catch (Exception exp){
-                viewer.popUp("Please check your input.");
+                viewer.popUp("Please check your input. (put 0 in cheque if it is currently empty");
             }
         });
 
@@ -660,7 +662,6 @@ public class ActionHandler {
 
         });
 
-        // TODO UPDATE THE REQUEST STATUS OF USER
         viewer.declineUserRequestButton.addActionListener(e -> {
             // get input
             int selectedIndex = viewer.accountRequestsList.getSelectedIndex();

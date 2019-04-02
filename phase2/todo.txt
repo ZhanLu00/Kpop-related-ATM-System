@@ -134,10 +134,15 @@ gui:
             - button not working killed
             - input wrong
         + accountSummary
-            - request for new account: always wrong
+            - request for new account: always wrong killed
+            - request status is
         + deposit
-            - input wrong
-            - cash did not get updated
+            - input wrong killed
+            - cash did not get updated killed
+            - why account got added twice????
+                - whenever open the app, the first time it will show add once, the second time add twice an so on,
+                  this is not just happening here, also in other functions, eg log in, the rist time login everything is fine
+                  this is actually happening everywhere, the # of popup window got commutive up
         + change password killed
             - length at 6 is wrong killed
             - empty enter filed when page changed killed
@@ -158,8 +163,21 @@ gui:
             - index error?? killed
             - display error ?? killed
 
+    + BankInspector
+        + send messenges
+            + send button not working
+        + check client's account summary
+            + nothing works here
+        + see all the trans
+            + buttons are working
+        + more option
+            - none of the button works
+
+
 Date:
     + always wrong, always give the wrong date!!!
+    + this date thing is so bad
+    + wth made it should drop out from cs srsly
 
 
 File readers/writers

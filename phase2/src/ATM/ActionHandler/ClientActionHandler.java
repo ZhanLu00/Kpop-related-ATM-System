@@ -323,7 +323,7 @@ public class ClientActionHandler {
 
 
         if (transfer(amount, transIn, transOut)) {
-            atm.getTransactionManager().addTransaction(amount, transOut, transIn, "transfer");
+            atm.getTransactionManager().addTransaction(amount, transIn, transOut, "transfer");
             System.out.println("Your new balance is : ");
             System.out.println(accountManager.getAccount(transIn).getBalance());
             if (input == 5) {

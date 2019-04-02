@@ -5,3 +5,4 @@ client,cooldude,50948,
 client,janlu,67874,2
 client,zhanlu,11111,3
 inspector,ins,00000,
+client,haha,53483,4

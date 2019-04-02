@@ -123,13 +123,16 @@ gui:
 
     + login:
         - clean input box after logged in killed
-        - shows wrong password when entered a right one,
-        - stilllogged in when things above happened
+        - shows wrong password when entered a right one, reason found
+        - stilllogged in when things above happened reason found
         - bank inspector cant log in killed
 
     + client:
         + transfer:
             -button not working killed
+            - clear testfield after enter
+            - fix money did not get transferred
+            - fix check transfer accounts before transfer
         + withdraw:
             - button not working killed
             - input wrong
@@ -162,6 +165,8 @@ gui:
         + requestUser killed
             - index error?? killed
             - display error ?? killed
+        + undo transaction
+            - update the list after undoes
 
     + BankInspector
         + send messenges

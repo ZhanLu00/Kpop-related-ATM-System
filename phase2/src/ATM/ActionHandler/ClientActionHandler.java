@@ -89,15 +89,22 @@ public class ClientActionHandler {
     }
 
     // transfer
-    Boolean transfer(double amount, int senderId, int receiverId) {
+    public Boolean transfer(double amount, int senderId, int receiverId) {
 
-        Transaction transaction = this.accountManager.transfer(amount, senderId, receiverId);
-
-        if (transaction != null) {
-            atm.getTransactionManager().addTransaction(transaction);
-            return true;
+        // check if both in and out acc are in the system
+        // also check if the out is from the owner's account
+        if (client.getAccounts().contains(senderId)){
+            if (accountManager.accountExist(receiverId)){
+                // transfer and check if theres enough balance
+                Transaction transaction = this.accountManager.transfer(amount, senderId, receiverId);
+                // check if it this transaction is transferable
+                if (transaction!=null) {
+                    // add transaction history
+                    atm.getTransactionManager().addTransaction(transaction);
+                    return true;
+                }
+            }
         }
-
         return false;
     }
 

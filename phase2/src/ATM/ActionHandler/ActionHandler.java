@@ -84,7 +84,7 @@ public class ActionHandler {
      * Initialize operator
      */
     public void initOperator(){
-        // basic on the current page, add listener
+        // initialize all the action listener
         viewer.newUser.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -92,6 +92,8 @@ public class ActionHandler {
                 newUser();
             }
         });
+        newUser();
+        login();
         viewer.returningUser.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -99,6 +101,7 @@ public class ActionHandler {
                 login();
             }
         });
+
         viewer.exitButton.addActionListener(e -> {
             try {
                 atm.save();
@@ -159,15 +162,14 @@ public class ActionHandler {
         });
     }
 
+
     /**
      * User Log in
      */
     private void login(){
-        viewer.goBackReturn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                viewer.changePage(viewer.returningUserPage, viewer.welcomePage);
-            }
+        viewer.goBackReturn.addActionListener(e->{
+            viewer.changePage(viewer.returningUserPage, viewer.welcomePage);
+
         });
         viewer.loginButton.addActionListener(new ActionListener() {
             @Override
@@ -180,22 +182,18 @@ public class ActionHandler {
                         viewer.usernameText.setText("");
                         viewer.passwordText.setText("");
                         clientActionHandler = new ClientActionHandler((Client)currentUser, atm);
-                        clientOption();
 
                     }else if(userType.equals("bankManager")){
                         viewer.changePage(viewer.returningUserPage, viewer.managerOptions);
                         bankManagerActionHandler = new BankManagerActionHandler(atm);
                         viewer.usernameText.setText("");
                         viewer.passwordText.setText("");
-                        bankManagerOption();
-
                     }else{
                         viewer.changePage(viewer.returningUserPage, viewer.inspectorOptions);
                         viewer.usernameText.setText("");
                         viewer.passwordText.setText("");
                         currentUser = userManager.getUser(viewer.usernameText.getText());
                         bankInspectorActionHandler = new BankInspectorActionHandler((BankInspector) currentUser,atm,"messages.txt");
-                        bankInspectorOption();
                     }
                 }else{
                     viewer.usernameText.setText("");
@@ -231,36 +229,35 @@ public class ActionHandler {
         // add listener
         viewer.viewAccountSummaryButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.summaryOfAccounts);
-            accountSummary();
         });
+        accountSummary();
         viewer.withdrawMoneyButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.withdrawOption);
-            withdraw();
         });
+        withdraw();
         viewer.transferMoneyButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.transferOption);
-            transfer();
         });
+        transfer();
         viewer.payABillButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.payBill);
-            payBill();
         });
+        payBill();
         viewer.depositMoneyButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.depositOption);
-            deposit();
         });
+        deposit();
         viewer.changePasswordButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.changePassword);
-            changePswd();
         });
+        changePswd();
         viewer.setPrimaryChequingAccountButton.addActionListener(e->{
             viewer.changePage(viewer.clientOptions, viewer.setPrimary);
-            setPrimary();
         });
+        setPrimary();
         viewer.goBackClient.addActionListener(e->{
+            // todo clean all the action listener
             viewer.changePage(viewer.clientOptions, viewer.welcomePage);
-            currentUser = null;
-
         });
 
     }
@@ -485,20 +482,21 @@ public class ActionHandler {
     public void bankManagerOption(){
         viewer.createNewClientButton.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.newClient);
-            createNewClient();
         });
+        createNewClient();
         viewer.undoTransactionButton.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.undoTransaction);
-            undoTransaction();
         });
+        undoTransaction();
         viewer.restockMachineButton.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.restockMachine);
-            restockMachine();
         });
+        restockMachine();
         viewer.viewAccountCreationRequestsButton.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.viewAccountRequests);
-            viewAccountCreationRequests();
         });
+        viewAccountCreationRequests();
+        // todo what is this
         viewer.showAlertsButton.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.viewAlerts);
             try {
@@ -509,15 +507,15 @@ public class ActionHandler {
         });
         viewer.viewUserCreationRequestsButton.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.viewUserRequests);
-            viewUserCreationRequests();
         });
+        viewUserCreationRequests();
         viewer.joinAccountsButton.addActionListener(e -> {
             viewer.changePage(viewer.managerOptions, viewer.joinAccounts);
-            joinAccounts();
         });
+        joinAccounts();
         viewer.logOutManager.addActionListener(e->{
+            // to do clean all the action listener
             viewer.changePage(viewer.managerOptions, viewer.welcomePage);
-            currentUser = null;
         });
     }
 
@@ -715,23 +713,22 @@ public class ActionHandler {
     public void bankInspectorOption(){
         viewer.sendMessageToManagerButton.addActionListener(e -> {
             viewer.changePage(viewer.inspectorOptions, viewer.sendManagerMsg);
-            sendMessageToManager();
         });
+        sendMessageToManager();
         viewer.seeAllTransactionsButton.addActionListener(e -> {
             viewer.changePage(viewer.inspectorOptions, viewer.allTransactions);
-            seeAllTransactions();
-
         });
+        seeAllTransactions();
         viewer.checkClientsAccountButton.addActionListener(e -> {
             viewer.changePage(viewer.inspectorOptions, viewer.clientSummary);
-            checkClientsAccount();
         });
+        checkClientsAccount();
         viewer.moreOptionsButton.addActionListener(e -> {
             viewer.changePage(viewer.inspectorOptions, viewer.summaryOfAccounts);
         });
         viewer.logOutInspector.addActionListener(e -> {
+            // todo clean all the action listener
             viewer.changePage(viewer.inspectorOptions, viewer.welcomePage);
-            currentUser = null;
         });
     }
 

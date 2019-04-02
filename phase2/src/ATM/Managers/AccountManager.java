@@ -63,6 +63,19 @@ public class AccountManager implements Iterable<BankAccount> {
     }
 
     /**
+     * check the existence of an account
+     */
+    public boolean accountExist(int act){
+        for (BankAccount account: getAccounts()){
+            if (account.getId() == act){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    /**
      * Attempts to transfer *amount* from one account to another.
      *
      * Returns the Transaction if successful, and null otherwise.

@@ -795,7 +795,7 @@ public class ActionHandler {
 
 
     public void sendMessageToManager() {
-        viewer.sendMessageToManagerButton.addActionListener(e -> {
+        viewer.sendMessageButton.addActionListener(e -> {
             if (viewer.inspectorMsg.getText().isEmpty()){
                 viewer.popUp("Please enter a message.");
             }else{
@@ -818,9 +818,14 @@ public class ActionHandler {
 
     public void seeAllTransactions() {
         StringBuilder transactions = new StringBuilder();
-        ArrayList<String> transactionText = bankInspectorActionHandler.getAllTransactions();
-        for (String transaction : transactionText) {
-            transactions.append(transaction);
+        for (User u : userManager.getUsers()){
+            if (u instanceof Client){
+                bankInspectorActionHandler.selectClient(u.username);
+                ArrayList<String> transactionText = bankInspectorActionHandler.getAllTransactions();
+                for (String transaction : transactionText) {
+                    transactions.append(transaction + "\n");
+                }
+            }
         }
         viewer.allTransactionText.setText(transactions.toString());
 
@@ -830,33 +835,55 @@ public class ActionHandler {
     }
 
     public void checkClientsAccount(){
-        bankInspectorActionHandler.selectClient(viewer.clientUsername.getText());
-        StringBuilder text = new StringBuilder();
         viewer.seeClientAccountSummaryButton.addActionListener(e -> {
-            viewer.clientSummaryOrTransaction.setText("");
-            ArrayList<String> clientSummary = bankInspectorActionHandler.getClientAccountSummary();
-            for (String summary : clientSummary) {
-                text.append(summary);
+            User user = userManager.getUser(viewer.clientUsername.getText());
+            if (user == null || user instanceof BankManager){
+                viewer.popUp("Please select an existing client.");
+                viewer.clientUsername.setText("");
+            }else{
+                bankInspectorActionHandler.selectClient(user.getUsername());
+                StringBuilder text = new StringBuilder();
+                viewer.clientSummaryOrTransaction.setText("");
+                ArrayList<String> clientSummary = bankInspectorActionHandler.getClientAccountSummary();
+                for (String summary : clientSummary) {
+                    text.append(summary + "\n");
+                }
+                viewer.clientSummaryOrTransaction.setText(text.toString());
             }
-            viewer.clientSummaryOrTransaction.setText(text.toString());
         });
 
         viewer.seeClientIncomingTransactionsButton.addActionListener(e -> {
-            viewer.clientSummaryOrTransaction.setText("");
-            ArrayList<String> incomingTransactions = bankInspectorActionHandler.getClientIncomingTransactions();
-            for (String incoming : incomingTransactions) {
-                text.append(incoming);
+            User user = userManager.getUser(viewer.clientUsername.getText());
+            if (user == null || user instanceof BankManager){
+                viewer.popUp("Please select an existing client.");
+                viewer.clientUsername.setText("");
+            }else{
+                bankInspectorActionHandler.selectClient(user.getUsername());
+                StringBuilder text = new StringBuilder();
+                viewer.clientSummaryOrTransaction.setText("");
+                ArrayList<String> clientSummary = bankInspectorActionHandler.getClientIncomingTransactions();
+                for (String summary : clientSummary) {
+                    text.append(summary + "\n");
+                }
+                viewer.clientSummaryOrTransaction.setText(text.toString());
             }
-            viewer.clientSummaryOrTransaction.setText(text.toString());
         });
 
         viewer.seeClientOutgoingTransactionsButton.addActionListener(e -> {
-            viewer.clientSummaryOrTransaction.setText("");
-            ArrayList<String> outgoingTransactions = bankInspectorActionHandler.getClientOutgoingTransactions();
-            for (String outgoing : outgoingTransactions) {
-                text.append(outgoing);
+            User user = userManager.getUser(viewer.clientUsername.getText());
+            if (user == null || user instanceof BankManager){
+                viewer.popUp("Please select an existing client.");
+                viewer.clientUsername.setText("");
+            }else{
+                bankInspectorActionHandler.selectClient(user.getUsername());
+                StringBuilder text = new StringBuilder();
+                viewer.clientSummaryOrTransaction.setText("");
+                ArrayList<String> clientSummary = bankInspectorActionHandler.getClientOutgoingTransactions();
+                for (String summary : clientSummary) {
+                    text.append(summary + "\n");
+                }
+                viewer.clientSummaryOrTransaction.setText(text.toString());
             }
-            viewer.clientSummaryOrTransaction.setText(text.toString());
         });
 
         viewer.goBackClientSummary.addActionListener(e -> {

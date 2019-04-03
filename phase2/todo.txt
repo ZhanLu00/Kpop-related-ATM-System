@@ -153,7 +153,7 @@ gui:
         + set primary chequing account
             - something is wrong
         + pay bill
-            -
+            - checked
 
 
     + BankManager:

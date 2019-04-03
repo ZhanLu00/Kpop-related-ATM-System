@@ -47,9 +47,9 @@ public class UserFileReader {
         }
         else if (userType.equals("inspector")) {
             BankInspector bankInspector = new BankInspector(username,password);
-            for (int i = 3; i < separated.length; i++) {
-                bankInspector.addAccounts(Integer.parseInt(separated[i].replace(",","")));
-            }
+//            for (int i = 3; i < separated.length; i++) {
+//                bankInspector.addAccounts(Integer.parseInt(separated[i].replace(",","")));
+//            }
             users.add(bankInspector);
         }
     }

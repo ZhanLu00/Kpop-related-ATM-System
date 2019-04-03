@@ -80,13 +80,13 @@ public class RequestManager {
         if (requestType.equals("newUser")){
             for (String[] info : this.clientRequests){
                 if (username.equals(info[0])){
-                    return info[1];
+                    return info[2];
                 }
             }
         }else{
             for (String[] info: this.accountRequests){
                 if (username.equals(info[0])){
-                    return info[1];
+                    return info[2];
                 }
             }
         }
@@ -97,13 +97,13 @@ public class RequestManager {
         ArrayList<String[]> requests = new ArrayList<String[]>();
         if (type.equals("newUser")){
             for (String[] request: this.clientRequests){
-                if (request[1].equals(status)){
+                if (request[2].equals(status)){
                     requests.add(request);
                 }
             }
         }else{
             for (String[] request: this.accountRequests){
-                if (request[1].equals(status)){
+                if (request[2].equals(status)){
                     requests.add(request);
                 }
             }

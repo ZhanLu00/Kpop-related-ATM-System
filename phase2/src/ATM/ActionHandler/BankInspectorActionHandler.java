@@ -10,7 +10,7 @@ import ATM.Users.Client;
 import java.io.*;
 import java.util.ArrayList;
 
-public class BankInspectorActionHandler extends ClientActionHandler {
+public class BankInspectorActionHandler {
     private BankInspector bankInspector;
     private Atm atm;
     private BufferedReader kbd = new BufferedReader(new InputStreamReader(System.in));
@@ -20,7 +20,6 @@ public class BankInspectorActionHandler extends ClientActionHandler {
     private String messageFile;
 
     public BankInspectorActionHandler(BankInspector bankInspector, Atm atm, String messageFile) {
-        super(bankInspector,atm);
         this.bankInspector = bankInspector;
         this.atm = atm;
         this.messageFile = messageFile;

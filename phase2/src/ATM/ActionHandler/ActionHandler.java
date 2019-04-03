@@ -326,6 +326,12 @@ public class ActionHandler {
     public void createNewAccount(){
         viewer.createAccountButton.addActionListener(e -> {
             String accType = viewer.accType.getSelectedItem().toString();
+            boolean exist = requestManager.requestExist("newAccount", currentUser.username, accType);
+            if (exist){
+                String status = requestManager.getStatus("newAccount", currentUser.username);
+                viewer.accRequestStatus.setText("Status: " + status);
+            }
+
             if (!requestManager.requestExist("newAccount", currentUser.username, accType)){
                 requestManager.addRequest("newAccount", currentUser.username, accType);
                 viewer.popUp("request submitted");
@@ -528,7 +534,6 @@ public class ActionHandler {
             viewer.changePage(viewer.managerOptions, viewer.viewAccountRequests);
             viewAccountCreationRequests();
         });
-        // todo what is this
         viewer.showAlertsButton.addActionListener(e->{
             viewer.changePage(viewer.managerOptions, viewer.viewAlerts);
             try {
@@ -587,12 +592,11 @@ public class ActionHandler {
 
     public void undoTransaction(){
         Object[] transactions = transactionManager.getTransactions().toArray();
-        viewer.recentTrans.setSelectedIndex(0);
         viewer.recentTrans.setListData(transactions);
 
         viewer.undoButton.addActionListener(e -> {
             int selectedIndex = viewer.recentTrans.getSelectedIndex();
-            boolean undoStatus = bankManagerActionHandler.undoTransaction(selectedIndex);
+            boolean undoStatus = bankManagerActionHandler.undoTransaction(selectedIndex+1);
             if (undoStatus){
                 viewer.popUp("Transaction successfully undone.");
                 viewer.recentTrans.remove(selectedIndex);
@@ -666,7 +670,7 @@ public class ActionHandler {
         StringBuilder alerts = new StringBuilder();
         ArrayList<String> alertsText = bankManagerActionHandler.getAlerts();
         for (String alert : alertsText) {
-            alerts.append(alert);
+            alerts.append(alert + "\n");
         }
         viewer.alertText.setText(alerts.toString());
 
@@ -715,8 +719,8 @@ public class ActionHandler {
         viewer.declineUserRequestButton.addActionListener(e -> {
             // get input
             int selectedIndex = viewer.accountRequestsList.getSelectedIndex();
-            String username = userRequests.get(selectedIndex)[0];
-            String accType = userRequests.get(selectedIndex)[1];
+            String username = userRequests.get(selectedIndex+1)[0];
+            String accType = userRequests.get(selectedIndex+1)[1];
 
             // update status
             requestManager.updateStatus("newUser", username, "declined");

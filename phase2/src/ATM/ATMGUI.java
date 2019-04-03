@@ -194,7 +194,6 @@ public class ATMGUI {
 
     // SET PRIMARY CHEQUING ACCOUNT
     public JPanel setPrimary;
-    public JComboBox selectPrimary;
     public JButton goBackPrimary;
     public JButton setPrimaryButton;
     public JFormattedTextField primaryAccNum;

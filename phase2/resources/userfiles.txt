@@ -1,5 +1,5 @@
 manager,admin,admin,
-client,jeff,57011,0,1
+client,jeff,57011,0,1,7
 client,test1,39874,
 client,cooldude,50948,
 client,janlu,67874,2
@@ -7,3 +7,5 @@ client,zhanlu,11111,3,6,6
 inspector,ins,00000,
 client,haha,53483,4
 client,hahaha,11350,5
+client,hahahaha,33986,6
+client,mike,11111,9,10

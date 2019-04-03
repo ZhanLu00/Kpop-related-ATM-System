@@ -344,7 +344,6 @@ public class ActionHandler {
     public void withdraw(){
 
         viewer.withdrawButton.addActionListener(e->{
-            boolean inputOk = false;
             int withdrawAmount, accountNum;
             try{
                 withdrawAmount = Integer.parseInt(viewer.withdrawAmt.getText());
@@ -369,7 +368,6 @@ public class ActionHandler {
     }
 
     public void transfer(){
-
         viewer.transferButton.addActionListener(e->{
             int outAccNum, inAccNum;
             double transAmt;
@@ -386,8 +384,6 @@ public class ActionHandler {
             }catch (Exception exp){
                 viewer.popUp("Please check your input.");
             }
-
-
         });
 
         viewer.goBackTransfer.addActionListener(e->{
@@ -425,7 +421,6 @@ public class ActionHandler {
             viewer.billPayee.setText("");
             viewer.billAmt.setText("");
             viewer.removeAL(viewer.payBillButton);
-
         });
 
     }
@@ -787,7 +782,7 @@ public class ActionHandler {
         });
         checkClientsAccount();
         viewer.moreOptionsButton.addActionListener(e -> {
-            viewer.changePage(viewer.inspectorOptions, viewer.summaryOfAccounts);
+            viewer.changePage(viewer.inspectorOptions, viewer.clientOptions);
         });
         viewer.logOutInspector.addActionListener(e -> {
             viewer.changePage(viewer.inspectorOptions, viewer.welcomePage);

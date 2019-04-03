@@ -1,7 +1,6 @@
 package ATM.ActionHandler;
 
 import ATM.*;
-import ATM.BankAccounts.AssetAccounts.AssetAccount;
 import ATM.BankAccounts.AssetAccounts.ChequingAccount;
 import ATM.BankAccounts.BankAccount;
 import ATM.BankAccounts.DebtAccounts.DebtAccount;
@@ -9,7 +8,6 @@ import ATM.BankAccounts.DebtAccounts.CreditCardsAccount;
 import ATM.Managers.AccountManager;
 import ATM.Managers.BillManager;
 import ATM.Users.Client;
-import ATM.Atm;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -92,7 +90,7 @@ public class ClientActionHandler {
         // also check if the out is from the owner's account
         if (client.getAccounts().contains(senderId)){
             if (accountManager.accountExist(receiverId)){
-                // transfer and check if theres enough balance
+                // transfer and check if there'ss enough balance
                 Transaction transaction = this.accountManager.transfer(amount, senderId, receiverId);
                 // check if it this transaction is transferable
                 if (transaction!=null) {

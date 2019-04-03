@@ -2,7 +2,7 @@ package ATM.Managers;
 
 import ATM.Users.BankInspector;
 import ATM.Users.User;
-import ATM.Users.Client;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;

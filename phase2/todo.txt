@@ -139,6 +139,7 @@ gui:
         + accountSummary
             - request for new account: always wrong killed
             - request status is
+            - TODO when user requests to make another chequing acc, request is sent but displays msg saying "smth's wrong"
         + deposit
             - input wrong killed
             - cash did not get updated killed

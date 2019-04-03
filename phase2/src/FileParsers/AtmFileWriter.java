@@ -16,13 +16,11 @@ public class AtmFileWriter {
     private String fileName;
     private Date date;
     private BillManager billManager;
-    private AccountManager accountManager;
 
-    public AtmFileWriter(String fileName, Date date, BillManager billManager, AccountManager accountManager) {
+    public AtmFileWriter(String fileName, Date date, BillManager billManager) {
         this.fileName = fileName;
         this.date = date;
         this.billManager = billManager;
-        this.accountManager = accountManager;
     }
 
     /**
@@ -33,10 +31,6 @@ public class AtmFileWriter {
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
         writer.write(TimeManager.dateToString(date) + "\n");
         writer.write(String.format("%d,%d,%d,%d", billManager.getFives(), billManager.getTens(), billManager.getTwenties(), billManager.getFifties())+ "\n");
-
-        for (String[] accountRequest : accountManager.getAccountRequests()) {
-            writer.write(String.format("%s,%s\n", accountRequest[0], accountRequest[1]));
-        }
 
         writer.close();
     }

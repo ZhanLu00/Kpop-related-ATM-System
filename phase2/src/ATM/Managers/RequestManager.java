@@ -124,7 +124,7 @@ public class RequestManager {
             }
         }else {
             for (String[] info : this.accountRequests) {
-                if (username.equals(info[0])) {
+                if (username.equals(info[0]) && info[2].equals("pending")) {
                     this.accountRequests.set(inde, new String[]{info[0], info[1], status});
                     return true;
                 }

@@ -194,7 +194,7 @@ public class ActionHandler {
                         viewer.usernameText.setText("");
                         viewer.passwordText.setText("");
                         currentUser = userManager.getUser(viewer.usernameText.getText());
-                        bankInspectorActionHandler = new BankInspectorActionHandler((BankInspector) currentUser,atm,"messages.txt");
+                        bankInspectorActionHandler = new BankInspectorActionHandler((BankInspector) currentUser,atm,"phase2/resources/messages.txt");
                         bankInspectorOption();
                     }
                 }else{
@@ -784,6 +784,7 @@ public class ActionHandler {
         viewer.moreOptionsButton.addActionListener(e -> {
             viewer.changePage(viewer.inspectorOptions, viewer.clientOptions);
         });
+        clientOption();
         viewer.logOutInspector.addActionListener(e -> {
             viewer.changePage(viewer.inspectorOptions, viewer.welcomePage);
             viewer.removeAL(viewer.sendMessageToManagerButton);

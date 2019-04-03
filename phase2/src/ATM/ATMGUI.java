@@ -203,6 +203,7 @@ public class ATMGUI {
     public JPanel communismPage;
     public JButton communismButton;
     public JButton backButton;
+    public JButton communism;
 
     public void changePage(JPanel currentPage, JPanel newPage) {
         currentPage.setVisible(false);
@@ -227,7 +228,9 @@ public class ATMGUI {
     }
 
     public void init() {
-
+        communism.setOpaque(false);
+        communism.setContentAreaFilled(false);
+        communism.setBorderPainted(false);
     }
 
     private void createUIComponents() {

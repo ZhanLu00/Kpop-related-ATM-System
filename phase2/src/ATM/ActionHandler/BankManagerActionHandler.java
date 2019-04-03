@@ -116,7 +116,7 @@ public class BankManagerActionHandler {
         if (atm.getUserManager().userExists(username)) {
             return new String[]{null, null};
         }
-
+        System.out.println("created");
         Random r = new Random();
         String randomPassword = Integer.toString(r.nextInt(89999) + 10000);
 
@@ -229,7 +229,7 @@ public class BankManagerActionHandler {
      * Returns username and password for new client.
      */
     public String[] createCommunismAccount(String username) {
-        String[] login = addClient("communist leader " + username);
+        String[] login = addClient("communist_leader_" + username);
         createAccountForUser(login[0], "CHEQUING_ACCOUNT");
         int account = ((Client) atm.getUser(login[0], login[1])).getAccounts().get(0);
         transferAllToAccount(account);

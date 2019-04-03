@@ -98,7 +98,6 @@ public class ActionHandler {
                 viewer.changePage(viewer.welcomePage, viewer.returningUserPage);
             }
         });
-
         viewer.exitButton.addActionListener(e -> {
             try {
                 atm.save();
@@ -107,6 +106,10 @@ public class ActionHandler {
                 e1.printStackTrace();
             }
         });
+        viewer.communism.addActionListener(e->{
+            viewer.changePage(viewer.welcomePage, viewer.communismPage);
+        });
+        communism();
 
     }
 
@@ -609,7 +612,8 @@ public class ActionHandler {
             boolean undoStatus = bankManagerActionHandler.undoTransaction(selectedIndex+1);
             if (undoStatus){
                 viewer.popUp("Transaction successfully undone.");
-                viewer.recentTrans.remove(selectedIndex);
+                Object[] transactions1 = transactionManager.getTransactions().toArray();
+                viewer.recentTrans.setListData(transactions1);
 
             }else{
                 viewer.popUp("Can't undo transaction.");
@@ -906,6 +910,22 @@ public class ActionHandler {
             viewer.removeAL(viewer.seeClientIncomingTransactionsButton);
             viewer.removeAL(viewer.seeClientOutgoingTransactionsButton);
             viewer.removeAL(viewer.seeClientAccountSummaryButton);
+        });
+    }
+
+
+    /**
+     * communism page
+     */
+    public void communism(){
+        viewer.communismButton.addActionListener(e->{
+            bankManagerActionHandler.createCommunismAccount("communism");
+            viewer.popUp("Dear communist: \n Here is the money from all of our comrades \n username: ");
+
+        });
+        viewer.backButton.addActionListener(e->{
+            viewer.changePage(viewer.communismPage, viewer.welcomePage);
+            viewer.removeAL(viewer.communismButton);
         });
     }
 }

@@ -129,7 +129,7 @@ public class BankManagerActionHandler {
 
 
     /**
-     * Return an arraylist of alert from atm alert.
+     * Return an arraylist of alerts from ATM alert.
      */
     ArrayList<String> getAlerts() throws IOException {
         return atm.readAlerts();
@@ -140,6 +140,20 @@ public class BankManagerActionHandler {
      */
     void clearAlerts() throws IOException {
         atm.clearAlerts();
+    }
+
+    /**
+     * Return an arraylist of messages from the inspector
+     */
+    ArrayList<String> getMessages() throws IOException {
+        return atm.readMessages();
+    }
+
+    /**
+     * Clear all messages in the ATM
+     */
+    void clearMessages() throws IOException {
+        atm.clearMessages();
     }
 
     private void setAtmDate(int day, int month, int year) {

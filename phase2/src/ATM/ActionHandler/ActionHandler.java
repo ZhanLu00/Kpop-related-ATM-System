@@ -687,6 +687,13 @@ public class ActionHandler {
         }
         viewer.alertText.setText(alerts.toString());
 
+        StringBuilder messages = new StringBuilder();
+        ArrayList<String> messagesText = bankManagerActionHandler.getMessages();
+        for (String message: messagesText) {
+            messages.append(message + "\n");
+        }
+        viewer.messageText.setText(messages.toString());
+
         viewer.clearAlertsButton.addActionListener(e -> {
             try {
                 bankManagerActionHandler.clearAlerts();
@@ -696,10 +703,22 @@ public class ActionHandler {
                 e1.printStackTrace();
             }
         });
+
+        viewer.clearMessages.addActionListener(e -> {
+            try {
+                bankManagerActionHandler.clearMessages();
+                viewer.messageText.setText("");
+                viewer.popUp("The messages have been cleared.");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
+
         viewer.goBackAlert.addActionListener(e -> {
             viewer.changePage(viewer.viewAlerts, viewer.managerOptions);
             viewer.alertText.setText("");
             viewer.removeAL(viewer.clearAlertsButton);
+            viewer.removeAL(viewer.clearMessages);
         });
     }
 

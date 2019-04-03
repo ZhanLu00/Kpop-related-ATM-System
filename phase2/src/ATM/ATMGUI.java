@@ -171,11 +171,13 @@ public class ATMGUI {
     public JButton declineUserRequestButton;
     public JList userRequestsList;
 
-    // VIEW ALERTS PAGE
+    // VIEW ALERTS/MESSAGES PAGE
     public JPanel viewAlerts;
     public JButton goBackAlert;
     public JButton clearAlertsButton;
     public JTextArea alertText;
+    public JTextArea messageText;
+    public JButton clearMessages;
 
     // VIEW NEW ACCOUNT CREATION REQUESTS PAGE
     public JPanel viewAccountRequests;

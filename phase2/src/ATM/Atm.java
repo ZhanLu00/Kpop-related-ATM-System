@@ -131,6 +131,26 @@ public class Atm {
         writer.close();
     }
 
+    public ArrayList<String> readMessages() throws IOException {
+        File file = new File(messagesFileName);
+        FileReader fr = new FileReader(file);
+        BufferedReader br = new BufferedReader(fr);
+        ArrayList<String> messages = new ArrayList<>();
+
+        String line;
+        while((line = br.readLine()) != null) {
+            messages.add(line);
+        }
+        return messages;
+    }
+
+    public void clearMessages() throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(messagesFileName));
+        writer.write("");
+        writer.close();
+    }
+
+
     public RequestManager getRequestManager() {
         return requestManager;
     }

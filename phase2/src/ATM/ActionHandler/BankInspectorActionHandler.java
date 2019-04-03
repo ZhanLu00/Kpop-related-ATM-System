@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class BankInspectorActionHandler {
     private BankInspector bankInspector;
     private Atm atm;
-    private BufferedReader kbd = new BufferedReader(new InputStreamReader(System.in));
 
     private Client selectedClient;
 

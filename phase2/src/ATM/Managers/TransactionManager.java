@@ -17,17 +17,6 @@ public class TransactionManager {
         this.transactions = transactions;
     }
 
-    public TransactionManager() {
-        this.transactions = new ArrayList<>();
-    }
-
-    /**
-     * Add a new transaction to transactions by the amount, sender, receive, and type.
-     */
-    public void addTransaction(double amount, int sender, int receiver, String type) {
-        transactions.add(new Transaction(amount, sender, receiver, type));
-    }
-
     /**
      * Add a new transaction to transactions.
      */

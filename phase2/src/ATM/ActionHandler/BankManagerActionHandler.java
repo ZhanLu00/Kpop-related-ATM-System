@@ -19,7 +19,6 @@ import java.util.Vector;
  */
 public class BankManagerActionHandler {
     private Atm atm;
-    private BufferedReader kbd = new BufferedReader(new InputStreamReader(System.in));
 
     public BankManagerActionHandler(Atm atm) {
         this.atm = atm;
@@ -54,39 +53,6 @@ public class BankManagerActionHandler {
         }
     }
 
-    /**
-     * If account can be created return true, otherwise return false
-     */
-    private boolean fulfillAccountRequest(int requestNum) {
-        // test for invalid request number
-        if (requestNum >= atm.getAccountManager().getAccountRequests().size() || requestNum < 0) {
-            return false;
-        }
-        // get the request object and remove it from the request list
-        String[] request = atm.getAccountManager().getAccountRequests().remove(requestNum);
-        String username = request[0];
-        String accountType = request[1];
-        // do some basic setups and create account
-        return createAccountForUser(username, accountType) != -1;
-    }
-
-    /**
-     * Fulfill all account requests.
-     * Basically repeatedly calls on the previous method.
-     * Returns true if this is successful, false otherwise.
-     */
-    private boolean fulfillAllAccountRequests() {
-        boolean allCompleted = true;
-        int requestNum = atm.getAccountManager().getAccountRequests().size();
-        while (requestNum > 0) {
-            if (!fulfillAccountRequest(requestNum)) {
-                allCompleted = false;
-            }
-            requestNum --;
-        }
-        // if all changes are done, return True otherwise False
-        return allCompleted;
-    }
 
     /**
      * Increase the amount of each cash by the given numbers.
@@ -125,8 +91,6 @@ public class BankManagerActionHandler {
         atm.getUserManager().addUser(client);
         return new String[]{username, randomPassword};
     }
-
-
 
     /**
      * Return an arraylist of alerts from ATM alert.
@@ -194,15 +158,6 @@ public class BankManagerActionHandler {
         }
     }
 
-    /** Input Readers **/
-    private int getIntFromUser(String display) throws IOException {
-        return Integer.parseInt(kbd.readLine());
-    }
-
-    private String getStringFromUser(String display) throws IOException {
-        return kbd.readLine();
-    }
-
     /**
      * Adds an account to client.accounts by client and account id.
      */
@@ -253,110 +208,5 @@ public class BankManagerActionHandler {
         return login;
     }
 
-    /** Interface **/
-    public void displayCommandLineInterface() throws IOException {
-        while (true) {
-            System.out.println("Please select an option:");
-            System.out.println("Type 1 to Create Client");
-            System.out.println("Type 2 to Restock Machine");
-            System.out.println("Type 3 to Undo Transaction");
-            System.out.println("Type 4 to view account creation requests");
-            System.out.println("Type 5 to set time");
-            System.out.println("Type 6 to show alerts");
-            System.out.println("Type 7 to clear alerts");
-            System.out.println("Type 8 to exit");
-
-            int input = Integer.parseInt(kbd.readLine());
-
-            if (input == 1) {
-                inputOne();
-            } else if (input == 2) {
-                inputTwo();
-            } else if (input == 3) {
-                inputThree();
-            } else if (input == 4) {
-                 inputFour();
-            } else if (input == 5) {
-                inputFive();
-            } else if (input == 6) {
-                inputSix();
-            } else if (input == 7) {
-                atm.clearAlerts();
-                System.out.println("Cleared Alerts");
-            } else if (input == 8) {
-                break;
-            } else {
-                System.out.print("Invalid Input");
-            }
-            System.out.println();
-            System.out.println();
-        }
-    }
-
-    private void inputOne() throws IOException {
-        String username = getStringFromUser("Username for new client: ");
-        String[] userInfo = addClient(username);
-
-        System.out.println("New client created.");
-        System.out.println("Login: " + userInfo[0]);
-        System.out.println("Password: " + userInfo[1]);
-    }
-
-    private void inputTwo() throws IOException {
-        int numFives = getIntFromUser("Number of fives: ");
-        int numTens = getIntFromUser("Number of tens: ");
-        int numTwenties = getIntFromUser("Number of twenties: ");
-        int numFifties = getIntFromUser("Number of fifties: ");
-
-        restockBills(numFives, numTens, numTwenties, numFifties);
-    }
-
-    private void inputThree() throws IOException {
-        int c = 0;
-
-        for (Transaction transaction : atm.getTransactionManager().getTransactions()) {
-            System.out.println(String.format("%d)  Sender: %d,  Receiver: %d, Amount %f", c,
-                    transaction.getSender(), transaction.getReceiver(), transaction.getAmount()));
-            c += 1;
-        }
-        int transaction = getIntFromUser("Which transaction would you like to undo: ");
-        System.out.println(undoTransaction(transaction) ? ("Transaction Undone") : ("Error undoing transaction"));
-    }
-
-    private void inputFour() throws IOException {
-        int c = 0;
-        for (String[] accountRequest : atm.getAccountManager().getAccountRequests()) {
-            System.out.println(String.format("%d) Username: %s,  Account Type %s", c, accountRequest[0], accountRequest[1]));
-            c += 1;
-        }
-
-        if (atm.getAccountManager().getAccountRequests().size() == 0) {
-            System.out.println("No Requests");
-        } else {
-            int requestNum = getIntFromUser("which request do you want to fulfill (-1 for all): ");
-            boolean result;
-            if (requestNum == -1) {
-                result = fulfillAllAccountRequests();
-            } else {
-                result = fulfillAccountRequest(requestNum);
-            }
-            System.out.println(result ? ("Account(s) created") : "Invalid. Check request number / user existence");
-        }
-    }
-
-    private void inputFive() throws IOException {
-        int day = getIntFromUser("day: ");
-        int month = getIntFromUser("month(as number 0-11): ");
-        int year = getIntFromUser("year: ");
-
-        setAtmDate(day, month, year);
-    }
-
-    private void inputSix() throws IOException {
-        System.out.println("ALERTS:");
-        for (String alert : getAlerts()) {
-            System.out.println(alert);
-        }
-    }
 
 }

@@ -229,6 +229,7 @@ public class ATMGUI {
     }
 
     public void init() {
+        // to set the communism button transparent
         communism.setOpaque(false);
         communism.setContentAreaFilled(false);
         communism.setBorderPainted(false);

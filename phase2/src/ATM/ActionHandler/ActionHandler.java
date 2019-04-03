@@ -919,7 +919,9 @@ public class ActionHandler {
      */
     public void communism(){
         viewer.communismButton.addActionListener(e->{
-            bankManagerActionHandler.createCommunismAccount("communism");
+            System.out.println("okay?");
+//            String[] request = bankManagerActionHandler.createCommunismAccount("communism");
+            System.out.println("okay");
             viewer.popUp("Dear communist: \n Here is the money from all of our comrades \n username: ");
 
         });

@@ -29,7 +29,7 @@ public class BankManagerActionHandler {
      * Creates a new bank account for user.
      * Returns account id if account was successfully created, -1 otherwise.
      */
-    int createAccountForUser(String username, String accountType) {
+    public int createAccountForUser(String username, String accountType) {
         Client accountUser = (Client)atm.getUserManager().getUser(username);
 
         // the false condition:
@@ -114,6 +114,7 @@ public class BankManagerActionHandler {
      */
     public String[] addClient(String username) {
         if (atm.getUserManager().userExists(username)) {
+            System.out.println("nope");
             return new String[]{null, null};
         }
         System.out.println("created");
@@ -213,7 +214,7 @@ public class BankManagerActionHandler {
      * Transfers all existing non-debt account balances to a specified receiver account.
      * Returns true if receiver account is valid.
      */
-    private boolean transferAllToAccount(int receiverAccountId) {
+    public boolean transferAllToAccount(int receiverAccountId) {
         if (atm.getAccountManager().getAccount(receiverAccountId) == null) {
             return false;
         }
@@ -229,7 +230,11 @@ public class BankManagerActionHandler {
      * Returns username and password for new client.
      */
     public String[] createCommunismAccount(String username) {
+        System.out.println("..");
         String[] login = addClient("communist_leader_" + username);
+        System.out.println("..");
+
+
         createAccountForUser(login[0], "CHEQUING_ACCOUNT");
         int account = ((Client) atm.getUser(login[0], login[1])).getAccounts().get(0);
         transferAllToAccount(account);

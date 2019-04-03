@@ -50,7 +50,7 @@ public class ClientActionHandler {
         Map balance = new HashMap<Integer, Double>();
 
         // get account numbers first
-        for (Integer accountNumber : this.client.getAccounts()) {
+        for (int accountNumber : this.client.getAccounts()) {
             // get balance from each of the bank number
             balance.put(accountNumber, this.accountManager.getAccount(accountNumber).getBalance());
         }

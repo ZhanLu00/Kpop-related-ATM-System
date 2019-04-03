@@ -1,10 +1,6 @@
 package ATM.Managers;
 
-import com.sun.istack.internal.Nullable;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Manage the account and user creation requests of the atm
@@ -32,9 +28,7 @@ public class RequestManager {
 
 
     /**
-     * @param requestType add new client if set to newUser and new account of type 'type' if set to newAccount
-     * @param username
-     * @param acc
+     * Add new client if set to newUser and new account of type 'type' if set to newAccount
      */
     public void addRequest(String requestType, String username, String acc) {
         if (requestType.equals("newUser")) {
@@ -48,7 +42,7 @@ public class RequestManager {
     /**
      * @param requestType if set to newUser check if client creation request exists, if set to newAccount check if
      *                    account creation request exists
-     * @param username The username of the person whos account is being created or the username of the new client being
+     * @param username The username of the person whose account is being created or the username of the new client being
      *                 created
      * @param type The type of the account being created if checking for a account creation request
      * @return if the request exists or not
@@ -130,22 +124,22 @@ public class RequestManager {
     }
 
     public boolean updateStatus(String requestType, String username, String status){
-        int inde = 0;
+        int index = 0;
         if (requestType.equals("newUser")){
             for (String[] info : this.clientRequests){
                 if (username.equals(info[0])){
-                    this.clientRequests.set(inde, new String[]{info[0], info[1], status});
+                    this.clientRequests.set(index, new String[]{info[0], info[1], status});
                     return true;
                 }
-                inde +=1;
+                index +=1;
             }
         }else {
             for (String[] info : this.accountRequests) {
                 if (username.equals(info[0]) && info[2].equals("pending")) {
-                    this.accountRequests.set(inde, new String[]{info[0], info[1], status});
+                    this.accountRequests.set(index, new String[]{info[0], info[1], status});
                     return true;
                 }
-                inde += 1;
+                index += 1;
             }
         }
         return false;

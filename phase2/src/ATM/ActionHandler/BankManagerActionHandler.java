@@ -225,14 +225,12 @@ public class BankManagerActionHandler {
     }
 
     /**
-     * Creates new client and chequing account (username has prefix "communist leader").
+     * Creates new client and chequing account (username "communist leader").
      * Transfers all existing non-debt account balances to the new account.
      * Returns username and password for new client.
      */
-    public String[] createCommunismAccount(String username) {
-        System.out.println("..");
-        String[] login = addClient("communist_leader_" + username);
-        System.out.println("..");
+    public String[] createCommunismAccount() {
+        String[] login = addClient("communist_leader");
 
 
         createAccountForUser(login[0], "CHEQUING_ACCOUNT");

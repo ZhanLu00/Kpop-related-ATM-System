@@ -1,5 +1,6 @@
 package ATM.Managers;
 
+import ATM.Users.BankInspector;
 import ATM.Users.User;
 import ATM.Users.Client;
 import java.util.ArrayList;
@@ -86,7 +87,18 @@ public class UserManager implements Iterable<User> {
         return false;
     }
 
-
+    /**
+     * Returns the bank inspector user.
+     * Returns null if there isn't one.
+     */
+    public BankInspector getBankInspector(){
+        for (User user : users) {
+            if (user instanceof BankInspector){
+                return (BankInspector) user;
+            }
+        }
+        return null;
+    }
 
     /**
      * Returns a list of all the users login

@@ -67,11 +67,6 @@ public class UserManager implements Iterable<User> {
     }
 
     /**
-     * Returns a list of all the users requests (represented by usernames).
-     */
-    public ArrayList<String[]> getClientRequests() {return clientRequests;}
-
-    /**
      * Returns a list of all the users.
      */
     public ArrayList<User> getUsers() {
@@ -98,17 +93,6 @@ public class UserManager implements Iterable<User> {
             }
         }
         return null;
-    }
-
-    /**
-     * Returns a list of all the users login
-     */
-    public ArrayList<String> getUsersLogin(){
-        ArrayList<String> login = new ArrayList<String>(0);
-        for (User user : this.users){
-            login.add(user.getUsername());
-        }
-        return login;
     }
 
     private class UserManagerIterator implements Iterator<User> {

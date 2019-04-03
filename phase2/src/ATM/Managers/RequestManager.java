@@ -26,8 +26,6 @@ public class RequestManager {
         return accountRequests;
     }
 
-
-
     public ArrayList<String[]> getClientRequests() {
         return clientRequests;
     }

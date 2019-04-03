@@ -90,18 +90,6 @@ public class AccountManager implements Iterable<BankAccount> {
         }
     }
 
-
-    /**
-     * Updates the exchange rate for all foreign currency accounts.
-     */
-    public void updateExchangeRates(){
-        for (BankAccount account: this.getAccounts()) {
-            if (account instanceof ForeignCurrencyAccount){
-                ((ForeignCurrencyAccount) account).setExchangeRate(this.currencyManager.getRate("USD"));
-            }
-        }
-    }
-
     /** Getters **/
     public ArrayList<String[]> getAccountRequests() {
         return accountRequests;
@@ -109,10 +97,6 @@ public class AccountManager implements Iterable<BankAccount> {
 
     public ArrayList<BankAccount> getAccounts() {
         return accounts;
-    }
-
-    public int getNumAccounts() {
-        return accounts.size();
     }
 
     /**

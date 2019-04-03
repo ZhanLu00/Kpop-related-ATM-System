@@ -46,7 +46,7 @@ public class ClientActionHandler {
     }
 
     // check balance
-    Map<Integer, Double> checkBalance() {
+    public Map<Integer, Double> checkBalance() {
         Map balance = new HashMap<Integer, Double>();
 
         // get account numbers first
@@ -204,11 +204,14 @@ public class ClientActionHandler {
      * Sets a chequing account as primary account.
      * Returns true if this action is successful, false otherwise.
      */
-    boolean setPrimary(int accNum) {
+    public boolean setPrimary(int accNum) {
+
        BankAccount account = accountManager.getAccount(accNum);
        if (account instanceof ChequingAccount) {
-           client.setPrimaryAccount(accNum);
-           return true;
+           if (client.getAccounts().contains(accNum)) {
+               client.setPrimaryAccount(accNum);
+               return true;
+           }
        }
        return false;
     }

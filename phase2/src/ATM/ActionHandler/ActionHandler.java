@@ -487,17 +487,19 @@ public class ActionHandler {
 
     public void setPrimary(){
         viewer.setPrimaryButton.addActionListener(e->{
-            Object accNum = viewer.primaryAccNum.getText();
-            if (accNum instanceof Integer){
+            int accNum ;
+            try{
+                accNum = Integer.parseInt(viewer.primaryAccNum.getText());
                 if (clientActionHandler.setPrimary((int)accNum)){
                     viewer.popUp("You have successfully set a new " +
                             "primary account.");
                 }else{
                     viewer.popUp("Please select a chequing account");
                 }
-            }else{
+            }catch (Exception ec){
                 viewer.popUp("Please check your input.");
             }
+
         });
         viewer.goBackPrimary.addActionListener(e->{
             viewer.changePage(viewer.setPrimary, viewer.clientOptions);
@@ -633,26 +635,27 @@ public class ActionHandler {
     }
 
     public void viewAccountCreationRequests(){
-
         ArrayList<String[]> accRequests = requestManager.getClientRequestsByStatus("newAccount","pending");
         viewer.accountRequestsList.setListData(bankManagerActionHandler.formatRequest(accRequests));
 
         viewer.acceptAccountRequestButton.addActionListener(e -> {
+            // get input
             int selectedIndex = viewer.accountRequestsList.getSelectedIndex();
-
-            String username = accRequests.get(selectedIndex+1)[0];
-            String accType = accRequests.get(selectedIndex+1)[1];
-            User user = userManager.getUser(username);
+            String username = accRequests.get(selectedIndex)[0];
+            String accType = accRequests.get(selectedIndex)[1];
+            // add account
             BankAccount acc = accountManager.createAccount(accType);
-            ((Client) user).addAccounts(acc.getId());
-            atm.getRequestManager().updateStatus("newAccount", currentUser.username, "accepted");
+            ((Client)userManager.getUser(username)).addAccounts(acc.getId());
+            requestManager.updateStatus("newAccount", currentUser.username, "succeed");
+            // update the window
             ArrayList<String[]> accRequests1 = requestManager.getClientRequestsByStatus("newAccount","pending");
             viewer.accountRequestsList.setListData(bankManagerActionHandler.formatRequest(accRequests1));
+            viewer.popUp("Account request has been accept");
 
         });
         viewer.declineAccountRequestButton.addActionListener(e -> {
             atm.getRequestManager().updateStatus("newAccount", currentUser.username, "declined");
-
+            viewer.popUp("Account request has been declined");
 
         });
         viewer.goBackAccRequest.addActionListener(e -> {

@@ -1,3 +1,3 @@
 zhanlu,CHEQUING_ACCOUNT,accepted
-hahaha,CHEQUING_ACCOUNT,pending
+hahaha,CHEQUING_ACCOUNT,accepted
 hahahaha,CHEQUING_ACCOUNT,pending

@@ -325,14 +325,24 @@ public class ActionHandler {
 
     public void createNewAccount(){
 
-        String[] status = requestManager.getStatus("newAccount", currentUser.username);
-        viewer.accRequestStatus.setText("Account type requested: " + status[0] + " Status: " + status[1]);
+        ArrayList<String[]> status = requestManager.getClientRequestsByUsername("newAccount", currentUser.username);
+        String request = "";
+        for (String[] re:status){
+            request += "Account Type: " + re[1] + "  Request Status: " + re[2] + "\n";
+        }
+        viewer.accRequestStatus.setText(request);
         viewer.createAccountButton.addActionListener(e -> {
             String accType = viewer.accType.getSelectedItem().toString();
 
             if (!requestManager.requestExist("newAccount", currentUser.username, accType)){
                 requestManager.addRequest("newAccount", currentUser.username, accType);
                 viewer.popUp("request submitted");
+                ArrayList<String[]> status1 = requestManager.getClientRequestsByUsername("newAccount", currentUser.username);
+                String request1 = "";
+                for (String[] re:status1){
+                    request1 += "Account Type: " + re[1] + "  Request Status: " + re[2] + "\n";
+                }
+                viewer.accRequestStatus.setText(request1);
             }else{
                 viewer.popUp("Something is wrong. Please check your input.");
             }

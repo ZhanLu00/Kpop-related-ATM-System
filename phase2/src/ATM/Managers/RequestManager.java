@@ -112,6 +112,24 @@ public class RequestManager {
         return requests;
     }
 
+    public ArrayList<String[]> getClientRequestsByUsername(String type, String username){
+        ArrayList<String[]> requests = new ArrayList<String[]>();
+        if (type.equals("newUser")){
+            for (String[] request: this.clientRequests){
+                if (request[0].equals(username)){
+                    requests.add(request);
+                }
+            }
+        }else{
+            for (String[] request: this.accountRequests){
+                if (request[0].equals(username)){
+                    requests.add(request);
+                }
+            }
+        }
+        return requests;
+    }
+
     public boolean updateStatus(String requestType, String username, String status){
         int inde = 0;
         if (requestType.equals("newUser")){

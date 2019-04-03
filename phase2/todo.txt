@@ -135,6 +135,7 @@ gui:
         + withdraw: killed
             - button not working killed
             - input wrong killed
+            - check acc num before action
         + accountSummary
             - request for new account: always wrong killed
             - request status does not working

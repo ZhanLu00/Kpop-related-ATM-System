@@ -66,7 +66,6 @@ public class ActionHandler {
         this.userManager = atm.getUserManager();
         this.billManager = atm.getBillManager();
         this.transactionManager = atm.getTransactionManager();
-        this.billManager = atm.getBillManager();
         this.requestManager = atm.getRequestManager();
         this.viewer = atmgui;
         this.atm = atm;
@@ -659,7 +658,7 @@ public class ActionHandler {
             BankAccount acc = accountManager.createAccount(accType);
             ((Client)userManager.getUser(username)).addAccounts(acc.getId());
             accountManager.addAccount(acc);
-            requestManager.updateStatus("newAccount", currentUser.username, "succeed");
+            requestManager.updateStatus("newAccount", currentUser.username, "accepted");
             // update the window
             ArrayList<String[]> accRequests1 = requestManager.getClientRequestsByStatus("newAccount","pending");
             viewer.accountRequestsList.setListData(bankManagerActionHandler.formatRequest(accRequests1));

@@ -648,6 +648,7 @@ public class ActionHandler {
             // add account
             BankAccount acc = accountManager.createAccount(accType);
             ((Client)userManager.getUser(username)).addAccounts(acc.getId());
+            accountManager.addAccount(acc);
             requestManager.updateStatus("newAccount", currentUser.username, "succeed");
             // update the window
             ArrayList<String[]> accRequests1 = requestManager.getClientRequestsByStatus("newAccount","pending");

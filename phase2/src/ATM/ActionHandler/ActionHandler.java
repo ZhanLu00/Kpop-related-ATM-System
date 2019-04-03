@@ -142,7 +142,8 @@ public class ActionHandler {
                 // then show the status
                 String[] status = requestManager.getStatus("newUser", username);
                 if (status[1].equals("accepted")){
-                    String pswd = userManager.getUser(username).getPassword();
+                    User user = userManager.getUser(username);
+                    String pswd = user.getPassword();
                     viewer.popUp("Request accepted, here is your initial password: \n " + pswd);
                 }else if (status[1].equals("pending")) {
                     viewer.popUp("Request pending.");
@@ -654,11 +655,8 @@ public class ActionHandler {
             int selectedIndex = viewer.accountRequestsList.getSelectedIndex();
             String username = accRequests.get(selectedIndex)[0];
             String accType = accRequests.get(selectedIndex)[1];
-            // add account
-            BankAccount acc = accountManager.createAccount(accType);
-            ((Client)userManager.getUser(username)).addAccounts(acc.getId());
-            accountManager.addAccount(acc);
-            requestManager.updateStatus("newAccount", currentUser.username, "accepted");
+            bankManagerActionHandler.createAccountForUser(username, accType);
+            requestManager.updateStatus("newAccount", username, "accepted");
             // update the window
             ArrayList<String[]> accRequests1 = requestManager.getClientRequestsByStatus("newAccount","pending");
             viewer.accountRequestsList.setListData(bankManagerActionHandler.formatRequest(accRequests1));

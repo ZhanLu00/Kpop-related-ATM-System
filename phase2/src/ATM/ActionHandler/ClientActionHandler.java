@@ -69,7 +69,6 @@ public class ClientActionHandler {
 
         // if
         if (account instanceof CreditCardsAccount) {
-            System.out.println("Credit card account does not support withdraw");
             return false;
         } else {
 
@@ -77,12 +76,10 @@ public class ClientActionHandler {
                 if (billManager.withdrawable(amount)) {
                     return true;
                 } else {
-                    System.out.println("There are not enough money in this src.ATM, please try another one");
                     account.deposit(amount);
                     return false;
                 }
             } else {
-                System.out.println("Withdraw Declined, please check your balance");
                 return false;
             }
         }

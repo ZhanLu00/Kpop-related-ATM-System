@@ -4,6 +4,7 @@ import com.sun.istack.internal.Nullable;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Manage the account and user creation requests of the atm

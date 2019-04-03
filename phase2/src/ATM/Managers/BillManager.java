@@ -72,7 +72,6 @@ public class BillManager {
             }
             return amount == 0;
         }else{
-            System.out.println("Please choose a positive amount divisible by 5.");
             return false;
         }
     }

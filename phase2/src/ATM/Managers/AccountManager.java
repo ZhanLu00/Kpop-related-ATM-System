@@ -128,7 +128,8 @@ public class AccountManager implements Iterable<BankAccount> {
                 return new LotteryAccount(dateCreated,0);
             case "FOREIGN_CURRENCY_ACCOUNT":
                 String currencyType = "USD";
-                return new ForeignCurrencyAccount(dateCreated, 0, currencyType, currencyManager.getRate(currencyType));
+                double rate = currencyManager.getRate(currencyType);
+                return new ForeignCurrencyAccount(dateCreated, 0, currencyType, rate);
             case "CREDIT_CARD_ACCOUNT":
                 return new CreditCardsAccount(dateCreated,0);
             case "LINE_OF_CREDIT_ACCOUNT":

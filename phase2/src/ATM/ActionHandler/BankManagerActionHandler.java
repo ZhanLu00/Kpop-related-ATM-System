@@ -103,7 +103,6 @@ public class BankManagerActionHandler {
         for (String[] rec:requests){
             String info = "Username: " +rec[0] + "  Account: "+ rec[1];
             formatted.addElement(info);
-            System.out.println(info);
         }
 
         return formatted;
@@ -182,12 +181,10 @@ public class BankManagerActionHandler {
 
     /** Input Readers **/
     private int getIntFromUser(String display) throws IOException {
-        System.out.print(display);
         return Integer.parseInt(kbd.readLine());
     }
 
     private String getStringFromUser(String display) throws IOException {
-        System.out.print(display);
         return kbd.readLine();
     }
 

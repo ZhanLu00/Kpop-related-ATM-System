@@ -109,11 +109,6 @@ public class ClientActionHandler {
     }
 
 
-    // request creation of an account
-    public void accountCreation(String type) {
-        this.accountManager.requestNewAccount(this.client.getUsername(), type);
-    }
-
     /*
     Pay a bill
      */
@@ -441,12 +436,12 @@ public class ClientActionHandler {
         // request a creation of an account
         System.out.println("Account type that you want to create");
         String type = kbd.readLine();
-        try {
-            accountManager.requestNewAccount(client.getUsername(), type);
-            System.out.println("Request send");
-        } catch (Exception e) {
-            System.out.println("Request declined");
-        }
+//        try {
+//            accountManager.requestNewAccount(client.getUsername(), type);
+//            System.out.println("Request send");
+//        } catch (Exception e) {
+//            System.out.println("Request declined");
+//        }
     }
 
     /**

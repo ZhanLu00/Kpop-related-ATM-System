@@ -121,26 +121,26 @@ gui:
         - statusButton: requestmanager: error killed
         - status: show password if approved killed!
 
-    + login:
+    + login: killed
         - clean input box after logged in killed
         - shows wrong password when entered a right one, reason found
         - stilllogged in when things above happened reason found
         - bank inspector cant log in killed
 
     + client:
-        + transfer:
+        + transfer: killed
             -button not working killed
-            - clear testfield after enter
-            - fix money did not get transferred
-            - fix check transfer accounts before transfer
-        + withdraw:
+            - clear testfield after enter killed
+            - fix money did not get transferred killed
+            - fix check transfer accounts before transfer killed
+        + withdraw: killed
             - button not working killed
-            - input wrong
+            - input wrong killed
         + accountSummary
             - request for new account: always wrong killed
             - request status is
             - TODO when user requests to make another chequing acc, request is sent but displays msg saying "smth's wrong"
-        + deposit
+        + deposit killed!
             - input wrong killed
             - cash did not get updated killed
             - why account got added twice????
@@ -153,6 +153,8 @@ gui:
             - empty enter filed when page changed killed
         + set primary chequing account
             - something is wrong
+        + pay bill
+            -
 
 
     + BankManager:

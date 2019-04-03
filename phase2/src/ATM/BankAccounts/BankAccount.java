@@ -72,7 +72,7 @@ public abstract class BankAccount {
         if(this.withdraw(amount)) {
             try {
                 String bill = amount + ", " + receiver;
-                BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/src/ATM/testfiles/outgoing.txt"));
+                BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/resources/outgoing.txt"));
                 writer.append(bill);
             } catch (IOException e) {
                 e.printStackTrace();

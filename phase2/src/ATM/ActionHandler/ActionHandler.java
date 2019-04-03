@@ -640,8 +640,8 @@ public class ActionHandler {
         viewer.acceptAccountRequestButton.addActionListener(e -> {
             int selectedIndex = viewer.accountRequestsList.getSelectedIndex();
 
-            String username = accRequests.get(selectedIndex)[0];
-            String accType = accRequests.get(selectedIndex)[1];
+            String username = accRequests.get(selectedIndex+1)[0];
+            String accType = accRequests.get(selectedIndex+1)[1];
             User user = userManager.getUser(username);
             BankAccount acc = accountManager.createAccount(accType);
             ((Client) user).addAccounts(acc.getId());

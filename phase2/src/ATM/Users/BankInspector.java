@@ -1,6 +1,6 @@
 package ATM.Users;
 
-public class BankInspector extends User {
+public class BankInspector extends Client {
     public BankInspector(String username, String password) {
         super(username, password);
     }

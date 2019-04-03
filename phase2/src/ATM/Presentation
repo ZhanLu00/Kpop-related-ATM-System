@@ -1,0 +1,41 @@
+Presentation Plan:
+
+1. briefly talk about the update in p2
+2. New feature: GUI
+3. A simple demo
+4. Design Decisions
+5. walk through the code
+
+1. BRIEFLY is the key, mainly talk about functions of bank account and new employee
+   (1min)
+    - new type of bank account: lottery, currency
+    - set max Debt
+    - new bank employee: bank inspector
+    - improvement of bank manager, (especially undo)
+    - joint account
+
+
+2. GUI (1min30s)
+    - what package we used? why did we choose it
+    - how did we implemented it?
+    - how did the gui class construct and why
+    - walk through the code a little bit
+
+3. A simple demo (1min)
+    - creating two accounts,
+    - depositing money in one,
+    - transferring money to the other account
+    - shut down program
+    - check balance
+
+4. Design Pattern (3-4 mins, two ppl)
+    - mvc, action handler
+    - managers
+
+5. walk through the code (2-3mins)
+    - show fileparsers, and demo one example of the file
+    - show the bank inspector & bank manager page
+    -
+
+
+***** feel free to add more things to the list above *****

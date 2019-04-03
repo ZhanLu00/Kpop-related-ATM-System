@@ -60,7 +60,6 @@ Part 3: be creative and add more features to our app!
 
     Yuhan & Zhan
     + UI:
-        - TODO ADD ACTION HANDLERS FOR SETTING PRIMARY CHEQUING ACCS + JOINT ACCS
         - design pages( a lot of them)
             - welcome page
             - log in page

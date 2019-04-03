@@ -228,15 +228,7 @@ public class ATMGUI {
     }
 
     public void init() {
-//        final ATMGUI atm = new ATMGUI();
-//        JFrame frame = new JFrame("src/ATM");
-//        frame.setResizable(false);
-//        frame.setLocation(500,300);
-//        frame.setSize(600, 500);
-//        frame.setContentPane(atm.root);
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setVisible(true);
-//        atm.welcomePage.setVisible(true);
+
     }
 
     private void createUIComponents() {

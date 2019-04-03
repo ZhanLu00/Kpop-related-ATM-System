@@ -2,6 +2,7 @@ package ATM.Managers;
 
 import com.sun.istack.internal.Nullable;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -74,23 +75,23 @@ public class RequestManager {
     /**
      * @param requestType The type of request being checked for
      * @param username The username of the user who the request pertains to
-     * @return the status of the request
+     * @return a String array where the first item is the type of account, second is the status
      */
-    public String getStatus(String requestType, String username) {
+    public String[] getStatus(String requestType, String username) {
         if (requestType.equals("newUser")){
             for (String[] info : this.clientRequests){
                 if (username.equals(info[0])){
-                    return info[2];
+                    return new String[]{info[1], info[2]};
                 }
             }
         }else{
             for (String[] info: this.accountRequests){
                 if (username.equals(info[0])){
-                    return info[2];
+                    return new String[]{info[1], info[2]};
                 }
             }
         }
-        return "";
+        return new String[]{};
     }
 
     public ArrayList<String[]> getClientRequestsByStatus(String type, String status){

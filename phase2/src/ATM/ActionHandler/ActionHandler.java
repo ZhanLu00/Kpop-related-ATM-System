@@ -131,7 +131,7 @@ public class ActionHandler {
                 }
 
             }else{
-                viewer.popUp("Your username is already token");
+                viewer.popUp("Your username is already taken.");
             }
         });
         viewer.requestStatus.addActionListener(e->{
@@ -141,11 +141,11 @@ public class ActionHandler {
             // check if the request exist
             if (requestManager.requestExist("newUser", username, type)){
                 // then show the status
-                String status = requestManager.getStatus("newUser", username);
-                if (status.equals("accepted")){
+                String[] status = requestManager.getStatus("newUser", username);
+                if (status[1].equals("accepted")){
                     String pswd = userManager.getUser(username).getPassword();
                     viewer.popUp("Request accepted, here is your initial password: \n " + pswd);
-                }else if (status.equals("pending")) {
+                }else if (status[1].equals("pending")) {
                     viewer.popUp("Request pending.");
                 }else{
                     viewer.popUp("Request declined.");
@@ -324,13 +324,11 @@ public class ActionHandler {
     }
 
     public void createNewAccount(){
+
+        String[] status = requestManager.getStatus("newAccount", currentUser.username);
+        viewer.accRequestStatus.setText("Account type requested: " + status[0] + " Status: " + status[1]);
         viewer.createAccountButton.addActionListener(e -> {
             String accType = viewer.accType.getSelectedItem().toString();
-            boolean exist = requestManager.requestExist("newAccount", currentUser.username, accType);
-            if (exist){
-                String status = requestManager.getStatus("newAccount", currentUser.username);
-                viewer.accRequestStatus.setText("Status: " + status);
-            }
 
             if (!requestManager.requestExist("newAccount", currentUser.username, accType)){
                 requestManager.addRequest("newAccount", currentUser.username, accType);

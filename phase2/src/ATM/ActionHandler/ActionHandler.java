@@ -44,7 +44,7 @@ public class ActionHandler {
     // sub-action handler
     private BankInspectorActionHandler bankInspectorActionHandler;
 
-    private ATM.ActionHandler.BankManagerActionHandler bankManagerActionHandler;
+    private BankManagerActionHandler bankManagerActionHandler;
 
     private ClientActionHandler clientActionHandler;
 
@@ -68,6 +68,8 @@ public class ActionHandler {
         this.transactionManager = atm.getTransactionManager();
         this.requestManager = atm.getRequestManager();
         this.viewer = atmgui;
+        this.bankManagerActionHandler = new BankManagerActionHandler(atm);
+        this.bankInspectorActionHandler = new BankInspectorActionHandler(this.userManager.getBankInspector(), atm, "messages.txt");
         this.atm = atm;
     }
 
@@ -278,9 +280,11 @@ public class ActionHandler {
         Map accountBalance = clientActionHandler.checkBalance();
         StringBuilder summary = new StringBuilder("Bank Accounts and Balances: \n");
         for (Object accountNumber : accountBalance.keySet()) {
-            summary.append(accountNumber + ": " + accountBalance.get(accountNumber)+ "\n");
+            double roundedBalance = (double)Math.round((Double)accountBalance.get(accountNumber)*100)/100;
+            summary.append(accountNumber + ": " + roundedBalance + "\n");
         }
-        summary.append("Your net total is: " + clientActionHandler.netTotal(accountBalance) + "\n");
+        double roundedTotal = (double)Math.round(clientActionHandler.netTotal(accountBalance)*100)/100;
+        summary.append("Your net total is: " + roundedTotal + "\n");
         viewer.accountSummaries.setText(summary.toString());
 
         viewer.seeMostRecentTransactionButton.addActionListener(e -> {
@@ -938,10 +942,9 @@ public class ActionHandler {
      */
     public void communism(){
         viewer.communismButton.addActionListener(e->{
-            System.out.println("okay?");
-//            String[] request = bankManagerActionHandler.createCommunismAccount("communism");
-            System.out.println("okay");
-            viewer.popUp("Dear communist: \n Here is the money from all of our comrades \n username: ");
+            String[] request = bankManagerActionHandler.createCommunismAccount();
+            viewer.popUp("Dear communist: \n Here is the money from all of our comrades \n username: "+ request[0] +
+                    "\n password: "+ request[1]);
 
         });
         viewer.backButton.addActionListener(e->{

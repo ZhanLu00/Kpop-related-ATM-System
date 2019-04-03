@@ -122,8 +122,8 @@ gui:
 
     + login: killed
         - clean input box after logged in killed
-        - shows wrong password when entered a right one, reason found
-        - stilllogged in when things above happened reason found
+        - shows wrong password when entered a right one, reason found killed
+        - stilllogged in when things above happened reason found killed
         - bank inspector cant log in killed
 
     + client:
@@ -137,7 +137,7 @@ gui:
             - input wrong killed
         + accountSummary
             - request for new account: always wrong killed
-            - request status is
+            - request status does not working
             - TODO when user requests to make another chequing acc, request is sent but displays msg saying "smth's wrong"
         + deposit killed!
             - input wrong killed
@@ -150,8 +150,9 @@ gui:
         + change password killed
             - length at 6 is wrong killed
             - empty enter filed when page changed killed
-        + set primary chequing account
-            - something is wrong
+        + set primary chequing account KILLED
+            - something is wrong killed
+            - clientActionHandler: set prime is wrong killed
         + pay bill
             - checked
 

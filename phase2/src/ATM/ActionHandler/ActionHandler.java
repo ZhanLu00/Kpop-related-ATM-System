@@ -262,7 +262,7 @@ public class ActionHandler {
             setPrimary();
         });
         viewer.goBackClient.addActionListener(e->{
-            // todo clean all the action listener
+            // CLEAN THE ACTION LISTENERS
             viewer.changePage(viewer.clientOptions, viewer.welcomePage);
             viewer.removeAL(viewer.viewAccountSummaryButton);
             viewer.removeAL(viewer.withdrawMoneyButton);

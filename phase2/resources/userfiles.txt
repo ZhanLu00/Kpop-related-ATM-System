@@ -6,4 +6,3 @@ inspector,ins,00000,
 client,haha,53483,4
 client,hahaha,11350,5
 client,john,11111,
-client,communist_leader,64706,7

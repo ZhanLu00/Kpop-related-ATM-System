@@ -20,7 +20,7 @@ public class AtmApplication {
         String transactionsFileName = "phase2/resources/transactions.txt";
         String messagesFileName = "phase2/resources/messages.txt";
         String accountRequestFileName = "phase2/resources/accountRequests.txt";
-        String clientRequestFileName = "phase2/resources//clientRequests.txt";
+        String clientRequestFileName = "phase2/resources/clientRequests.txt";
 
         Atm atm = new Atm(userFileName, accountFileName, atmFileName, alertsFileName, transactionsFileName,
                 messagesFileName, accountRequestFileName, clientRequestFileName);

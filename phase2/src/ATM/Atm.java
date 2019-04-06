@@ -22,7 +22,6 @@ public class Atm {
     private String userFileName, accountFileName, atmFileName, alertsFileName, transactionsFileName, messagesFileName,
     clientRequestFileName, accountRequestFileName;
 
-    //TODO: Currency manager gets info from where?
     public Atm (String userFileName,  String accountFileName, String atmFileName, String alertsFileName, String transactionsFileName, String messagesFileName
     , String accountRequestFileName, String clientRequestFileName) throws IOException {
         UserFileReader userFileReader = new UserFileReader(userFileName);

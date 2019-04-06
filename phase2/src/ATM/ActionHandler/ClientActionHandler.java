@@ -22,12 +22,7 @@ import java.util.Map;
  * This class will need to access and modify fields from AccountManager, BankManager and Client.
  */
 public class ClientActionHandler {
-    // this class will be handle actions from users
-    // acting as an operation class here
-    // two types of actions come from two types of user
-    // this class will need to access and mutate the Accounts from AccountManager
-    // bankManager
-    // Client
+
 
     private Client client;
     private AccountManager accountManager;
@@ -43,29 +38,23 @@ public class ClientActionHandler {
         this.billManager = atm.getBillManager();
     }
 
-    // check balance
+    /**
+     * Return the user's balance.
+     */
     public Map<Integer, Double> checkBalance() {
         Map balance = new HashMap<Integer, Double>();
 
-        // get account numbers first
         for (int accountNumber : this.client.getAccounts()) {
-            // get balance from each of the bank number
             balance.put(accountNumber, this.accountManager.getAccount(accountNumber).getBalance());
         }
         return balance;
     }
 
-    // check transaction history (of itself)
-
-    // withdraw
-    public Boolean withdraw(BankAccount account, int amount) {
-    /*
-    @ TODO add the function below in the user interface part
-    the function only returns true or false
+    /**
+     * Withdraws amount from account.
+     * Returns true if the transaction was successful, false otherwise.
      */
-        // will return a new balance if request complete, return false if declined
-
-        // if
+    public boolean withdraw(BankAccount account, int amount) {
         if (account instanceof CreditCardsAccount) {
             return false;
         } else {
@@ -83,8 +72,11 @@ public class ClientActionHandler {
         }
     }
 
-    // transfer
-    public Boolean transfer(double amount, int senderId, int receiverId) {
+    /**
+     * Transfers money from one account to the other.
+     * Returns true if the transaction was successful, false otherwise.
+     */
+    public boolean transfer(double amount, int senderId, int receiverId) {
 
         // check if both in and out acc are in the system
         // also check if the out is from the owner's account
@@ -103,10 +95,11 @@ public class ClientActionHandler {
         return false;
     }
 
-    /*
-    Pay a bill
+    /**
+    Pays a bill.
+     Returns true if the payment was successful, false otherwise
      */
-    public Boolean payBill(int transOut, double amount, int transIn) {
+    public boolean payBill(int transOut, double amount, int transIn) {
         BankAccount account = accountManager.getAccount(transOut);
         // check if there are enough balance
         if (account.getBalance() < amount) {
@@ -125,7 +118,7 @@ public class ClientActionHandler {
 
     }
 
-    /*
+    /**
     Calculate the net total of all accounts of an user
      */
     double netTotal(Map<Integer, Double> accounts) {

@@ -11,7 +11,7 @@ Our motivation for the project was the 27% of our CSC207 mark.
 
 Open and run ATMApplication. A welcome page will pop up with three buttons, 'New User', 'Returning User' or 'Exit'. You can go to new user to create a new client account (by choosing a username, password and initial account). Otherwise you can choose returning user.
 
-If you're a returning user, the ATM will promt the user to enter an username and a password (example of working usernames and passwords can be found in 'userfiles.txt').
+If you're a returning user, the ATM will prompt the user to enter an username and a password (example of working usernames and passwords can be found in 'userfiles.txt').
 
 The bank manager is able to create an client, restock the ATM, undo transactions, view account/user creation requests, join two accounts, and show or clear alerts/messages.
 
